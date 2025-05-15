@@ -94,12 +94,12 @@ async function main() {
 
 
   // Remove data
-  const article = await prisma.article.delete({
-    where: {
-      id: 4
-    },
-  });
-  console.log(article);
+  // const article = await prisma.article.delete({
+  //   where: {
+  //     id: 4
+  //   },
+  // });
+  // console.log(article);
 
   const articles = await prisma.article.findMany()
   console.log(articles)
