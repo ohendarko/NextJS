@@ -1,4 +1,4 @@
-// File: D:\KOD\NextPharmaBridge\Pharma-Bridge-Journey\app\api\user\route.ts
+// File: D:\KOD\NextJS\Pharma-Bridge-Journey\app\api\user\route.ts
 import * as entry from '../../../../../app/api/user/route.js'
 import type { NextRequest } from 'next/server.js'
 

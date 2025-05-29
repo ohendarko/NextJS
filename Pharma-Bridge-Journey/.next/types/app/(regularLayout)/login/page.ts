@@ -1,4 +1,4 @@
-// File: D:\KOD\NextPharmaBridge\Pharma-Bridge-Journey\app\(regularLayout)\login\page.tsx
+// File: D:\KOD\NextJS\Pharma-Bridge-Journey\app\(regularLayout)\login\page.tsx
 import * as entry from '../../../../../app/(regularLayout)/login/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
