@@ -7867,6 +7867,8 @@ export namespace Prisma {
   export type DocumentMinAggregateOutputType = {
     id: string | null
     userId: string | null
+    ownerName: string | null
+    ownerEmail: string | null
     name: string | null
     type: string | null
     status: string | null
@@ -7880,6 +7882,8 @@ export namespace Prisma {
   export type DocumentMaxAggregateOutputType = {
     id: string | null
     userId: string | null
+    ownerName: string | null
+    ownerEmail: string | null
     name: string | null
     type: string | null
     status: string | null
@@ -7893,6 +7897,8 @@ export namespace Prisma {
   export type DocumentCountAggregateOutputType = {
     id: number
     userId: number
+    ownerName: number
+    ownerEmail: number
     name: number
     type: number
     status: number
@@ -7908,6 +7914,8 @@ export namespace Prisma {
   export type DocumentMinAggregateInputType = {
     id?: true
     userId?: true
+    ownerName?: true
+    ownerEmail?: true
     name?: true
     type?: true
     status?: true
@@ -7921,6 +7929,8 @@ export namespace Prisma {
   export type DocumentMaxAggregateInputType = {
     id?: true
     userId?: true
+    ownerName?: true
+    ownerEmail?: true
     name?: true
     type?: true
     status?: true
@@ -7934,6 +7944,8 @@ export namespace Prisma {
   export type DocumentCountAggregateInputType = {
     id?: true
     userId?: true
+    ownerName?: true
+    ownerEmail?: true
     name?: true
     type?: true
     status?: true
@@ -8020,6 +8032,8 @@ export namespace Prisma {
   export type DocumentGroupByOutputType = {
     id: string
     userId: string
+    ownerName: string
+    ownerEmail: string
     name: string
     type: string
     status: string
@@ -8050,6 +8064,8 @@ export namespace Prisma {
   export type DocumentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    ownerName?: boolean
+    ownerEmail?: boolean
     name?: boolean
     type?: boolean
     status?: boolean
@@ -8066,6 +8082,8 @@ export namespace Prisma {
   export type DocumentSelectScalar = {
     id?: boolean
     userId?: boolean
+    ownerName?: boolean
+    ownerEmail?: boolean
     name?: boolean
     type?: boolean
     status?: boolean
@@ -8076,7 +8094,7 @@ export namespace Prisma {
     category?: boolean
   }
 
-  export type DocumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "type" | "status" | "uploadDate" | "size" | "url" | "notes" | "category", ExtArgs["result"]["document"]>
+  export type DocumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "ownerName" | "ownerEmail" | "name" | "type" | "status" | "uploadDate" | "size" | "url" | "notes" | "category", ExtArgs["result"]["document"]>
   export type DocumentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -8089,6 +8107,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
+      ownerName: string
+      ownerEmail: string
       name: string
       type: string
       status: string
@@ -8492,6 +8512,8 @@ export namespace Prisma {
   interface DocumentFieldRefs {
     readonly id: FieldRef<"Document", 'String'>
     readonly userId: FieldRef<"Document", 'String'>
+    readonly ownerName: FieldRef<"Document", 'String'>
+    readonly ownerEmail: FieldRef<"Document", 'String'>
     readonly name: FieldRef<"Document", 'String'>
     readonly type: FieldRef<"Document", 'String'>
     readonly status: FieldRef<"Document", 'String'>
@@ -8984,6 +9006,8 @@ export namespace Prisma {
   export const DocumentScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    ownerName: 'ownerName',
+    ownerEmail: 'ownerEmail',
     name: 'name',
     type: 'type',
     status: 'status',
@@ -9550,6 +9574,8 @@ export namespace Prisma {
     NOT?: DocumentWhereInput | DocumentWhereInput[]
     id?: StringFilter<"Document"> | string
     userId?: StringFilter<"Document"> | string
+    ownerName?: StringFilter<"Document"> | string
+    ownerEmail?: StringFilter<"Document"> | string
     name?: StringFilter<"Document"> | string
     type?: StringFilter<"Document"> | string
     status?: StringFilter<"Document"> | string
@@ -9564,6 +9590,8 @@ export namespace Prisma {
   export type DocumentOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    ownerName?: SortOrder
+    ownerEmail?: SortOrder
     name?: SortOrder
     type?: SortOrder
     status?: SortOrder
@@ -9581,6 +9609,8 @@ export namespace Prisma {
     OR?: DocumentWhereInput[]
     NOT?: DocumentWhereInput | DocumentWhereInput[]
     userId?: StringFilter<"Document"> | string
+    ownerName?: StringFilter<"Document"> | string
+    ownerEmail?: StringFilter<"Document"> | string
     name?: StringFilter<"Document"> | string
     type?: StringFilter<"Document"> | string
     status?: StringFilter<"Document"> | string
@@ -9595,6 +9625,8 @@ export namespace Prisma {
   export type DocumentOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
+    ownerName?: SortOrder
+    ownerEmail?: SortOrder
     name?: SortOrder
     type?: SortOrder
     status?: SortOrder
@@ -9614,6 +9646,8 @@ export namespace Prisma {
     NOT?: DocumentScalarWhereWithAggregatesInput | DocumentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Document"> | string
     userId?: StringWithAggregatesFilter<"Document"> | string
+    ownerName?: StringWithAggregatesFilter<"Document"> | string
+    ownerEmail?: StringWithAggregatesFilter<"Document"> | string
     name?: StringWithAggregatesFilter<"Document"> | string
     type?: StringWithAggregatesFilter<"Document"> | string
     status?: StringWithAggregatesFilter<"Document"> | string
@@ -10122,6 +10156,8 @@ export namespace Prisma {
 
   export type DocumentCreateInput = {
     id?: string
+    ownerName: string
+    ownerEmail: string
     name: string
     type: string
     status: string
@@ -10136,6 +10172,8 @@ export namespace Prisma {
   export type DocumentUncheckedCreateInput = {
     id?: string
     userId: string
+    ownerName: string
+    ownerEmail: string
     name: string
     type: string
     status: string
@@ -10147,6 +10185,8 @@ export namespace Prisma {
   }
 
   export type DocumentUpdateInput = {
+    ownerName?: StringFieldUpdateOperationsInput | string
+    ownerEmail?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
@@ -10160,6 +10200,8 @@ export namespace Prisma {
 
   export type DocumentUncheckedUpdateInput = {
     userId?: StringFieldUpdateOperationsInput | string
+    ownerName?: StringFieldUpdateOperationsInput | string
+    ownerEmail?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
@@ -10173,6 +10215,8 @@ export namespace Prisma {
   export type DocumentCreateManyInput = {
     id?: string
     userId: string
+    ownerName: string
+    ownerEmail: string
     name: string
     type: string
     status: string
@@ -10184,6 +10228,8 @@ export namespace Prisma {
   }
 
   export type DocumentUpdateManyMutationInput = {
+    ownerName?: StringFieldUpdateOperationsInput | string
+    ownerEmail?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
@@ -10196,6 +10242,8 @@ export namespace Prisma {
 
   export type DocumentUncheckedUpdateManyInput = {
     userId?: StringFieldUpdateOperationsInput | string
+    ownerName?: StringFieldUpdateOperationsInput | string
+    ownerEmail?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
@@ -10686,6 +10734,8 @@ export namespace Prisma {
   export type DocumentCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    ownerName?: SortOrder
+    ownerEmail?: SortOrder
     name?: SortOrder
     type?: SortOrder
     status?: SortOrder
@@ -10699,6 +10749,8 @@ export namespace Prisma {
   export type DocumentMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    ownerName?: SortOrder
+    ownerEmail?: SortOrder
     name?: SortOrder
     type?: SortOrder
     status?: SortOrder
@@ -10712,6 +10764,8 @@ export namespace Prisma {
   export type DocumentMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    ownerName?: SortOrder
+    ownerEmail?: SortOrder
     name?: SortOrder
     type?: SortOrder
     status?: SortOrder
@@ -11282,6 +11336,8 @@ export namespace Prisma {
 
   export type DocumentCreateWithoutUserInput = {
     id?: string
+    ownerName: string
+    ownerEmail: string
     name: string
     type: string
     status: string
@@ -11294,6 +11350,8 @@ export namespace Prisma {
 
   export type DocumentUncheckedCreateWithoutUserInput = {
     id?: string
+    ownerName: string
+    ownerEmail: string
     name: string
     type: string
     status: string
@@ -11450,6 +11508,8 @@ export namespace Prisma {
     NOT?: DocumentScalarWhereInput | DocumentScalarWhereInput[]
     id?: StringFilter<"Document"> | string
     userId?: StringFilter<"Document"> | string
+    ownerName?: StringFilter<"Document"> | string
+    ownerEmail?: StringFilter<"Document"> | string
     name?: StringFilter<"Document"> | string
     type?: StringFilter<"Document"> | string
     status?: StringFilter<"Document"> | string
@@ -12256,6 +12316,8 @@ export namespace Prisma {
 
   export type DocumentCreateManyUserInput = {
     id?: string
+    ownerName: string
+    ownerEmail: string
     name: string
     type: string
     status: string
@@ -12308,6 +12370,8 @@ export namespace Prisma {
   }
 
   export type DocumentUpdateWithoutUserInput = {
+    ownerName?: StringFieldUpdateOperationsInput | string
+    ownerEmail?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
@@ -12319,6 +12383,8 @@ export namespace Prisma {
   }
 
   export type DocumentUncheckedUpdateWithoutUserInput = {
+    ownerName?: StringFieldUpdateOperationsInput | string
+    ownerEmail?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
@@ -12330,6 +12396,8 @@ export namespace Prisma {
   }
 
   export type DocumentUncheckedUpdateManyWithoutUserInput = {
+    ownerName?: StringFieldUpdateOperationsInput | string
+    ownerEmail?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string

@@ -187,6 +187,8 @@ exports.Prisma.VerificationTokenScalarFieldEnum = {
 exports.Prisma.DocumentScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  ownerName: 'ownerName',
+  ownerEmail: 'ownerEmail',
   name: 'name',
   type: 'type',
   status: 'status',

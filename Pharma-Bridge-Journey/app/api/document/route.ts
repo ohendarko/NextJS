@@ -24,6 +24,8 @@ export async function POST(req: Request) {
     const doc = await prisma.document.create({
       data: {
         userId: user.id,
+        ownerName: user.name,
+        ownerEmail: user.email,
         name,
         type,
         size,

@@ -139,6 +139,8 @@ model VerificationToken {
 model Document {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   userId     String
+  ownerName  String
+  ownerEmail String
   name       String
   type       String // e.g., "PDF", "Image"
   status     String // e.g., "uploaded", "verified"

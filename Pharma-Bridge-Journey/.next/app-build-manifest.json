@@ -12,35 +12,40 @@
       "static/css/app/not-found.css",
       "static/chunks/app/not-found.js"
     ],
-    "/(regularLayout)/layout": [
+    "/(dashboard)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(regularLayout)/layout.js"
+      "static/chunks/app/(dashboard)/layout.js"
     ],
-    "/(regularLayout)/page": [
+    "/(dashboard)/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(regularLayout)/page.js"
+      "static/chunks/app/(dashboard)/dashboard/page.js"
     ],
     "/api/auth/[...nextauth]/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/auth/[...nextauth]/route.js"
     ],
-    "/_not-found/page": [
+    "/api/user/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/api/user/route.js"
     ],
-    "/(regularLayout)/whowehelp/page": [
+    "/api/upload/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(regularLayout)/whowehelp/page.js"
+      "static/chunks/app/api/upload/route.js"
     ],
-    "/(regularLayout)/pricing/page": [
+    "/api/document/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(regularLayout)/pricing/page.js"
+      "static/chunks/app/api/document/route.js"
+    ],
+    "/(regularLayout)/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(regularLayout)/layout.js"
     ],
     "/(regularLayout)/login/page": [
       "static/chunks/webpack.js",

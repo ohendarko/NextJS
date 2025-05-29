@@ -70,7 +70,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
           type: selectedFile.type.includes('pdf') ? 'PDF' : 'Image',
           size: `${(selectedFile.size / 1024 / 1024).toFixed(1)} MB`,
           url: data.secure_url,
-          category: 'education', // TODO: Replace with dynamic category if needed
+          category, // TODO: Replace with dynamic category if needed
         }),
       });
 
