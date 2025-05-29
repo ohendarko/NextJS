@@ -1,0 +1,35 @@
+.pageFour {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-top: -100px;
+}
+
+.exclamationTriangle {
+  color: rgb(6, 25, 155);
+  font-weight: 400;
+  font-size: 10em;
+  margin-bottom: 4px;
+}
+
+.fourTextOne {
+  font-size: 3em;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.fourTextTwo {
+  font-size: large;
+  margin-bottom: 5px;
+}
+
+.goBack {
+  color: white;
+  background-color: rgb(12, 4, 95);
+  padding: 10px;
+  padding-inline: 40px;
+  margin-top: 4px;
+}

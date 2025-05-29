@@ -1,0 +1,28 @@
+{
+  "node": {
+    "7f040c4fc098260ecdc0e59bee9e11249acc58ead6": {
+      "workers": {
+        "app/(regularLayout)/login/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CKOD%5C%5CNextPharmaBridge%5C%5CPharma-Bridge-Journey%5C%5Clib%5C%5Caction.ts%22%2C%5B%7B%22id%22%3A%227f040c4fc098260ecdc0e59bee9e11249acc58ead6%22%2C%22exportedName%22%3A%22Sessions%22%7D%2C%7B%22id%22%3A%227f4065a39124c5d459046163ab51fb47fc9d6b489d%22%2C%22exportedName%22%3A%22SignIn%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/(regularLayout)/login/page": "action-browser"
+      }
+    },
+    "7f4065a39124c5d459046163ab51fb47fc9d6b489d": {
+      "workers": {
+        "app/(regularLayout)/login/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CKOD%5C%5CNextPharmaBridge%5C%5CPharma-Bridge-Journey%5C%5Clib%5C%5Caction.ts%22%2C%5B%7B%22id%22%3A%227f040c4fc098260ecdc0e59bee9e11249acc58ead6%22%2C%22exportedName%22%3A%22Sessions%22%7D%2C%7B%22id%22%3A%227f4065a39124c5d459046163ab51fb47fc9d6b489d%22%2C%22exportedName%22%3A%22SignIn%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/(regularLayout)/login/page": "action-browser"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "2m7lI+sEjKjmbexwdHnONEc8XupJ84nlj0vnl3rRLlI="
+}

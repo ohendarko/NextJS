@@ -1,0 +1,11 @@
+mongodb+srv://ohendarko:subm()r1n3@cluster0.h3dh03a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+Let me know if you want help with:
+
+Writing API endpoints to book or update consultations
+
+Filtering for "upcoming" consultations
+
+Preventing double bookings on the same date/time
+
+I can also help add support for time zones or video link integration if needed.
