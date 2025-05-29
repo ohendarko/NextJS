@@ -20,9 +20,15 @@ interface DocumentCenterProps {
 const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
   const [activeTab, setActiveTab] = useState("fpgee");
   const [completedItems, setCompletedItems] = useState<Record<string, boolean>>({});
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [fileState, setFileState] = useState<Record<string, File | null>>({});
+  const [uploadingState, setUploadingState] = useState<Record<string, boolean>>({});
+  const [completionState, setCompletionState] = useState<Record<string, boolean>>({});
+
+
   const [isUploading, setIsUploading] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
+
 
   const handleCheckboxChange = (itemId: string, checked: boolean) => {
     setCompletedItems(prev => ({
@@ -31,65 +37,64 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
     }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-    setSelectedFile(file);
+  const handleFileChange = (itemId: string, file: File | null) => {
+    setFileState(prev => ({
+      ...prev,
+      [itemId]: file,
+    }));
   };
 
-  const handleUpload = async (category: string) => {
-    if (!selectedFile) return;
+const handleUpload = async (itemId: string, category: string) => {
+  const selectedFile = fileState[itemId];
+  if (!selectedFile) return;
 
-    setIsUploading(true);
+  setUploadingState(prev => ({ ...prev, [itemId]: true }));
 
-    try {
-      // 1. Upload to Cloudinary via server-side API
-      const formData = new FormData();
-      formData.append('file', selectedFile);
+  try {
+    const formData = new FormData();
+    formData.append('file', selectedFile);
 
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
+    const res = await fetch('/api/upload', {
+      method: 'POST',
+      body: formData,
+    });
 
-      const data = await res.json();
+    const data = await res.json();
 
-      if (!res.ok) {
-        console.error('Cloudinary upload failed:', data.error);
-        setIsUploading(false);
-        return;
-      }
+    if (!res.ok) throw new Error(data.error || 'Upload failed');
 
-      console.log('Uploaded file URL:', data.secure_url);
+    const docRes = await fetch('/api/document', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: selectedFile.name,
+        type: selectedFile.type.includes('pdf') ? 'PDF' : 'Image',
+        size: `${(selectedFile.size / 1024 / 1024).toFixed(1)} MB`,
+        url: data.secure_url,
+        category,
+      }),
+    });
 
-      // 2. Save the document metadata to MongoDB via Prisma API route
-      const docRes = await fetch('/api/document', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: selectedFile.name,
-          type: selectedFile.type.includes('pdf') ? 'PDF' : 'Image',
-          size: `${(selectedFile.size / 1024 / 1024).toFixed(1)} MB`,
-          url: data.secure_url,
-          category, // TODO: Replace with dynamic category if needed
-        }),
-      });
+    const docData = await docRes.json();
+    if (!docRes.ok) throw new Error(docData.error || 'Save failed');
 
-      const docData = await docRes.json();
+    setFileState(prev => ({ ...prev, [itemId]: null }));
+    setCompletionState(prev => ({
+      ...prev,
+      [itemId]: true,
+    }));
+    setCompletedItems(prev => ({
+      ...prev,
+      [itemId]: true,
+    }));
 
-      if (!docRes.ok) {
-        console.error('MongoDB save failed:', docData.error);
-      } else {
-        console.log('Document saved to DB:', docData);
-        // Optionally: reset file input or show success message
-        setSelectedFile(null);
-      }
-
-    } catch (error) {
-      console.error('Unexpected upload error:', error);
+    
+    } catch (err) {
+      console.error(err);
     } finally {
-      setIsUploading(false);
-  }
-};
+      setUploadingState(prev => ({ ...prev, [itemId]: false }));
+    }
+  };
 
 
   const fpgeeRequirements = [
@@ -235,6 +240,10 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
               <Checkbox
                 id={req.id}
                 checked={completedItems[req.id] || false}
+                // This logic will be fetched from the database later
+                // onCheckedChange={(value) =>
+                // setCompletionState(prev => ({ ...prev, [req.id]: Boolean(value) }))
+                // }
                 onCheckedChange={(checked) => handleCheckboxChange(req.id, checked as boolean)}
                 className="mt-1"
               />
@@ -263,10 +272,18 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
               <div className="ml-6 space-y-2">
                 <label className="block text-sm font-medium">Upload Image for Verification</label>
                 <div className="flex gap-2">
-                  <Input type="file" accept="image/*,.pdf" className="flex-1" onChange={handleFileChange} />
-                  <Button size="sm" onClick={() => handleUpload(req.id)} disabled={isUploading}>
+                  <Input
+                    type="file"
+                    accept="image/*,.pdf"
+                    className="flex-1"
+                    onChange={(e) => handleFileChange(req.id, e.target.files?.[0] || null)}
+                  />
+                  <Button
+                    size="sm"
+                    onClick={() => handleUpload(req.id, req.title)}disabled={uploadingState[req.id]}
+                  >
                     <Upload className="h-4 w-4 mr-1" />
-                    {isUploading ? 'Uploading...' : 'Upload'}
+                     {uploadingState[req.id] ? 'Uploading...' : 'Upload'}
                   </Button>
                 </div>
                 <p className="text-xs text-gray-500">
