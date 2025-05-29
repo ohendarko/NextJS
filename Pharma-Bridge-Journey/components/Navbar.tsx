@@ -1,104 +1,58 @@
-"use client"
+'use client'
 import React, { useState, useEffect } from 'react';
-import { Button } from "../components/ui/button";
+import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
-import { toast } from "../hooks/use-toast";
-import { useAuth } from '@/app/context/auth-context';
-import { useSession } from 'next-auth/react';
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const router = useRouter();
-  const { isLoggedIn, setIsLoggedIn } = useAuth();
-
-  // Check if auth token exists in cookies
-  const checkAuthStatus = () => {
-        const token = Cookies.get('token');
-    if (typeof token !== 'undefined') {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  };
-
-  // Scroll effect for header shadow
+  const isMobile = useIsMobile();
+  
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
     };
+    
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
-
-  // Run auth check when window is focused
-  useEffect(() => {
-    checkAuthStatus();
-    window.addEventListener('focus', checkAuthStatus);
-    return () => window.removeEventListener('focus', checkAuthStatus);
-  }, []);
-
-  // Toggle mobile menu
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  // Check if user is alreafy logged in and there's a session
-  const { data: session, status } = useSession();
-  const checkLoggedInStatus = () => {
-    if (status === 'authenticated' && session) {
-      setIsLoggedIn(true);
-      router.push('/dashboard');
-    } else {
-      setIsLoggedIn(false);
-      router.push('/login');
-    }
-  }
-
-  const handleLogout = async () => {
-    const res = await fetch('/api/logout', {
-      method: 'POST',
-    });
-  
-    if (res.ok) {
-      toast({ title: "Logged out", description: "You have been signed out." });
-      Cookies.remove('token');
-      setIsLoggedIn(false); // Immediately update state
-      router.push('/login');
-    }
-  };
-
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
-      <div className="container mx-auto px-4 py-4">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white bg-opacity-90 backdrop-blur-sm'}`}>
+      <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <Link href="/">
-              <Image src="/logo.png" alt="Logo" width={100} height={100} />
+            <Link href="/" className={`${isMobile ? 'text-lg' : 'text-2xl'} font-bold text-pharma-blue truncate max-w-[200px] sm:max-w-none`}>
+              PharmaBridge Consulting
             </Link>
           </div>
           
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-6">
+            
             <Link href="/whowehelp" className="text-foreground hover:text-pharma-blue font-medium">Who We Help</Link>
-            <Link href="/#services" className="text-foreground hover:text-pharma-blue font-medium">Services</Link>
             <Link href="/pricing" className="text-foreground hover:text-pharma-blue font-medium">Pricing</Link>
-            <Link href="/#process" className="text-foreground hover:text-pharma-blue font-medium">Process</Link>
-            <Link href="/#about" className="text-foreground hover:text-pharma-blue font-medium">About</Link>
-            <div className="flex space-x-4"> 
-              <Button variant="outline" type='button' onClick={checkLoggedInStatus} className="border-pharma-blue text-pharma-blue hover:bg-pharma-light-blue">Log In</Button>
-              
+            <Link href="/contact" className="text-foreground hover:text-pharma-blue font-medium">Contact</Link>
+            
+            <div className="flex space-x-4">
+              <Link href="/login">
+                <Button variant="outline" className="border-pharma-blue text-pharma-blue hover:bg-pharma-light-blue">Log In</Button>
+              </Link>
               <Link href="/createaccount">
                 <Button className="bg-pharma-blue hover:bg-pharma-dark-blue text-white">Create Account</Button>
               </Link>
             </div>
-           
-            {/* <Button variant="outline" onClick={handleLogout} className="ml-4">Log Out</Button> */}
-            
           </nav>
           
           {/* Mobile Menu Button */}
@@ -113,20 +67,21 @@ const Navbar = () => {
         
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-md">
+          <div className="md:hidden absolute text-center top-full left-0 right-0 bg-white shadow-md">
             <div className="flex flex-col p-4 space-y-4">
-              <Link href="/whowehelp" className="text-foreground hover:text-pharma-blue font-medium">Who We Help</Link>
-            <Link href="/#services" className="text-foreground hover:text-pharma-blue font-medium">Services</Link>
-            <Link href="/pricing" className="text-foreground hover:text-pharma-blue font-medium">Pricing</Link>
-            <Link href="/#process" className="text-foreground hover:text-pharma-blue font-medium">Process</Link>
-            <Link href="/#about" className="text-foreground hover:text-pharma-blue font-medium">About</Link>
-            <div className="flex flex-col gap-2 space-x-4"> 
-              <Button variant="outline" type='button' onClick={checkLoggedInStatus} className="border-pharma-blue text-pharma-blue hover:bg-pharma-light-blue">Log In</Button>
               
-              <Link href="/createaccount">
-                <Button className="bg-pharma-blue hover:bg-pharma-dark-blue text-white">Create Account</Button>
-              </Link>
-            </div>
+              <Link href="/who-we-help" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Who We Help</Link>
+              <Link href="/pricing" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Pricing</Link>
+              <Link href="/contact" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Contact</Link>
+              
+              <div className="flex flex-col space-y-3">
+                <Link href="/login" onClick={toggleMenu}>
+                  <Button variant="outline" className="w-full border-pharma-blue text-pharma-blue hover:bg-pharma-light-blue">Log In</Button>
+                </Link>
+                <Link href="/createaccount" onClick={toggleMenu}>
+                  <Button className="w-full bg-pharma-blue hover:bg-pharma-dark-blue text-white">Create Account</Button>
+                </Link>
+              </div>
             </div>
           </div>
         )}

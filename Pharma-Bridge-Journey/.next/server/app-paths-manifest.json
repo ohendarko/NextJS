@@ -1,3 +1,5 @@
 {
-  "/(regularLayout)/page": "app/(regularLayout)/page.js"
+  "/(regularLayout)/page": "app/(regularLayout)/page.js",
+  "/(regularLayout)/whowehelp/page": "app/(regularLayout)/whowehelp/page.js",
+  "/(regularLayout)/pricing/page": "app/(regularLayout)/pricing/page.js"
 }

@@ -1,22 +1,24 @@
-'use client';
+'use client'
 import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { useIsMobile } from "@/hooks/use-mobile";
-import Image from 'next/image';
-
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const isMobile = useIsMobile();
   
   useEffect(() => {
     setIsVisible(true);
     
-    // Preload the pharmacy-related image
-    // const img = new Image();
-    // img.onload = () => setImageLoaded(true);
-    // img.src = "./face.png";
+    // Preload the PharmaBridge pharmacist image
+    const img = new Image();
+    img.onload = () => setImageLoaded(true);
+    img.src = "/face.png";
+    img.onerror = () => {
+    console.log("Failed to load /face.png");
+};
   }, []);
 
   return (
@@ -25,31 +27,36 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-white via-white/70 to-transparent z-10"></div>
       
       {/* Hero background image with loading optimization */}
-      {(
-  <div 
-    className="absolute inset-0 bg-cover bg-no-repeat z-0"
-    style={{ 
-      backgroundImage: "url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')",
-      backgroundPosition: isMobile ? "center center" : "center center",
-      backgroundSize: "cover"
-    }}
-  >
-    <Image src="/face.png" width={100} height={100} alt="face of pharmabridge consulting" />
-  </div>
-)}
+      {imageLoaded && (
+        <div 
+          className="absolute inset-0 bg-cover bg-no-repeat z-0"
+          style={{ 
+            backgroundImage: "url('/face.png')",
+            backgroundPosition: isMobile ? "center center" : "center center",
+            backgroundSize: "cover"
+          }}
+        ></div>
+      )}
       
       {/* Fallback background while image loads */}
-      {/* <div className="absolute inset-0 bg-gradient-to-br from-pharma-light-blue to-white z-0"></div> */}
+      <div className="absolute inset-0 bg-gradient-to-br from-pharma-light-blue to-white z-0"></div>
       
-      <div className="container mx-auto px-4 max-w-full w-full relative z-20">
-        <div className="items-center max-w-full flex gap-2">
-          <div className="text-center md:text-left ">
+      <div className="container flex items-center mx-auto px-4 w-full relative z-20"
+      style={{ 
+        backgroundImage: "url('/face.png')",
+        backgroundPosition: "center center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        height: "90vh"
+      }}
+      >
+        <div className="items-center max-w-3xl">
+          <div className="text-center md:text-left">
             <h1 
               className={`text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-pharma-navy opacity-0 ${isVisible ? 'animate-fade-up' : ''}`}
             >
               Helping International Pharmacists <span className="text-pharma-blue">Succeed in the U.S.</span>
             </h1>
-            
             <p 
               className={`text-lg md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0 opacity-0 text-gray-700 ${isVisible ? 'animate-fade-up animate-delay-100' : ''}`}
             >
@@ -65,9 +72,7 @@ const Hero = () => {
                 Book Free Consultation
               </Button> 
             </div>
-            
-          </div>
-          <Image src="/face.png" width={500} height={500} alt="face of pharmabridge consulting" className=' hidden md:block rounded-md flex-1 ' />  
+          </div>  
         </div>
       </div>
     </section>
