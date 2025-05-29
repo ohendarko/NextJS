@@ -1,36 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcrypt';
-import clientPromise from '../../../lib/mongodb'; // Your MongoDB connection helper
+import clientPromise from '@/lib/mongodb'; // Your MongoDB connection helper
 import jwt from 'jsonwebtoken';
 
-// export async function POST(req: NextRequest) {
-//   const { email, password } = await req.json();
-
-//   if (!email || !password) {
-//     return NextResponse.json({ error: 'Missing credentials' }, { status: 400 });
-//   }
-
-//   try {
-//     const client = await clientPromise;
-//     const db = client.db();
-//     const user = await db.collection('users').findOne({ email });
-
-//     if (!user) {
-//       return NextResponse.json({ error: 'User not found' }, { status: 401 });
-//     }
-
-//     const isValid = await bcrypt.compare(password, user.password);
-//     if (!isValid) {
-//       return NextResponse.json({ error: 'Invalid password' }, { status: 401 });
-//     }
-
-//     // Optionally, set cookies/session here
-
-//     return NextResponse.json({ message: 'Login successful', user: { email: user.email, name: user.name } });
-//   } catch (err) {
-//     return NextResponse.json({ error: 'Server error' }, { status: 500 });
-//   }
-// }
 
 
 export async function POST(req: NextRequest) {

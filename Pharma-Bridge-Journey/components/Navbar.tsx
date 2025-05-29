@@ -89,13 +89,12 @@ const Navbar = () => {
             <Link href="/pricing" className="text-foreground hover:text-pharma-blue font-medium">Pricing</Link>
             <Link href="/#process" className="text-foreground hover:text-pharma-blue font-medium">Process</Link>
             <Link href="/#about" className="text-foreground hover:text-pharma-blue font-medium">About</Link>
-            <div className="flex space-x-4">
-            
-            <Button variant="outline" type='button' onClick={checkLoggedInStatus} className="border-pharma-blue text-pharma-blue hover:bg-pharma-light-blue">Log In</Button>
-            
-            <Link href="/createaccount">
-              <Button className="bg-pharma-blue hover:bg-pharma-dark-blue text-white">Create Account</Button>
-            </Link>
+            <div className="flex space-x-4"> 
+              <Button variant="outline" type='button' onClick={checkLoggedInStatus} className="border-pharma-blue text-pharma-blue hover:bg-pharma-light-blue">Log In</Button>
+              
+              <Link href="/createaccount">
+                <Button className="bg-pharma-blue hover:bg-pharma-dark-blue text-white">Create Account</Button>
+              </Link>
             </div>
            
             {/* <Button variant="outline" onClick={handleLogout} className="ml-4">Log Out</Button> */}
@@ -116,21 +115,18 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-md">
             <div className="flex flex-col p-4 space-y-4">
-              <Link href="#services" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Services</Link>
-              <Link href="/pricing" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Pricing</Link>
-              <Link href="#process" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Process</Link>
-              <Link href="#about" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>About</Link>
-              <Link href="/welcome" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Welcome</Link>
-              <Link href="/dashboard/onboarding" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Onboarding</Link>
-              <Link href="/dashboard" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Dashboard</Link>
+              <Link href="/whowehelp" className="text-foreground hover:text-pharma-blue font-medium">Who We Help</Link>
+            <Link href="/#services" className="text-foreground hover:text-pharma-blue font-medium">Services</Link>
+            <Link href="/pricing" className="text-foreground hover:text-pharma-blue font-medium">Pricing</Link>
+            <Link href="/#process" className="text-foreground hover:text-pharma-blue font-medium">Process</Link>
+            <Link href="/#about" className="text-foreground hover:text-pharma-blue font-medium">About</Link>
+            <div className="flex flex-col gap-2 space-x-4"> 
+              <Button variant="outline" type='button' onClick={checkLoggedInStatus} className="border-pharma-blue text-pharma-blue hover:bg-pharma-light-blue">Log In</Button>
               
-              {!isLoggedIn ? (
-                <Link href="/createaccount">
-                  <Button variant="outline" className="ml-4">Create Account</Button>
-                </Link>
-                ) : (
-                  <Button variant="outline" onClick={handleLogout} className="ml-4">Log Out</Button>
-              )}
+              <Link href="/createaccount">
+                <Button className="bg-pharma-blue hover:bg-pharma-dark-blue text-white">Create Account</Button>
+              </Link>
+            </div>
             </div>
           </div>
         )}
