@@ -71,7 +71,7 @@ const Navbar = () => {
           <div className="md:hidden absolute text-center top-full left-0 right-0 bg-white shadow-md">
             <div className="flex flex-col p-4 space-y-4">
               
-              <Link href="/who-we-help" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Who We Help</Link>
+              <Link href="/whowehelp" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Who We Help</Link>
               <Link href="/pricing" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Pricing</Link>
               <Link href="/contact" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Contact</Link>
               
