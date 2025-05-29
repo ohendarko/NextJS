@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { useIsMobile } from "@/hooks/use-mobile";
+import Image from 'next/image';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,11 +31,11 @@ const Navbar = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-white bg-opacity-90 backdrop-blur-sm'}`}>
-      <div className="container mx-auto px-4 py-3">
+      <div className="container mx-auto px-4 py-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className={`${isMobile ? 'text-lg' : 'text-2xl'} font-bold text-pharma-blue truncate max-w-[200px] sm:max-w-none`}>
-              PharmaBridge Consulting
+              <Image src='/logo.svg' height={100} width={100} alt='pharmabridge logo' className='px-0 py-0' />
             </Link>
           </div>
           

@@ -43,11 +43,11 @@ const Hero = () => {
       
       <div className="container flex items-center mx-auto px-4 w-full relative z-20"
       style={{ 
-        backgroundImage: "url('/face.png')",
+        backgroundImage: "url('/face2.png')",
         backgroundPosition: "center center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        height: "90vh"
+        height: "100vh"
       }}
       >
         <div className="items-center max-w-3xl">
