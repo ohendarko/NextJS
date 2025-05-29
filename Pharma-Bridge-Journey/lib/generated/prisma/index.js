@@ -201,7 +201,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\Ayensu\\NextPharmaBridge\\Pharma-Bridge-Journey\\lib\\generated\\prisma",
+      "value": "D:\\KOD\\NextJS\\Pharma-Bridge-Journey\\lib\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -215,7 +215,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\Ayensu\\NextPharmaBridge\\Pharma-Bridge-Journey\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\KOD\\NextJS\\Pharma-Bridge-Journey\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -229,6 +229,7 @@ const config = {
     "db"
   ],
   "activeProvider": "mongodb",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

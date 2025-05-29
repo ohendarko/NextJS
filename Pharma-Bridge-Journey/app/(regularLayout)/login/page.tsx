@@ -58,24 +58,24 @@ const Login = () => {
     setIsLoading(false);
   };
 
-  const handleSignIn = () => {
-    try {
-      const result = SignIn()
-      if (result) {
-        navigate.push("/dashboard")
-      } else {
-        return;
-      }
-    } catch (error) {
-      console.error("Error in SignIn:", error);
-      return;
+  // const handleSignIn = () => {
+  //   try {
+  //     const result = SignIn()
+  //     if (result) {
+  //       navigate.push("/dashboard")
+  //     } else {
+  //       return;
+  //     }
+  //   } catch (error) {
+  //     console.error("Error in SignIn:", error);
+  //     return;
       
-    }
-    toast({
-      title: 'Login successful',
-      description: 'Welcome back to PharmaBridge Consulting',
-    });
-  }
+  //   }
+  //   toast({
+  //     title: 'Login successful',
+  //     description: 'Welcome back to PharmaBridge Consulting',
+  //   });
+  // }
 
 
   const togglePasswordVisibility = () => {
@@ -146,6 +146,8 @@ const Login = () => {
           <Button
             variant="outline"
             className="flex-1 flex items-center justify-center gap-2"
+            //Enable Google Authentication by removing this line
+            disabled={true}
             onClick={() => {
               signIn("google", { callbackUrl: "/dashboard" });
               setIsLoggedIn(true);
