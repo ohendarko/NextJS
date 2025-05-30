@@ -149,6 +149,11 @@ const AdminLogin = () => {
     
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       
+      <div>
+        {(status === "unauthenticated" || !session || status==='loading' || !isAdmin) ? 
+        (<div className="flex justify-center items-center h-screen text-4xl">
+        
+        </div>) : ( 
       
       <div className="max-w-md w-full space-y-8 p-8">
         <div className="text-center">
@@ -220,6 +225,7 @@ const AdminLogin = () => {
           </Button>
         </div>
       </div>
+        )}</div>
     </div>
   );
 };

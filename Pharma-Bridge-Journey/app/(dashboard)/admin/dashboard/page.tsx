@@ -241,7 +241,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {(status === "unauthenticated" || !session || status==='loading') ? 
+      {(status === "unauthenticated" || !session || status==='loading' || !isAdmin) ? 
         (<div className="flex justify-center items-center h-screen text-4xl">
         
         </div>) : ( 
