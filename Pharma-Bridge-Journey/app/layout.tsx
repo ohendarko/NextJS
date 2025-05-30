@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import "./global.css";
 import { AuthProvider } from "./context/auth-context";
-import { SessionProvider } from "next-auth/react";
 import SessionWrapper from "./providers/SessionWrapper";
+import { ToastProvider, ToastViewport } from "@/components/ui/toast";
+import { Toaster } from "@/components/ui/toaster";
 
-import LogInNavbar from "@/components/LogInNavbar";
+// import { SessionProvider } from "next-auth/react";
+
+// import LogInNavbar from "@/components/LogInNavbar";
 
 
 
@@ -24,15 +27,18 @@ export default function RootLayout({
       <body
         className={`antialiased max-w-7xl flex-column`}
       > 
-      <SessionWrapper>
-        <AuthProvider>  
-            <div>
-              <main >
-                {children}
-              </main>
-            </div>
-        </AuthProvider>
-      </SessionWrapper>
+        <SessionWrapper>
+          <AuthProvider>
+            {/* <ToastProvider> */}
+              <div>
+                <main >
+                  {children}
+                </main>
+                <Toaster />
+              </div>
+            {/* </ToastProvider>   */}
+          </AuthProvider>
+        </SessionWrapper>
       </body>
     </html>
   );

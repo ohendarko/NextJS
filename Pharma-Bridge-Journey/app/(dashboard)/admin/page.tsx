@@ -31,8 +31,8 @@ const AdminLogin = () => {
       try {
         const res = await fetch('/api/user');
         const user = await res.json();
-        console.log('user:', user)
-        console.log('isAdmin:', isAdmin);
+        // console.log('user:', user)
+        // console.log('isAdmin:', isAdmin);
 
         if (user?.admin) {
           setIsAdmin(true);
@@ -49,10 +49,10 @@ const AdminLogin = () => {
     };
 
     verifyAdmin();
-    console.log('useEffect ran')
+    // console.log('useEffect ran')
     
   }, [status]);
-  console.log('isAdmin',isAdmin)
+  // console.log('isAdmin',isAdmin)
 
   //end of removal
 
@@ -69,7 +69,7 @@ const AdminLogin = () => {
       });
 
       const data = await adminRes.json();
-      console.log('loginAdmin',data.isAdmin)
+      // console.log('loginAdmin',data.isAdmin)
 
       if (!data.isAdmin) {
         toast({

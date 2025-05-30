@@ -38,12 +38,14 @@ const Login = () => {
       password,
     });
 
-    if (res?.error) {
+    if (res?.error === 'CredentialsSignin') {
       toast({
         title: 'Login failed',
         description: "Please check your credentials and try again.",
         variant: 'destructive',
       });
+      // console.log(res.error)
+      // alert('Check your credentials and try again')
     } else {
       if(status === 'unauthenticated') {
         navigate.push("/login");

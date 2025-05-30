@@ -92,6 +92,7 @@ const CreateAccount = () => {
 
         if (!response.ok) {
           toast({ title: "Error", description: data.error || "Something went wrong", variant: "destructive" });
+          
           return;
         }
 

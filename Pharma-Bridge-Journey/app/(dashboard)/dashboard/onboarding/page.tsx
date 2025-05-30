@@ -108,13 +108,13 @@ const OnboardingForm = () => {
   };
   
   const handleNext = () => {
-    console.log("handleNext called");
+    // console.log("handleNext called");
     // Validate current step
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
       window.scrollTo(0, 0);
     }
-    console.log("formData:", formData);
+    // console.log("formData:", formData);
   };
   
   const handlePrevious = () => {
@@ -176,7 +176,7 @@ const OnboardingForm = () => {
         email: session.user.email,
         ...cleanedData,
       };
-      console.log('Submitting payload:', payload);
+      // console.log('Submitting payload:', payload);
 
       const res = await fetch('/api/user', {
         method: 'POST',
@@ -196,7 +196,7 @@ const OnboardingForm = () => {
       navigate.push('/dashboard')
     } catch (err) {
       console.error(err)
-      console.log(err)
+      // console.log(err)
       alert('Something went wrong. Try again.')
     }
     
