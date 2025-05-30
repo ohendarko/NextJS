@@ -289,11 +289,12 @@ const Dashboard = () => {
   return (
     
     <div className="min-h-screen bg-gray-50">
-      {(status === "unauthenticated" || !session || isLoading) && 
+      {(status === "unauthenticated" || !session || isLoading) ?
         (<div className="flex justify-center items-center h-screen">
         < Spinner loading={isLoading} />
-        </div>)
-      }
+        </div>) :
+        <div>
+      
       <DashboardNavbar userProfile={userProfile} />
       
       <div className="flex pt-20">
@@ -378,7 +379,8 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> 
+      </div>}
     </div>
   );
 };

@@ -17,7 +17,7 @@ const LogInNavbar = () => {
 
   // Check if auth token exists in cookies
   const checkAuthStatus = () => {
-        const token = Cookies.get('token');
+    const token = Cookies.get('token');
     if (typeof token !== 'undefined') {
       setIsLoggedIn(true);
       console.log(isLoggedIn);
