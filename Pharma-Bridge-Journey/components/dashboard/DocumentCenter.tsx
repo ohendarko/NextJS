@@ -240,7 +240,7 @@ const handleUpload = async (itemId: string, category: string) => {
               <Checkbox
                 id={req.id}
                 checked={completedItems[req.id] || false}
-                // This logic will be fetched from the database later
+                // Due to unsustained state, This logic will be fetched from the database later
                 // onCheckedChange={(value) =>
                 // setCompletionState(prev => ({ ...prev, [req.id]: Boolean(value) }))
                 // }
