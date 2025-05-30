@@ -21,21 +21,22 @@ const AdminLogin = () => {
   //remove these 2 use effects for simpler dev activities
   useEffect(() => {
     const verifyAdmin = async () => {
-      if (status === 'loading') return;
+      // if (status === 'loading') return;
 
       if (status === 'unauthenticated') {
-        setCheckedAuth(true);
+        navigate.replace('/not-found');
         return;
       }
 
       try {
         const res = await fetch('/api/user');
         const user = await res.json();
-        // console.log('user:', user)
-        // console.log('isAdmin:', isAdmin);
+        console.log('user:', user)
+        console.log('isAdmin:', isAdmin);
 
         if (user?.admin) {
           setIsAdmin(true);
+          setCheckedAuth(true);
         } else {
           navigate.replace('/not-found');
         }
@@ -51,7 +52,7 @@ const AdminLogin = () => {
     console.log('useEffect ran')
     
   }, [status]);
-  // console.log('isAdmin',isAdmin)
+  console.log('isAdmin',isAdmin)
 
   //end of removal
 
@@ -68,6 +69,7 @@ const AdminLogin = () => {
       });
 
       const data = await adminRes.json();
+      console.log('loginAdmin',data.isAdmin)
 
       if (!data.isAdmin) {
         toast({
@@ -108,37 +110,37 @@ const AdminLogin = () => {
     };
 
   //comment out later
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
+  // const handleLogin = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setIsLoading(true);
 
 
-    // Mock authentication - replace with real auth
-    if (email === 'admin@pharmabridge.com' && password === 'admin123') {
-      localStorage.setItem('adminSession', JSON.stringify({
-        id: 'admin_001',
-        name: 'Benjamin Admin',
-        email: 'admin@pharmabridge.com',
-        role: 'admin',
-        permissions: ['all']
-      }));
+  //   // Mock authentication - replace with real auth
+  //   if (email === 'admin@pharmabridge.com' && password === 'admin123') {
+  //     localStorage.setItem('adminSession', JSON.stringify({
+  //       id: 'admin_001',
+  //       name: 'Benjamin Admin',
+  //       email: 'admin@pharmabridge.com',
+  //       role: 'admin',
+  //       permissions: ['all']
+  //     }));
       
-      toast({
-        title: "Login Successful",
-        description: "Welcome to the admin dashboard!",
-      });
+  //     toast({
+  //       title: "Login Successful",
+  //       description: "Welcome to the admin dashboard!",
+  //     });
       
-      navigate.push('/admin/dashboard');
-    } else {
-      toast({
-        title: "Login Failed",
-        description: "Invalid email or password.",
-        variant: "destructive",
-      });
-    }
+  //     navigate.push('/admin/dashboard');
+  //   } else {
+  //     toast({
+  //       title: "Login Failed",
+  //       description: "Invalid email or password.",
+  //       variant: "destructive",
+  //     });
+  //   }
     
-    setIsLoading(false);
-  };
+  //   setIsLoading(false);
+  // };
 
   //end of intruction
   if (!checkedAuth) return null;

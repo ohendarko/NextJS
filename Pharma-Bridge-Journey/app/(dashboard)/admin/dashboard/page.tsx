@@ -47,10 +47,11 @@ const AdminDashboard = () => {
 
   useEffect(() => {
       const verifyAdmin = async () => {
-        if (status === 'loading') return;
+        // if (status === 'loading') return;
   
         if (status === 'unauthenticated') {
           setCheckedAuth(true);
+          router.replace('/not-found');
           return;
         }
   
