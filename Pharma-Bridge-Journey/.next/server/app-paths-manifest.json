@@ -1,6 +1,5 @@
 {
-  "/api/signup/route": "app/api/signup/route.js",
   "/(regularLayout)/page": "app/(regularLayout)/page.js",
-  "/(regularLayout)/createaccount/page": "app/(regularLayout)/createaccount/page.js",
-  "/(regularLayout)/login/page": "app/(regularLayout)/login/page.js"
+  "/(regularLayout)/login/page": "app/(regularLayout)/login/page.js",
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js"
 }

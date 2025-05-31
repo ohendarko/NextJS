@@ -4256,6 +4256,10 @@ video {
     flex-direction: row;
   }
 
+  .md\:flex-col {
+    flex-direction: column;
+  }
+
   .md\:items-center {
     align-items: center;
   }

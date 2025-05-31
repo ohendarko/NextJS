@@ -98,7 +98,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+      <div className="flex flex-col md:flex-col items-start md:items-center gap-6">
         <div className="relative">
           <Avatar className="h-24 w-24 border-4 border-white shadow-md">
             <AvatarImage src={formData.profileImage || ""} />
@@ -165,7 +165,14 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
               </Select>
             ) : (
               <div className="text-sm text-pharma-blue">
-                {userProfile.country}
+                <Input 
+                  id="country" 
+                  name="country" 
+                  type="country" 
+                  value={userProfile.country || 'Not Selected'} 
+                  onChange={handleInputChange} 
+                  disabled={true} //
+                />
               </div>
             )}
           </div>
@@ -185,7 +192,14 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
               </Select>
             ) : (
               <div className="text-sm text-pharma-blue">
-                {userProfile.degree}
+                <Input 
+                  id="country" 
+                  name="country" 
+                  type="country" 
+                  value={userProfile.degree || 'Not Selected'} 
+                  onChange={handleInputChange} 
+                  disabled={true} //
+                />
               </div>
             )}
           </div>
@@ -218,7 +232,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
         </div>
       </div>
       
-      <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+      {/* <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
         <div className="flex flex-col">
           <Label htmlFor="documents">Documents</Label>
           <div className="flex flex-col gap-4">
@@ -265,7 +279,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
