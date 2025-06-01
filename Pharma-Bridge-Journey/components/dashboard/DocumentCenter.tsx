@@ -44,51 +44,51 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
     }));
   };
 
-const handleUpload = async (itemId: string, category: string) => {
-  const selectedFile = fileState[itemId];
-  if (!selectedFile) return;
+  const handleUpload = async (itemId: string, category: string) => {
+    const selectedFile = fileState[itemId];
+    if (!selectedFile) return;
 
-  setUploadingState(prev => ({ ...prev, [itemId]: true }));
+    setUploadingState(prev => ({ ...prev, [itemId]: true }));
 
-  try {
-    const formData = new FormData();
-    formData.append('file', selectedFile);
+    try {
+      const formData = new FormData();
+      formData.append('file', selectedFile);
 
-    const res = await fetch('/api/upload', {
-      method: 'POST',
-      body: formData,
-    });
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (!res.ok) throw new Error(data.error || 'Upload failed');
+      if (!res.ok) throw new Error(data.error || 'Upload failed');
 
-    const docRes = await fetch('/api/document', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: selectedFile.name,
-        type: selectedFile.type.includes('pdf') ? 'PDF' : 'Image',
-        size: `${(selectedFile.size / 1024 / 1024).toFixed(1)} MB`,
-        url: data.secure_url,
-        category,
-      }),
-    });
+      const docRes = await fetch('/api/document', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: selectedFile.name,
+          type: selectedFile.type.includes('pdf') ? 'PDF' : 'Image',
+          size: `${(selectedFile.size / 1024 / 1024).toFixed(1)} MB`,
+          url: data.secure_url,
+          category,
+        }),
+      });
 
-    const docData = await docRes.json();
-    if (!docRes.ok) throw new Error(docData.error || 'Save failed');
+      const docData = await docRes.json();
+      if (!docRes.ok) throw new Error(docData.error || 'Save failed');
 
-    setFileState(prev => ({ ...prev, [itemId]: null }));
-    setCompletionState(prev => ({
-      ...prev,
-      [itemId]: true,
-    }));
-    setCompletedItems(prev => ({
-      ...prev,
-      [itemId]: true,
-    }));
+      setFileState(prev => ({ ...prev, [itemId]: null }));
+      setCompletionState(prev => ({
+        ...prev,
+        [itemId]: true,
+      }));
+      setCompletedItems(prev => ({
+        ...prev,
+        [itemId]: true,
+      }));
 
-    
+      
     } catch (err) {
       console.error(err);
     } finally {

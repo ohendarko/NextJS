@@ -21,7 +21,9 @@ model User {
   password               String?
   createdAt              DateTime @default(now())
   admin                  Boolean  @default(false)
+  verified               Boolean  @default(false)
   hasCompletedOnboarding Boolean  @default(false)
+  profileImage           String?
 
   // Basic Info
   dateOfBirth DateTime?

@@ -1616,7 +1616,9 @@ export namespace Prisma {
     password: string | null
     createdAt: Date | null
     admin: boolean | null
+    verified: boolean | null
     hasCompletedOnboarding: boolean | null
+    profileImage: string | null
     dateOfBirth: Date | null
     gender: string | null
     phoneNumber: string | null
@@ -1641,7 +1643,9 @@ export namespace Prisma {
     password: string | null
     createdAt: Date | null
     admin: boolean | null
+    verified: boolean | null
     hasCompletedOnboarding: boolean | null
+    profileImage: string | null
     dateOfBirth: Date | null
     gender: string | null
     phoneNumber: string | null
@@ -1666,7 +1670,9 @@ export namespace Prisma {
     password: number
     createdAt: number
     admin: number
+    verified: number
     hasCompletedOnboarding: number
+    profileImage: number
     dateOfBirth: number
     gender: number
     phoneNumber: number
@@ -1693,7 +1699,9 @@ export namespace Prisma {
     password?: true
     createdAt?: true
     admin?: true
+    verified?: true
     hasCompletedOnboarding?: true
+    profileImage?: true
     dateOfBirth?: true
     gender?: true
     phoneNumber?: true
@@ -1718,7 +1726,9 @@ export namespace Prisma {
     password?: true
     createdAt?: true
     admin?: true
+    verified?: true
     hasCompletedOnboarding?: true
+    profileImage?: true
     dateOfBirth?: true
     gender?: true
     phoneNumber?: true
@@ -1743,7 +1753,9 @@ export namespace Prisma {
     password?: true
     createdAt?: true
     admin?: true
+    verified?: true
     hasCompletedOnboarding?: true
+    profileImage?: true
     dateOfBirth?: true
     gender?: true
     phoneNumber?: true
@@ -1841,7 +1853,9 @@ export namespace Prisma {
     password: string | null
     createdAt: Date
     admin: boolean
+    verified: boolean
     hasCompletedOnboarding: boolean
+    profileImage: string | null
     dateOfBirth: Date | null
     gender: string | null
     phoneNumber: string | null
@@ -1883,7 +1897,9 @@ export namespace Prisma {
     password?: boolean
     createdAt?: boolean
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: boolean
     dateOfBirth?: boolean
     gender?: boolean
     phoneNumber?: boolean
@@ -1917,7 +1933,9 @@ export namespace Prisma {
     password?: boolean
     createdAt?: boolean
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: boolean
     dateOfBirth?: boolean
     gender?: boolean
     phoneNumber?: boolean
@@ -1935,7 +1953,7 @@ export namespace Prisma {
     selectedPackage?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "createdAt" | "admin" | "hasCompletedOnboarding" | "dateOfBirth" | "gender" | "phoneNumber" | "timezone" | "countryOfDegree" | "degreeType" | "graduationYear" | "degreeFile" | "passportFile" | "licenseFile" | "hasVisa" | "visaType" | "arrivalDate" | "preferredState" | "selectedPackage" | "documentCategories", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "createdAt" | "admin" | "verified" | "hasCompletedOnboarding" | "profileImage" | "dateOfBirth" | "gender" | "phoneNumber" | "timezone" | "countryOfDegree" | "degreeType" | "graduationYear" | "degreeFile" | "passportFile" | "licenseFile" | "hasVisa" | "visaType" | "arrivalDate" | "preferredState" | "selectedPackage" | "documentCategories", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     documents?: boolean | User$documentsArgs<ExtArgs>
     packageSelections?: boolean | User$packageSelectionsArgs<ExtArgs>
@@ -1961,7 +1979,9 @@ export namespace Prisma {
       password: string | null
       createdAt: Date
       admin: boolean
+      verified: boolean
       hasCompletedOnboarding: boolean
+      profileImage: string | null
       dateOfBirth: Date | null
       gender: string | null
       phoneNumber: string | null
@@ -2382,7 +2402,9 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly admin: FieldRef<"User", 'Boolean'>
+    readonly verified: FieldRef<"User", 'Boolean'>
     readonly hasCompletedOnboarding: FieldRef<"User", 'Boolean'>
+    readonly profileImage: FieldRef<"User", 'String'>
     readonly dateOfBirth: FieldRef<"User", 'DateTime'>
     readonly gender: FieldRef<"User", 'String'>
     readonly phoneNumber: FieldRef<"User", 'String'>
@@ -8921,7 +8943,9 @@ export namespace Prisma {
     password: 'password',
     createdAt: 'createdAt',
     admin: 'admin',
+    verified: 'verified',
     hasCompletedOnboarding: 'hasCompletedOnboarding',
+    profileImage: 'profileImage',
     dateOfBirth: 'dateOfBirth',
     gender: 'gender',
     phoneNumber: 'phoneNumber',
@@ -9118,7 +9142,9 @@ export namespace Prisma {
     password?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     admin?: BoolFilter<"User"> | boolean
+    verified?: BoolFilter<"User"> | boolean
     hasCompletedOnboarding?: BoolFilter<"User"> | boolean
+    profileImage?: StringNullableFilter<"User"> | string | null
     dateOfBirth?: DateTimeNullableFilter<"User"> | Date | string | null
     gender?: StringNullableFilter<"User"> | string | null
     phoneNumber?: StringNullableFilter<"User"> | string | null
@@ -9149,7 +9175,9 @@ export namespace Prisma {
     password?: SortOrder
     createdAt?: SortOrder
     admin?: SortOrder
+    verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
+    profileImage?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -9183,7 +9211,9 @@ export namespace Prisma {
     password?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     admin?: BoolFilter<"User"> | boolean
+    verified?: BoolFilter<"User"> | boolean
     hasCompletedOnboarding?: BoolFilter<"User"> | boolean
+    profileImage?: StringNullableFilter<"User"> | string | null
     dateOfBirth?: DateTimeNullableFilter<"User"> | Date | string | null
     gender?: StringNullableFilter<"User"> | string | null
     phoneNumber?: StringNullableFilter<"User"> | string | null
@@ -9214,7 +9244,9 @@ export namespace Prisma {
     password?: SortOrder
     createdAt?: SortOrder
     admin?: SortOrder
+    verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
+    profileImage?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -9245,7 +9277,9 @@ export namespace Prisma {
     password?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     admin?: BoolWithAggregatesFilter<"User"> | boolean
+    verified?: BoolWithAggregatesFilter<"User"> | boolean
     hasCompletedOnboarding?: BoolWithAggregatesFilter<"User"> | boolean
+    profileImage?: StringNullableWithAggregatesFilter<"User"> | string | null
     dateOfBirth?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     gender?: StringNullableWithAggregatesFilter<"User"> | string | null
     phoneNumber?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -9665,7 +9699,9 @@ export namespace Prisma {
     password?: string | null
     createdAt?: Date | string
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: string | null
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -9696,7 +9732,9 @@ export namespace Prisma {
     password?: string | null
     createdAt?: Date | string
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: string | null
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -9726,7 +9764,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9756,7 +9796,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9787,7 +9829,9 @@ export namespace Prisma {
     password?: string | null
     createdAt?: Date | string
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: string | null
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -9812,7 +9856,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9837,7 +9883,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10395,7 +10443,9 @@ export namespace Prisma {
     password?: SortOrder
     createdAt?: SortOrder
     admin?: SortOrder
+    verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
+    profileImage?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -10420,7 +10470,9 @@ export namespace Prisma {
     password?: SortOrder
     createdAt?: SortOrder
     admin?: SortOrder
+    verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
+    profileImage?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -10445,7 +10497,9 @@ export namespace Prisma {
     password?: SortOrder
     createdAt?: SortOrder
     admin?: SortOrder
+    verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
+    profileImage?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -11642,7 +11696,9 @@ export namespace Prisma {
     password?: string | null
     createdAt?: Date | string
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: string | null
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -11672,7 +11728,9 @@ export namespace Prisma {
     password?: string | null
     createdAt?: Date | string
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: string | null
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -11717,7 +11775,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11746,7 +11806,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11776,7 +11838,9 @@ export namespace Prisma {
     password?: string | null
     createdAt?: Date | string
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: string | null
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -11806,7 +11870,9 @@ export namespace Prisma {
     password?: string | null
     createdAt?: Date | string
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: string | null
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -11851,7 +11917,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11880,7 +11948,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11910,7 +11980,9 @@ export namespace Prisma {
     password?: string | null
     createdAt?: Date | string
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: string | null
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -11940,7 +12012,9 @@ export namespace Prisma {
     password?: string | null
     createdAt?: Date | string
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: string | null
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -11985,7 +12059,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12014,7 +12090,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12044,7 +12122,9 @@ export namespace Prisma {
     password?: string | null
     createdAt?: Date | string
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: string | null
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12074,7 +12154,9 @@ export namespace Prisma {
     password?: string | null
     createdAt?: Date | string
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: string | null
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12119,7 +12201,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12148,7 +12232,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12178,7 +12264,9 @@ export namespace Prisma {
     password?: string | null
     createdAt?: Date | string
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: string | null
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12208,7 +12296,9 @@ export namespace Prisma {
     password?: string | null
     createdAt?: Date | string
     admin?: boolean
+    verified?: boolean
     hasCompletedOnboarding?: boolean
+    profileImage?: string | null
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12253,7 +12343,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12282,7 +12374,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null

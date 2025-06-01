@@ -1,24 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input } from "@/components/ui/input";
-// import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
-import { Upload } from 'lucide-react';
+import { Upload, Settings } from 'lucide-react';
 
 interface UserProfile {
   name: string;
   email: string;
-  country: string;
-  degree: string;
+  countryOfDegree: string;
+  degreeType: string;
   graduationYear: number;
   profileImage: string | null;
-  documents?: {
-    license: { uploaded: boolean; verificationStatus: string | null };
-    degree: { uploaded: boolean; verificationStatus: string | null };
-    idProof: { uploaded: boolean; verificationStatus: string | null };
-  };
+  phoneNumber: string
+  profileImageFile?: File;
   [key: string]: any;
 }
 
@@ -28,7 +25,7 @@ interface ProfileSectionProps {
 }
 
 const countries = [
-  "India", "Philippines", "Nigeria", "Egypt", "Pakistan", "Jordan", 
+  "India", "Ghana", "Philippines", "Nigeria", "Egypt", "Pakistan", "Jordan", 
   "Bangladesh", "Colombia", "Ukraine", "Mexico", "Other"
 ];
 
@@ -38,13 +35,30 @@ const degrees = [
 ];
 
 const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserProfile }) => {
+
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({ ...userProfile });
+  const [isUploading, setIsUploading] = useState(false);
+
+  useEffect(() => {
+    setFormData({ ...userProfile });
+  }, [userProfile]);
+  
+  
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    if (name === "phoneNumber") {
+      // Allow only digits, +, and -
+      const filteredValue = value.replace(/[^\d+-]/g, "");
+      setFormData({ ...formData, [name]: filteredValue });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
+
+
   
   const handleSelectChange = (name: string, value: string) => {
     setFormData({ ...formData, [name]: value });
@@ -54,30 +68,113 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
     if (isEditing) {
       // Save logic would go here in a real app
       setUserProfile(formData);
+      
+    }
+    setIsEditing(!isEditing);
+  };
+
+  const handleEditSave = async () => {
+
+    try {
+      setIsUploading(true);
+      const res = await fetch("/api/user/update", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to update profile.");
+      }
+
+      const updatedUser = await res.json();
+
+      setUserProfile(updatedUser);  // Update parent state
+      setIsEditing(false);          // Exit edit mode
+
       toast({
         title: "Profile Updated",
         description: "Your profile information has been saved successfully.",
       });
+    } catch (error) {
+      toast({
+        title: "Update Failed",
+        description: "There was a problem saving your profile. Please try again.",
+      });
+      console.error("Update error:", error);
+    } finally {
+      setIsUploading(false);
     }
-    setIsEditing(!isEditing);
   };
+
   
-  const handleFileUpload = (documentType: string) => {
-    // In a real app, this would trigger a file upload dialog and process the file
-    toast({
-      title: "Document Upload",
-      description: `${documentType} upload functionality would be implemented here.`,
-    });
+  const handleFileUpload = async () => {
+    const file = formData.profileImageFile;
+    if (!(file instanceof File)) return;
+
+    const formDataPayload = new FormData();
+    formDataPayload.append("file", file);
+
+    try {
+      setIsUploading(true);
+
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formDataPayload,
+      });
+
+      const uploadData = await res.json();
+      console.log(uploadData);
+
+      if (!res.ok) throw new Error(uploadData.error || "Upload failed");
+
+      // Save metadata to your /api/document
+      const saveRes = await fetch("/api/document", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: file.name,
+          type: file.type.includes("pdf") ? "PDF" : "Image",
+          size: `${(file.size / 1024 / 1024).toFixed(1)} MB`,
+          url: uploadData.secure_url,
+          category: "profile", // or whatever category applies
+        }),
+      });
+
+      const saveData = await saveRes.json();
+      if (!saveRes.ok) throw new Error(saveData.error || "Failed to save document");
+
+      // Update profileImage to use uploaded URL
+      setFormData((prev) => ({
+        ...prev,
+        profileImage: uploadData.secure_url,
+      }));
+
+      toast({
+        title: "Profile Image",
+        description: "Image uploaded successfully.",
+      });
+    } catch (err: any) {
+      toast({
+        title: "Upload Error",
+        description: err.message || "Something went wrong.",
+      });
+    } finally {
+      setIsUploading(false);
+    }
   };
+
   
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Handle profile image upload
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      // In a real app, you'd upload this to your server/storage
-      const imageUrl = URL.createObjectURL(files[0]);
-      setFormData({ ...formData, profileImage: imageUrl });
-    }
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setFormData((prev) => ({
+      ...prev,
+      profileImageFile: file, // temporarily storing File before upload
+    }));
   };
 
   const getStatusBadge = (status: string | null) => {
@@ -98,6 +195,9 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
 
   return (
     <div className="space-y-8">
+        <Button onClick={handleEditToggle}>
+          <Settings />
+        </Button>
       <div className="flex flex-col md:flex-col items-start md:items-center gap-6">
         <div className="relative">
           <Avatar className="h-24 w-24 border-4 border-white shadow-md">
@@ -109,17 +209,23 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
           
           {isEditing && (
             <div className="mt-2">
-              <Label htmlFor="profile-image" className="cursor-pointer flex items-center justify-center text-sm text-pharma-blue">
-                <Upload className="h-4 w-4 mr-1" />
-                Change Photo
+              <Label htmlFor="profile-image" className="cursor-pointer flex gap-2 items-center justify-center text-sm text-pharma-blue">
+                <Input 
+                  type="file" 
+                  id="profile-image" 
+                  className="flex-1" 
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                />
+                <Button
+                  onClick={() =>{handleFileUpload()}}
+                  disabled={isUploading}
+                >
+                  <Upload className="h-4 w-4 mr-1" />
+                  {isUploading ? 'Uploading' : 'Change Photo'}
+                </Button>
               </Label>
-              <Input 
-                type="file" 
-                id="profile-image" 
-                className="hidden" 
-                accept="image/*"
-                onChange={handleImageUpload}
-              />
+              
             </div>
           )}
         </div>
@@ -153,7 +259,10 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
           <div className="flex flex-col">
             <Label htmlFor="country">Country</Label>
             {isEditing ? (
-              <Select>
+              <Select
+                value={formData.countryOfDegree}
+                onValueChange={(val) => handleSelectChange("countryOfDegree", val)}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Select a country" />
                 </SelectTrigger>
@@ -166,10 +275,10 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
             ) : (
               <div className="text-sm text-pharma-blue">
                 <Input 
-                  id="country" 
-                  name="country" 
-                  type="country" 
-                  value={userProfile.country || 'Not Selected'} 
+                  id="countryofDegree" 
+                  name="countryofDegree" 
+                  type="countryofDegree" 
+                  value={formData.countryOfDegree || 'Not Selected'} 
                   onChange={handleInputChange} 
                   disabled={true} //
                 />
@@ -180,7 +289,10 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
           <div className="flex flex-col">
             <Label htmlFor="degree">Pharmacy Degree</Label>
             {isEditing ? (
-              <Select>
+              <Select
+                value={formData.degreeType}
+                onValueChange={(val) => handleSelectChange("degreeType", val)}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Select a degree" />
                 </SelectTrigger>
@@ -193,10 +305,10 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
             ) : (
               <div className="text-sm text-pharma-blue">
                 <Input 
-                  id="country" 
-                  name="country" 
-                  type="country" 
-                  value={userProfile.degree || 'Not Selected'} 
+                  id="degreeType" 
+                  name="degreeType" 
+                  type="degreeType" 
+                  value={formData.degreeType || 'Not Selected'} 
                   onChange={handleInputChange} 
                   disabled={true} //
                 />
@@ -221,15 +333,25 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
           <div className="flex flex-col">
             <Label htmlFor="phone">Phone Number (Optional)</Label>
             <Input 
-              id="phone" 
-              name="phone" 
-              value={formData.phone || ''} 
+              id="phoneNumber" 
+              name="phoneNumber" 
+              value={formData.phoneNumber} 
               onChange={handleInputChange} 
               disabled={!isEditing} 
-              placeholder="+1 (555) 123-4567"
+              placeholder="+15551234567"
+              inputMode="tel"
             />
           </div>
         </div>
+      </div>
+      <div>
+        {isEditing && 
+        (<Button 
+          onClick={handleEditSave}
+          disabled={isUploading}
+          >
+          {isUploading ? 'Saving' : 'Save'}
+        </Button>)}
       </div>
       
       {/* <div className="flex flex-col md:flex-row items-start md:items-center gap-6">

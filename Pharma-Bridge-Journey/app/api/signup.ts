@@ -27,6 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         name,
         email,
         password, // In real-world apps, hash the password
+        verified: false,
       },
     });
 

@@ -22,29 +22,16 @@ import { Alert } from '@/components/ui/alert';
 import { stat } from 'fs';
 import Link from 'next/link';
 
-// Mock data - In a real app, this would come from your backend
-const userData = {
-  name: "Jane Doe",
-  email: "jane.doe@example.com",
-  country: "India",
-  degree: "Bachelor of Pharmacy",
-  graduationYear: 2020,
-  profileImage: null,
-  activeServices: ['fpgee_prep', 'toefl_prep'], // Tags for active services
-  documents: {
-    license: { uploaded: true, verificationStatus: 'verified' },
-    degree: { uploaded: true, verificationStatus: 'pending' },
-    idProof: { uploaded: false, verificationStatus: '' }
-  }
-};
+
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const [userData, setUserData] = useState({
     name: "User",
     email: "jane.doe@example.com",
-    country: "India",
-    degree: "Bachelor of Pharmacy",
+    countryOfDegree: "India",
+    phoneNumber: '',
+    degreeType: "Bachelor of Pharmacy",
     graduationYear: 2020,
     profileImage: null,
     hasCompletedOnboarding: false, // Flag to check if onboarding is complete
@@ -95,7 +82,12 @@ const Dashboard = () => {
   };
 
   fetchUser();
+  // console.log(userData)
+  // console.log(userProfile)
 }, [status, router]);
+
+  // console.log('userdata:',userData)
+  // console.log('userprofile:',userProfile)
 
   const navigationItems = [
     { id: 'overview', label: 'Overview', icon: Calendar },
