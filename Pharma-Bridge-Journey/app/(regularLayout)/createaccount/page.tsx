@@ -76,6 +76,18 @@ const CreateAccount = () => {
       });
       return;
     }
+    const password = formData.password;
+    const passwordIsValid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password);
+
+    if (!passwordIsValid) {
+      toast({
+        title: "Weak Password",
+        description: "Password must be at least 8 characters long and contain at least one letter and one digit",
+        variant: "destructive",
+      });
+      // alert("Password must be at least 8 characters long and contain at least one letter and one digit.");
+      return;
+    }
 
 
     // Submit the form data to the server
@@ -107,23 +119,28 @@ const CreateAccount = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-pharma-gray flex flex-col items-center justify-center p-4 mt-20">
-      <div className="w-full max-w-5xl flex flex-col md:flex-row gap-8 items-center">
-        {/* Left side - Form */}
+      <div className="w-full max-w-5xl flex flex-col md:flex-row justify-center items-center">
+        {/*Form */}
         
         
-        <Card className="w-full md:w-3/5 shadow-lg">
+        <Card className="w-full shadow-lg">
           <CardHeader className="text-center">
             <div className="flex justify-center mb-4">
               <Image src="/logo.svg" alt="Logo" width={200} height={200}
                />
             </div>
             <CardTitle className="text-2xl md:text-3xl text-pharma-blue">Create Your PharmaBridge Account</CardTitle>
-            <CardDescription>Join thousands of pharmacy professionals in their journey to U.S. licensure</CardDescription>
+            <CardDescription> 
+              
+                Join thousands of pharmacy professionals in their journey to U.S. licensure<br/>
+              
+              <span className='text-xs text-left mt-5'>Fields marked as <span className='text-red-600'>*</span>  are required</span>
+              </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="fullName">Full Name</Label>
+                <Label htmlFor="fullName">Full Name <span className='text-red-600'>*</span></Label>
                 <Input 
                   id="fullName" 
                   name="fullName"
@@ -135,7 +152,7 @@ const CreateAccount = () => {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email">Email Address <span className='text-red-600'>*</span></Label>
                 <Input 
                   id="email" 
                   name="email"
@@ -148,7 +165,7 @@ const CreateAccount = () => {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Password <span className='text-red-600'>*</span></Label>
                 <div className="relative">
                   <Input 
                     id="password" 
@@ -159,6 +176,7 @@ const CreateAccount = () => {
                     onChange={handleInputChange}
                     className="pr-10"
                     required
+                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                   />
                   <button 
                     type="button"
@@ -181,11 +199,13 @@ const CreateAccount = () => {
                   </button>
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Password must be at least 8 characters
+                  Password must be at least 8 characters. <br/>
+                  Must contain at least one letter. <br/>
+                  Must contain at least one digit.
                 </p>
               </div>
               
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <Label htmlFor="country">Country of Pharmacy Qualification</Label>
                 <select 
                   id="country" 
@@ -200,7 +220,7 @@ const CreateAccount = () => {
                     <option key={index} value={country}>{country}</option>
                   ))}
                 </select>
-              </div>
+              </div> */}
               
               <div className="flex items-center space-x-2 pt-2">
                 <Checkbox 
@@ -236,6 +256,7 @@ const CreateAccount = () => {
                   type="button"
                   variant="outline"
                   className="flex-1 flex items-center justify-center gap-2"
+                  disabled={true}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -257,7 +278,7 @@ const CreateAccount = () => {
         </Card>
         
         {/* Right side - Testimonials */}
-        <div className="w-full md:w-2/5 hidden md:block">
+        {/* <div className="w-full md:w-2/5 hidden md:block">
           <div className="bg-pharma-light-blue rounded-lg p-6 shadow-lg">
             <h3 className="text-xl font-semibold text-pharma-blue mb-4">
               Join Thousands of Satisfied Pharmacists
@@ -296,7 +317,7 @@ const CreateAccount = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

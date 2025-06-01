@@ -82,6 +82,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(dashboard)/admin/dashboard/page.js"
+    ],
+    "/(regularLayout)/createaccount/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(regularLayout)/createaccount/page.js"
     ]
   }
 }

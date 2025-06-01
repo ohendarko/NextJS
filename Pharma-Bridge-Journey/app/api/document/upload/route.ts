@@ -1,41 +1,35 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { v2 as cloudinary } from "cloudinary";
-import formidable, { File } from "formidable";
+import { NextRequest } from "next/server";
+import cloudinary from "@/lib/cloudinary"; // Adjust the import path if needed
+import { writeFile } from "fs/promises";
+import { tmpdir } from "os";
+import path from "path";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+export const dynamic = "force-dynamic";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+export async function POST(req: NextRequest) {
+  const formData = await req.formData();
+  const file = formData.get("file") as File;
+
+  if (!file || typeof file === "string") {
+    return new Response(JSON.stringify({ error: "No file uploaded" }), { status: 400 });
   }
 
-  const form = formidable({ multiples: false });
+  try {
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
 
-  form.parse(req, async (err, fields, files) => {
-    if (err) {
-      return res.status(500).json({ error: "Error parsing file" });
-    }
+    // Save the file temporarily
+    const tempFilePath = path.join(tmpdir(), file.name);
+    await writeFile(tempFilePath, buffer);
 
-    const fileField = files.file;
-    const file = Array.isArray(fileField) ? fileField[0] : fileField;
+    // Upload to Cloudinary
+    const result = await cloudinary.uploader.upload(tempFilePath, {
+      folder: "pharmabridge/profile_images",
+    });
 
-    if (!file) {
-      return res.status(400).json({ error: "No valid file uploaded" });
-    }
-
-    try {
-      const result = await cloudinary.uploader.upload((file as File).filepath, {
-        folder: "pharmabridge/profile_images",
-      });
-
-      return res.status(200).json({ url: result.secure_url });
-    } catch (uploadError) {
-      console.error("Upload error:", uploadError);
-      return res.status(500).json({ error: "Cloudinary upload failed" });
-    }
-  });
+    return new Response(JSON.stringify({ url: result.secure_url }), { status: 200 });
+  } catch (error) {
+    console.error("Upload error:", error);
+    return new Response(JSON.stringify({ error: "Cloudinary upload failed" }), { status: 500 });
+  }
 }
