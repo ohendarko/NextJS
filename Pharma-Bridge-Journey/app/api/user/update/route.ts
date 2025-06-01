@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import {PrismaClient} from "@/lib/generated/prisma";
+import bcrypt from "bcryptjs";
 
 
 const prisma = new PrismaClient();
@@ -14,6 +15,13 @@ export async function POST(req: Request) {
     // const session = await getServerSession(authOptions);
     // if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
+    // If password provided, hash it
+    let hashedPassword: string | undefined;
+    if (body.password) {
+      const salt = await bcrypt.genSalt(10);
+      hashedPassword = await bcrypt.hash(body.password, salt);
+    }
+
     const updatedUser = await prisma.user.update({
       where: { email: body.email },
       data: {
@@ -23,6 +31,7 @@ export async function POST(req: Request) {
         phoneNumber: body.phoneNumber,
         graduationYear: body.graduationYear,
         profileImage: body.profileImage,
+        ...(hashedPassword && { password: hashedPassword }),  // only update password if provided
       },
     });
 

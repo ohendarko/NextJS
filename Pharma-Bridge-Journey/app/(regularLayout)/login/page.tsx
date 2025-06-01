@@ -40,7 +40,7 @@ const Login = () => {
 
     if (res?.error) {
       toast({
-        title: 'Login failed. Account not recognized!',
+        title: 'Login failed. Account details do not match!',
         description: "Please check your credentials and try again.",
         variant: 'destructive',
       });

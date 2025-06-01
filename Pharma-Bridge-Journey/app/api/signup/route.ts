@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { fullName, email, password, country } = body;
 
-    if (!fullName || !email || !password || !country) {
+    if (!fullName || !email || !password) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
@@ -26,7 +26,6 @@ export async function POST(request: Request) {
         name: fullName,
         email: email,
         password: hashedPassword,
-        countryOfDegree: country,
       },
     });
 
