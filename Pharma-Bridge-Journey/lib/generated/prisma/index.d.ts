@@ -1615,10 +1615,28 @@ export namespace Prisma {
     name: string | null
     password: string | null
     createdAt: Date | null
+    profileImage: string | null
     admin: boolean | null
     verified: boolean | null
     hasCompletedOnboarding: boolean | null
-    profileImage: string | null
+    fpgeeFormSubmitted: boolean | null
+    passportScanSubmitted: boolean | null
+    passportPhotoSubmitted: boolean | null
+    pharmacyLicenseSubmitted: boolean | null
+    goodStandingLetterSubmitted: boolean | null
+    eceApplicationCompleted: boolean | null
+    officialTranscriptsSent: boolean | null
+    courseDescriptionsSubmitted: boolean | null
+    eceEvaluationFeeePaid: boolean | null
+    toeflTestRegistered: boolean | null
+    toeflTestCompleted: boolean | null
+    toeflScoresSent: boolean | null
+    naplexEligibilityConfirmed: boolean | null
+    naplexTestRegistered: boolean | null
+    naplexCompleted: boolean | null
+    mpjeEligibilityConfirmed: boolean | null
+    mpjeTestRegistered: boolean | null
+    mpjeTestCompleted: boolean | null
     dateOfBirth: Date | null
     gender: string | null
     phoneNumber: string | null
@@ -1642,10 +1660,28 @@ export namespace Prisma {
     name: string | null
     password: string | null
     createdAt: Date | null
+    profileImage: string | null
     admin: boolean | null
     verified: boolean | null
     hasCompletedOnboarding: boolean | null
-    profileImage: string | null
+    fpgeeFormSubmitted: boolean | null
+    passportScanSubmitted: boolean | null
+    passportPhotoSubmitted: boolean | null
+    pharmacyLicenseSubmitted: boolean | null
+    goodStandingLetterSubmitted: boolean | null
+    eceApplicationCompleted: boolean | null
+    officialTranscriptsSent: boolean | null
+    courseDescriptionsSubmitted: boolean | null
+    eceEvaluationFeeePaid: boolean | null
+    toeflTestRegistered: boolean | null
+    toeflTestCompleted: boolean | null
+    toeflScoresSent: boolean | null
+    naplexEligibilityConfirmed: boolean | null
+    naplexTestRegistered: boolean | null
+    naplexCompleted: boolean | null
+    mpjeEligibilityConfirmed: boolean | null
+    mpjeTestRegistered: boolean | null
+    mpjeTestCompleted: boolean | null
     dateOfBirth: Date | null
     gender: string | null
     phoneNumber: string | null
@@ -1669,10 +1705,28 @@ export namespace Prisma {
     name: number
     password: number
     createdAt: number
+    profileImage: number
     admin: number
     verified: number
     hasCompletedOnboarding: number
-    profileImage: number
+    fpgeeFormSubmitted: number
+    passportScanSubmitted: number
+    passportPhotoSubmitted: number
+    pharmacyLicenseSubmitted: number
+    goodStandingLetterSubmitted: number
+    eceApplicationCompleted: number
+    officialTranscriptsSent: number
+    courseDescriptionsSubmitted: number
+    eceEvaluationFeeePaid: number
+    toeflTestRegistered: number
+    toeflTestCompleted: number
+    toeflScoresSent: number
+    naplexEligibilityConfirmed: number
+    naplexTestRegistered: number
+    naplexCompleted: number
+    mpjeEligibilityConfirmed: number
+    mpjeTestRegistered: number
+    mpjeTestCompleted: number
     dateOfBirth: number
     gender: number
     phoneNumber: number
@@ -1698,10 +1752,28 @@ export namespace Prisma {
     name?: true
     password?: true
     createdAt?: true
+    profileImage?: true
     admin?: true
     verified?: true
     hasCompletedOnboarding?: true
-    profileImage?: true
+    fpgeeFormSubmitted?: true
+    passportScanSubmitted?: true
+    passportPhotoSubmitted?: true
+    pharmacyLicenseSubmitted?: true
+    goodStandingLetterSubmitted?: true
+    eceApplicationCompleted?: true
+    officialTranscriptsSent?: true
+    courseDescriptionsSubmitted?: true
+    eceEvaluationFeeePaid?: true
+    toeflTestRegistered?: true
+    toeflTestCompleted?: true
+    toeflScoresSent?: true
+    naplexEligibilityConfirmed?: true
+    naplexTestRegistered?: true
+    naplexCompleted?: true
+    mpjeEligibilityConfirmed?: true
+    mpjeTestRegistered?: true
+    mpjeTestCompleted?: true
     dateOfBirth?: true
     gender?: true
     phoneNumber?: true
@@ -1725,10 +1797,28 @@ export namespace Prisma {
     name?: true
     password?: true
     createdAt?: true
+    profileImage?: true
     admin?: true
     verified?: true
     hasCompletedOnboarding?: true
-    profileImage?: true
+    fpgeeFormSubmitted?: true
+    passportScanSubmitted?: true
+    passportPhotoSubmitted?: true
+    pharmacyLicenseSubmitted?: true
+    goodStandingLetterSubmitted?: true
+    eceApplicationCompleted?: true
+    officialTranscriptsSent?: true
+    courseDescriptionsSubmitted?: true
+    eceEvaluationFeeePaid?: true
+    toeflTestRegistered?: true
+    toeflTestCompleted?: true
+    toeflScoresSent?: true
+    naplexEligibilityConfirmed?: true
+    naplexTestRegistered?: true
+    naplexCompleted?: true
+    mpjeEligibilityConfirmed?: true
+    mpjeTestRegistered?: true
+    mpjeTestCompleted?: true
     dateOfBirth?: true
     gender?: true
     phoneNumber?: true
@@ -1752,10 +1842,28 @@ export namespace Prisma {
     name?: true
     password?: true
     createdAt?: true
+    profileImage?: true
     admin?: true
     verified?: true
     hasCompletedOnboarding?: true
-    profileImage?: true
+    fpgeeFormSubmitted?: true
+    passportScanSubmitted?: true
+    passportPhotoSubmitted?: true
+    pharmacyLicenseSubmitted?: true
+    goodStandingLetterSubmitted?: true
+    eceApplicationCompleted?: true
+    officialTranscriptsSent?: true
+    courseDescriptionsSubmitted?: true
+    eceEvaluationFeeePaid?: true
+    toeflTestRegistered?: true
+    toeflTestCompleted?: true
+    toeflScoresSent?: true
+    naplexEligibilityConfirmed?: true
+    naplexTestRegistered?: true
+    naplexCompleted?: true
+    mpjeEligibilityConfirmed?: true
+    mpjeTestRegistered?: true
+    mpjeTestCompleted?: true
     dateOfBirth?: true
     gender?: true
     phoneNumber?: true
@@ -1852,10 +1960,28 @@ export namespace Prisma {
     name: string | null
     password: string | null
     createdAt: Date
+    profileImage: string | null
     admin: boolean
     verified: boolean
     hasCompletedOnboarding: boolean
-    profileImage: string | null
+    fpgeeFormSubmitted: boolean
+    passportScanSubmitted: boolean
+    passportPhotoSubmitted: boolean
+    pharmacyLicenseSubmitted: boolean
+    goodStandingLetterSubmitted: boolean
+    eceApplicationCompleted: boolean
+    officialTranscriptsSent: boolean
+    courseDescriptionsSubmitted: boolean
+    eceEvaluationFeeePaid: boolean
+    toeflTestRegistered: boolean
+    toeflTestCompleted: boolean
+    toeflScoresSent: boolean
+    naplexEligibilityConfirmed: boolean
+    naplexTestRegistered: boolean
+    naplexCompleted: boolean
+    mpjeEligibilityConfirmed: boolean
+    mpjeTestRegistered: boolean
+    mpjeTestCompleted: boolean
     dateOfBirth: Date | null
     gender: string | null
     phoneNumber: string | null
@@ -1896,10 +2022,28 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     createdAt?: boolean
+    profileImage?: boolean
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: boolean
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: boolean
     gender?: boolean
     phoneNumber?: boolean
@@ -1932,10 +2076,28 @@ export namespace Prisma {
     name?: boolean
     password?: boolean
     createdAt?: boolean
+    profileImage?: boolean
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: boolean
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: boolean
     gender?: boolean
     phoneNumber?: boolean
@@ -1953,7 +2115,7 @@ export namespace Prisma {
     selectedPackage?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "createdAt" | "admin" | "verified" | "hasCompletedOnboarding" | "profileImage" | "dateOfBirth" | "gender" | "phoneNumber" | "timezone" | "countryOfDegree" | "degreeType" | "graduationYear" | "degreeFile" | "passportFile" | "licenseFile" | "hasVisa" | "visaType" | "arrivalDate" | "preferredState" | "selectedPackage" | "documentCategories", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "createdAt" | "profileImage" | "admin" | "verified" | "hasCompletedOnboarding" | "fpgeeFormSubmitted" | "passportScanSubmitted" | "passportPhotoSubmitted" | "pharmacyLicenseSubmitted" | "goodStandingLetterSubmitted" | "eceApplicationCompleted" | "officialTranscriptsSent" | "courseDescriptionsSubmitted" | "eceEvaluationFeeePaid" | "toeflTestRegistered" | "toeflTestCompleted" | "toeflScoresSent" | "naplexEligibilityConfirmed" | "naplexTestRegistered" | "naplexCompleted" | "mpjeEligibilityConfirmed" | "mpjeTestRegistered" | "mpjeTestCompleted" | "dateOfBirth" | "gender" | "phoneNumber" | "timezone" | "countryOfDegree" | "degreeType" | "graduationYear" | "degreeFile" | "passportFile" | "licenseFile" | "hasVisa" | "visaType" | "arrivalDate" | "preferredState" | "selectedPackage" | "documentCategories", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     documents?: boolean | User$documentsArgs<ExtArgs>
     packageSelections?: boolean | User$packageSelectionsArgs<ExtArgs>
@@ -1978,10 +2140,28 @@ export namespace Prisma {
       name: string | null
       password: string | null
       createdAt: Date
+      profileImage: string | null
       admin: boolean
       verified: boolean
       hasCompletedOnboarding: boolean
-      profileImage: string | null
+      fpgeeFormSubmitted: boolean
+      passportScanSubmitted: boolean
+      passportPhotoSubmitted: boolean
+      pharmacyLicenseSubmitted: boolean
+      goodStandingLetterSubmitted: boolean
+      eceApplicationCompleted: boolean
+      officialTranscriptsSent: boolean
+      courseDescriptionsSubmitted: boolean
+      eceEvaluationFeeePaid: boolean
+      toeflTestRegistered: boolean
+      toeflTestCompleted: boolean
+      toeflScoresSent: boolean
+      naplexEligibilityConfirmed: boolean
+      naplexTestRegistered: boolean
+      naplexCompleted: boolean
+      mpjeEligibilityConfirmed: boolean
+      mpjeTestRegistered: boolean
+      mpjeTestCompleted: boolean
       dateOfBirth: Date | null
       gender: string | null
       phoneNumber: string | null
@@ -2401,10 +2581,28 @@ export namespace Prisma {
     readonly name: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly profileImage: FieldRef<"User", 'String'>
     readonly admin: FieldRef<"User", 'Boolean'>
     readonly verified: FieldRef<"User", 'Boolean'>
     readonly hasCompletedOnboarding: FieldRef<"User", 'Boolean'>
-    readonly profileImage: FieldRef<"User", 'String'>
+    readonly fpgeeFormSubmitted: FieldRef<"User", 'Boolean'>
+    readonly passportScanSubmitted: FieldRef<"User", 'Boolean'>
+    readonly passportPhotoSubmitted: FieldRef<"User", 'Boolean'>
+    readonly pharmacyLicenseSubmitted: FieldRef<"User", 'Boolean'>
+    readonly goodStandingLetterSubmitted: FieldRef<"User", 'Boolean'>
+    readonly eceApplicationCompleted: FieldRef<"User", 'Boolean'>
+    readonly officialTranscriptsSent: FieldRef<"User", 'Boolean'>
+    readonly courseDescriptionsSubmitted: FieldRef<"User", 'Boolean'>
+    readonly eceEvaluationFeeePaid: FieldRef<"User", 'Boolean'>
+    readonly toeflTestRegistered: FieldRef<"User", 'Boolean'>
+    readonly toeflTestCompleted: FieldRef<"User", 'Boolean'>
+    readonly toeflScoresSent: FieldRef<"User", 'Boolean'>
+    readonly naplexEligibilityConfirmed: FieldRef<"User", 'Boolean'>
+    readonly naplexTestRegistered: FieldRef<"User", 'Boolean'>
+    readonly naplexCompleted: FieldRef<"User", 'Boolean'>
+    readonly mpjeEligibilityConfirmed: FieldRef<"User", 'Boolean'>
+    readonly mpjeTestRegistered: FieldRef<"User", 'Boolean'>
+    readonly mpjeTestCompleted: FieldRef<"User", 'Boolean'>
     readonly dateOfBirth: FieldRef<"User", 'DateTime'>
     readonly gender: FieldRef<"User", 'String'>
     readonly phoneNumber: FieldRef<"User", 'String'>
@@ -8942,10 +9140,28 @@ export namespace Prisma {
     name: 'name',
     password: 'password',
     createdAt: 'createdAt',
+    profileImage: 'profileImage',
     admin: 'admin',
     verified: 'verified',
     hasCompletedOnboarding: 'hasCompletedOnboarding',
-    profileImage: 'profileImage',
+    fpgeeFormSubmitted: 'fpgeeFormSubmitted',
+    passportScanSubmitted: 'passportScanSubmitted',
+    passportPhotoSubmitted: 'passportPhotoSubmitted',
+    pharmacyLicenseSubmitted: 'pharmacyLicenseSubmitted',
+    goodStandingLetterSubmitted: 'goodStandingLetterSubmitted',
+    eceApplicationCompleted: 'eceApplicationCompleted',
+    officialTranscriptsSent: 'officialTranscriptsSent',
+    courseDescriptionsSubmitted: 'courseDescriptionsSubmitted',
+    eceEvaluationFeeePaid: 'eceEvaluationFeeePaid',
+    toeflTestRegistered: 'toeflTestRegistered',
+    toeflTestCompleted: 'toeflTestCompleted',
+    toeflScoresSent: 'toeflScoresSent',
+    naplexEligibilityConfirmed: 'naplexEligibilityConfirmed',
+    naplexTestRegistered: 'naplexTestRegistered',
+    naplexCompleted: 'naplexCompleted',
+    mpjeEligibilityConfirmed: 'mpjeEligibilityConfirmed',
+    mpjeTestRegistered: 'mpjeTestRegistered',
+    mpjeTestCompleted: 'mpjeTestCompleted',
     dateOfBirth: 'dateOfBirth',
     gender: 'gender',
     phoneNumber: 'phoneNumber',
@@ -9141,10 +9357,28 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     password?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
+    profileImage?: StringNullableFilter<"User"> | string | null
     admin?: BoolFilter<"User"> | boolean
     verified?: BoolFilter<"User"> | boolean
     hasCompletedOnboarding?: BoolFilter<"User"> | boolean
-    profileImage?: StringNullableFilter<"User"> | string | null
+    fpgeeFormSubmitted?: BoolFilter<"User"> | boolean
+    passportScanSubmitted?: BoolFilter<"User"> | boolean
+    passportPhotoSubmitted?: BoolFilter<"User"> | boolean
+    pharmacyLicenseSubmitted?: BoolFilter<"User"> | boolean
+    goodStandingLetterSubmitted?: BoolFilter<"User"> | boolean
+    eceApplicationCompleted?: BoolFilter<"User"> | boolean
+    officialTranscriptsSent?: BoolFilter<"User"> | boolean
+    courseDescriptionsSubmitted?: BoolFilter<"User"> | boolean
+    eceEvaluationFeeePaid?: BoolFilter<"User"> | boolean
+    toeflTestRegistered?: BoolFilter<"User"> | boolean
+    toeflTestCompleted?: BoolFilter<"User"> | boolean
+    toeflScoresSent?: BoolFilter<"User"> | boolean
+    naplexEligibilityConfirmed?: BoolFilter<"User"> | boolean
+    naplexTestRegistered?: BoolFilter<"User"> | boolean
+    naplexCompleted?: BoolFilter<"User"> | boolean
+    mpjeEligibilityConfirmed?: BoolFilter<"User"> | boolean
+    mpjeTestRegistered?: BoolFilter<"User"> | boolean
+    mpjeTestCompleted?: BoolFilter<"User"> | boolean
     dateOfBirth?: DateTimeNullableFilter<"User"> | Date | string | null
     gender?: StringNullableFilter<"User"> | string | null
     phoneNumber?: StringNullableFilter<"User"> | string | null
@@ -9174,10 +9408,28 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
+    profileImage?: SortOrder
     admin?: SortOrder
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
-    profileImage?: SortOrder
+    fpgeeFormSubmitted?: SortOrder
+    passportScanSubmitted?: SortOrder
+    passportPhotoSubmitted?: SortOrder
+    pharmacyLicenseSubmitted?: SortOrder
+    goodStandingLetterSubmitted?: SortOrder
+    eceApplicationCompleted?: SortOrder
+    officialTranscriptsSent?: SortOrder
+    courseDescriptionsSubmitted?: SortOrder
+    eceEvaluationFeeePaid?: SortOrder
+    toeflTestRegistered?: SortOrder
+    toeflTestCompleted?: SortOrder
+    toeflScoresSent?: SortOrder
+    naplexEligibilityConfirmed?: SortOrder
+    naplexTestRegistered?: SortOrder
+    naplexCompleted?: SortOrder
+    mpjeEligibilityConfirmed?: SortOrder
+    mpjeTestRegistered?: SortOrder
+    mpjeTestCompleted?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -9210,10 +9462,28 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     password?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
+    profileImage?: StringNullableFilter<"User"> | string | null
     admin?: BoolFilter<"User"> | boolean
     verified?: BoolFilter<"User"> | boolean
     hasCompletedOnboarding?: BoolFilter<"User"> | boolean
-    profileImage?: StringNullableFilter<"User"> | string | null
+    fpgeeFormSubmitted?: BoolFilter<"User"> | boolean
+    passportScanSubmitted?: BoolFilter<"User"> | boolean
+    passportPhotoSubmitted?: BoolFilter<"User"> | boolean
+    pharmacyLicenseSubmitted?: BoolFilter<"User"> | boolean
+    goodStandingLetterSubmitted?: BoolFilter<"User"> | boolean
+    eceApplicationCompleted?: BoolFilter<"User"> | boolean
+    officialTranscriptsSent?: BoolFilter<"User"> | boolean
+    courseDescriptionsSubmitted?: BoolFilter<"User"> | boolean
+    eceEvaluationFeeePaid?: BoolFilter<"User"> | boolean
+    toeflTestRegistered?: BoolFilter<"User"> | boolean
+    toeflTestCompleted?: BoolFilter<"User"> | boolean
+    toeflScoresSent?: BoolFilter<"User"> | boolean
+    naplexEligibilityConfirmed?: BoolFilter<"User"> | boolean
+    naplexTestRegistered?: BoolFilter<"User"> | boolean
+    naplexCompleted?: BoolFilter<"User"> | boolean
+    mpjeEligibilityConfirmed?: BoolFilter<"User"> | boolean
+    mpjeTestRegistered?: BoolFilter<"User"> | boolean
+    mpjeTestCompleted?: BoolFilter<"User"> | boolean
     dateOfBirth?: DateTimeNullableFilter<"User"> | Date | string | null
     gender?: StringNullableFilter<"User"> | string | null
     phoneNumber?: StringNullableFilter<"User"> | string | null
@@ -9243,10 +9513,28 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
+    profileImage?: SortOrder
     admin?: SortOrder
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
-    profileImage?: SortOrder
+    fpgeeFormSubmitted?: SortOrder
+    passportScanSubmitted?: SortOrder
+    passportPhotoSubmitted?: SortOrder
+    pharmacyLicenseSubmitted?: SortOrder
+    goodStandingLetterSubmitted?: SortOrder
+    eceApplicationCompleted?: SortOrder
+    officialTranscriptsSent?: SortOrder
+    courseDescriptionsSubmitted?: SortOrder
+    eceEvaluationFeeePaid?: SortOrder
+    toeflTestRegistered?: SortOrder
+    toeflTestCompleted?: SortOrder
+    toeflScoresSent?: SortOrder
+    naplexEligibilityConfirmed?: SortOrder
+    naplexTestRegistered?: SortOrder
+    naplexCompleted?: SortOrder
+    mpjeEligibilityConfirmed?: SortOrder
+    mpjeTestRegistered?: SortOrder
+    mpjeTestCompleted?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -9276,10 +9564,28 @@ export namespace Prisma {
     name?: StringNullableWithAggregatesFilter<"User"> | string | null
     password?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    profileImage?: StringNullableWithAggregatesFilter<"User"> | string | null
     admin?: BoolWithAggregatesFilter<"User"> | boolean
     verified?: BoolWithAggregatesFilter<"User"> | boolean
     hasCompletedOnboarding?: BoolWithAggregatesFilter<"User"> | boolean
-    profileImage?: StringNullableWithAggregatesFilter<"User"> | string | null
+    fpgeeFormSubmitted?: BoolWithAggregatesFilter<"User"> | boolean
+    passportScanSubmitted?: BoolWithAggregatesFilter<"User"> | boolean
+    passportPhotoSubmitted?: BoolWithAggregatesFilter<"User"> | boolean
+    pharmacyLicenseSubmitted?: BoolWithAggregatesFilter<"User"> | boolean
+    goodStandingLetterSubmitted?: BoolWithAggregatesFilter<"User"> | boolean
+    eceApplicationCompleted?: BoolWithAggregatesFilter<"User"> | boolean
+    officialTranscriptsSent?: BoolWithAggregatesFilter<"User"> | boolean
+    courseDescriptionsSubmitted?: BoolWithAggregatesFilter<"User"> | boolean
+    eceEvaluationFeeePaid?: BoolWithAggregatesFilter<"User"> | boolean
+    toeflTestRegistered?: BoolWithAggregatesFilter<"User"> | boolean
+    toeflTestCompleted?: BoolWithAggregatesFilter<"User"> | boolean
+    toeflScoresSent?: BoolWithAggregatesFilter<"User"> | boolean
+    naplexEligibilityConfirmed?: BoolWithAggregatesFilter<"User"> | boolean
+    naplexTestRegistered?: BoolWithAggregatesFilter<"User"> | boolean
+    naplexCompleted?: BoolWithAggregatesFilter<"User"> | boolean
+    mpjeEligibilityConfirmed?: BoolWithAggregatesFilter<"User"> | boolean
+    mpjeTestRegistered?: BoolWithAggregatesFilter<"User"> | boolean
+    mpjeTestCompleted?: BoolWithAggregatesFilter<"User"> | boolean
     dateOfBirth?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     gender?: StringNullableWithAggregatesFilter<"User"> | string | null
     phoneNumber?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -9698,10 +10004,28 @@ export namespace Prisma {
     name?: string | null
     password?: string | null
     createdAt?: Date | string
+    profileImage?: string | null
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: string | null
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -9731,10 +10055,28 @@ export namespace Prisma {
     name?: string | null
     password?: string | null
     createdAt?: Date | string
+    profileImage?: string | null
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: string | null
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -9763,10 +10105,28 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    goodStandingLetterSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
+    officialTranscriptsSent?: BoolFieldUpdateOperationsInput | boolean
+    courseDescriptionsSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceEvaluationFeeePaid?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
+    naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9795,10 +10155,28 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    goodStandingLetterSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
+    officialTranscriptsSent?: BoolFieldUpdateOperationsInput | boolean
+    courseDescriptionsSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceEvaluationFeeePaid?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
+    naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9828,10 +10206,28 @@ export namespace Prisma {
     name?: string | null
     password?: string | null
     createdAt?: Date | string
+    profileImage?: string | null
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: string | null
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -9855,10 +10251,28 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    goodStandingLetterSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
+    officialTranscriptsSent?: BoolFieldUpdateOperationsInput | boolean
+    courseDescriptionsSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceEvaluationFeeePaid?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
+    naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9882,10 +10296,28 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    goodStandingLetterSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
+    officialTranscriptsSent?: BoolFieldUpdateOperationsInput | boolean
+    courseDescriptionsSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceEvaluationFeeePaid?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
+    naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10442,10 +10874,28 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
+    profileImage?: SortOrder
     admin?: SortOrder
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
-    profileImage?: SortOrder
+    fpgeeFormSubmitted?: SortOrder
+    passportScanSubmitted?: SortOrder
+    passportPhotoSubmitted?: SortOrder
+    pharmacyLicenseSubmitted?: SortOrder
+    goodStandingLetterSubmitted?: SortOrder
+    eceApplicationCompleted?: SortOrder
+    officialTranscriptsSent?: SortOrder
+    courseDescriptionsSubmitted?: SortOrder
+    eceEvaluationFeeePaid?: SortOrder
+    toeflTestRegistered?: SortOrder
+    toeflTestCompleted?: SortOrder
+    toeflScoresSent?: SortOrder
+    naplexEligibilityConfirmed?: SortOrder
+    naplexTestRegistered?: SortOrder
+    naplexCompleted?: SortOrder
+    mpjeEligibilityConfirmed?: SortOrder
+    mpjeTestRegistered?: SortOrder
+    mpjeTestCompleted?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -10469,10 +10919,28 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
+    profileImage?: SortOrder
     admin?: SortOrder
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
-    profileImage?: SortOrder
+    fpgeeFormSubmitted?: SortOrder
+    passportScanSubmitted?: SortOrder
+    passportPhotoSubmitted?: SortOrder
+    pharmacyLicenseSubmitted?: SortOrder
+    goodStandingLetterSubmitted?: SortOrder
+    eceApplicationCompleted?: SortOrder
+    officialTranscriptsSent?: SortOrder
+    courseDescriptionsSubmitted?: SortOrder
+    eceEvaluationFeeePaid?: SortOrder
+    toeflTestRegistered?: SortOrder
+    toeflTestCompleted?: SortOrder
+    toeflScoresSent?: SortOrder
+    naplexEligibilityConfirmed?: SortOrder
+    naplexTestRegistered?: SortOrder
+    naplexCompleted?: SortOrder
+    mpjeEligibilityConfirmed?: SortOrder
+    mpjeTestRegistered?: SortOrder
+    mpjeTestCompleted?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -10496,10 +10964,28 @@ export namespace Prisma {
     name?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
+    profileImage?: SortOrder
     admin?: SortOrder
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
-    profileImage?: SortOrder
+    fpgeeFormSubmitted?: SortOrder
+    passportScanSubmitted?: SortOrder
+    passportPhotoSubmitted?: SortOrder
+    pharmacyLicenseSubmitted?: SortOrder
+    goodStandingLetterSubmitted?: SortOrder
+    eceApplicationCompleted?: SortOrder
+    officialTranscriptsSent?: SortOrder
+    courseDescriptionsSubmitted?: SortOrder
+    eceEvaluationFeeePaid?: SortOrder
+    toeflTestRegistered?: SortOrder
+    toeflTestCompleted?: SortOrder
+    toeflScoresSent?: SortOrder
+    naplexEligibilityConfirmed?: SortOrder
+    naplexTestRegistered?: SortOrder
+    naplexCompleted?: SortOrder
+    mpjeEligibilityConfirmed?: SortOrder
+    mpjeTestRegistered?: SortOrder
+    mpjeTestCompleted?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -11695,10 +12181,28 @@ export namespace Prisma {
     name?: string | null
     password?: string | null
     createdAt?: Date | string
+    profileImage?: string | null
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: string | null
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -11727,10 +12231,28 @@ export namespace Prisma {
     name?: string | null
     password?: string | null
     createdAt?: Date | string
+    profileImage?: string | null
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: string | null
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -11774,10 +12296,28 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    goodStandingLetterSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
+    officialTranscriptsSent?: BoolFieldUpdateOperationsInput | boolean
+    courseDescriptionsSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceEvaluationFeeePaid?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
+    naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11805,10 +12345,28 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    goodStandingLetterSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
+    officialTranscriptsSent?: BoolFieldUpdateOperationsInput | boolean
+    courseDescriptionsSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceEvaluationFeeePaid?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
+    naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11837,10 +12395,28 @@ export namespace Prisma {
     name?: string | null
     password?: string | null
     createdAt?: Date | string
+    profileImage?: string | null
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: string | null
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -11869,10 +12445,28 @@ export namespace Prisma {
     name?: string | null
     password?: string | null
     createdAt?: Date | string
+    profileImage?: string | null
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: string | null
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -11916,10 +12510,28 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    goodStandingLetterSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
+    officialTranscriptsSent?: BoolFieldUpdateOperationsInput | boolean
+    courseDescriptionsSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceEvaluationFeeePaid?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
+    naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11947,10 +12559,28 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    goodStandingLetterSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
+    officialTranscriptsSent?: BoolFieldUpdateOperationsInput | boolean
+    courseDescriptionsSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceEvaluationFeeePaid?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
+    naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11979,10 +12609,28 @@ export namespace Prisma {
     name?: string | null
     password?: string | null
     createdAt?: Date | string
+    profileImage?: string | null
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: string | null
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12011,10 +12659,28 @@ export namespace Prisma {
     name?: string | null
     password?: string | null
     createdAt?: Date | string
+    profileImage?: string | null
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: string | null
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12058,10 +12724,28 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    goodStandingLetterSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
+    officialTranscriptsSent?: BoolFieldUpdateOperationsInput | boolean
+    courseDescriptionsSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceEvaluationFeeePaid?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
+    naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12089,10 +12773,28 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    goodStandingLetterSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
+    officialTranscriptsSent?: BoolFieldUpdateOperationsInput | boolean
+    courseDescriptionsSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceEvaluationFeeePaid?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
+    naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12121,10 +12823,28 @@ export namespace Prisma {
     name?: string | null
     password?: string | null
     createdAt?: Date | string
+    profileImage?: string | null
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: string | null
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12153,10 +12873,28 @@ export namespace Prisma {
     name?: string | null
     password?: string | null
     createdAt?: Date | string
+    profileImage?: string | null
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: string | null
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12200,10 +12938,28 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    goodStandingLetterSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
+    officialTranscriptsSent?: BoolFieldUpdateOperationsInput | boolean
+    courseDescriptionsSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceEvaluationFeeePaid?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
+    naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12231,10 +12987,28 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    goodStandingLetterSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
+    officialTranscriptsSent?: BoolFieldUpdateOperationsInput | boolean
+    courseDescriptionsSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceEvaluationFeeePaid?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
+    naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12263,10 +13037,28 @@ export namespace Prisma {
     name?: string | null
     password?: string | null
     createdAt?: Date | string
+    profileImage?: string | null
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: string | null
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12295,10 +13087,28 @@ export namespace Prisma {
     name?: string | null
     password?: string | null
     createdAt?: Date | string
+    profileImage?: string | null
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
-    profileImage?: string | null
+    fpgeeFormSubmitted?: boolean
+    passportScanSubmitted?: boolean
+    passportPhotoSubmitted?: boolean
+    pharmacyLicenseSubmitted?: boolean
+    goodStandingLetterSubmitted?: boolean
+    eceApplicationCompleted?: boolean
+    officialTranscriptsSent?: boolean
+    courseDescriptionsSubmitted?: boolean
+    eceEvaluationFeeePaid?: boolean
+    toeflTestRegistered?: boolean
+    toeflTestCompleted?: boolean
+    toeflScoresSent?: boolean
+    naplexEligibilityConfirmed?: boolean
+    naplexTestRegistered?: boolean
+    naplexCompleted?: boolean
+    mpjeEligibilityConfirmed?: boolean
+    mpjeTestRegistered?: boolean
+    mpjeTestCompleted?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12342,10 +13152,28 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    goodStandingLetterSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
+    officialTranscriptsSent?: BoolFieldUpdateOperationsInput | boolean
+    courseDescriptionsSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceEvaluationFeeePaid?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
+    naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12373,10 +13201,28 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    goodStandingLetterSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
+    officialTranscriptsSent?: BoolFieldUpdateOperationsInput | boolean
+    courseDescriptionsSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    eceEvaluationFeeePaid?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    toeflTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
+    naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
+    mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null

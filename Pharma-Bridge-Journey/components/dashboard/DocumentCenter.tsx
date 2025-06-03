@@ -44,7 +44,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
     }));
   };
 
-  const handleUpload = async (itemId: string, category: string) => {
+  const handleUpload = async (itemId: string, category: string, dbField: string) => {
     const selectedFile = fileState[itemId];
     if (!selectedFile) return;
 
@@ -78,6 +78,20 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       const docData = await docRes.json();
       if (!docRes.ok) throw new Error(docData.error || 'Save failed');
 
+      // Update user document status field (e.g., fpgeeFormSubmitted)
+      const updateRes = await fetch('/api/user/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fieldToUpdate: dbField,
+          value: true,
+        }),
+      });
+
+      const updateData = await updateRes.json();
+      if (!updateRes.ok) throw new Error(updateData.error || 'User update failed');
+
+
       setFileState(prev => ({ ...prev, [itemId]: null }));
       setCompletionState(prev => ({
         ...prev,
@@ -88,6 +102,8 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
         [itemId]: true,
       }));
 
+      // Dynamically update the field specified by dbid to true
+      
       
     } catch (err) {
       console.error(err);
@@ -100,6 +116,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
   const fpgeeRequirements = [
     {
       id: "fpgee-form",
+      dbid: 'fpgeeFormSubmitted',
       title: "Notarized FPGEE Application Form",
       description: "Complete FPGEE application form notarized by a certified notary public",
       imageRequired: true,
@@ -107,6 +124,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
     },
     {
       id: "passport-scan",
+      dbid: 'passportScanSubmitted',
       title: "Scanned Passport Page",
       description: "Clear scan of passport identification pages",
       imageRequired: true,
@@ -114,6 +132,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
     },
     {
       id: "passport-photo",
+      dbid: 'passportPhotoSubmitted',
       title: "Passport Picture",
       description: "Recent passport-style photograph meeting NABP requirements",
       imageRequired: true,
@@ -121,6 +140,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
     },
     {
       id: "pharmacy-license",
+      dbid: 'pharmacyLicenseSubmitted',
       title: "Sealed and Stamped Envelope of Pharmacy License",
       description: "Original pharmacy license in sealed envelope with official stamps",
       imageRequired: true,
@@ -128,6 +148,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
     },
     {
       id: "good-standing-letter",
+      dbid: 'goodStandingLetterSubmitted',
       title: "Letter of Good Standing Checklist",
       description: "Completed checklist for letter of good standing from licensing board",
       imageRequired: true,
@@ -138,24 +159,28 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
   const eceRequirements = [
     {
       id: "ece-application",
+      dbid: 'eceApplicationCompleted',
       title: "ECE Application Completed",
       description: "Submit completed ECE application through official portal",
       required: true
     },
     {
       id: "official-transcripts",
+      dbid: 'officialTranscriptsSent',
       title: "Official Transcripts Sent",
       description: "Official academic transcripts sent directly from university to ECE",
       required: true
     },
     {
       id: "course-descriptions",
+      dbid: 'courseDescriptionsSubmitted',
       title: "Course Descriptions Submitted",
       description: "Detailed course descriptions for all pharmacy courses taken",
       required: true
     },
     {
       id: "ece-payment",
+      dbid: 'eceEvaluationFeeePaid',
       title: "ECE Evaluation Fee Paid",
       description: "Payment confirmation for ECE credential evaluation",
       required: true
@@ -165,18 +190,21 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
   const toeflRequirements = [
     {
       id: "toefl-registration",
+      dbid: 'toeflTestRegistered',
       title: "TOEFL Test Registered",
       description: "Registered for TOEFL iBT test with ETS",
       required: true
     },
     {
       id: "toefl-completed",
+      dbid: 'toeflTestCompleted',
       title: "TOEFL Test Completed",
       description: "Successfully completed TOEFL iBT examination",
       required: true
     },
     {
       id: "toefl-scores-sent",
+      dbid: 'toeflScoresSent',
       title: "TOEFL Scores Sent to NABP",
       description: "Official TOEFL scores sent directly to NABP (minimum 61 overall)",
       required: true
@@ -186,18 +214,21 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
   const naplexRequirements = [
     {
       id: "naplex-eligibility",
+      dbid: 'naplexEligibilityConfirmed',
       title: "NAPLEX Eligibility Confirmed",
       description: "Confirmed eligibility to take NAPLEX with state board",
       required: true
     },
     {
       id: "naplex-registered",
+      dbid: 'naplexTestRegistered',
       title: "NAPLEX Test Registered",
       description: "Registered for NAPLEX examination through NABP",
       required: true
     },
     {
       id: "naplex-completed",
+      dbid: 'naplexCompleted',
       title: "NAPLEX Test Completed",
       description: "Successfully completed NAPLEX examination",
       required: true
@@ -207,18 +238,21 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
   const mpjeRequirements = [
     {
       id: "mpje-eligibility",
+      dbid: 'mpjeEligibilityConfirmed',
       title: "MPJE Eligibility Confirmed",
       description: "Confirmed eligibility to take MPJE with state board",
       required: true
     },
     {
       id: "mpje-registered",
+      dbid: 'mpjeTestRegistered',
       title: "MPJE Test Registered",
       description: "Registered for MPJE examination through NABP",
       required: true
     },
     {
       id: "mpje-completed",
+      dbid: 'mpjeTestCompleted',
       title: "MPJE Test Completed",
       description: "Successfully completed MPJE examination for your state",
       required: true
@@ -239,12 +273,12 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
             <div className="flex items-start gap-3">
               <Checkbox
                 id={req.id}
-                checked={completedItems[req.id] || false}
+                checked={userProfile[req.dbid] || false}
                 // Due to unsustained state, This logic will be fetched from the database later
                 // onCheckedChange={(value) =>
                 // setCompletionState(prev => ({ ...prev, [req.id]: Boolean(value) }))
                 // }
-                onCheckedChange={(checked) => handleCheckboxChange(req.id, checked as boolean)}
+                // onCheckedChange={(checked) => handleCheckboxChange(req.id, checked as boolean)}
                 className="mt-1"
               />
               <div className="flex-1">
@@ -260,7 +294,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
                   </div>
                 )}
               </div>
-              {completedItems[req.id] && (
+              {userProfile[req.dbid] && (
                 <Badge className="bg-green-100 text-green-800">
                   <Check className="h-3 w-3 mr-1" />
                   Done
@@ -280,7 +314,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
                   />
                   <Button
                     size="sm"
-                    onClick={() => handleUpload(req.id, req.title)}disabled={uploadingState[req.id]}
+                    onClick={() => handleUpload(req.id, req.title, req.dbid)}disabled={uploadingState[req.id]}
                   >
                     <Upload className="h-4 w-4 mr-1" />
                      {uploadingState[req.id] ? 'Uploading...' : 'Upload'}

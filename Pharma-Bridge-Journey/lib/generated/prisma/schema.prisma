@@ -20,10 +20,30 @@ model User {
   name                   String?
   password               String?
   createdAt              DateTime @default(now())
+  profileImage           String?
   admin                  Boolean  @default(false)
   verified               Boolean  @default(false)
   hasCompletedOnboarding Boolean  @default(false)
-  profileImage           String?
+
+  // Document Checklist
+  fpgeeFormSubmitted          Boolean @default(false)
+  passportScanSubmitted       Boolean @default(false)
+  passportPhotoSubmitted      Boolean @default(false)
+  pharmacyLicenseSubmitted    Boolean @default(false)
+  goodStandingLetterSubmitted Boolean @default(false)
+  eceApplicationCompleted     Boolean @default(false)
+  officialTranscriptsSent     Boolean @default(false)
+  courseDescriptionsSubmitted Boolean @default(false)
+  eceEvaluationFeeePaid       Boolean @default(false)
+  toeflTestRegistered         Boolean @default(false)
+  toeflTestCompleted          Boolean @default(false)
+  toeflScoresSent             Boolean @default(false)
+  naplexEligibilityConfirmed  Boolean @default(false)
+  naplexTestRegistered        Boolean @default(false)
+  naplexCompleted             Boolean @default(false)
+  mpjeEligibilityConfirmed    Boolean @default(false)
+  mpjeTestRegistered          Boolean @default(false)
+  mpjeTestCompleted           Boolean @default(false)
 
   // Basic Info
   dateOfBirth DateTime?
