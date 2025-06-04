@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -28,6 +28,10 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    console.log(completedItems)
+  }, [completedItems])
 
 
   const handleCheckboxChange = (itemId: string, checked: boolean) => {
@@ -99,7 +103,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       }));
       setCompletedItems(prev => ({
         ...prev,
-        [itemId]: true,
+        [dbField]: true,
       }));
 
       // Dynamically update the field specified by dbid to true
@@ -112,6 +116,8 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
     }
   };
 
+  console.log(completedItems)
+
 
   const fpgeeRequirements = [
     {
@@ -120,6 +126,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       title: "Notarized FPGEE Application Form",
       description: "Complete FPGEE application form notarized by a certified notary public",
       imageRequired: true,
+      manual: false,
       required: true
     },
     {
@@ -128,6 +135,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       title: "Scanned Passport Page",
       description: "Clear scan of passport identification pages",
       imageRequired: true,
+      manual: false,
       required: true
     },
     {
@@ -136,6 +144,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       title: "Passport Picture",
       description: "Recent passport-style photograph meeting NABP requirements",
       imageRequired: true,
+      manual: false,
       required: true
     },
     {
@@ -144,6 +153,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       title: "Sealed and Stamped Envelope of Pharmacy License",
       description: "Original pharmacy license in sealed envelope with official stamps",
       imageRequired: true,
+      manual: false,
       required: true
     },
     {
@@ -152,6 +162,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       title: "Letter of Good Standing Checklist",
       description: "Completed checklist for letter of good standing from licensing board",
       imageRequired: true,
+      manual: false,
       required: true
     }
   ];
@@ -162,6 +173,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       dbid: 'eceApplicationCompleted',
       title: "ECE Application Completed",
       description: "Submit completed ECE application through official portal",
+      manual: true,
       required: true
     },
     {
@@ -169,6 +181,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       dbid: 'officialTranscriptsSent',
       title: "Official Transcripts Sent",
       description: "Official academic transcripts sent directly from university to ECE",
+      manual: true,
       required: true
     },
     {
@@ -176,6 +189,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       dbid: 'courseDescriptionsSubmitted',
       title: "Course Descriptions Submitted",
       description: "Detailed course descriptions for all pharmacy courses taken",
+      manual: true,
       required: true
     },
     {
@@ -183,6 +197,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       dbid: 'eceEvaluationFeeePaid',
       title: "ECE Evaluation Fee Paid",
       description: "Payment confirmation for ECE credential evaluation",
+      manual: true,
       required: true
     }
   ];
@@ -193,6 +208,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       dbid: 'toeflTestRegistered',
       title: "TOEFL Test Registered",
       description: "Registered for TOEFL iBT test with ETS",
+      manual: true,
       required: true
     },
     {
@@ -200,6 +216,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       dbid: 'toeflTestCompleted',
       title: "TOEFL Test Completed",
       description: "Successfully completed TOEFL iBT examination",
+      manual: true,
       required: true
     },
     {
@@ -207,6 +224,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       dbid: 'toeflScoresSent',
       title: "TOEFL Scores Sent to NABP",
       description: "Official TOEFL scores sent directly to NABP (minimum 61 overall)",
+      manual: true,
       required: true
     }
   ];
@@ -217,6 +235,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       dbid: 'naplexEligibilityConfirmed',
       title: "NAPLEX Eligibility Confirmed",
       description: "Confirmed eligibility to take NAPLEX with state board",
+      manual: true,
       required: true
     },
     {
@@ -224,6 +243,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       dbid: 'naplexTestRegistered',
       title: "NAPLEX Test Registered",
       description: "Registered for NAPLEX examination through NABP",
+      manual: true,
       required: true
     },
     {
@@ -231,6 +251,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       dbid: 'naplexCompleted',
       title: "NAPLEX Test Completed",
       description: "Successfully completed NAPLEX examination",
+      manual: true,
       required: true
     }
   ];
@@ -241,6 +262,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       dbid: 'mpjeEligibilityConfirmed',
       title: "MPJE Eligibility Confirmed",
       description: "Confirmed eligibility to take MPJE with state board",
+      manual: true,
       required: true
     },
     {
@@ -248,6 +270,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       dbid: 'mpjeTestRegistered',
       title: "MPJE Test Registered",
       description: "Registered for MPJE examination through NABP",
+      manual: true,
       required: true
     },
     {
@@ -255,6 +278,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       dbid: 'mpjeTestCompleted',
       title: "MPJE Test Completed",
       description: "Successfully completed MPJE examination for your state",
+      manual: true,
       required: true
     }
   ];
@@ -269,16 +293,20 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       </CardHeader>
       <CardContent className="space-y-4">
         {requirements.map((req) => (
-          <div key={req.id} className="border rounded-lg p-4 space-y-3">
+          <div key={req.dbid} className="border rounded-lg p-4 space-y-3">
             <div className="flex items-start gap-3">
               <Checkbox
-                id={req.id}
-                checked={userProfile[req.dbid] || false}
+                id={req.dbid}
+                checked={
+                  req.manual
+                    ? completedItems[req.dbid] || false // manual: local state
+                    : userProfile[req.dbid] || false  // automatic: DB-driven
+                }
                 // Due to unsustained state, This logic will be fetched from the database later
                 // onCheckedChange={(value) =>
                 // setCompletionState(prev => ({ ...prev, [req.id]: Boolean(value) }))
                 // }
-                // onCheckedChange={(checked) => handleCheckboxChange(req.id, checked as boolean)}
+                onCheckedChange={(checked) => handleCheckboxChange(req.dbid, checked as boolean)}
                 className="mt-1"
               />
               <div className="flex-1">
@@ -294,7 +322,12 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
                   </div>
                 )}
               </div>
-              {userProfile[req.dbid] && (
+              {!req.manual ? (userProfile[req.dbid] && (
+                <Badge className="bg-green-100 text-green-800">
+                  <Check className="h-3 w-3 mr-1" />
+                  Done
+                </Badge>
+              )) : completedItems[req.dbid] && (
                 <Badge className="bg-green-100 text-green-800">
                   <Check className="h-3 w-3 mr-1" />
                   Done
@@ -335,19 +368,20 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
           <h4 className="font-medium text-blue-900 mb-2">Completion Status</h4>
           <div className="flex items-center gap-2">
             <div className="flex-1 bg-gray-200 rounded-full h-2">
+              
               <div 
                 className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                 style={{
-                  width: `${(Object.keys(completedItems).filter(key => 
-                    key.startsWith(title.toLowerCase().split(' ')[0]) && completedItems[key]
+                  width: `${(requirements.filter(req =>
+                    completedItems[req.dbid] === true
                   ).length / requirements.length) * 100}%`
                 }}
               />
             </div>
             <span className="text-sm font-medium">
-              {Object.keys(completedItems).filter(key => 
-                key.startsWith(title.toLowerCase().split(' ')[0]) && completedItems[key]
-              ).length} / {requirements.length}
+              {(requirements.filter(req =>
+                    completedItems[req.dbid] === true
+                  )).length} / {requirements.length}
             </span>
           </div>
         </div>

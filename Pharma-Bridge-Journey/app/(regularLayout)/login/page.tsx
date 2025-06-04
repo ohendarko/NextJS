@@ -44,7 +44,7 @@ const Login = () => {
         description: "Please check your credentials and try again.",
         variant: 'destructive',
       });
-      // console.log(res.error)
+      console.log(res.error)
       // alert('Check your credentials and try again')
     } else {
       if(status === 'unauthenticated') {
