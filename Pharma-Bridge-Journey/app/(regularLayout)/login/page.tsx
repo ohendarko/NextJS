@@ -53,6 +53,7 @@ const Login = () => {
       toast({
         title: 'Login successful',
         description: 'Welcome back to PharmaBridge Consulting',
+        variant: 'success',
       });
       navigate.push("/dashboard");
     }

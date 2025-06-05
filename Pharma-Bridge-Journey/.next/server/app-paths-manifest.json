@@ -1,9 +1,9 @@
 {
-  "/api/upload/route": "app/api/upload/route.js",
-  "/api/document/route": "app/api/document/route.js",
   "/api/user/update/route": "app/api/user/update/route.js",
+  "/api/user/route": "app/api/user/route.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/(regularLayout)/page": "app/(regularLayout)/page.js",
   "/(regularLayout)/login/page": "app/(regularLayout)/login/page.js",
-  "/(regularLayout)/forgot-password/page": "app/(regularLayout)/forgot-password/page.js",
   "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js"
 }

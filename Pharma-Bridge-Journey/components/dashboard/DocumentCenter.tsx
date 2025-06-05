@@ -12,6 +12,7 @@ import {
   Check, 
   Image
 } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
 interface DocumentCenterProps {
   userProfile: any;
@@ -19,27 +20,162 @@ interface DocumentCenterProps {
 
 const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
   const [activeTab, setActiveTab] = useState("fpgee");
-  const [completedItems, setCompletedItems] = useState<Record<string, boolean>>({});
   const [fileState, setFileState] = useState<Record<string, File | null>>({});
   const [uploadingState, setUploadingState] = useState<Record<string, boolean>>({});
   const [completionState, setCompletionState] = useState<Record<string, boolean>>({});
+  
+  
+  // const [isUploading, setIsUploading] = useState(false);
+  // const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  // const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
+
+  const [completedItems, setCompletedItems] = useState({
+    fpgeeFormSubmitted: userProfile?.fpgeeFormSubmitted,
+    passportScanSubmitted: userProfile?.passportScanSubmitted,
+    passportPhotoSubmitted   : userProfile?.passportPhotoSubmitted,
+    pharmacyLicenseSubmitted : userProfile?.pharmacyLicenseSubmitted,
+    goodStandingLetterSubmitted: userProfile?.goodStandingLetterSubmitted,
+    eceApplicationCompleted  : userProfile?.eceApplicationCompleted,
+    officialTranscriptsSent  : userProfile?.officialTranscriptsSent,
+    courseDescriptionsSubmitted  : userProfile?.courseDescriptionsSubmitted,
+    eceEvaluationFeeePaid  : userProfile?.eceEvaluationFeeePaid,
+    toeflTestRegistered  : userProfile?.toeflTestRegistered,
+    toeflTestCompleted  : userProfile?.toeflTestCompleted,
+    toeflScoresSent  : userProfile?.toeflScoresSent,
+    naplexEligibilityConfirmed  : userProfile?.naplexEligibilityConfirmed,
+    naplexTestRegistered  : userProfile?.naplexTestRegistered,
+    naplexCompleted  : userProfile?.naplexCompleted,
+    mpjeEligibilityConfirmed  : userProfile?.mpjeEligibilityConfirmed,
+    mpjeTestRegistered  : userProfile?.mpjeTestRegistered,
+    mpjeTestCompleted  : userProfile?.mpjeTestCompleted,
+  });
+
+  const [formData, setFormData] = useState({});
+  const [hasChanges, setHasChanges] = useState(false);
+  const [saving, setSaving] = useState(false);
 
 
-  const [isUploading, setIsUploading] = useState(false);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
+  
 
   useEffect(() => {
     console.log(completedItems)
   }, [completedItems])
 
 
+  //When checkbox is checked or unchecked
   const handleCheckboxChange = (itemId: string, checked: boolean) => {
     setCompletedItems(prev => ({
       ...prev,
       [itemId]: checked
     }));
+
+    setFormData(prev => {
+      const updatedForm = { ...prev, [itemId]: checked };
+      setHasChanges(true);
+      return updatedForm;
+    });
   };
+
+
+  //When changes are made
+  const handleCancelChanges = () => {
+    setCompletedItems({
+      fpgeeFormSubmitted: userProfile.fpgeeFormSubmitted,
+      passportScanSubmitted: userProfile.passportScanSubmitted,
+      passportPhotoSubmitted: userProfile.passportPhotoSubmitted,
+      pharmacyLicenseSubmitted: userProfile.pharmacyLicenseSubmitted,
+      goodStandingLetterSubmitted: userProfile.goodStandingLetterSubmitted,
+      eceApplicationCompleted: userProfile.eceApplicationCompleted,
+      officialTranscriptsSent: userProfile.officialTranscriptsSent,
+      courseDescriptionsSubmitted: userProfile.courseDescriptionsSubmitted,
+      eceEvaluationFeeePaid: userProfile.eceEvaluationFeeePaid,
+      toeflTestRegistered: userProfile.toeflTestRegistered,
+      toeflTestCompleted: userProfile.toeflTestCompleted,
+      toeflScoresSent: userProfile.toeflScoresSent,
+      naplexEligibilityConfirmed: userProfile.naplexEligibilityConfirmed,
+      naplexTestRegistered: userProfile.naplexTestRegistered,
+      naplexCompleted: userProfile.naplexCompleted,
+      mpjeEligibilityConfirmed: userProfile.mpjeEligibilityConfirmed,
+      mpjeTestRegistered: userProfile.mpjeTestRegistered,
+      mpjeTestCompleted: userProfile.mpjeTestCompleted,
+    });
+    setFormData({});
+    setHasChanges(false);
+  };
+
+
+  //When save is clicked
+  const handleSave = async () => {
+    const updates = Object.entries(formData); // [["fpgeeFormSubmitted", true], ...]
+
+    if (updates.length === 0) return;
+
+    try {
+      setSaving(true);
+      for (const [field, value] of updates) {
+        const res = await fetch("/api/user/update", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fieldToUpdate: field,
+            value: value,
+          }),
+        });
+
+        if (!res.ok) {
+          throw new Error(`Failed to update field: ${field}`);
+        }
+      }
+
+      toast({
+        title: "Changes saved",
+        description: "Your checklist updates have been saved.",
+        variant: "success", // Ensure this variant is defined in your toast system
+      });
+
+      
+      //fetch userdata and update in real time
+      const res = await fetch('/api/user');
+      const updatedProfile = await res.json();
+
+      setCompletedItems({
+        fpgeeFormSubmitted: updatedProfile.fpgeeFormSubmitted,
+        passportScanSubmitted: updatedProfile.passportScanSubmitted,
+        passportPhotoSubmitted: updatedProfile.passportPhotoSubmitted,
+        pharmacyLicenseSubmitted: updatedProfile.pharmacyLicenseSubmitted,
+        goodStandingLetterSubmitted: updatedProfile.goodStandingLetterSubmitted,
+        eceApplicationCompleted: updatedProfile.eceApplicationCompleted,
+        officialTranscriptsSent: updatedProfile.officialTranscriptsSent,
+        courseDescriptionsSubmitted: updatedProfile.courseDescriptionsSubmitted,
+        eceEvaluationFeeePaid: updatedProfile.eceEvaluationFeeePaid,
+        toeflTestRegistered: updatedProfile.toeflTestRegistered,
+        toeflTestCompleted: updatedProfile.toeflTestCompleted,
+        toeflScoresSent: updatedProfile.toeflScoresSent,
+        naplexEligibilityConfirmed: updatedProfile.naplexEligibilityConfirmed,
+        naplexTestRegistered: updatedProfile.naplexTestRegistered,
+        naplexCompleted: updatedProfile.naplexCompleted,
+        mpjeEligibilityConfirmed: updatedProfile.mpjeEligibilityConfirmed,
+        mpjeTestRegistered: updatedProfile.mpjeTestRegistered,
+        mpjeTestCompleted: updatedProfile.mpjeTestCompleted,
+      });
+
+      setHasChanges(false);
+      setFormData({});
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Save failed",
+        description: "Some fields couldn't be updated. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+
 
   const handleFileChange = (itemId: string, file: File | null) => {
     setFileState(prev => ({
@@ -48,6 +184,8 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
     }));
   };
 
+
+  //When upload is clicked
   const handleUpload = async (itemId: string, category: string, dbField: string) => {
     const selectedFile = fileState[itemId];
     if (!selectedFile) return;
@@ -116,7 +254,8 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
     }
   };
 
-  console.log(completedItems)
+  console.log('completed Items:', completedItems);
+  console.log('form data:',formData);
 
 
   const fpgeeRequirements = [
@@ -385,6 +524,28 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
             </span>
           </div>
         </div>
+
+         {/* Cancel and Save buttons */}
+         {hasChanges && requirements.some(req => req.manual) && (
+          <div className="flex gap-4 mt-4">
+            <Button
+              onClick={handleSave}
+              disabled={saving}
+              className="px-4 py-2 bg-pharma-dark-blue text-white rounded"
+            >
+               {saving ? 'Saving... Please wait' : 'Save'}
+            </Button>
+            <Button
+              onClick={handleCancelChanges}
+              disabled={saving}
+              className="px-4 py-2 bg-gray-300 text-black rounded"
+            >
+              Cancel
+            </Button>
+          </div>
+        )}
+
+        
       </CardContent>
     </Card>
   );
