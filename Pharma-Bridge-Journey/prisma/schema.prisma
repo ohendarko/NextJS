@@ -28,6 +28,10 @@ model User {
 
   // Document Checklist
   fpgeeFormSubmitted        Boolean @default(false)
+  fpgecApplicationSubmitted        Boolean @default(false)
+  fpgeePassed        Boolean @default(false)
+  fpgecCertficateIssued        Boolean @default(false)
+  stateBoardApplicationCompleted        Boolean @default(false)
   passportScanSubmitted     Boolean @default(false)
   passportPhotoSubmitted    Boolean @default(false)
   pharmacyLicenseSubmitted  Boolean @default(false)
@@ -41,10 +45,16 @@ model User {
   toeflScoresSent   Boolean @default(false)
   naplexEligibilityConfirmed   Boolean @default(false)
   naplexTestRegistered   Boolean @default(false)
+  naplexPreparationCompleted   Boolean @default(false)
   naplexCompleted   Boolean @default(false)
   mpjeEligibilityConfirmed   Boolean @default(false)
+  mpjePreparationCompleted   Boolean @default(false)
   mpjeTestRegistered   Boolean @default(false)
   mpjeTestCompleted   Boolean @default(false)
+  internshipHoursCompleted   Boolean @default(false)
+  pharmacyLicenseObtained   Boolean @default(false)
+  maintainLicensure   Boolean @default(false)
+  boardSpecialization   Boolean @default(false)
 
   // Basic Info
   dateOfBirth        DateTime?

@@ -1620,6 +1620,10 @@ export namespace Prisma {
     verified: boolean | null
     hasCompletedOnboarding: boolean | null
     fpgeeFormSubmitted: boolean | null
+    fpgecApplicationSubmitted: boolean | null
+    fpgeePassed: boolean | null
+    fpgecCertficateIssued: boolean | null
+    stateBoardApplicationCompleted: boolean | null
     passportScanSubmitted: boolean | null
     passportPhotoSubmitted: boolean | null
     pharmacyLicenseSubmitted: boolean | null
@@ -1633,10 +1637,16 @@ export namespace Prisma {
     toeflScoresSent: boolean | null
     naplexEligibilityConfirmed: boolean | null
     naplexTestRegistered: boolean | null
+    naplexPreparationCompleted: boolean | null
     naplexCompleted: boolean | null
     mpjeEligibilityConfirmed: boolean | null
+    mpjePreparationCompleted: boolean | null
     mpjeTestRegistered: boolean | null
     mpjeTestCompleted: boolean | null
+    internshipHoursCompleted: boolean | null
+    pharmacyLicenseObtained: boolean | null
+    maintainLicensure: boolean | null
+    boardSpecialization: boolean | null
     dateOfBirth: Date | null
     gender: string | null
     phoneNumber: string | null
@@ -1665,6 +1675,10 @@ export namespace Prisma {
     verified: boolean | null
     hasCompletedOnboarding: boolean | null
     fpgeeFormSubmitted: boolean | null
+    fpgecApplicationSubmitted: boolean | null
+    fpgeePassed: boolean | null
+    fpgecCertficateIssued: boolean | null
+    stateBoardApplicationCompleted: boolean | null
     passportScanSubmitted: boolean | null
     passportPhotoSubmitted: boolean | null
     pharmacyLicenseSubmitted: boolean | null
@@ -1678,10 +1692,16 @@ export namespace Prisma {
     toeflScoresSent: boolean | null
     naplexEligibilityConfirmed: boolean | null
     naplexTestRegistered: boolean | null
+    naplexPreparationCompleted: boolean | null
     naplexCompleted: boolean | null
     mpjeEligibilityConfirmed: boolean | null
+    mpjePreparationCompleted: boolean | null
     mpjeTestRegistered: boolean | null
     mpjeTestCompleted: boolean | null
+    internshipHoursCompleted: boolean | null
+    pharmacyLicenseObtained: boolean | null
+    maintainLicensure: boolean | null
+    boardSpecialization: boolean | null
     dateOfBirth: Date | null
     gender: string | null
     phoneNumber: string | null
@@ -1710,6 +1730,10 @@ export namespace Prisma {
     verified: number
     hasCompletedOnboarding: number
     fpgeeFormSubmitted: number
+    fpgecApplicationSubmitted: number
+    fpgeePassed: number
+    fpgecCertficateIssued: number
+    stateBoardApplicationCompleted: number
     passportScanSubmitted: number
     passportPhotoSubmitted: number
     pharmacyLicenseSubmitted: number
@@ -1723,10 +1747,16 @@ export namespace Prisma {
     toeflScoresSent: number
     naplexEligibilityConfirmed: number
     naplexTestRegistered: number
+    naplexPreparationCompleted: number
     naplexCompleted: number
     mpjeEligibilityConfirmed: number
+    mpjePreparationCompleted: number
     mpjeTestRegistered: number
     mpjeTestCompleted: number
+    internshipHoursCompleted: number
+    pharmacyLicenseObtained: number
+    maintainLicensure: number
+    boardSpecialization: number
     dateOfBirth: number
     gender: number
     phoneNumber: number
@@ -1757,6 +1787,10 @@ export namespace Prisma {
     verified?: true
     hasCompletedOnboarding?: true
     fpgeeFormSubmitted?: true
+    fpgecApplicationSubmitted?: true
+    fpgeePassed?: true
+    fpgecCertficateIssued?: true
+    stateBoardApplicationCompleted?: true
     passportScanSubmitted?: true
     passportPhotoSubmitted?: true
     pharmacyLicenseSubmitted?: true
@@ -1770,10 +1804,16 @@ export namespace Prisma {
     toeflScoresSent?: true
     naplexEligibilityConfirmed?: true
     naplexTestRegistered?: true
+    naplexPreparationCompleted?: true
     naplexCompleted?: true
     mpjeEligibilityConfirmed?: true
+    mpjePreparationCompleted?: true
     mpjeTestRegistered?: true
     mpjeTestCompleted?: true
+    internshipHoursCompleted?: true
+    pharmacyLicenseObtained?: true
+    maintainLicensure?: true
+    boardSpecialization?: true
     dateOfBirth?: true
     gender?: true
     phoneNumber?: true
@@ -1802,6 +1842,10 @@ export namespace Prisma {
     verified?: true
     hasCompletedOnboarding?: true
     fpgeeFormSubmitted?: true
+    fpgecApplicationSubmitted?: true
+    fpgeePassed?: true
+    fpgecCertficateIssued?: true
+    stateBoardApplicationCompleted?: true
     passportScanSubmitted?: true
     passportPhotoSubmitted?: true
     pharmacyLicenseSubmitted?: true
@@ -1815,10 +1859,16 @@ export namespace Prisma {
     toeflScoresSent?: true
     naplexEligibilityConfirmed?: true
     naplexTestRegistered?: true
+    naplexPreparationCompleted?: true
     naplexCompleted?: true
     mpjeEligibilityConfirmed?: true
+    mpjePreparationCompleted?: true
     mpjeTestRegistered?: true
     mpjeTestCompleted?: true
+    internshipHoursCompleted?: true
+    pharmacyLicenseObtained?: true
+    maintainLicensure?: true
+    boardSpecialization?: true
     dateOfBirth?: true
     gender?: true
     phoneNumber?: true
@@ -1847,6 +1897,10 @@ export namespace Prisma {
     verified?: true
     hasCompletedOnboarding?: true
     fpgeeFormSubmitted?: true
+    fpgecApplicationSubmitted?: true
+    fpgeePassed?: true
+    fpgecCertficateIssued?: true
+    stateBoardApplicationCompleted?: true
     passportScanSubmitted?: true
     passportPhotoSubmitted?: true
     pharmacyLicenseSubmitted?: true
@@ -1860,10 +1914,16 @@ export namespace Prisma {
     toeflScoresSent?: true
     naplexEligibilityConfirmed?: true
     naplexTestRegistered?: true
+    naplexPreparationCompleted?: true
     naplexCompleted?: true
     mpjeEligibilityConfirmed?: true
+    mpjePreparationCompleted?: true
     mpjeTestRegistered?: true
     mpjeTestCompleted?: true
+    internshipHoursCompleted?: true
+    pharmacyLicenseObtained?: true
+    maintainLicensure?: true
+    boardSpecialization?: true
     dateOfBirth?: true
     gender?: true
     phoneNumber?: true
@@ -1965,6 +2025,10 @@ export namespace Prisma {
     verified: boolean
     hasCompletedOnboarding: boolean
     fpgeeFormSubmitted: boolean
+    fpgecApplicationSubmitted: boolean
+    fpgeePassed: boolean
+    fpgecCertficateIssued: boolean
+    stateBoardApplicationCompleted: boolean
     passportScanSubmitted: boolean
     passportPhotoSubmitted: boolean
     pharmacyLicenseSubmitted: boolean
@@ -1978,10 +2042,16 @@ export namespace Prisma {
     toeflScoresSent: boolean
     naplexEligibilityConfirmed: boolean
     naplexTestRegistered: boolean
+    naplexPreparationCompleted: boolean
     naplexCompleted: boolean
     mpjeEligibilityConfirmed: boolean
+    mpjePreparationCompleted: boolean
     mpjeTestRegistered: boolean
     mpjeTestCompleted: boolean
+    internshipHoursCompleted: boolean
+    pharmacyLicenseObtained: boolean
+    maintainLicensure: boolean
+    boardSpecialization: boolean
     dateOfBirth: Date | null
     gender: string | null
     phoneNumber: string | null
@@ -2027,6 +2097,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -2040,10 +2114,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: boolean
     gender?: boolean
     phoneNumber?: boolean
@@ -2081,6 +2161,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -2094,10 +2178,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: boolean
     gender?: boolean
     phoneNumber?: boolean
@@ -2115,7 +2205,7 @@ export namespace Prisma {
     selectedPackage?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "createdAt" | "profileImage" | "admin" | "verified" | "hasCompletedOnboarding" | "fpgeeFormSubmitted" | "passportScanSubmitted" | "passportPhotoSubmitted" | "pharmacyLicenseSubmitted" | "goodStandingLetterSubmitted" | "eceApplicationCompleted" | "officialTranscriptsSent" | "courseDescriptionsSubmitted" | "eceEvaluationFeeePaid" | "toeflTestRegistered" | "toeflTestCompleted" | "toeflScoresSent" | "naplexEligibilityConfirmed" | "naplexTestRegistered" | "naplexCompleted" | "mpjeEligibilityConfirmed" | "mpjeTestRegistered" | "mpjeTestCompleted" | "dateOfBirth" | "gender" | "phoneNumber" | "timezone" | "countryOfDegree" | "degreeType" | "graduationYear" | "degreeFile" | "passportFile" | "licenseFile" | "hasVisa" | "visaType" | "arrivalDate" | "preferredState" | "selectedPackage" | "documentCategories", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "createdAt" | "profileImage" | "admin" | "verified" | "hasCompletedOnboarding" | "fpgeeFormSubmitted" | "fpgecApplicationSubmitted" | "fpgeePassed" | "fpgecCertficateIssued" | "stateBoardApplicationCompleted" | "passportScanSubmitted" | "passportPhotoSubmitted" | "pharmacyLicenseSubmitted" | "goodStandingLetterSubmitted" | "eceApplicationCompleted" | "officialTranscriptsSent" | "courseDescriptionsSubmitted" | "eceEvaluationFeeePaid" | "toeflTestRegistered" | "toeflTestCompleted" | "toeflScoresSent" | "naplexEligibilityConfirmed" | "naplexTestRegistered" | "naplexPreparationCompleted" | "naplexCompleted" | "mpjeEligibilityConfirmed" | "mpjePreparationCompleted" | "mpjeTestRegistered" | "mpjeTestCompleted" | "internshipHoursCompleted" | "pharmacyLicenseObtained" | "maintainLicensure" | "boardSpecialization" | "dateOfBirth" | "gender" | "phoneNumber" | "timezone" | "countryOfDegree" | "degreeType" | "graduationYear" | "degreeFile" | "passportFile" | "licenseFile" | "hasVisa" | "visaType" | "arrivalDate" | "preferredState" | "selectedPackage" | "documentCategories", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     documents?: boolean | User$documentsArgs<ExtArgs>
     packageSelections?: boolean | User$packageSelectionsArgs<ExtArgs>
@@ -2145,6 +2235,10 @@ export namespace Prisma {
       verified: boolean
       hasCompletedOnboarding: boolean
       fpgeeFormSubmitted: boolean
+      fpgecApplicationSubmitted: boolean
+      fpgeePassed: boolean
+      fpgecCertficateIssued: boolean
+      stateBoardApplicationCompleted: boolean
       passportScanSubmitted: boolean
       passportPhotoSubmitted: boolean
       pharmacyLicenseSubmitted: boolean
@@ -2158,10 +2252,16 @@ export namespace Prisma {
       toeflScoresSent: boolean
       naplexEligibilityConfirmed: boolean
       naplexTestRegistered: boolean
+      naplexPreparationCompleted: boolean
       naplexCompleted: boolean
       mpjeEligibilityConfirmed: boolean
+      mpjePreparationCompleted: boolean
       mpjeTestRegistered: boolean
       mpjeTestCompleted: boolean
+      internshipHoursCompleted: boolean
+      pharmacyLicenseObtained: boolean
+      maintainLicensure: boolean
+      boardSpecialization: boolean
       dateOfBirth: Date | null
       gender: string | null
       phoneNumber: string | null
@@ -2586,6 +2686,10 @@ export namespace Prisma {
     readonly verified: FieldRef<"User", 'Boolean'>
     readonly hasCompletedOnboarding: FieldRef<"User", 'Boolean'>
     readonly fpgeeFormSubmitted: FieldRef<"User", 'Boolean'>
+    readonly fpgecApplicationSubmitted: FieldRef<"User", 'Boolean'>
+    readonly fpgeePassed: FieldRef<"User", 'Boolean'>
+    readonly fpgecCertficateIssued: FieldRef<"User", 'Boolean'>
+    readonly stateBoardApplicationCompleted: FieldRef<"User", 'Boolean'>
     readonly passportScanSubmitted: FieldRef<"User", 'Boolean'>
     readonly passportPhotoSubmitted: FieldRef<"User", 'Boolean'>
     readonly pharmacyLicenseSubmitted: FieldRef<"User", 'Boolean'>
@@ -2599,10 +2703,16 @@ export namespace Prisma {
     readonly toeflScoresSent: FieldRef<"User", 'Boolean'>
     readonly naplexEligibilityConfirmed: FieldRef<"User", 'Boolean'>
     readonly naplexTestRegistered: FieldRef<"User", 'Boolean'>
+    readonly naplexPreparationCompleted: FieldRef<"User", 'Boolean'>
     readonly naplexCompleted: FieldRef<"User", 'Boolean'>
     readonly mpjeEligibilityConfirmed: FieldRef<"User", 'Boolean'>
+    readonly mpjePreparationCompleted: FieldRef<"User", 'Boolean'>
     readonly mpjeTestRegistered: FieldRef<"User", 'Boolean'>
     readonly mpjeTestCompleted: FieldRef<"User", 'Boolean'>
+    readonly internshipHoursCompleted: FieldRef<"User", 'Boolean'>
+    readonly pharmacyLicenseObtained: FieldRef<"User", 'Boolean'>
+    readonly maintainLicensure: FieldRef<"User", 'Boolean'>
+    readonly boardSpecialization: FieldRef<"User", 'Boolean'>
     readonly dateOfBirth: FieldRef<"User", 'DateTime'>
     readonly gender: FieldRef<"User", 'String'>
     readonly phoneNumber: FieldRef<"User", 'String'>
@@ -9145,6 +9255,10 @@ export namespace Prisma {
     verified: 'verified',
     hasCompletedOnboarding: 'hasCompletedOnboarding',
     fpgeeFormSubmitted: 'fpgeeFormSubmitted',
+    fpgecApplicationSubmitted: 'fpgecApplicationSubmitted',
+    fpgeePassed: 'fpgeePassed',
+    fpgecCertficateIssued: 'fpgecCertficateIssued',
+    stateBoardApplicationCompleted: 'stateBoardApplicationCompleted',
     passportScanSubmitted: 'passportScanSubmitted',
     passportPhotoSubmitted: 'passportPhotoSubmitted',
     pharmacyLicenseSubmitted: 'pharmacyLicenseSubmitted',
@@ -9158,10 +9272,16 @@ export namespace Prisma {
     toeflScoresSent: 'toeflScoresSent',
     naplexEligibilityConfirmed: 'naplexEligibilityConfirmed',
     naplexTestRegistered: 'naplexTestRegistered',
+    naplexPreparationCompleted: 'naplexPreparationCompleted',
     naplexCompleted: 'naplexCompleted',
     mpjeEligibilityConfirmed: 'mpjeEligibilityConfirmed',
+    mpjePreparationCompleted: 'mpjePreparationCompleted',
     mpjeTestRegistered: 'mpjeTestRegistered',
     mpjeTestCompleted: 'mpjeTestCompleted',
+    internshipHoursCompleted: 'internshipHoursCompleted',
+    pharmacyLicenseObtained: 'pharmacyLicenseObtained',
+    maintainLicensure: 'maintainLicensure',
+    boardSpecialization: 'boardSpecialization',
     dateOfBirth: 'dateOfBirth',
     gender: 'gender',
     phoneNumber: 'phoneNumber',
@@ -9362,6 +9482,10 @@ export namespace Prisma {
     verified?: BoolFilter<"User"> | boolean
     hasCompletedOnboarding?: BoolFilter<"User"> | boolean
     fpgeeFormSubmitted?: BoolFilter<"User"> | boolean
+    fpgecApplicationSubmitted?: BoolFilter<"User"> | boolean
+    fpgeePassed?: BoolFilter<"User"> | boolean
+    fpgecCertficateIssued?: BoolFilter<"User"> | boolean
+    stateBoardApplicationCompleted?: BoolFilter<"User"> | boolean
     passportScanSubmitted?: BoolFilter<"User"> | boolean
     passportPhotoSubmitted?: BoolFilter<"User"> | boolean
     pharmacyLicenseSubmitted?: BoolFilter<"User"> | boolean
@@ -9375,10 +9499,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFilter<"User"> | boolean
     naplexEligibilityConfirmed?: BoolFilter<"User"> | boolean
     naplexTestRegistered?: BoolFilter<"User"> | boolean
+    naplexPreparationCompleted?: BoolFilter<"User"> | boolean
     naplexCompleted?: BoolFilter<"User"> | boolean
     mpjeEligibilityConfirmed?: BoolFilter<"User"> | boolean
+    mpjePreparationCompleted?: BoolFilter<"User"> | boolean
     mpjeTestRegistered?: BoolFilter<"User"> | boolean
     mpjeTestCompleted?: BoolFilter<"User"> | boolean
+    internshipHoursCompleted?: BoolFilter<"User"> | boolean
+    pharmacyLicenseObtained?: BoolFilter<"User"> | boolean
+    maintainLicensure?: BoolFilter<"User"> | boolean
+    boardSpecialization?: BoolFilter<"User"> | boolean
     dateOfBirth?: DateTimeNullableFilter<"User"> | Date | string | null
     gender?: StringNullableFilter<"User"> | string | null
     phoneNumber?: StringNullableFilter<"User"> | string | null
@@ -9413,6 +9543,10 @@ export namespace Prisma {
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
     fpgeeFormSubmitted?: SortOrder
+    fpgecApplicationSubmitted?: SortOrder
+    fpgeePassed?: SortOrder
+    fpgecCertficateIssued?: SortOrder
+    stateBoardApplicationCompleted?: SortOrder
     passportScanSubmitted?: SortOrder
     passportPhotoSubmitted?: SortOrder
     pharmacyLicenseSubmitted?: SortOrder
@@ -9426,10 +9560,16 @@ export namespace Prisma {
     toeflScoresSent?: SortOrder
     naplexEligibilityConfirmed?: SortOrder
     naplexTestRegistered?: SortOrder
+    naplexPreparationCompleted?: SortOrder
     naplexCompleted?: SortOrder
     mpjeEligibilityConfirmed?: SortOrder
+    mpjePreparationCompleted?: SortOrder
     mpjeTestRegistered?: SortOrder
     mpjeTestCompleted?: SortOrder
+    internshipHoursCompleted?: SortOrder
+    pharmacyLicenseObtained?: SortOrder
+    maintainLicensure?: SortOrder
+    boardSpecialization?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -9467,6 +9607,10 @@ export namespace Prisma {
     verified?: BoolFilter<"User"> | boolean
     hasCompletedOnboarding?: BoolFilter<"User"> | boolean
     fpgeeFormSubmitted?: BoolFilter<"User"> | boolean
+    fpgecApplicationSubmitted?: BoolFilter<"User"> | boolean
+    fpgeePassed?: BoolFilter<"User"> | boolean
+    fpgecCertficateIssued?: BoolFilter<"User"> | boolean
+    stateBoardApplicationCompleted?: BoolFilter<"User"> | boolean
     passportScanSubmitted?: BoolFilter<"User"> | boolean
     passportPhotoSubmitted?: BoolFilter<"User"> | boolean
     pharmacyLicenseSubmitted?: BoolFilter<"User"> | boolean
@@ -9480,10 +9624,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFilter<"User"> | boolean
     naplexEligibilityConfirmed?: BoolFilter<"User"> | boolean
     naplexTestRegistered?: BoolFilter<"User"> | boolean
+    naplexPreparationCompleted?: BoolFilter<"User"> | boolean
     naplexCompleted?: BoolFilter<"User"> | boolean
     mpjeEligibilityConfirmed?: BoolFilter<"User"> | boolean
+    mpjePreparationCompleted?: BoolFilter<"User"> | boolean
     mpjeTestRegistered?: BoolFilter<"User"> | boolean
     mpjeTestCompleted?: BoolFilter<"User"> | boolean
+    internshipHoursCompleted?: BoolFilter<"User"> | boolean
+    pharmacyLicenseObtained?: BoolFilter<"User"> | boolean
+    maintainLicensure?: BoolFilter<"User"> | boolean
+    boardSpecialization?: BoolFilter<"User"> | boolean
     dateOfBirth?: DateTimeNullableFilter<"User"> | Date | string | null
     gender?: StringNullableFilter<"User"> | string | null
     phoneNumber?: StringNullableFilter<"User"> | string | null
@@ -9518,6 +9668,10 @@ export namespace Prisma {
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
     fpgeeFormSubmitted?: SortOrder
+    fpgecApplicationSubmitted?: SortOrder
+    fpgeePassed?: SortOrder
+    fpgecCertficateIssued?: SortOrder
+    stateBoardApplicationCompleted?: SortOrder
     passportScanSubmitted?: SortOrder
     passportPhotoSubmitted?: SortOrder
     pharmacyLicenseSubmitted?: SortOrder
@@ -9531,10 +9685,16 @@ export namespace Prisma {
     toeflScoresSent?: SortOrder
     naplexEligibilityConfirmed?: SortOrder
     naplexTestRegistered?: SortOrder
+    naplexPreparationCompleted?: SortOrder
     naplexCompleted?: SortOrder
     mpjeEligibilityConfirmed?: SortOrder
+    mpjePreparationCompleted?: SortOrder
     mpjeTestRegistered?: SortOrder
     mpjeTestCompleted?: SortOrder
+    internshipHoursCompleted?: SortOrder
+    pharmacyLicenseObtained?: SortOrder
+    maintainLicensure?: SortOrder
+    boardSpecialization?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -9569,6 +9729,10 @@ export namespace Prisma {
     verified?: BoolWithAggregatesFilter<"User"> | boolean
     hasCompletedOnboarding?: BoolWithAggregatesFilter<"User"> | boolean
     fpgeeFormSubmitted?: BoolWithAggregatesFilter<"User"> | boolean
+    fpgecApplicationSubmitted?: BoolWithAggregatesFilter<"User"> | boolean
+    fpgeePassed?: BoolWithAggregatesFilter<"User"> | boolean
+    fpgecCertficateIssued?: BoolWithAggregatesFilter<"User"> | boolean
+    stateBoardApplicationCompleted?: BoolWithAggregatesFilter<"User"> | boolean
     passportScanSubmitted?: BoolWithAggregatesFilter<"User"> | boolean
     passportPhotoSubmitted?: BoolWithAggregatesFilter<"User"> | boolean
     pharmacyLicenseSubmitted?: BoolWithAggregatesFilter<"User"> | boolean
@@ -9582,10 +9746,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolWithAggregatesFilter<"User"> | boolean
     naplexEligibilityConfirmed?: BoolWithAggregatesFilter<"User"> | boolean
     naplexTestRegistered?: BoolWithAggregatesFilter<"User"> | boolean
+    naplexPreparationCompleted?: BoolWithAggregatesFilter<"User"> | boolean
     naplexCompleted?: BoolWithAggregatesFilter<"User"> | boolean
     mpjeEligibilityConfirmed?: BoolWithAggregatesFilter<"User"> | boolean
+    mpjePreparationCompleted?: BoolWithAggregatesFilter<"User"> | boolean
     mpjeTestRegistered?: BoolWithAggregatesFilter<"User"> | boolean
     mpjeTestCompleted?: BoolWithAggregatesFilter<"User"> | boolean
+    internshipHoursCompleted?: BoolWithAggregatesFilter<"User"> | boolean
+    pharmacyLicenseObtained?: BoolWithAggregatesFilter<"User"> | boolean
+    maintainLicensure?: BoolWithAggregatesFilter<"User"> | boolean
+    boardSpecialization?: BoolWithAggregatesFilter<"User"> | boolean
     dateOfBirth?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     gender?: StringNullableWithAggregatesFilter<"User"> | string | null
     phoneNumber?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -10009,6 +10179,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -10022,10 +10196,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -10060,6 +10240,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -10073,10 +10257,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -10110,6 +10300,10 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
+    fpgecCertficateIssued?: BoolFieldUpdateOperationsInput | boolean
+    stateBoardApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
     passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
     passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
     pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
@@ -10123,10 +10317,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
     naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
     naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexPreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjePreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internshipHoursCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseObtained?: BoolFieldUpdateOperationsInput | boolean
+    maintainLicensure?: BoolFieldUpdateOperationsInput | boolean
+    boardSpecialization?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10160,6 +10360,10 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
+    fpgecCertficateIssued?: BoolFieldUpdateOperationsInput | boolean
+    stateBoardApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
     passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
     passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
     pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
@@ -10173,10 +10377,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
     naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
     naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexPreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjePreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internshipHoursCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseObtained?: BoolFieldUpdateOperationsInput | boolean
+    maintainLicensure?: BoolFieldUpdateOperationsInput | boolean
+    boardSpecialization?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10211,6 +10421,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -10224,10 +10438,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -10256,6 +10476,10 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
+    fpgecCertficateIssued?: BoolFieldUpdateOperationsInput | boolean
+    stateBoardApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
     passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
     passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
     pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
@@ -10269,10 +10493,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
     naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
     naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexPreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjePreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internshipHoursCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseObtained?: BoolFieldUpdateOperationsInput | boolean
+    maintainLicensure?: BoolFieldUpdateOperationsInput | boolean
+    boardSpecialization?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10301,6 +10531,10 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
+    fpgecCertficateIssued?: BoolFieldUpdateOperationsInput | boolean
+    stateBoardApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
     passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
     passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
     pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
@@ -10314,10 +10548,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
     naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
     naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexPreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjePreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internshipHoursCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseObtained?: BoolFieldUpdateOperationsInput | boolean
+    maintainLicensure?: BoolFieldUpdateOperationsInput | boolean
+    boardSpecialization?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10879,6 +11119,10 @@ export namespace Prisma {
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
     fpgeeFormSubmitted?: SortOrder
+    fpgecApplicationSubmitted?: SortOrder
+    fpgeePassed?: SortOrder
+    fpgecCertficateIssued?: SortOrder
+    stateBoardApplicationCompleted?: SortOrder
     passportScanSubmitted?: SortOrder
     passportPhotoSubmitted?: SortOrder
     pharmacyLicenseSubmitted?: SortOrder
@@ -10892,10 +11136,16 @@ export namespace Prisma {
     toeflScoresSent?: SortOrder
     naplexEligibilityConfirmed?: SortOrder
     naplexTestRegistered?: SortOrder
+    naplexPreparationCompleted?: SortOrder
     naplexCompleted?: SortOrder
     mpjeEligibilityConfirmed?: SortOrder
+    mpjePreparationCompleted?: SortOrder
     mpjeTestRegistered?: SortOrder
     mpjeTestCompleted?: SortOrder
+    internshipHoursCompleted?: SortOrder
+    pharmacyLicenseObtained?: SortOrder
+    maintainLicensure?: SortOrder
+    boardSpecialization?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -10924,6 +11174,10 @@ export namespace Prisma {
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
     fpgeeFormSubmitted?: SortOrder
+    fpgecApplicationSubmitted?: SortOrder
+    fpgeePassed?: SortOrder
+    fpgecCertficateIssued?: SortOrder
+    stateBoardApplicationCompleted?: SortOrder
     passportScanSubmitted?: SortOrder
     passportPhotoSubmitted?: SortOrder
     pharmacyLicenseSubmitted?: SortOrder
@@ -10937,10 +11191,16 @@ export namespace Prisma {
     toeflScoresSent?: SortOrder
     naplexEligibilityConfirmed?: SortOrder
     naplexTestRegistered?: SortOrder
+    naplexPreparationCompleted?: SortOrder
     naplexCompleted?: SortOrder
     mpjeEligibilityConfirmed?: SortOrder
+    mpjePreparationCompleted?: SortOrder
     mpjeTestRegistered?: SortOrder
     mpjeTestCompleted?: SortOrder
+    internshipHoursCompleted?: SortOrder
+    pharmacyLicenseObtained?: SortOrder
+    maintainLicensure?: SortOrder
+    boardSpecialization?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -10969,6 +11229,10 @@ export namespace Prisma {
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
     fpgeeFormSubmitted?: SortOrder
+    fpgecApplicationSubmitted?: SortOrder
+    fpgeePassed?: SortOrder
+    fpgecCertficateIssued?: SortOrder
+    stateBoardApplicationCompleted?: SortOrder
     passportScanSubmitted?: SortOrder
     passportPhotoSubmitted?: SortOrder
     pharmacyLicenseSubmitted?: SortOrder
@@ -10982,10 +11246,16 @@ export namespace Prisma {
     toeflScoresSent?: SortOrder
     naplexEligibilityConfirmed?: SortOrder
     naplexTestRegistered?: SortOrder
+    naplexPreparationCompleted?: SortOrder
     naplexCompleted?: SortOrder
     mpjeEligibilityConfirmed?: SortOrder
+    mpjePreparationCompleted?: SortOrder
     mpjeTestRegistered?: SortOrder
     mpjeTestCompleted?: SortOrder
+    internshipHoursCompleted?: SortOrder
+    pharmacyLicenseObtained?: SortOrder
+    maintainLicensure?: SortOrder
+    boardSpecialization?: SortOrder
     dateOfBirth?: SortOrder
     gender?: SortOrder
     phoneNumber?: SortOrder
@@ -12186,6 +12456,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -12199,10 +12473,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12236,6 +12516,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -12249,10 +12533,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12301,6 +12591,10 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
+    fpgecCertficateIssued?: BoolFieldUpdateOperationsInput | boolean
+    stateBoardApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
     passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
     passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
     pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
@@ -12314,10 +12608,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
     naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
     naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexPreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjePreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internshipHoursCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseObtained?: BoolFieldUpdateOperationsInput | boolean
+    maintainLicensure?: BoolFieldUpdateOperationsInput | boolean
+    boardSpecialization?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12350,6 +12650,10 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
+    fpgecCertficateIssued?: BoolFieldUpdateOperationsInput | boolean
+    stateBoardApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
     passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
     passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
     pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
@@ -12363,10 +12667,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
     naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
     naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexPreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjePreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internshipHoursCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseObtained?: BoolFieldUpdateOperationsInput | boolean
+    maintainLicensure?: BoolFieldUpdateOperationsInput | boolean
+    boardSpecialization?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12400,6 +12710,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -12413,10 +12727,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12450,6 +12770,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -12463,10 +12787,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12515,6 +12845,10 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
+    fpgecCertficateIssued?: BoolFieldUpdateOperationsInput | boolean
+    stateBoardApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
     passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
     passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
     pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
@@ -12528,10 +12862,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
     naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
     naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexPreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjePreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internshipHoursCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseObtained?: BoolFieldUpdateOperationsInput | boolean
+    maintainLicensure?: BoolFieldUpdateOperationsInput | boolean
+    boardSpecialization?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12564,6 +12904,10 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
+    fpgecCertficateIssued?: BoolFieldUpdateOperationsInput | boolean
+    stateBoardApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
     passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
     passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
     pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
@@ -12577,10 +12921,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
     naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
     naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexPreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjePreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internshipHoursCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseObtained?: BoolFieldUpdateOperationsInput | boolean
+    maintainLicensure?: BoolFieldUpdateOperationsInput | boolean
+    boardSpecialization?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12614,6 +12964,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -12627,10 +12981,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12664,6 +13024,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -12677,10 +13041,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12729,6 +13099,10 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
+    fpgecCertficateIssued?: BoolFieldUpdateOperationsInput | boolean
+    stateBoardApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
     passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
     passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
     pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
@@ -12742,10 +13116,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
     naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
     naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexPreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjePreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internshipHoursCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseObtained?: BoolFieldUpdateOperationsInput | boolean
+    maintainLicensure?: BoolFieldUpdateOperationsInput | boolean
+    boardSpecialization?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12778,6 +13158,10 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
+    fpgecCertficateIssued?: BoolFieldUpdateOperationsInput | boolean
+    stateBoardApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
     passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
     passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
     pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
@@ -12791,10 +13175,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
     naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
     naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexPreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjePreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internshipHoursCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseObtained?: BoolFieldUpdateOperationsInput | boolean
+    maintainLicensure?: BoolFieldUpdateOperationsInput | boolean
+    boardSpecialization?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12828,6 +13218,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -12841,10 +13235,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12878,6 +13278,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -12891,10 +13295,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -12943,6 +13353,10 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
+    fpgecCertficateIssued?: BoolFieldUpdateOperationsInput | boolean
+    stateBoardApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
     passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
     passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
     pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
@@ -12956,10 +13370,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
     naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
     naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexPreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjePreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internshipHoursCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseObtained?: BoolFieldUpdateOperationsInput | boolean
+    maintainLicensure?: BoolFieldUpdateOperationsInput | boolean
+    boardSpecialization?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12992,6 +13412,10 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
+    fpgecCertficateIssued?: BoolFieldUpdateOperationsInput | boolean
+    stateBoardApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
     passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
     passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
     pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
@@ -13005,10 +13429,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
     naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
     naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexPreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjePreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internshipHoursCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseObtained?: BoolFieldUpdateOperationsInput | boolean
+    maintainLicensure?: BoolFieldUpdateOperationsInput | boolean
+    boardSpecialization?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13042,6 +13472,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -13055,10 +13489,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -13092,6 +13532,10 @@ export namespace Prisma {
     verified?: boolean
     hasCompletedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
+    fpgecApplicationSubmitted?: boolean
+    fpgeePassed?: boolean
+    fpgecCertficateIssued?: boolean
+    stateBoardApplicationCompleted?: boolean
     passportScanSubmitted?: boolean
     passportPhotoSubmitted?: boolean
     pharmacyLicenseSubmitted?: boolean
@@ -13105,10 +13549,16 @@ export namespace Prisma {
     toeflScoresSent?: boolean
     naplexEligibilityConfirmed?: boolean
     naplexTestRegistered?: boolean
+    naplexPreparationCompleted?: boolean
     naplexCompleted?: boolean
     mpjeEligibilityConfirmed?: boolean
+    mpjePreparationCompleted?: boolean
     mpjeTestRegistered?: boolean
     mpjeTestCompleted?: boolean
+    internshipHoursCompleted?: boolean
+    pharmacyLicenseObtained?: boolean
+    maintainLicensure?: boolean
+    boardSpecialization?: boolean
     dateOfBirth?: Date | string | null
     gender?: string | null
     phoneNumber?: string | null
@@ -13157,6 +13607,10 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
+    fpgecCertficateIssued?: BoolFieldUpdateOperationsInput | boolean
+    stateBoardApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
     passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
     passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
     pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
@@ -13170,10 +13624,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
     naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
     naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexPreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjePreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internshipHoursCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseObtained?: BoolFieldUpdateOperationsInput | boolean
+    maintainLicensure?: BoolFieldUpdateOperationsInput | boolean
+    boardSpecialization?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13206,6 +13666,10 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
+    fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
+    fpgecCertficateIssued?: BoolFieldUpdateOperationsInput | boolean
+    stateBoardApplicationCompleted?: BoolFieldUpdateOperationsInput | boolean
     passportScanSubmitted?: BoolFieldUpdateOperationsInput | boolean
     passportPhotoSubmitted?: BoolFieldUpdateOperationsInput | boolean
     pharmacyLicenseSubmitted?: BoolFieldUpdateOperationsInput | boolean
@@ -13219,10 +13683,16 @@ export namespace Prisma {
     toeflScoresSent?: BoolFieldUpdateOperationsInput | boolean
     naplexEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
     naplexTestRegistered?: BoolFieldUpdateOperationsInput | boolean
+    naplexPreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     naplexCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeEligibilityConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mpjePreparationCompleted?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestRegistered?: BoolFieldUpdateOperationsInput | boolean
     mpjeTestCompleted?: BoolFieldUpdateOperationsInput | boolean
+    internshipHoursCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pharmacyLicenseObtained?: BoolFieldUpdateOperationsInput | boolean
+    maintainLicensure?: BoolFieldUpdateOperationsInput | boolean
+    boardSpecialization?: BoolFieldUpdateOperationsInput | boolean
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null

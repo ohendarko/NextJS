@@ -36,14 +36,14 @@ const RoadmapTracker: React.FC<RoadmapTrackerProps> = ({ userProfile, compact = 
         {
           id: "ms-1",
           title: "Foreign Pharmacy Degree Verification",
-          status: "completed",
+          status: userProfile?.eceApplicationCompleted ? "completed" : "in-progress",
           date: "April 15, 2025",
           description: "Verify your pharmacy degree from an accredited pharmacy school in your home country"
         },
         {
           id: "ms-2",
           title: "English Language Proficiency",
-          status: "in-progress",
+          status: userProfile?.toeflScoresSent ? "completed" : "in-progress",
           date: "May 30, 2025",
           description: "TOEFL iBT or IELTS with minimum scores required by NABP"
         }
@@ -56,28 +56,28 @@ const RoadmapTracker: React.FC<RoadmapTrackerProps> = ({ userProfile, compact = 
         {
           id: "ms-3",
           title: "FPGEC Application Submission",
-          status: "in-progress",
+          status: userProfile?.fpgeeFormSubmitted ? "completed" : "in-progress",
           date: "June 15, 2025",
           description: "Submit application to Foreign Pharmacy Graduate Examination Committee"
         },
         {
           id: "ms-4",
           title: "Education Credentials Verification",
-          status: "upcoming",
+          status: userProfile?.fpgecApplicationSubmitted ? "completed" : "upcoming",
           date: "July 10, 2025",
           description: "Educational Credential Evaluators (ECE) review your pharmacy credentials"
         },
         {
           id: "ms-5",
           title: "FPGEE Exam",
-          status: "upcoming",
+          status: userProfile?.fpgeePassed ? "completed" : "upcoming",
           date: "October 25, 2025",
           description: "Foreign Pharmacy Graduate Equivalency Examination - passing score of 75 required"
         },
         {
           id: "ms-6",
           title: "FPGEC Certificate Issued",
-          status: "upcoming",
+          status: userProfile?.fpgecCertficateIssued ? "completed" : "upcoming",
           date: "December 1, 2025",
           description: "Receive FPGEC certificate after passing FPGEE and TOEFL"
         }
@@ -90,43 +90,43 @@ const RoadmapTracker: React.FC<RoadmapTrackerProps> = ({ userProfile, compact = 
         {
           id: "ms-7",
           title: "State Board Application",
-          status: "upcoming",
+          status: userProfile?.stateBoardApplicationCompleted ? "completed" : "upcoming",
           description: "Apply to your chosen state's board of pharmacy (requirements vary by state)"
         },
         {
           id: "ms-8",
           title: "NAPLEX Preparation",
-          status: "upcoming",
+          status: userProfile?.naplexPreparationCompleted ? "completed" : "upcoming",
           description: "Study for North American Pharmacist Licensure Examination"
         },
         {
           id: "ms-9",
           title: "NAPLEX Exam",
-          status: "upcoming",
+          status: userProfile?.naplexCompleted ? "completed" : "upcoming",
           description: "Computer-adaptive exam covering pharmacy practice and drug therapy"
         },
         {
           id: "ms-10",
           title: "MPJE Preparation",
-          status: "upcoming",
+          status: userProfile?.mpjePreparationCompleted ? "completed" : "upcoming",
           description: "Study for Multistate Pharmacy Jurisprudence Examination"
         },
         {
           id: "ms-11",
           title: "MPJE Exam",
-          status: "upcoming",
+          status: userProfile?.mpjeTestCompleted ? "completed" : "upcoming",
           description: "Exam on federal and state pharmacy laws specific to your practice state"
         },
         {
           id: "ms-12",
           title: "Internship/Experience Hours",
-          status: "upcoming",
+          status: userProfile?.internshipHoursCompleted ? "completed" : "upcoming",
           description: "Complete required pharmacy practice hours (requirements vary by state)"
         },
         {
           id: "ms-13",
           title: "Pharmacist License Issued",
-          status: "upcoming",
+          status: userProfile?.pharmacyLicenseObtained ? "completed" : "upcoming",
           description: "Receive your pharmacist license after meeting all state requirements"
         }
       ]
@@ -138,13 +138,13 @@ const RoadmapTracker: React.FC<RoadmapTrackerProps> = ({ userProfile, compact = 
         {
           id: "ms-14",
           title: "Continuing Pharmacy Education (CPE)",
-          status: "upcoming",
+          status: userProfile?.maintainLicensure ? "completed" : "upcoming",
           description: "Complete ongoing CE requirements to maintain licensure"
         },
         {
           id: "ms-15",
           title: "Specialization (Optional)",
-          status: "upcoming",
+          status: userProfile?.boardSpecialization ? "completed" : "upcoming",
           description: "Pursue board certification in specialty areas like oncology, nutrition, etc."
         }
       ]
@@ -167,7 +167,7 @@ const RoadmapTracker: React.FC<RoadmapTrackerProps> = ({ userProfile, compact = 
       case "in-progress":
         return <Clock className="h-5 w-5 text-blue-500" />;
       case "upcoming":
-        return <Circle className="h-5 w-5 text-gray-300" />;
+        return <Circle className="h-5 w-5 text-blue-300" />;
       default:
         return null;
     }
