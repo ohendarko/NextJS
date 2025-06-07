@@ -131,7 +131,7 @@ const BillingSupport: React.FC<BillingSupportProps> = ({ userProfile }) => {
       <TabsList className="mb-6">
         <TabsTrigger value="transactions">Transactions</TabsTrigger>
         <TabsTrigger value="invoices">Invoices</TabsTrigger>
-        <TabsTrigger value="payment-methods">Payment Methods</TabsTrigger>
+        {/* <TabsTrigger value="payment-methods">Payment Methods</TabsTrigger> */}
         <TabsTrigger value="support">Support</TabsTrigger>
       </TabsList>
       
@@ -232,7 +232,7 @@ const BillingSupport: React.FC<BillingSupportProps> = ({ userProfile }) => {
         </div>
       </TabsContent>
       
-      <TabsContent value="payment-methods">
+      {/* <TabsContent value="payment-methods">
         <div className="space-y-6">
           <div className="flex justify-between items-center">
             <h3 className="font-semibold">Payment Methods</h3>
@@ -259,7 +259,7 @@ const BillingSupport: React.FC<BillingSupportProps> = ({ userProfile }) => {
             </div>
           </div>
         </div>
-      </TabsContent>
+      </TabsContent> */}
       
       <TabsContent value="support">
         <div className="space-y-6">

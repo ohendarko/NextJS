@@ -323,14 +323,14 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       manual: true,
       required: true
     },
-    {
-      id: "course-descriptions",
-      dbid: 'courseDescriptionsSubmitted',
-      title: "Course Descriptions Submitted",
-      description: "Detailed course descriptions for all pharmacy courses taken",
-      manual: true,
-      required: true
-    },
+    // {
+    //   id: "course-descriptions",
+    //   dbid: 'courseDescriptionsSubmitted',
+    //   title: "Course Descriptions Submitted",
+    //   description: "Detailed course descriptions for all pharmacy courses taken",
+    //   manual: true,
+    //   required: true
+    // },
     {
       id: "ece-payment",
       dbid: 'eceEvaluationFeeePaid',

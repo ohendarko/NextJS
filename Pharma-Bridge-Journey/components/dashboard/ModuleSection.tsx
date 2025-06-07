@@ -62,7 +62,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
     {
       id: "speaking-labs",
       title: "Speaking Labs",
-      description: "Practice and record your speaking responses",
+      description: "Send us any speaking respnse to evaluate for you",
       icon: <MessageSquare className="h-8 w-8 text-pharma-blue" />,
       link: "/dashboard/speaking-labs",
       requiredService: "toefl"
