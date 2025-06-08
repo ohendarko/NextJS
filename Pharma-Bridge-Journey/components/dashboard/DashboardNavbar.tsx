@@ -139,14 +139,14 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ userProfile }) => {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative flex items-center space-x-2">
                   <Avatar className="h-7 w-7 md:h-8 md:w-8">
-                    <AvatarImage src={userProfile.profileImage || ""} alt={userProfile.name} />
-                    <AvatarFallback>{userProfile.name.charAt(0)}</AvatarFallback>
+                    <AvatarImage src={userProfile?.profileImage || ""} alt={userProfile?.name} />
+                    <AvatarFallback>{userProfile?.name.charAt(0)}</AvatarFallback>
                   </Avatar>
-                  <span className="hidden md:inline text-sm">{userProfile.name}</span>
+                  <span className="hidden md:inline text-sm">{userProfile?.name}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48 md:w-56">
-                <DropdownMenuLabel className="text-xs md:text-sm truncate">{userProfile.email}</DropdownMenuLabel>
+                <DropdownMenuLabel className="text-xs md:text-sm truncate">{userProfile?.email}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="cursor-pointer text-xs md:text-sm">
                   <User className="mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />

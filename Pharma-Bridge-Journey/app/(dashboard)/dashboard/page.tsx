@@ -96,7 +96,7 @@ const Dashboard = () => {
     { id: 'roadmap', label: 'Roadmap', icon: Calendar },
     { id: 'messages', label: 'Messages', icon: MessageSquare },
     { id: 'billing', label: 'Billing & Support', icon: Settings },
-    { id: 'upgrade', label: 'Upgrade Services', icon: Upload }
+    { id: 'upgrade', label: 'Add-on Service', icon: Upload }
   ];
 
   const renderContent = () => {

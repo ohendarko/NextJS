@@ -87,24 +87,24 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
     },
     
     // Visa Support modules
-    {
-      id: "visa-portal",
-      title: "Visa Application Portal",
-      description: "Step-by-step guidance for visa applications",
-      icon: <Settings className="h-8 w-8 text-pharma-blue" />,
-      link: "/dashboard/visa",
-      requiredService: "visa_support"
-    },
+    // {
+    //   id: "visa-portal",
+    //   title: "Visa Application Portal",
+    //   description: "Step-by-step guidance for visa applications",
+    //   icon: <Settings className="h-8 w-8 text-pharma-blue" />,
+    //   link: "/dashboard/visa",
+    //   requiredService: "visa_support"
+    // },
     
-    // Internship Support modules
-    {
-      id: "intern-portal",
-      title: "Internship Portal",
-      description: "Find and apply for pharmacy internships",
-      icon: <Upload className="h-8 w-8 text-pharma-blue" />,
-      link: "/dashboard/internships",
-      requiredService: "internship"
-    },
+    // // Internship Support modules
+    // {
+    //   id: "intern-portal",
+    //   title: "Internship Portal",
+    //   description: "Find and apply for pharmacy internships",
+    //   icon: <Upload className="h-8 w-8 text-pharma-blue" />,
+    //   link: "/dashboard/internships",
+    //   requiredService: "internship"
+    // },
     
     // Full Package extra module
     {
