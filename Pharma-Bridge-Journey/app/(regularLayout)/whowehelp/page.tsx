@@ -230,7 +230,7 @@ const WhoWeHelpSection = () => {
           </div>
 
           {/* Why Choose PharmaBridge */}
-          <div className="bg-gradient-to-r from-blue-900 to-blue-600 text-white rounded-3xl p-8 md:p-12 mb-16 shadow-2xl">
+          {/* <div className="bg-gradient-to-r from-blue-900 to-blue-600 text-white rounded-3xl p-8 md:p-12 mb-16 shadow-2xl">
             <div className="text-center mb-8">
               <div className="flex justify-center mb-6">
                 <div className="bg-white/20 p-4 rounded-full">
@@ -261,7 +261,7 @@ const WhoWeHelpSection = () => {
                 <Link href="/createaccount">Start Your Journey Today</Link>
               </Button>
             </div>
-          </div>
+          </div> */}
         </div>
       </main>
 

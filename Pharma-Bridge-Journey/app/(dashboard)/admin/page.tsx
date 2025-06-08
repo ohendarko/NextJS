@@ -100,8 +100,9 @@ const AdminLogin = () => {
           navigate.push("/login");
         }
         toast({
-          title: 'Login successful',
-          description: 'Welcome back to PharmaBridge Consulting',
+          title: 'Admin Login successful',
+          description: 'Welcome back to PharmaBridge Consulting Administration',
+          variant: 'success',
         });
         navigate.push("/admin/dashboard");
       }

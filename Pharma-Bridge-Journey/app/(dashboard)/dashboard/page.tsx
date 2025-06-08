@@ -55,36 +55,36 @@ const Dashboard = () => {
   
   // In a real app, this would fetch user data from your backend
   useEffect(() => {
-  const fetchUser = async () => {
-    try {
-      setIsLoading(true);
+    const fetchUser = async () => {
+      try {
+        setIsLoading(true);
 
-      if (status === 'unauthenticated') {
-        alert('You must be logged in to access this page.');
-        router.push('/login');
-        return;
+        if (status === 'unauthenticated') {
+          alert('You must be logged in to access this page.');
+          router.push('/login');
+          return;
+        }
+
+        if (status === 'loading') return; // Wait until session resolves
+
+        const res = await fetch('/api/user');
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.error || 'Failed to fetch user');
+
+        setUserData(data);
+        setUserProfile(data);
+      } catch (error) {
+        console.error('Error loading user:', error);
+      } finally {
+        setIsLoading(false);
       }
+    };
 
-      if (status === 'loading') return; // Wait until session resolves
-
-      const res = await fetch('/api/user');
-      const data = await res.json();
-
-      if (!res.ok) throw new Error(data.error || 'Failed to fetch user');
-
-      setUserData(data);
-      setUserProfile(data);
-    } catch (error) {
-      console.error('Error loading user:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  fetchUser();
-  // console.log(userData)
-  // console.log(userProfile)
-}, [status, router]);
+    fetchUser();
+    // console.log(userData)
+    // console.log(userProfile)
+  }, [status, router]);
 
   // console.log('userdata:',userData)
   // console.log('userprofile:',userProfile)

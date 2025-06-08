@@ -11,7 +11,7 @@ const teamMembers = [
   {
     name: "Dr. Claudia Serwaa Agyei Marfo",
     title: "Co-Founder & TOEFL Specialist",
-    bio: "Ghanaian PharmD with TOEFL success and FPGEE eligibility. Expert in navigating the complex licensure process for international graduates.",
+    bio: "Ghanaian Pharmacist with TOEFL success and FPGEE eligibility. Expert in navigating the complex licensure process for international graduates.",
     image: "/square-user.svg"
   }
 ];

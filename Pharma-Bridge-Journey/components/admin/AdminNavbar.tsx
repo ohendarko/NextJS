@@ -18,6 +18,7 @@ interface AdminUser {
   email: string;
   role: string;
   permissions: string[];
+  profileImage: string;
 }
 
 interface AdminNavbarProps {
@@ -81,7 +82,7 @@ const AdminNavbar: React.FC<AdminNavbarProps> = ({ adminUser }) => {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative h-10 w-10 rounded-full">
                   <Avatar className="h-10 w-10">
-                    <AvatarImage src="" />
+                    <AvatarImage src={adminUser.profileImage} />
                     <AvatarFallback className="bg-blue-100 text-blue-600">
                       {adminUser.name.charAt(0)}
                     </AvatarFallback>

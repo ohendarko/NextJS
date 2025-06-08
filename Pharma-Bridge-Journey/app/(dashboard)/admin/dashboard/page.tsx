@@ -16,6 +16,9 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
+
+
+
 // Mock admin user data - In real app, this would come from authentication
 const adminUser = {
   id: 'admin_001',
@@ -25,12 +28,13 @@ const adminUser = {
   permissions: ['all']
 };
 
+
 // Mock dashboard stats
 const dashboardStats = {
   totalClients: 245,
   activeClients: 189,
-  pendingTasks: 23,
-  monthlyRevenue: 45600,
+  pendingTasks: 3,
+  monthlyRevenue: -200,
   newSignups: 12,
   completedServices: 89
 };
@@ -42,6 +46,18 @@ const AdminDashboard = () => {
   const [checkedAuth, setCheckedAuth] = useState(false);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const { data: session, status } = useSession();
+  const [isLoading, setIsLoading] = useState(true);
+  const [userProfile, setUserProfile] = useState({
+    id:"",
+    name: "",
+    email: "",
+    profileImage: '',
+    role: 'admin',
+    permissions: ['all']
+  });
+  const [clientStats, setClientStats] = useState({
+    totalClients: 0,
+  });
 
   const router = useRouter()
 
@@ -73,6 +89,52 @@ const AdminDashboard = () => {
       };
   
       verifyAdmin();
+
+      const fetchUser = async () => {
+      try {
+        setIsLoading(true);
+
+        if (status === 'unauthenticated') {
+          alert('You must be logged in to access this page.');
+          router.push('/login');
+          return;
+        }
+
+        if (status === 'loading') return; // Wait until session resolves
+
+        const res = await fetch('/api/user');
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.error || 'Failed to fetch user');
+
+       
+        setUserProfile(data);
+      } catch (error) {
+        console.error('Error loading user:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUser();
+    // console.log(userData)
+    // console.log(userProfile)
+
+
+    const fetchClients = async () => {
+      try {
+        const res = await fetch("/api/admin/clients");
+        const data = await res.json();
+        setClientStats(prev => ({
+          ...prev,
+          totalClients: data.totalClients || 0,
+        }));
+      } catch (error) {
+        console.error("Failed to load total clients", error);
+      }
+    };
+
+    fetchClients();
     }, [status]);
 
   const renderOverview = () => (
@@ -85,7 +147,7 @@ const AdminDashboard = () => {
             <span className="text-2xl">👥</span>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{dashboardStats.totalClients}</div>
+            <div className="text-2xl font-bold">{clientStats.totalClients}</div>
             <p className="text-xs text-muted-foreground">+12 from last month</p>
           </CardContent>
         </Card>
@@ -96,7 +158,7 @@ const AdminDashboard = () => {
             <span className="text-2xl">✅</span>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{dashboardStats.activeClients}</div>
+            <div className="text-2xl font-bold">{clientStats.totalClients}</div>
             <p className="text-xs text-muted-foreground">Currently enrolled</p>
           </CardContent>
         </Card>
@@ -246,7 +308,7 @@ const AdminDashboard = () => {
         
         </div>) : ( 
           <div>
-      <AdminNavbar adminUser={adminUser} />
+      <AdminNavbar adminUser={userProfile} />
       
       <div className="flex pt-20">
         {/* Mobile Menu Button */}
@@ -305,7 +367,7 @@ const AdminDashboard = () => {
             <div className="mb-8">
               <h1 className="text-2xl md:text-3xl font-bold text-blue-600">Admin Dashboard</h1>
               <p className="text-gray-600 mt-2 text-sm md:text-base">
-                Welcome back, {adminUser.name}! Manage your pharmacy bridge operations.
+                Welcome back, {userProfile?.name}! Manage your pharmacy bridge operations.
               </p>
             </div>
             

@@ -40,14 +40,16 @@ const Login = () => {
 
     if (res?.error) {
       toast({
-        title: 'Login failed. Account details do not match!',
+        title: 'Login failed. Wrong username / password!',
         description: "Please check your credentials and try again.",
         variant: 'destructive',
       });
+      setIsLoading(false);
       console.log(res.error)
       // alert('Check your credentials and try again')
     } else {
       if(status === 'unauthenticated') {
+        setIsLoading(false);
         navigate.push("/login");
       }
       toast({
@@ -55,10 +57,11 @@ const Login = () => {
         description: 'Welcome back to PharmaBridge Consulting',
         variant: 'success',
       });
+      setIsLoading(true);
       navigate.push("/dashboard");
     }
 
-    setIsLoading(false);
+    
   };
 
   // const handleSignIn = () => {
