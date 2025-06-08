@@ -282,7 +282,7 @@ const CreateAccount = () => {
                   htmlFor="terms"
                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
-                  I agree to the <Link href="/terms" className="text-pharma-blue hover:underline">Terms of Service</Link> and <Link href="#" className="text-pharma-blue hover:underline">Privacy Policy</Link>
+                  I agree to the <Link href="/terms" className="text-pharma-blue hover:underline">Terms of Service</Link> and <Link href="/privacy-policy" className="text-pharma-blue hover:underline">Privacy Policy</Link>
                 </label>
               </div>
               

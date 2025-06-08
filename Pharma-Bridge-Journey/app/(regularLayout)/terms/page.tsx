@@ -13,32 +13,21 @@ const Terms = () => {
 	const router = useRouter();
   
   const handleDownload = () => {
-    // Create the text content for the PDF
-    const content = document.getElementById('terms-content')?.innerText;
-    
-    // Create a Blob with the content
-    const blob = new Blob([content || ''], { type: 'text/plain' });
-    
-    // Create a download link
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
+    const url = "/terms.pdf"; // points to public/terms.pdf
+    const link = document.createElement("a");
     link.href = url;
-    link.download = `PharmaBridge_Terms_${effectiveDate.replace(/\s/g, '_')}.txt`;
-    
-    // Append to body, click and remove
+    link.download = "PharmaBridge_Terms.pdf"; // you can rename it for the user
+
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
-    // Clean up the URL object
-    URL.revokeObjectURL(url);
-    
-    // Show toast notification
+
     toast({
       title: "Download started",
-      description: "Your Terms & Conditions document is downloading",
+      description: "Your Terms & Conditions PDF is downloading.",
     });
   };
+
 
   return (
     <div className="min-h-screen flex flex-col mt-5">
@@ -126,7 +115,7 @@ const Terms = () => {
                 <li>We will not sell, rent, or disclose your information to unaffiliated third parties.</li>
                 <li>We may share necessary information with third-party service providers only with your consent to facilitate credential evaluations, exam registrations, or travel bookings.</li>
               </ul>
-              <p>Please review our [Privacy Policy] for full details.</p>
+              <p>Please review our <Link href="/privacy-policy">[Privacy Policy]</Link> for full details.</p>
             </section>
             
             <section>
@@ -184,7 +173,7 @@ const Terms = () => {
           
           <div className="mt-10 text-center">
             <Link href="/">
-              <Button className="mx-auto">Back to Home</Button>
+              <Button className="mx-auto" onClick={() => router.back()}>Back</Button>
             </Link>
           </div>
         </div>
