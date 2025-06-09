@@ -1,5 +1,5 @@
 
-import { getUserProfile } from "@/lib/db"; // or wherever you saved it
+import { getUserProfile } from "@/lib/db";
 import VideoCourses from "./Course";
 import { authOptions } from "@/lib/auth/options";
 import { getServerSession } from "next-auth";
