@@ -1,9 +1,10 @@
 {
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/api/user/route": "app/api/user/route.js",
-  "/(regularLayout)/login/page": "app/(regularLayout)/login/page.js",
-  "/(regularLayout)/welcome/page": "app/(regularLayout)/welcome/page.js",
   "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
   "/(dashboard)/dashboard/onboarding/page": "app/(dashboard)/dashboard/onboarding/page.js",
-  "/(regularLayout)/pricing/page": "app/(regularLayout)/pricing/page.js"
+  "/(regularLayout)/pricing/page": "app/(regularLayout)/pricing/page.js",
+  "/(dashboard)/dashboard/speaking-labs/page": "app/(dashboard)/dashboard/speaking-labs/page.js",
+  "/(dashboard)/dashboard/appointments/page": "app/(dashboard)/dashboard/appointments/page.js",
+  "/(dashboard)/dashboard/notifications/page": "app/(dashboard)/dashboard/notifications/page.js"
 }

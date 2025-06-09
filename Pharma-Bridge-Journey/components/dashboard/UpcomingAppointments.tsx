@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, Video, Settings } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
+import Link from 'next/link';
 
 interface Appointment {
   id: string;
@@ -97,10 +98,11 @@ const UpcomingAppointments: React.FC<UpcomingAppointmentsProps> = ({ userProfile
             </div>
           ))}
           
-          {limit && appointments.length > limit && (
-            <Button variant="ghost" className="w-full mt-2 text-xs md:text-sm">
-              View All Appointments ({appointments.length})
-            </Button>
+          {limit && appointments.length > limit && ( <Link href='/dashboard/appointments'>
+              <Button variant="ghost" className="w-full mt-2 text-xs md:text-sm">
+                View All Appointments ({appointments.length})
+              </Button>
+            </Link>
           )}
         </>
       ) : (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Bell, Calendar, FileText, Clock } from 'lucide-react';
+import Link from 'next/link';
 // import { useIsMobile } from "@/hooks/use-mobile";
 
 interface NotificationCenterProps {
@@ -131,9 +132,11 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({ userProfile, li
           ))}
           
           {limit && notifications.length > limit && (
-            <Button variant="ghost" className="w-full text-xs md:text-sm">
-              View All Notifications ({notifications.length})
-            </Button>
+            <Link href="/dashboard/notifications">
+              <Button variant="ghost" className="w-full text-xs md:text-sm">
+                View All Notifications ({notifications.length})
+              </Button>
+            </Link>
           )}
         </>
       ) : (

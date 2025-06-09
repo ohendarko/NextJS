@@ -250,7 +250,7 @@ const OnboardingForm = () => {
   // Service packages with pricing from the pricing page
   const servicePackages = [
     {
-      id: 'credential',
+      id: 'credential_guidance',
       name: 'Credential Evaluation Only',
       description: 'Document verification and preparation for FPGEE eligibility',
       price: '$200',
