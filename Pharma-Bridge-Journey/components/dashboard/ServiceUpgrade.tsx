@@ -45,7 +45,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
         "Resource guidance (books, platforms, practice tests)",
         "Test-taking strategies and mock exam reviews"
       ],
-      upgradeFrom: ["credential_guidance"]
+      upgradeFrom: ["credential_guidance", "fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
     },
     {
       id: "fpgec_pathway",
@@ -61,7 +61,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
         "Prometric exam scheduling",
         "Personalized FPGEE and TOEFL prep plans"
       ],
-      upgradeFrom: ["credential_guidance", "fpgee_prep_only"],
+      upgradeFrom: ["credential_guidance", "fpgee_prep_only", "fpgec_pathway", "toefl_prep"],
       popular: true
     },
     {
@@ -74,7 +74,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
         "FPGEE eligibility application guidance",
         "Prometric testing center scheduling"
       ],
-      upgradeFrom: ["credential_guidance"]
+      upgradeFrom: ["credential_guidance", "fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
     },
     {
       id: "accommodation_support",
@@ -87,7 +87,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
         "Local hosting orientation and connection (in select cities)",
         "U.S. culture overview: transport, shopping, safety tips"
       ],
-      upgradeFrom: ["fpgec_pathway"]
+      upgradeFrom: ["fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
     },
     {
       id: "internship_placement",
@@ -99,7 +99,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
         "Interview preparation",
         "Resume review and employer outreach support"
       ],
-      upgradeFrom: ["fpgec_pathway"]
+      upgradeFrom: ["fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
     },
     {
       id: "toefl_prep",
@@ -114,7 +114,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
         "Access to drills, templates, and strategies",
         "TOEFL registration support and exam planning"
       ],
-      upgradeFrom: ["credential_guidance", "fpgee_prep_only"]
+      upgradeFrom: ["credential_guidance", "fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
     },
     {
       id: "full",
@@ -221,14 +221,14 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
                       </li>
                     ))}
                     {service.features.length > 3 && (
-                      <li className="text-pharma-blue text-xs">+{service.features.length - 3} more features</li>
+                      <li className="text-pharma-blue text-xs">+{service.features.length - 3} more feature(s)</li>
                     )}
                   </ul>
                 </div>
                 <div className="flex justify-between items-center">
                   <p className="font-bold text-pharma-blue text-lg">{service.price}</p>
                   <Button className="bg-pharma-blue hover:bg-pharma-dark-blue">
-                    Upgrade Now
+                    Add to Cart
                   </Button>
                 </div>
               </div>
@@ -288,7 +288,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
                   </Button>
                 ) : canUpgradeTo(service) ? (
                   <Button className="bg-pharma-blue hover:bg-pharma-dark-blue">
-                    Upgrade
+                    Add to Cart
                   </Button>
                 ) : (
                   <Button variant="outline" disabled>

@@ -553,15 +553,15 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold">Document Checklist Center</h2>
-        <p className="text-gray-600">Track your progress and mark completed requirements for each examination</p>
+        <h2 className="text-2xl font-bold">NABP Checklist Center</h2>
+        <p className="text-gray-600">Track your progress and mark completed requirements for each examination after  NABP account creation.</p>
       </div>
 
       <Tabs defaultValue="fpgee" value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="fpgee">FPGEE</TabsTrigger>
           <TabsTrigger value="ece">ECE</TabsTrigger>
           <TabsTrigger value="toefl">TOEFL</TabsTrigger>
+          <TabsTrigger value="fpgee">FPGEE</TabsTrigger>
           <TabsTrigger value="naplex">NAPLEX</TabsTrigger>
           <TabsTrigger value="mpje">MPJE</TabsTrigger>
         </TabsList>
