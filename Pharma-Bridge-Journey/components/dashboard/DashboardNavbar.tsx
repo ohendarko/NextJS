@@ -87,7 +87,7 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ userProfile }) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className="text-lg md:text-xl font-bold text-pharma-blue truncate max-w-[120px] sm:max-w-none">
-              <Image src="/logo.png" alt="Logo" width={60} height={60} />
+              <Image src="/logos.png" alt="Logo" width={150} height={150} />
             </Link>
           </div>
           

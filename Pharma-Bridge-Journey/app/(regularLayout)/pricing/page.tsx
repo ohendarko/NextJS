@@ -28,17 +28,17 @@ const Pricing = () => {
   
   // Main services data
   const mainServices = [
-    {
-      title: "Credential Evaluation Guidance",
-      price: "$200",
-      features: [
-        'Support submitting transcripts and degree certificates to ECE',
-        'Step-by-step guidance for gathering and organizing credentials',
-        'Timeline planning to meet FPGEE eligibility deadlines',
-        'Avoid costly documentation errors or delays'
-      ],
-      highlight: false
-    },
+    // {
+    //   title: "Credential Evaluation Guidance",
+    //   price: "$200",
+    //   features: [
+    //     'Support submitting transcripts and degree certificates to ECE',
+    //     'Step-by-step guidance for gathering and organizing credentials',
+    //     'Timeline planning to meet FPGEE eligibility deadlines',
+    //     'Avoid costly documentation errors or delays'
+    //   ],
+    //   highlight: false
+    // },
     {
       title: "FPGEC Certificate Pathway Coaching",
       price: "$800",
@@ -50,6 +50,20 @@ const Pricing = () => {
         'TOEFL registration + study resources',
         'Prometric exam scheduling',
         'Personalized FPGEE and TOEFL prep plans'
+      ],
+      highlight: false
+    },
+    {
+      title: "Full Licensure Pathway Support",
+      price: "$3,000",
+      features: [
+        'Credential evaluation (ECE & NABP)',
+        'TOEFL and FPGEE preparation',
+        'NABP e-Profile setup & application support',
+        'Prometric test scheduling',
+        'NAPLEX & MPJE prep strategy',
+        'Internship placement guidance',
+        'Timeline & eligibility tracking'
       ],
       highlight: true
     },
@@ -117,7 +131,7 @@ const Pricing = () => {
           </div>
           
           {/* Main Services Grid - 3 columns evenly distributed */}
-          <div className="grid md:grid-cols-3 gap-6 mb-16">
+          <div className="grid md:grid-cols-2 gap-6 mb-16">
             {mainServices.map((service, idx) => (
               <Card key={idx} className={`border-2 h-full flex flex-col ${
                 service.highlight 
@@ -156,10 +170,58 @@ const Pricing = () => {
                 </CardFooter>
               </Card>
             ))}
+            <div className="grid md:grid-cols-1 gap-8 mb-16">
+            {/* TOEFL Preparation */}
+              <Card className="border-2 border-gray-200 hover:border-pharma-light-blue hover:shadow-md transition-all rounded-xl overflow-hidden h-full">
+                <CardHeader>
+                  <CardTitle className="text-xl text-pharma-blue">TOEFL-iBT Speaking & Writing Prep</CardTitle>
+                </CardHeader>
+                <CardContent className="pb-0">
+                  <div className="overflow-x-auto mb-4">
+                    <Table>
+                      <TableHeader>
+                        <TableRow className="bg-blue-50">
+                          <TableHead className="font-bold">Program</TableHead>
+                          <TableHead className="text-right font-bold">Price</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {toeflPricing.map((tier, i) => (
+                          <TableRow key={i}>
+                            <TableCell className="font-medium">{tier.name}</TableCell>
+                            <TableCell className="text-right">{tier.price}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                  <div>
+                    <h4 className="font-medium mb-2">Features:</h4>
+                    <ul className="space-y-2">
+                      {[
+                        'Speaking & Writing test practice with feedback',
+                        'Access to drills, templates, and strategies',
+                        'TOEFL registration support and exam planning'
+                      ].map((feature, i) => (
+                        <li key={i} className="flex items-start">
+                          <CheckIcon />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </CardContent>
+                <CardFooter className="mt-4">
+                  <Button className="w-full bg-white hover:bg-blue-50 text-pharma-blue border border-pharma-blue">
+                    Get Started
+                  </Button>
+                </CardFooter>
+              </Card>
+            </div>
           </div>
           
           {/* Featured Plan - Full Licensure Support */}
-          <div className="max-w-4xl mx-auto mb-16 px-4">
+          {/* <div className="max-w-4xl mx-auto mb-16 px-4">
             <Card className="border-2 border-pharma-blue shadow-xl rounded-xl overflow-hidden">
               <div className="bg-pharma-blue text-white p-4 text-center">
                 <h3 className="text-xl font-bold">Complete Solution</h3>
@@ -203,55 +265,11 @@ const Pricing = () => {
                 </Button>
               </CardFooter>
             </Card>
-          </div>
+          </div> */}
           
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="grid md:grid-cols-1 gap-8 mb-16">
             {/* TOEFL Preparation */}
-            <Card className="border-2 border-gray-200 hover:border-pharma-light-blue hover:shadow-md transition-all rounded-xl overflow-hidden h-full">
-              <CardHeader>
-                <CardTitle className="text-xl text-pharma-blue">TOEFL-iBT Speaking & Writing Prep</CardTitle>
-              </CardHeader>
-              <CardContent className="pb-0">
-                <div className="overflow-x-auto mb-4">
-                  <Table>
-                    <TableHeader>
-                      <TableRow className="bg-blue-50">
-                        <TableHead className="font-bold">Program</TableHead>
-                        <TableHead className="text-right font-bold">Price</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {toeflPricing.map((tier, i) => (
-                        <TableRow key={i}>
-                          <TableCell className="font-medium">{tier.name}</TableCell>
-                          <TableCell className="text-right">{tier.price}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-                <div>
-                  <h4 className="font-medium mb-2">Features:</h4>
-                  <ul className="space-y-2">
-                    {[
-                      'Speaking & Writing test practice with feedback',
-                      'Access to drills, templates, and strategies',
-                      'TOEFL registration support and exam planning'
-                    ].map((feature, i) => (
-                      <li key={i} className="flex items-start">
-                        <CheckIcon />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </CardContent>
-              <CardFooter className="mt-4">
-                <Button className="w-full bg-white hover:bg-blue-50 text-pharma-blue border border-pharma-blue">
-                  Get Started
-                </Button>
-              </CardFooter>
-            </Card>
+           
 
             {/* Custom Packages */}
             <Card className="border-2 border-gray-200 hover:border-pharma-light-blue hover:shadow-md transition-all rounded-xl overflow-hidden h-full bg-gradient-to-br from-white to-blue-50">
@@ -284,7 +302,7 @@ const Pricing = () => {
           </div>
 
           {/* Additional Services */}
-          <div className="mb-16">
+          {/* <div className="mb-16">
             <h2 className="text-2xl font-bold text-center mb-8 text-pharma-blue">Additional Services</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {additionalServices.map((service, idx) => (
@@ -311,7 +329,7 @@ const Pricing = () => {
                 </Card>
               ))}
             </div>
-          </div>
+          </div> */}
 
           <div className="mt-16 text-center">
             <p className="text-muted-foreground italic max-w-3xl mx-auto">

@@ -35,7 +35,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className={`${isMobile ? 'text-lg' : 'text-2xl'} font-bold text-pharma-blue truncate max-w-[200px] sm:max-w-none`}>
-              <Image src='/logo.svg' height={100} width={100} alt='pharmabridge logo' className='px-0 py-0' />
+              <Image src='/logos.png' height={160} width={160} alt='pharmabridge logo' className='px-0 py-3' />
             </Link>
           </div>
           
