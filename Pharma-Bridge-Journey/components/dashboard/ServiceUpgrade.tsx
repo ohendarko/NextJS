@@ -117,7 +117,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
       upgradeFrom: ["credential_guidance", "fpgee_prep_only"]
     },
     {
-      id: "full_licensure",
+      id: "full",
       name: "Full Licensure Pathway Support",
       description: "Everything you need to become a licensed pharmacist in the U.S.",
       price: "$3,000",
@@ -145,7 +145,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
     if (isServiceActive(service.id)) return false;
     if (!service.upgradeFrom || service.upgradeFrom.length === 0) return true;
     
-    return service.upgradeFrom.some(serviceId => userProfile.activeServices.includes(serviceId));
+    return service.upgradeFrom.some(serviceId => userProfile.selectedPackage.includes(serviceId));
   };
   
   // Get recommended upgrades based on current services
@@ -153,7 +153,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
     return services.filter(service => {
       if (isServiceActive(service.id)) return false;
       if (service.upgradeFrom && service.upgradeFrom.length > 0) {
-        return service.upgradeFrom.some(serviceId => userProfile.activeServices.includes(serviceId));
+        return service.upgradeFrom.some(serviceId => userProfile.selectedPackage.includes(serviceId));
       }
       return false;
     });

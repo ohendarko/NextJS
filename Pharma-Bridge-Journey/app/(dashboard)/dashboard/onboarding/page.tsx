@@ -172,6 +172,7 @@ const OnboardingForm = () => {
     const cleanedData = sanitizeFormData(formData);
 
     try {
+      setIsLoading(true);
       const payload = {
         email: session.user.email,
         ...cleanedData,
@@ -190,12 +191,20 @@ const OnboardingForm = () => {
       })
 
       if (!res.ok) {
-        throw new Error('Failed to submit onboarding data')
+        setIsLoading(false);
+        throw new Error('Failed to submit onboarding data');
+        
       }
+      // toast({
+      //   title: "Onboarding Completed",
+      //   description: "Your information has been saved successfully",
+      //   variant: "success",
+      // });
 
       navigate.push('/dashboard')
     } catch (err) {
       console.error(err)
+      setIsLoading(false);
       // console.log(err)
       alert('Something went wrong. Try again.')
     }
@@ -244,11 +253,11 @@ const OnboardingForm = () => {
       id: 'credential',
       name: 'Credential Evaluation Only',
       description: 'Document verification and preparation for FPGEE eligibility',
-      price: '$499',
+      price: '$200',
       popular: false
     },
     {
-      id: 'fpgee',
+      id: 'fpgec_pathway',
       name: 'FPGEE Prep',
       description: 'Study materials, practice tests, and coaching for the FPGEE',
       price: '$999',
@@ -258,11 +267,11 @@ const OnboardingForm = () => {
       id: 'full',
       name: 'Full Licensure Pathway',
       description: 'Complete guidance from credential evaluation through state licensure',
-      price: '$2499',
+      price: '$3,000',
       popular: true
     },
     {
-      id: 'toefl',
+      id: 'toefl_prep',
       name: 'TOEFL Coaching Only',
       description: 'Focused preparation for the TOEFL iBT exam',
       price: '$599',
@@ -635,7 +644,7 @@ const OnboardingForm = () => {
                   className="bg-pharma-blue hover:bg-pharma-dark-blue"
                   disabled={!formData.selectedPackage}
                 >
-                  Submit & Proceed to Dashboard
+                  {isLoading ? "Submitting" : "Submit & Proceed to Dashboard"}
                 </Button>
               )}
             </div>

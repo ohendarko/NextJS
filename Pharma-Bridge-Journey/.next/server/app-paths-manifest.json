@@ -1,8 +1,9 @@
 {
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/api/user/route": "app/api/user/route.js",
-  "/(dashboard)/dashboard/speaking-labs/page": "app/(dashboard)/dashboard/speaking-labs/page.js",
-  "/(dashboard)/dashboard/toefl-tests/page": "app/(dashboard)/dashboard/toefl-tests/page.js",
+  "/(regularLayout)/login/page": "app/(regularLayout)/login/page.js",
+  "/(regularLayout)/welcome/page": "app/(regularLayout)/welcome/page.js",
   "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
-  "/(dashboard)/dashboard/roadmap/page": "app/(dashboard)/dashboard/roadmap/page.js",
-  "/(dashboard)/dashboard/documents/upload/page": "app/(dashboard)/dashboard/documents/upload/page.js"
+  "/(dashboard)/dashboard/onboarding/page": "app/(dashboard)/dashboard/onboarding/page.js",
+  "/(regularLayout)/pricing/page": "app/(regularLayout)/pricing/page.js"
 }

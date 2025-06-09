@@ -56,6 +56,7 @@ const Login = () => {
         title: 'Login successful',
         description: 'Welcome back to PharmaBridge Consulting',
         variant: 'success',
+        duration: 2000,
       });
       setIsLoading(true);
       navigate.push("/dashboard");

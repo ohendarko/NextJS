@@ -1045,6 +1045,12 @@ video {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
 .block {
   display: block;
 }
@@ -1198,6 +1204,9 @@ video {
 }
 .min-h-svh {
   min-height: 100svh;
+}
+.min-h-\[400px\] {
+  min-height: 400px;
 }
 .w-0 {
   width: 0px;
