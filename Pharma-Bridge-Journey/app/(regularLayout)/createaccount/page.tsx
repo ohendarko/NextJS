@@ -77,12 +77,14 @@ const CreateAccount = () => {
       return;
     }
     const password = formData.password;
-    const passwordIsValid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password);
+    const passwordIsValid = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@_()#^$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+
+
 
     if (!passwordIsValid) {
       toast({
         title: "Weak Password",
-        description: "Password must be at least 8 characters long and contain at least one letter and one digit",
+        description: "Check if password is at least 8 characters long and contains: at least one letter, one digit and one special character. (@_()#^$!%*?&)",
         variant: "destructive",
       });
       // alert("Password must be at least 8 characters long and contain at least one letter and one digit.");
@@ -138,8 +140,8 @@ const CreateAccount = () => {
         
         <Card className="w-full shadow-lg">
           <CardHeader className="text-center">
-            <div className="flex justify-center mb-4">
-              <Image src="/logo.svg" alt="Logo" width={200} height={200}
+            <div className="flex justify-center mb-8 py-2">
+              <Image src="/logos.png" alt="Logo" width={400} height={400}
                />
             </div>
             <CardTitle className="text-2xl md:text-3xl text-pharma-blue">Create Your PharmaBridge Account</CardTitle>
@@ -189,7 +191,7 @@ const CreateAccount = () => {
                     onChange={handleInputChange}
                     className="pr-10"
                     required
-                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                    // pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                   />
                   <button 
                     type="button"
@@ -214,7 +216,8 @@ const CreateAccount = () => {
                 <p className="text-xs text-muted-foreground mt-1">
                   Password must be at least 8 characters. <br/>
                   Must contain at least one letter. <br/>
-                  Must contain at least one digit.
+                  Must contain at least one digit. <br/>
+                  Must contain at least one special character. [ ! @ # $ % ^ & * ( ) _ ]
                 </p>
               </div>
 
@@ -230,7 +233,7 @@ const CreateAccount = () => {
                     onChange={handleInputChange}
                     className="pr-10"
                     required
-                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                    pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@_()#^$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
                   />
                   <button 
                     type="button"

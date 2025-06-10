@@ -42,6 +42,7 @@ const ForgotPassword = () => {
     if (password.length < 8) return 'Password must be at least 8 characters';
     if (!/[a-z]/.test(password)) return 'Password must contain a lowercase letter';
     if (!/\d/.test(password)) return 'Password must contain a number';
+    if (!/[@_()#^$!%*?&]/.test(password)) return 'Password must contain a special character (@_()#^$!%*?&)';
     
     return '';
   };
