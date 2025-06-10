@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -13,6 +13,10 @@ import { ArrowLeft, Calendar as CalendarIcon } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
 import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { toast } from '@/hooks/use-toast';
+import Spinner from '@/components/Spinner';
 
 interface Appointment {
   id: string;
@@ -26,40 +30,14 @@ interface Appointment {
 }
 
 const AppointmentCenter = ({userProfile}) => {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false)
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
-  const [appointments, setAppointments] = useState<Appointment[]>([
-    {
-      id: "1",
-      date: "2025-06-12",
-      time: "10:00 AM",
-      type: "FPGEE Consultation",
-      advisor: "Dr. Smith",
-      status: "scheduled",
-      medium: "video",
-      notes: "Review eligibility requirements and application process"
-    },
-    {
-      id: "2",
-      date: "2025-06-15",
-      time: "2:00 PM",
-      type: "Document Review",
-      advisor: "Dr. Johnson",
-      status: "scheduled",
-      medium: "phone"
-    },
-    {
-      id: "3",
-      date: "2025-06-08",
-      time: "11:30 AM",
-      type: "TOEFL Speaking Practice",
-      advisor: "Ms. Rodriguez",
-      status: "completed",
-      medium: "video",
-      notes: "Practiced independent speaking tasks. Focus on pronunciation."
-    }
-  ]);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   const [newAppointment, setNewAppointment] = useState({
+    userEmail: session.user.email,
     type: "",
     advisor: "",
     date: "",
@@ -67,6 +45,27 @@ const AppointmentCenter = ({userProfile}) => {
     medium: "video" as "video" | "phone" | "in-person",
     notes: ""
   });
+
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        setIsLoading(true)
+        const res = await fetch(`/api/appointments`);
+        const data = await res.json();
+        setAppointments(data);  
+      } catch (error) {
+        setIsLoading(false)
+        console.error('Error loading appointments:', error)
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchAppointments();
+
+  }, [status, router]);
+  
+  // console.log(appointments);
 
   const isMobile = useIsMobile();
 
@@ -94,28 +93,39 @@ const AppointmentCenter = ({userProfile}) => {
     "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM"
   ];
 
-  const handleScheduleAppointment = () => {
-    if (!newAppointment.type || !newAppointment.advisor || !newAppointment.date || !newAppointment.time) {
-      alert("Please fill in all required fields");
-      return;
+  const handleScheduleAppointment = async (appointment: any) => {
+    try {
+      setIsLoading(true);
+
+      const res = await fetch("/api/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(appointment),
+      });
+  
+      const data = await res.json();
+
+      setAppointments((prev) => [...prev, data]);
+
+      toast({
+        title: 'Appointment successful',
+        description: `Your Appointment for ${appointment.date} has been successfully scheduled`,
+        duration: 7000,
+      });
+
+    } catch (error) {
+
+      setIsLoading(false)
+      toast({
+        title: 'Appointment Failed',
+        description: `Your Appointment for ${appointment.date} failed`,
+        variant: "destructive",
+      });
+      console.error('Error Scheduling Appointment', error)
+
+    } finally {
+      setIsLoading(false);
     }
-
-    const appointment: Appointment = {
-      id: Date.now().toString(),
-      ...newAppointment,
-      status: "scheduled"
-    };
-
-    setAppointments([...appointments, appointment]);
-    setNewAppointment({
-      type: "",
-      advisor: "",
-      date: "",
-      time: "",
-      medium: "video",
-      notes: ""
-    });
-    alert("Appointment scheduled successfully!");
   };
 
   const getStatusColor = (status: string) => {
@@ -164,7 +174,11 @@ const AppointmentCenter = ({userProfile}) => {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {appointments.filter(apt => apt.status === "scheduled").map((appointment) => (
+                    {isLoading ? 
+                    <div>
+                      <Spinner loading={isLoading}/>
+                    </div> : 
+                    (appointments.length === 0 ? 'You have no Appointments' : appointments.filter(apt => apt.status === "scheduled").map((appointment) => (
                       <div key={appointment.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
                         <div className="flex justify-between items-start mb-3">
                           <div>
@@ -200,7 +214,7 @@ const AppointmentCenter = ({userProfile}) => {
                           )}
                         </div>
                       </div>
-                    ))}
+                    )))}
                   </div>
                 </CardContent>
               </Card>
@@ -249,7 +263,13 @@ const AppointmentCenter = ({userProfile}) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="appointment-type">Appointment Type *</Label>
-                    <Select value={newAppointment.type} onValueChange={(value) => setNewAppointment({...newAppointment, type: value})}>
+                    <Select
+                      value={newAppointment.type}
+                      onValueChange={(value) => {
+                          setNewAppointment({...newAppointment, type: value})
+                        }
+                      }
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Select appointment type" />
                       </SelectTrigger>
@@ -322,8 +342,8 @@ const AppointmentCenter = ({userProfile}) => {
                   />
                 </div>
 
-                <Button onClick={handleScheduleAppointment} className="w-full">
-                  Schedule Appointment
+                <Button onClick={()=> handleScheduleAppointment(newAppointment)} className="w-full" disabled={isLoading}>
+                  {isLoading ? 'Scheduling' : "Schedule Appointment"}
                 </Button>
               </CardContent>
             </Card>

@@ -1,9 +1,11 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, Video, Settings } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 interface Appointment {
   id: string;
@@ -21,34 +23,31 @@ interface UpcomingAppointmentsProps {
 
 const UpcomingAppointments: React.FC<UpcomingAppointmentsProps> = ({ userProfile, limit }) => {
   const isMobile = useIsMobile();
+  const { data: session, status } = useSession();
+  const router = useRouter();
   
   // Mock appointments data - in a real app, this would come from your backend
-  const appointments: Appointment[] = [
-    {
-      id: "appt-1",
-      date: "June 2, 2025",
-      time: "10:00 AM",
-      type: "FPGEE Consultation",
-      advisor: "Dr. Smith",
-      medium: "video"
-    },
-    {
-      id: "appt-2",
-      date: "June 15, 2025",
-      time: "2:00 PM",
-      type: "Document Review",
-      advisor: "Dr. Johnson",
-      medium: "phone"
-    },
-    {
-      id: "appt-3",
-      date: "June 23, 2025",
-      time: "11:30 AM",
-      type: "TOEFL Speaking Practice",
-      advisor: "Ms. Rodriguez",
-      medium: "video"
-    }
-  ];
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        setIsLoading(true)
+        const res = await fetch(`/api/appointments`);
+        const data = await res.json();
+        setAppointments(data);  
+      } catch (error) {
+        setIsLoading(false)
+        console.error('Error loading appointments:', error)
+      } finally {
+        setIsLoading(false);
+      }
+    };
+  
+    fetchAppointments();
+
+  }, [status, router]);
 
   // If limit is provided, show only that many appointments
   const displayAppointments = limit ? appointments.slice(0, limit) : appointments;

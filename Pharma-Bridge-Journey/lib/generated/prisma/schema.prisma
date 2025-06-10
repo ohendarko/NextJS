@@ -175,7 +175,7 @@ model Document {
   ownerEmail String
   name       String
   type       String // e.g., "PDF", "Image"
-  status     String // e.g., "uploaded", "verified"
+  status     String   @default("pending") // e.g., "uploaded", "verified"
   uploadDate DateTime @default(now())
   size       String // e.g., "1.2 MB"
   url        String // Cloudinary URL
@@ -183,4 +183,17 @@ model Document {
   category   String // e.g., "education", "professional", "fpgee"
 
   user User @relation(fields: [userId], references: [id])
+}
+
+model Appointment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userEmail String
+  date      String
+  time      String
+  type      String
+  advisor   String
+  status    String   @default("scheduled")
+  medium    String
+  notes     String?
+  createdAt DateTime @default(now())
 }

@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
+import { useRouter } from 'next/navigation';
 
 interface UploadedFile {
   id: string;
@@ -31,9 +32,13 @@ interface UploadedFile {
 }
 
 const SecureDocumentUpload = ({userProfile}) => {
+  const router = useRouter();
   const [dragActive, setDragActive] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [uploadNotes, setUploadNotes] = useState("");
+  const [fileState, setFileState] = useState<Record<string, File | null>>({});
+  const [uploadingState, setUploadingState] = useState<Record<string, boolean>>({});
+  const [completionState, setCompletionState] = useState<Record<string, boolean>>({});
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([
     {
       id: "1",
@@ -91,6 +96,75 @@ const SecureDocumentUpload = ({userProfile}) => {
     // In a real app, this would handle the file upload
   };
 
+  const handleUpload = async (itemId: string, category: string, dbField: string) => {
+    const selectedFile = fileState[itemId];
+    if (!selectedFile) return;
+
+    setUploadingState(prev => ({ ...prev, [itemId]: true }));
+
+    try {
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error || 'Upload failed');
+
+      const docRes = await fetch('/api/document', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: selectedFile.name,
+          type: selectedFile.type.includes('pdf') ? 'PDF' : 'Image',
+          size: `${(selectedFile.size / 1024 / 1024).toFixed(1)} MB`,
+          url: data.secure_url,
+          category,
+        }),
+      });
+
+      const docData = await docRes.json();
+      if (!docRes.ok) throw new Error(docData.error || 'Save failed');
+
+      // Update user document status field (e.g., fpgeeFormSubmitted)
+      const updateRes = await fetch('/api/user/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fieldToUpdate: dbField,
+          value: true,
+        }),
+      });
+
+      const updateData = await updateRes.json();
+      if (!updateRes.ok) throw new Error(updateData.error || 'User update failed');
+
+
+      setFileState(prev => ({ ...prev, [itemId]: null }));
+      setCompletionState(prev => ({
+        ...prev,
+        [itemId]: true,
+      }));
+      // setCompletedItems(prev => ({
+      //   ...prev,
+      //   [dbField]: true,
+      // }));
+
+      // Dynamically update the field specified by dbid to true
+      
+      
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setUploadingState(prev => ({ ...prev, [itemId]: false }));
+    }
+  };
+
+
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'verified':
@@ -111,12 +185,16 @@ const SecureDocumentUpload = ({userProfile}) => {
         {/* Header */}
         <div className="mb-8">
             <div className="flex items-center gap-4 mb-4">
-              <Link href="/dashboard">
-                <Button variant="outline" size="sm">
+              
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => router.back()}
+                >
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Back to Dashboard
+                  Back
                 </Button>
-              </Link>
+              
             </div>
           <h1 className="text-3xl font-bold text-pharma-blue mb-2">Secure Document Upload</h1>
           <p className="text-gray-600">

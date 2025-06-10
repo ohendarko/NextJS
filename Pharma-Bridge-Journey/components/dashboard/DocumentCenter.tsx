@@ -19,7 +19,7 @@ interface DocumentCenterProps {
 }
 
 const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
-  const [activeTab, setActiveTab] = useState("fpgee");
+  const [activeTab, setActiveTab] = useState("ece");
   const [fileState, setFileState] = useState<Record<string, File | null>>({});
   const [uploadingState, setUploadingState] = useState<Record<string, boolean>>({});
   const [completionState, setCompletionState] = useState<Record<string, boolean>>({});
@@ -58,7 +58,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
   
 
   useEffect(() => {
-    console.log(completedItems)
+    // console.log(completedItems)
   }, [completedItems])
 
 
@@ -254,8 +254,8 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
     }
   };
 
-  console.log('completed Items:', completedItems);
-  console.log('form data:',formData);
+  // console.log('completed Items:', completedItems);
+  // console.log('form data:',formData);
 
 
   const fpgeeRequirements = [
@@ -557,7 +557,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
         <p className="text-gray-600">Track your progress and mark completed requirements for each examination after  NABP account creation.</p>
       </div>
 
-      <Tabs defaultValue="fpgee" value={activeTab} onValueChange={setActiveTab}>
+      <Tabs defaultValue="ece" value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="ece">ECE</TabsTrigger>
           <TabsTrigger value="toefl">TOEFL</TabsTrigger>

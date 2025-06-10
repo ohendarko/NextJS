@@ -229,6 +229,19 @@ exports.Prisma.DocumentScalarFieldEnum = {
   category: 'category'
 };
 
+exports.Prisma.AppointmentScalarFieldEnum = {
+  id: 'id',
+  userEmail: 'userEmail',
+  date: 'date',
+  time: 'time',
+  type: 'type',
+  advisor: 'advisor',
+  status: 'status',
+  medium: 'medium',
+  notes: 'notes',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -247,7 +260,8 @@ exports.Prisma.ModelName = {
   Account: 'Account',
   Session: 'Session',
   VerificationToken: 'VerificationToken',
-  Document: 'Document'
+  Document: 'Document',
+  Appointment: 'Appointment'
 };
 
 /**
