@@ -60,13 +60,13 @@ const WhoWeHelpSection = () => {
               </div>
             </div>
             
-            <div className="flex items-start gap-3 bg-white p-4 rounded-lg shadow-md">
+            {/* <div className="flex items-start gap-3 bg-white p-4 rounded-lg shadow-md">
               <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
               <div>
                 <h4 className="font-semibold text-pharma-navy text-lg mb-2">Why Choose PharmaBridge</h4>
                 <p className="text-gray-600">Founded by successful pharmacists, affordable step-by-step mentorship</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         
