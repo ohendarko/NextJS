@@ -14,13 +14,15 @@ import BillingSupport from '@/components/dashboard/BillingSupport';
 import ServiceUpgrade from '@/components/dashboard/ServiceUpgrade';
 import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
 import { useIsMobile } from "@/hooks/use-mobile";
-import { User, FileText, Calendar, MessageSquare, Settings, Upload, Menu, UserPlus } from 'lucide-react';
+import { User, FileText, Calendar, MessageSquare, Settings, Upload, Menu, UserPlus, Map } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Spinner from '@/components/Spinner';
 import { Alert } from '@/components/ui/alert';
 import { stat } from 'fs';
 import Link from 'next/link';
+import AppointmentCenter from '@/components/dashboard/AppointmentSection';
+
 
 
 
@@ -93,8 +95,8 @@ const Dashboard = () => {
     { id: 'overview', label: 'Overview', icon: Calendar },
     { id: 'profile', label: 'My Profile', icon: User },
     { id: 'documents', label: 'Documents', icon: FileText },
-    { id: 'roadmap', label: 'Roadmap', icon: Calendar },
-    { id: 'messages', label: 'Messages', icon: MessageSquare },
+    { id: 'roadmap', label: 'Roadmap', icon: Map },
+    { id: 'appointments', label: 'Appointments', icon: Calendar },
     { id: 'billing', label: 'Billing & Support', icon: Settings },
     { id: 'upgrade', label: 'Add-on Service', icon: Upload }
   ];
@@ -208,14 +210,16 @@ const Dashboard = () => {
             </CardContent>
           </Card>)
         );
-      case 'messages':
+      case 'appointments':
         return (
           <Card>
             <CardHeader>
-              <CardTitle>Messaging Center</CardTitle>
+              <CardTitle>Appointment Center
+                
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <MessagingCenter userProfile={userProfile} />
+              <AppointmentCenter userProfile={userProfile} />
             </CardContent>
           </Card>
         );

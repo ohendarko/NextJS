@@ -1,6 +1,6 @@
 {
+  "/(regularLayout)/login/page": "app/(regularLayout)/login/page.js",
   "/(regularLayout)/page": "app/(regularLayout)/page.js",
   "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
-  "/(regularLayout)/login/page": "app/(regularLayout)/login/page.js",
   "/(regularLayout)/pricing/page": "app/(regularLayout)/pricing/page.js"
 }
