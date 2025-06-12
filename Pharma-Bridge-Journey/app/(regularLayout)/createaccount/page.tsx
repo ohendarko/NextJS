@@ -122,7 +122,7 @@ const CreateAccount = () => {
 
         toast({ title: "Account Created", description: "Your account has been successfully created!" });
         setIsLoading(false);
-        navigate.push('/welcome');
+        navigate.push('/login');
       } catch (err) {
         toast({ title: "Error", description: "Failed to create account", variant: "destructive" });
       } finally {
