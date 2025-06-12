@@ -196,7 +196,7 @@ const Dashboard = () => {
                 You have no selected packages. Please complete your onboarding or check out our packages.
               </p><br/>
               <Button asChild>
-              <Link href="/#services">View Service Packages</Link>
+              <Link href="/dashboard/pricing">View Service Packages</Link>
             </Button>
             </CardContent>
           </Card>
@@ -236,7 +236,7 @@ const Dashboard = () => {
                 You have no selected packages. Please complete your onboarding or check out our packages.
               </p><br/>
               <Button asChild>
-              <Link href="/#services">View Service Packages</Link>
+              <Link href="/dashboard/pricing">View Service Packages</Link>
             </Button>
             </CardContent>
           </Card>
@@ -263,7 +263,7 @@ const Dashboard = () => {
                 You have no selected packages. Please complete your onboarding or check out our packages.
               </p><br/>
               <Button asChild>
-              <Link href="/#services">View Service Packages</Link>
+              <Link href="/dashboard/pricing">View Service Packages</Link>
             </Button>
             </CardContent>
           </Card>

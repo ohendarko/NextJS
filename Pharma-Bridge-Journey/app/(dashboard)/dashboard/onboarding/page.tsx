@@ -250,17 +250,17 @@ const OnboardingForm = () => {
   // Service packages with pricing from the pricing page
   const servicePackages = [
     {
-      id: 'credential_guidance',
-      name: 'Credential Evaluation Only',
-      description: 'Document verification and preparation for FPGEE eligibility',
-      price: '$200',
+      id: 'fpgee_prep_only',
+      name: 'FPGEE Exam Preparation Only',
+      description: 'Preparation for FPGEE exam',
+      price: '$500',
       popular: false
     },
     {
       id: 'fpgec_pathway',
-      name: 'FPGEE Prep',
-      description: 'Study materials, practice tests, and coaching for the FPGEE',
-      price: '$999',
+      name: 'FPGEE Pathway Support',
+      description: 'Guidance through credential evaluation, TOEFL, FPGEE, and Prometric scheduling—includes e-Profile setup & personalized prep plans.',
+      price: '$800',
       popular: false
     },
     {
@@ -274,7 +274,7 @@ const OnboardingForm = () => {
       id: 'toefl_prep',
       name: 'TOEFL Coaching Only',
       description: 'Focused preparation for the TOEFL iBT exam',
-      price: '$599',
+      price: '$35 - $250',
       popular: false
     }
   ];

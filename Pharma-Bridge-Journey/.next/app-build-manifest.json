@@ -1,10 +1,5 @@
 {
   "pages": {
-    "/api/auth/[...nextauth]/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/auth/[...nextauth]/route.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -22,15 +17,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(regularLayout)/layout.js"
     ],
-    "/(regularLayout)/createaccount/page": [
+    "/(regularLayout)/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(regularLayout)/createaccount/page.js"
+      "static/chunks/app/(regularLayout)/page.js"
+    ],
+    "/api/auth/[...nextauth]/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/auth/[...nextauth]/route.js"
+    ],
+    "/(regularLayout)/pricing/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(regularLayout)/pricing/page.js"
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/_not-found/page.js"
+    ],
+    "/(regularLayout)/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(regularLayout)/login/page.js"
     ]
   }
 }

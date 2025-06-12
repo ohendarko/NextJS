@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { 
   FileText, 
-  MessageSquare, 
+  MessageSquare,
+  Pen, 
   Video, 
   Calendar, 
   CheckCircle2, 
@@ -62,9 +63,17 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
     {
       id: "speaking-labs",
       title: "Speaking Labs",
-      description: "Send us any speaking respnse to evaluate for you",
+      description: "Send us any speaking response to evaluate for you",
       icon: <MessageSquare className="h-8 w-8 text-pharma-blue" />,
       link: "/dashboard/speaking-labs",
+      requiredService: "toefl"
+    },
+    {
+      id: "writing-labs",
+      title: "Writing Labs",
+      description: "Send us any writing response to evaluate for you",
+      icon: <Pen className="h-8 w-8 text-pharma-blue" />,
+      link: "/dashboard/writing-labs",
       requiredService: "toefl"
     },
     {

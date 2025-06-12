@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import Link from 'next/link';
 
 const Pricing = () => {
   // Function to render check icon
@@ -160,13 +161,15 @@ const Pricing = () => {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className={`w-full ${
-                    service.highlight
-                      ? "bg-pharma-blue hover:bg-pharma-dark-blue"
-                      : "bg-white hover:bg-blue-50 text-pharma-blue border border-pharma-blue"
-                  }`}>
-                    Get Started
-                  </Button>
+                  <Link href='/login' className='w-full'>
+                    <Button className={`w-full ${
+                      service.highlight
+                        ? "bg-pharma-blue hover:bg-pharma-dark-blue"
+                        : "bg-white hover:bg-blue-50 text-pharma-blue border border-pharma-blue"
+                    }`}>
+                      Get Started
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
             ))}
@@ -212,9 +215,11 @@ const Pricing = () => {
                   </div>
                 </CardContent>
                 <CardFooter className="mt-4">
-                  <Button className="w-full bg-white hover:bg-blue-50 text-pharma-blue border border-pharma-blue">
-                    Get Started
-                  </Button>
+                  <Link href='/login' className='w-full'>
+                    <Button className="w-full bg-white hover:bg-blue-50 text-pharma-blue border border-pharma-blue">
+                      Get Started
+                    </Button>                    
+                  </Link>
                 </CardFooter>
               </Card>
             </div>
