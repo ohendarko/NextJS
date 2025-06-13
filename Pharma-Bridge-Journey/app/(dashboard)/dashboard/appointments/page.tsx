@@ -11,7 +11,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, Calendar as CalendarIcon } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
-import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -24,7 +23,7 @@ interface Appointment {
   time: string;
   type: string;
   advisor: string;
-  status: "scheduled" | "completed" | "cancelled";
+  status: "scheduled" | "completed" | "cancelled" | "expired";
   medium: "video" | "phone" | "in-person";
   notes?: string;
 }
@@ -37,7 +36,7 @@ const AppointmentCenter = () => {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   const [newAppointment, setNewAppointment] = useState({
-    userEmail: session.user.email,
+    userEmail: session?.user.email,
     type: "",
     advisor: "",
     date: "",
@@ -133,6 +132,7 @@ const AppointmentCenter = () => {
       case "scheduled": return "bg-blue-100 text-blue-800";
       case "completed": return "bg-green-100 text-green-800";
       case "cancelled": return "bg-red-100 text-red-800";
+      case "expired": return "bg-orange-400 text-black-800";
       default: return "bg-gray-100 text-gray-800";
     }
   };
@@ -144,7 +144,6 @@ const AppointmentCenter = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
-      {/* <DashboardNavbar userProfile={userProfile} /> */}
       <div className="container mx-auto px-4 py-6">
          <div className="flex items-center gap-4 mb-4">
             <Link href="/dashboard">
@@ -178,7 +177,7 @@ const AppointmentCenter = () => {
                     <div>
                       <Spinner loading={isLoading}/>
                     </div> : 
-                    (appointments.length === 0 ? 'You have no Appointments' : appointments.filter(apt => apt.status === "scheduled").map((appointment) => (
+                    ((appointments.length === 0 || appointments.filter(apt => apt.status === "scheduled").length === 0) ? 'You have no upcoming Appointments' : appointments.filter(apt => apt.status === "scheduled").map((appointment) => (
                       <div key={appointment.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
                         <div className="flex justify-between items-start mb-3">
                           <div>
@@ -356,7 +355,7 @@ const AppointmentCenter = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {appointments.filter(apt => apt.status === "completed" || apt.status === "cancelled").map((appointment) => (
+                  {appointments.filter(apt => apt.status === "completed" || apt.status === "cancelled" || apt.status === "expired").map((appointment) => (
                     <div key={appointment.id} className="border rounded-lg p-4">
                       <div className="flex justify-between items-start mb-3">
                         <div>

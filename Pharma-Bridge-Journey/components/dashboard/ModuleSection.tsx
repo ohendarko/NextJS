@@ -9,8 +9,8 @@ import {
   Video, 
   Calendar, 
   CheckCircle2, 
-  Settings, 
-  Upload, 
+  // Settings, 
+  // Upload, 
 } from 'lucide-react';
 
 interface UserProfile {
@@ -38,7 +38,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       id: "video-courses",
       title: "Video Courses",
       description: "Watch expert-led pharmacy lessons",
-      icon: <Video className="h-8 w-8 text-pharma-blue" />,
+      icon: <Video className="h-6 w-6 text-pharma-blue" />,
       link: "/dashboard/courses",
       requiredService: ["fpgee"]
     },
@@ -46,7 +46,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       id: "practice-questions",
       title: "Practice Questions",
       description: "Test your knowledge with thousands of questions",
-      icon: <FileText className="h-8 w-8 text-pharma-blue" />,
+      icon: <FileText className="h-6 w-6 text-pharma-blue" />,
       link: "/dashboard/practice",
       requiredService: ["fpgee"]
     },
@@ -54,7 +54,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       id: "study-tracker",
       title: "Study Tracker",
       description: "Track your progress and study hours",
-      icon: <Calendar className="h-8 w-8 text-pharma-blue" />,
+      icon: <Calendar className="h-6 w-6 text-pharma-blue" />,
       link: "/dashboard/tracker",
       requiredService: ["fpgee"]
     },
@@ -64,7 +64,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       id: "speaking-labs",
       title: "Speaking Labs",
       description: "Send us any speaking response to evaluate for you",
-      icon: <MessageSquare className="h-8 w-8 text-pharma-blue" />,
+      icon: <MessageSquare className="h-6 w-6 text-pharma-blue" />,
       link: "/dashboard/speaking-labs",
       requiredService: ["toefl", "toefl_prep-1hr", "toefl-prep-2hr", "toefl-lifetime"]
     },
@@ -72,7 +72,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       id: "writing-labs",
       title: "Writing Labs",
       description: "Send us any writing response to evaluate for you",
-      icon: <Pen className="h-8 w-8 text-pharma-blue" />,
+      icon: <Pen className="h-6 w-6 text-pharma-blue" />,
       link: "/dashboard/writing-labs",
       requiredService: ["toefl", "toefl_prep-1hr", "toefl-prep-2hr", "toefl-lifetime"]
     },
@@ -80,7 +80,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       id: "practice-tests",
       title: "TOEFL Practice Tests",
       description: "Full-length practice tests with detailed feedback",
-      icon: <FileText className="h-8 w-8 text-pharma-blue" />,
+      icon: <FileText className="h-6 w-6 text-pharma-blue" />,
       link: "/dashboard/toefl-tests",
       requiredService: ["toefl", "toefl_prep-1hr", "toefl-prep-2hr", "toefl-lifetime"]
     },
@@ -90,7 +90,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       id: "secure-upload",
       title: "Secure Document Upload",
       description: "Upload and manage sensitive documents",
-      icon: <FileText className="h-8 w-8 text-pharma-blue" />,
+      icon: <FileText className="h-6 w-6 text-pharma-blue" />,
       link: "/dashboard/documents/upload",
       requiredService: ["doc_assist"]
     },

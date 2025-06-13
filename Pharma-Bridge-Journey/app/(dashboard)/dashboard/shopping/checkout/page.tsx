@@ -22,48 +22,7 @@ interface CartItem {
 const Cart: React.FC = () => {
   const { cart, addToCart, removeFromCart, updateQuantity, clearCart } = useCart();
   const router = useRouter();
-  // const [cart, setCart] = useState<CartItem[]>([]);
 
-  // Mock user data
-  const userProfile = {
-    name: "Jane Doe",
-    email: "jane.doe@example.com",
-    profileImage: null,
-    activeServices: []
-  };
-
-  // Load cart from localStorage
-  // useEffect(() => {
-  //   const savedCart = localStorage.getItem('pharmabridge-cart');
-  //   if (savedCart) {
-  //     setCart(JSON.parse(savedCart));
-  //   }
-  // }, []);
-
-  // Save cart to localStorage whenever cart changes
-  // useEffect(() => {
-  //   localStorage.setItem('pharmabridge-cart', JSON.stringify(cart));
-  // }, [cart]);
-
-  // const updateQuantity = (serviceId: string, quantity: number) => {
-  //   if (quantity <= 0) {
-  //     removeFromCart(serviceId);
-  //     return;
-  //   }
-  //   setCart(prevCart =>
-  //     prevCart.map(item =>
-  //       item.id === serviceId ? { ...item, quantity } : item
-  //     )
-  //   );
-  // };
-
-  // const removeFromCart = (serviceId: string) => {
-  //   setCart(prevCart => prevCart.filter(item => item.id !== serviceId));
-  // };
-
-  // const clearCart = () => {
-  //   setCart([]);
-  // };
 
   // Calculate totals
   const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);

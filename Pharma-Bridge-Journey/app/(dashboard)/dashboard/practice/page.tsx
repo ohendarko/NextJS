@@ -17,15 +17,7 @@ import {
   Brain
 } from 'lucide-react';
 import Link from 'next/link';
-// import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
 
-// Mock user data
-// const userData = {
-//   name: "Jane Doe",
-//   email: "jane.doe@example.com",
-//   profileImage: null,
-//   activeServices: ['fpgee_prep']
-// };
 
 interface Question {
   id: number;
@@ -214,7 +206,6 @@ const PracticeQuestions = () => {
   if (quizMode === 'selection') {
     return (
       <div className="min-h-screen bg-gray-50">
-        {/* <DashboardNavbar userProfile={userProfile} /> */}
         
         <div className="pt-20 px-4 md:px-6 max-w-6xl mx-auto mt-10">
           <div className="mb-8">

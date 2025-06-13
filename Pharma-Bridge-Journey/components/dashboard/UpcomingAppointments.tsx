@@ -116,6 +116,11 @@ const UpcomingAppointments: React.FC<UpcomingAppointmentsProps> = ({ userProfile
           Schedule New Appointment
         </Button>
       )}
+      <Link href='/dashboard/appointments'>
+        <Button variant="ghost" className="w-full mt-2 text-xs md:text-sm">
+          Go to Appointments ({appointments.length})
+        </Button>
+      </Link>
     </div>
   );
 };

@@ -13,12 +13,13 @@ import {
   Check, 
   FileX,
   Shield,
-  Lock,
+  // Lock,
   ArrowLeft
 } from 'lucide-react';
 import Link from 'next/link';
-import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
 import { useRouter } from 'next/navigation';
+
+
 
 interface UploadedFile {
   id: string;
@@ -180,7 +181,6 @@ const SecureDocumentUpload = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 py-6">
-      {/* <DashboardNavbar userProfile={userProfile} /> */}
       <div className="container mx-auto px-4 mt-20">
         {/* Header */}
         <div className="mb-8">

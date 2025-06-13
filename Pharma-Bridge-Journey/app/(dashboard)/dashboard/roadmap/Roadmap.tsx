@@ -5,14 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from 'next/link';
 import RoadmapTracker from '@/components/dashboard/RoadmapTracker';
 import DocumentCenter from '@/components/dashboard/DocumentCenter';
-import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
 
 const MasterRoadmap = ({ userProfile }) => {
-  // Mock user profile - in real app this would come from auth/AP
 
   return (
     <div className="min-h-screen bg-gray-50 p-4">
-      {/* <DashboardNavbar userProfile={userProfile} /> */}
       <div className="max-w-7xl mx-auto space-y-6 mt-20">
         {/* Header */}
         <div className="flex items-center justify-between">

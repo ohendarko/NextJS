@@ -8,8 +8,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { 
-  Clock, 
-  CheckCircle, 
+  // Clock, 
+  // CheckCircle, 
   Play, 
   FileText, 
   Headphones, 
@@ -24,7 +24,7 @@ import {
   Save
 } from 'lucide-react';
 import Link from 'next/link';
-import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
+
 
 interface TestResult {
   id: string;
@@ -737,7 +737,6 @@ const ToeflTests = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      {/* <DashboardNavbar userProfile={userProfile} /> */}
       <div className="max-w-6xl mx-auto mt-20">
         <div className="flex items-center gap-4 mb-4">
           <Link href="/dashboard">

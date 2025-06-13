@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -11,8 +11,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, Calendar as CalendarIcon } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
-import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
-import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+
+// import Link from 'next/link';
 
 interface Appointment {
   id: string;
@@ -20,44 +22,18 @@ interface Appointment {
   time: string;
   type: string;
   advisor: string;
-  status: "scheduled" | "completed" | "cancelled";
+  status: "scheduled" | "completed" | "cancelled" | "expired";
   medium: "video" | "phone" | "in-person";
   notes?: string;
 }
 
 const AppointmentCenter = ({userProfile}) => {
+
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
-  const [appointments, setAppointments] = useState<Appointment[]>([
-    {
-      id: "1",
-      date: "2025-06-12",
-      time: "10:00 AM",
-      type: "FPGEE Consultation",
-      advisor: "Dr. Smith",
-      status: "scheduled",
-      medium: "video",
-      notes: "Review eligibility requirements and application process"
-    },
-    {
-      id: "2",
-      date: "2025-06-15",
-      time: "2:00 PM",
-      type: "Document Review",
-      advisor: "Dr. Johnson",
-      status: "scheduled",
-      medium: "phone"
-    },
-    {
-      id: "3",
-      date: "2025-06-08",
-      time: "11:30 AM",
-      type: "TOEFL Speaking Practice",
-      advisor: "Ms. Rodriguez",
-      status: "completed",
-      medium: "video",
-      notes: "Practiced independent speaking tasks. Focus on pronunciation."
-    }
-  ]);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const {data: session, status} = useSession();
+
 
   const [newAppointment, setNewAppointment] = useState({
     type: "",
@@ -69,6 +45,25 @@ const AppointmentCenter = ({userProfile}) => {
   });
 
   const isMobile = useIsMobile();
+
+    useEffect(() => {
+      const fetchAppointments = async () => {
+        try {
+          setIsLoading(true)
+          const res = await fetch(`/api/appointments`);
+          const data = await res.json();
+          setAppointments(data);  
+        } catch (error) {
+          setIsLoading(false)
+          console.error('Error loading appointments:', error)
+        } finally {
+          setIsLoading(false);
+        }
+      };
+  
+      fetchAppointments();
+  
+    }, [status]);
 
   const appointmentTypes = [
     "FPGEE Consultation",
@@ -123,6 +118,7 @@ const AppointmentCenter = ({userProfile}) => {
       case "scheduled": return "bg-blue-100 text-blue-800";
       case "completed": return "bg-green-100 text-green-800";
       case "cancelled": return "bg-red-100 text-red-800";
+      case "expired": return "bg-orange-400 text-black-800";
       default: return "bg-gray-100 text-gray-800";
     }
   };
@@ -154,7 +150,7 @@ const AppointmentCenter = ({userProfile}) => {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {appointments.filter(apt => apt.status === "scheduled").map((appointment) => (
+                    {(appointments.length === 0 || appointments.filter(apt => apt.status === "scheduled").length === 0) ? 'You have no upcoming Appointments' : appointments.filter(apt => apt.status === "scheduled").map((appointment) => (
                       <div key={appointment.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
                         <div className="flex justify-between items-start mb-3">
                           <div>
@@ -326,7 +322,7 @@ const AppointmentCenter = ({userProfile}) => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {appointments.filter(apt => apt.status === "completed" || apt.status === "cancelled").map((appointment) => (
+                  {appointments.filter(apt => apt.status === "completed" || apt.status === "cancelled" || apt.status === "expired").map((appointment) => (
                     <div key={appointment.id} className="border rounded-lg p-4">
                       <div className="flex justify-between items-start mb-3">
                         <div>

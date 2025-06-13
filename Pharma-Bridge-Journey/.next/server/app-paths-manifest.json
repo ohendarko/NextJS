@@ -1,6 +1,5 @@
 {
-  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
-  "/(dashboard)/dashboard/speaking-labs/page": "app/(dashboard)/dashboard/speaking-labs/page.js",
-  "/(dashboard)/dashboard/documents/page": "app/(dashboard)/dashboard/documents/page.js",
-  "/(dashboard)/dashboard/toefl-tests/page": "app/(dashboard)/dashboard/toefl-tests/page.js"
+  "/api/appointments/route": "app/api/appointments/route.js",
+  "/(dashboard)/dashboard/appointments/page": "app/(dashboard)/dashboard/appointments/page.js",
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js"
 }

@@ -19,7 +19,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const userProfile = await getUserProfile(userid);
 
   if (!userProfile) {
-    return <div>User profile not found</div>;
+    return <div className="h-full flex justify-center align-center">User profile not found! You may want to check your internet connection.</div>;
   }
 
   return (

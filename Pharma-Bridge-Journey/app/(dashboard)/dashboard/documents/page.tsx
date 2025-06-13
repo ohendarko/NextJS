@@ -36,7 +36,7 @@ interface Document {
 const Documents = () => {
   const { data: session, status } = useSession();
     const router = useRouter();
-  const [activeTab, setActiveTab] = useState("overview");
+  // const [activeTab, setActiveTab] = useState("overview");
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [documents, setDocuments] = useState<Document[]>([]);

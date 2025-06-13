@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
 import { Bell, Calendar, FileText, Clock, ArrowLeft } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from 'next/link';
@@ -24,11 +23,6 @@ interface Notification {
   }
 }
 
-const userData = {
-  name: "Jane Doe",
-  email: "jane.doe@example.com",
-  profileImage: null,
-};
 
 const Notifications = () => {
   const isMobile = useIsMobile();
@@ -178,7 +172,6 @@ const Notifications = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* <DashboardNavbar userProfile={userProfile} /> */}
       
       <div className="pt-20 mt-20">
         <div className="flex items-center gap-4 mb-4">

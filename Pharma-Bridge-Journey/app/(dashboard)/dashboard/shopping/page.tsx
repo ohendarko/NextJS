@@ -9,7 +9,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 // import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ArrowLeft, ShoppingCart } from 'lucide-react';
-import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useCart } from "@/context/CartContext";
 
@@ -43,13 +42,12 @@ interface CartItem extends Service {
 
 const Shopping = () => {
   const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
-  // const [cart, setCart] = useState<CartItem[]>([]);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isCartOpen, setIsCartOpen] = useState(false);
   const isMobile = useIsMobile();
 
-  // Mock user data - in real app this would come from props or context
 
 
   const services: Service[] = [

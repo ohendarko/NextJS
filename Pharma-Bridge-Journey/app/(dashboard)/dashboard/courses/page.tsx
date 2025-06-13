@@ -5,15 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Play, 
   Clock, 
   CheckCircle, 
   BookOpen, 
-  Users, 
-  Star,
+  // Users, 
+  // Star,
   ArrowLeft 
 } from 'lucide-react';
 import Link from 'next/link';
@@ -85,7 +84,7 @@ const courseModules = [
 
 const VideoCourses = () => {
   const [selectedModule, setSelectedModule] = useState(courseModules[0]);
-  const [currentVideo, setCurrentVideo] = useState(null);
+
 
   const totalProgress = (userData.progress.completedCourses / userData.progress.totalCourses) * 100;
 
@@ -100,7 +99,6 @@ const VideoCourses = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* <DashboardNavbar userProfile={userProfile} /> */}
       
       <div className="pt-20">
         <div className="container mx-auto px-4 py-6 max-w-7xl">

@@ -8,8 +8,8 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { 
   Upload, 
   Mic, 
-  Play, 
-  Pause, 
+  // Play, 
+  // Pause, 
   Star, 
   Clock, 
   FileAudio, 
@@ -18,7 +18,6 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
 import Link from 'next/link';
 
 interface AudioSubmission {
@@ -162,7 +161,6 @@ const SpeakingLabs = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      {/* <DashboardNavbar userProfile={userProfile} /> */}
       <div className="container mx-auto px-4 max-w-6xl mt-20">
         <div className="flex items-center gap-4 mb-4">
           <Link href="/dashboard">

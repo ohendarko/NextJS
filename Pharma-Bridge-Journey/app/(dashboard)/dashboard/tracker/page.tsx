@@ -18,7 +18,8 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import Link from 'next/link';
-import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
+
+
 
 interface StudySession {
   id: string;
@@ -119,7 +120,6 @@ const StudyTracker = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4">
-      {/* <DashboardNavbar userProfile={userProfile} /> */}
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-pharma-blue mb-2">Study Tracker</h1>

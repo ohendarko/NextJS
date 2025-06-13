@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
-import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
 import { ArrowLeft } from 'lucide-react';
 
 const Pricing = () => {
@@ -31,17 +30,7 @@ const Pricing = () => {
   
   // Main services data
   const mainServices = [
-    // {
-    //   title: "Credential Evaluation Guidance",
-    //   price: "$200",
-    //   features: [
-    //     'Support submitting transcripts and degree certificates to ECE',
-    //     'Step-by-step guidance for gathering and organizing credentials',
-    //     'Timeline planning to meet FPGEE eligibility deadlines',
-    //     'Avoid costly documentation errors or delays'
-    //   ],
-    //   highlight: false
-    // },
+ 
     {
       title: "FPGEC Certificate Pathway Coaching",
       price: "$800",
@@ -84,36 +73,36 @@ const Pricing = () => {
   ];
   
   // Additional services
-  const additionalServices = [
-    {
-      title: "NABP Application & Exam Scheduling",
-      price: "$150",
-      features: [
-        'NABP e-Profile setup',
-        'FPGEE eligibility application guidance',
-        'Prometric testing center scheduling'
-      ]
-    },
-    {
-      title: "Accommodation, Flight & Hosting Support",
-      price: "$300",
-      features: [
-        'Flight booking guidance',
-        'Temporary housing support (Airbnb, student housing, extended stays)',
-        'Local hosting orientation and connection (in select cities)',
-        'U.S. culture overview: transport, shopping, safety tips'
-      ]
-    },
-    {
-      title: "Internship Placement Strategy",
-      price: "$100",
-      features: [
-        'Coaching on where and how to apply',
-        'Interview preparation',
-        'Resume review and employer outreach support'
-      ]
-    }
-  ];
+  // const additionalServices = [
+  //   {
+  //     title: "NABP Application & Exam Scheduling",
+  //     price: "$150",
+  //     features: [
+  //       'NABP e-Profile setup',
+  //       'FPGEE eligibility application guidance',
+  //       'Prometric testing center scheduling'
+  //     ]
+  //   },
+  //   {
+  //     title: "Accommodation, Flight & Hosting Support",
+  //     price: "$300",
+  //     features: [
+  //       'Flight booking guidance',
+  //       'Temporary housing support (Airbnb, student housing, extended stays)',
+  //       'Local hosting orientation and connection (in select cities)',
+  //       'U.S. culture overview: transport, shopping, safety tips'
+  //     ]
+  //   },
+  //   {
+  //     title: "Internship Placement Strategy",
+  //     price: "$100",
+  //     features: [
+  //       'Coaching on where and how to apply',
+  //       'Interview preparation',
+  //       'Resume review and employer outreach support'
+  //     ]
+  //   }
+  // ];
 
   // TOEFL pricing tiers
   const toeflPricing = [
@@ -124,7 +113,6 @@ const Pricing = () => {
 
   return (
     <div className="min-h-screen flex flex-col mt-20">
-      {/* <DashboardNavbar userProfile={userProfile} /> */}
       <main className="flex-grow pt-16 pb-16 bg-gradient-to-b from-white to-blue-50">
         <div className="flex items-center gap-4 mb-4">
           <Link href="/dashboard">
