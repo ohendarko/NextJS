@@ -1,7 +1,7 @@
 {
   "/(regularLayout)/login/page": "app/(regularLayout)/login/page.js",
   "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
+  "/(dashboard)/dashboard/shopping/page": "app/(dashboard)/dashboard/shopping/page.js",
   "/(dashboard)/dashboard/shopping/checkout/payment/page": "app/(dashboard)/dashboard/shopping/checkout/payment/page.js",
-  "/(dashboard)/dashboard/shopping/checkout/page": "app/(dashboard)/dashboard/shopping/checkout/page.js",
-  "/(dashboard)/dashboard/shopping/page": "app/(dashboard)/dashboard/shopping/page.js"
+  "/(dashboard)/dashboard/shopping/checkout/page": "app/(dashboard)/dashboard/shopping/checkout/page.js"
 }
