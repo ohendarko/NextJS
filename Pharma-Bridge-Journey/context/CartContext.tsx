@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 type CartItem = {
   id: string;
@@ -8,6 +8,9 @@ type CartItem = {
   price: number;
   quantity: number;
   image?: string;
+  description?: string;
+  category?: string;
+  features?: string[];
 };
 
 interface Service {
@@ -17,7 +20,7 @@ interface Service {
   price: number;
   originalPrice?: number;
   features: string[];
-  category: string;
+  category?: string;
   popular?: boolean;
   duration?: string;
   type?: string;
@@ -36,15 +39,23 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  // const addToCart = (item: CartItem) => {
-  //   setCart(prev =>
-  //     prev.some(i => i.id === item.id)
-  //       ? prev.map(i =>
-  //           i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
-  //         )
-  //       : [...prev, item]
-  //   );
-  // };
+  // Load cart from localStorage on mount
+  useEffect(() => {
+    const storedCart = localStorage.getItem("pharmabridge_cart");
+    if (storedCart) {
+      try {
+        setCart(JSON.parse(storedCart));
+      } catch (error) {
+        console.error("Failed to parse cart from localStorage:", error);
+      }
+    }
+  }, []);
+
+  // Save cart to localStorage on change
+  useEffect(() => {
+    localStorage.setItem("pharmabridge_cart", JSON.stringify(cart));
+  }, [cart]);
+  
   const addToCart = (service: Service) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(item => item.id === service.id);
@@ -59,9 +70,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  // const removeFromCart = (id: string) => {
-  //   setCart(prev => prev.filter(item => item.id !== id));
-  // };
 
   const removeFromCart = (serviceId: string) => {
     setCart(prevCart => prevCart.filter(item => item.id !== serviceId));

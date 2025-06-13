@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
+import { useCart } from '@/context/CartContext';
 
 interface Service {
   id: string;
   name: string;
   description: string;
-  price: string;
+  price: number;
   features: string[];
   upgradeFrom?: string[];
   popular?: boolean;
@@ -20,13 +21,15 @@ interface ServiceUpgradeProps {
 }
 
 const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
+
+  const { cart, addToCart } = useCart()
   // Services data from pricing page
   const services: Service[] = [
     {
       id: "credential_guidance",
       name: "Credential Evaluation Guidance",
       description: "Support submitting transcripts and degree certificates to ECE",
-      price: "$200",
+      price: 200,
       features: [
         "Support submitting transcripts and degree certificates to ECE",
         "Step-by-step guidance for gathering and organizing credentials",
@@ -39,7 +42,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
       id: "fpgee_prep_only",
       name: "FPGEE Exam Preparation Only",
       description: "Focus on high-yield topics: Pharmacology, Clinical Sciences, and more",
-      price: "$500",
+      price: 500,
       features: [
         "Focus on high-yield topics: Pharmacology, Clinical Sciences, and more",
         "Personalized study plans based on NABP Competency Requirements",
@@ -52,7 +55,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
       id: "fpgec_pathway",
       name: "FPGEC Certificate Pathway Coaching",
       description: "Comprehensive support for the FPGEC certificate pathway",
-      price: "$800",
+      price: 800,
       features: [
         "Credential evaluation (ECE & NABP) assistance",
         "Transcript and certification preparation",
@@ -69,7 +72,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
       id: "nabp_application",
       name: "NABP Application & Exam Scheduling",
       description: "Complete application and scheduling support",
-      price: "$150",
+      price: 150,
       features: [
         "NABP e-Profile setup",
         "FPGEE eligibility application guidance",
@@ -81,7 +84,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
       id: "accommodation_support",
       name: "Accommodation, Flight & Hosting Support",
       description: "Complete travel and accommodation assistance",
-      price: "$300",
+      price: 300,
       features: [
         "Flight booking guidance",
         "Temporary housing support (Airbnb, student housing, extended stays)",
@@ -94,7 +97,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
       id: "internship_placement",
       name: "Internship Placement Strategy",
       description: "Coaching on where and how to apply for internships",
-      price: "$100",
+      price: 100,
       features: [
         "Coaching on where and how to apply",
         "Interview preparation",
@@ -106,7 +109,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
       id: "toefl_prep",
       name: "TOEFL-iBT Speaking & Writing Prep",
       description: "Comprehensive TOEFL preparation with multiple options",
-      price: "From $35",
+      price: 35,
       features: [
         "1-Hour Class ($35)",
         "2-Hour Class ($70)",
@@ -121,7 +124,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
       id: "full",
       name: "Full Licensure Pathway Support",
       description: "Everything you need to become a licensed pharmacist in the U.S.",
-      price: "$3,000",
+      price: 3000,
       features: [
         "Credential evaluation (ECE & NABP)",
         "TOEFL and FPGEE preparation",
@@ -192,7 +195,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
                 <Badge variant="secondary" className="bg-green-100 text-green-800">Active</Badge>
               </div>
               <p className="text-sm text-green-700 mb-3">{service.description}</p>
-              <p className="font-bold text-green-800">{service.price}</p>
+              <p className="font-bold text-green-800">${service.price}</p>
             </div>
           ))}
         </div>
@@ -227,9 +230,12 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
                   </ul>
                 </div>
                 <div className="flex justify-between items-center">
-                  <p className="font-bold text-pharma-blue text-lg">{service.price}</p>
+                  <p className="font-bold text-pharma-blue text-lg">${service.price}</p>
                   <Link href="/dashboard/shopping">
-                    <Button className="bg-pharma-blue hover:bg-pharma-dark-blue">
+                    <Button
+                      className="bg-pharma-blue hover:bg-pharma-dark-blue"
+                      onClick={() => addToCart(service)}
+                    >
                       Add to Cart
                     </Button>
                   </Link>
@@ -284,15 +290,20 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
               </div>
               
               <div className="flex justify-between items-center">
-                <p className="font-bold text-lg">{service.price}</p>
+                <p className="font-bold text-lg">${service.price}</p>
                 {isServiceActive(service.id) ? (
                   <Button disabled variant="outline">
                     Active
                   </Button>
                 ) : canUpgradeTo(service) ? (
-                  <Button className="bg-pharma-blue hover:bg-pharma-dark-blue">
-                    Add to Cart
-                  </Button>
+                  <Link href="/dashboard/shopping">
+                    <Button
+                      className="bg-pharma-blue hover:bg-pharma-dark-blue"
+                      onClick={() => addToCart(service)}
+                    >
+                      Add to Cart
+                    </Button>
+                  </Link>
                 ) : (
                   <Button variant="outline" disabled>
                     Not Available
