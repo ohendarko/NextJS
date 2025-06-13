@@ -12,7 +12,7 @@ const MasterRoadmap = ({ userProfile }) => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4">
-      <DashboardNavbar userProfile={userProfile} />
+      {/* <DashboardNavbar userProfile={userProfile} /> */}
       <div className="max-w-7xl mx-auto space-y-6 mt-20">
         {/* Header */}
         <div className="flex items-center justify-between">

@@ -56,6 +56,16 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/appointments/route.js"
+    ],
+    "/(dashboard)/dashboard/speaking-labs/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/dashboard/speaking-labs/page.js"
+    ],
+    "/(dashboard)/dashboard/toefl-tests/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/dashboard/toefl-tests/page.js"
     ]
   }
 }

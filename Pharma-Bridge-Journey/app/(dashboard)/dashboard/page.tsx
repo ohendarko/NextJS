@@ -291,7 +291,7 @@ const Dashboard = () => {
         </div>) :
         <div>
       
-      <DashboardNavbar userProfile={userProfile} />
+      {/* <DashboardNavbar userProfile={userProfile} /> */}
       
       <div className="flex pt-20">
         {/* Mobile Menu Button - Better positioned and styled */}
