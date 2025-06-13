@@ -43,7 +43,7 @@ interface ShoppingProps {
   userProfile: userProfile;
 }
 
-const Shopping: React.FC<ShoppingProps> = () => {
+const Shopping: React.FC<ShoppingProps> = ({userProfile}) => {
   const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
   // const [cart, setCart] = useState<CartItem[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
