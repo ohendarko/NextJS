@@ -49,6 +49,10 @@ const OnboardingForm = () => {
     // Service
     selectedPackage: '',
     activeServices: [] as string[],
+
+    // TOEFL-specific options
+    toeflDuration: '1hr' as '1hr' | '2hr',
+    toeflType: 'speaking' as 'speaking' | 'writing' | 'both',
   });
 
   
@@ -268,14 +272,30 @@ const OnboardingForm = () => {
       name: 'Full Licensure Pathway',
       description: 'Complete guidance from credential evaluation through state licensure',
       price: '$3,000',
-      popular: true
+      mostPopular: true
     },
     {
-      id: 'toefl_prep',
-      name: 'TOEFL Coaching Only',
+      id: 'toefl_prep-1hr',
+      name: 'TOEFL  One-on-One Classes: 1 hour class',
       description: 'Focused preparation for the TOEFL iBT exam',
-      price: '$35 - $250',
+      price: '$35',
       popular: false
+    },
+    {
+      id: 'toefl-prep-2hr',
+      name: 'TOEFL One-on-One Classes: 2 hours',
+      description: 'Personalized TOEFL preparation with expert instructors. Choose your duration and class type.',
+      price: '$70',
+      popular: false,
+      hasToeflOptions: true
+    },
+    {
+      id: 'toefl-lifetime',
+      name: 'TOEFL Lifetime Subscription',
+      description: 'Complete TOEFL preparation package: 4 two-hour classes OR 8 one-hour classes, comprehensive drills, templates, strategies, speaking and writing feedback, test samples, reading questions, registration support',
+      price: '$250',
+      popular: true,
+      hasToeflOptions: false
     }
   ];
   
@@ -525,9 +545,14 @@ const OnboardingForm = () => {
                         <Label htmlFor={pkg.id} className="text-lg font-medium">
                           {pkg.name}
                         </Label>
-                        {pkg.popular && (
-                          <div className="bg-pharma-blue text-white text-xs rounded-full px-2 py-0.5 inline-block mb-2">
+                        {pkg.mostPopular && (
+                          <div className="bg-pharma-blue text-white text-xs rounded-full px-2 py-0.5 inline-block mb-2 ml-1">
                             Most Popular
+                          </div>
+                        )}
+                        {pkg.popular && (
+                          <div className="bg-pharma-blue text-white text-xs rounded-full px-2 py-0.5 inline-block mb-2 ml-1">
+                            Popular
                           </div>
                         )}
                         <p className="text-sm text-gray-600 mt-1">
@@ -653,7 +678,7 @@ const OnboardingForm = () => {
         
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
-            Need assistance? <a href="#" className="text-pharma-blue hover:underline">Contact Support</a>
+            Need assistance? <a href="/contact" className="text-pharma-blue hover:underline">Contact Support</a>
           </p>
         </div>
       </div>

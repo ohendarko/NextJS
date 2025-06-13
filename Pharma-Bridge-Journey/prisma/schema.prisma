@@ -76,7 +76,9 @@ model User {
   visaType           String?
   arrivalDate        DateTime?
   preferredState     String?
-  selectedPackage     String?
+  selectedPackage    String?
+  toeflDuration      String?
+  toeflType          String?
 
   // Relations
   packageSelections  PackageSelection[]

@@ -165,7 +165,9 @@ exports.Prisma.UserScalarFieldEnum = {
   visaType: 'visaType',
   arrivalDate: 'arrivalDate',
   preferredState: 'preferredState',
-  selectedPackage: 'selectedPackage'
+  selectedPackage: 'selectedPackage',
+  toeflDuration: 'toeflDuration',
+  toeflType: 'toeflType'
 };
 
 exports.Prisma.PackageSelectionScalarFieldEnum = {

@@ -1753,6 +1753,8 @@ export namespace Prisma {
     arrivalDate: Date | null
     preferredState: string | null
     selectedPackage: string | null
+    toeflDuration: string | null
+    toeflType: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1808,6 +1810,8 @@ export namespace Prisma {
     arrivalDate: Date | null
     preferredState: string | null
     selectedPackage: string | null
+    toeflDuration: string | null
+    toeflType: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1863,6 +1867,8 @@ export namespace Prisma {
     arrivalDate: number
     preferredState: number
     selectedPackage: number
+    toeflDuration: number
+    toeflType: number
     _all: number
   }
 
@@ -1920,6 +1926,8 @@ export namespace Prisma {
     arrivalDate?: true
     preferredState?: true
     selectedPackage?: true
+    toeflDuration?: true
+    toeflType?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1975,6 +1983,8 @@ export namespace Prisma {
     arrivalDate?: true
     preferredState?: true
     selectedPackage?: true
+    toeflDuration?: true
+    toeflType?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -2030,6 +2040,8 @@ export namespace Prisma {
     arrivalDate?: true
     preferredState?: true
     selectedPackage?: true
+    toeflDuration?: true
+    toeflType?: true
     _all?: true
   }
 
@@ -2158,6 +2170,8 @@ export namespace Prisma {
     arrivalDate: Date | null
     preferredState: string | null
     selectedPackage: string | null
+    toeflDuration: string | null
+    toeflType: string | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -2230,6 +2244,8 @@ export namespace Prisma {
     arrivalDate?: boolean
     preferredState?: boolean
     selectedPackage?: boolean
+    toeflDuration?: boolean
+    toeflType?: boolean
     documentCategories?: boolean | DocumentCategoryDefaultArgs<ExtArgs>
     documents?: boolean | User$documentsArgs<ExtArgs>
     packageSelections?: boolean | User$packageSelectionsArgs<ExtArgs>
@@ -2294,9 +2310,11 @@ export namespace Prisma {
     arrivalDate?: boolean
     preferredState?: boolean
     selectedPackage?: boolean
+    toeflDuration?: boolean
+    toeflType?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "createdAt" | "profileImage" | "admin" | "verified" | "hasCompletedOnboarding" | "fpgeeFormSubmitted" | "fpgecApplicationSubmitted" | "fpgeePassed" | "fpgecCertficateIssued" | "stateBoardApplicationCompleted" | "passportScanSubmitted" | "passportPhotoSubmitted" | "pharmacyLicenseSubmitted" | "goodStandingLetterSubmitted" | "eceApplicationCompleted" | "officialTranscriptsSent" | "courseDescriptionsSubmitted" | "eceEvaluationFeeePaid" | "toeflTestRegistered" | "toeflTestCompleted" | "toeflScoresSent" | "naplexEligibilityConfirmed" | "naplexTestRegistered" | "naplexPreparationCompleted" | "naplexCompleted" | "mpjeEligibilityConfirmed" | "mpjePreparationCompleted" | "mpjeTestRegistered" | "mpjeTestCompleted" | "internshipHoursCompleted" | "pharmacyLicenseObtained" | "maintainLicensure" | "boardSpecialization" | "dateOfBirth" | "gender" | "phoneNumber" | "timezone" | "countryOfDegree" | "degreeType" | "graduationYear" | "degreeFile" | "passportFile" | "licenseFile" | "hasVisa" | "visaType" | "arrivalDate" | "preferredState" | "selectedPackage" | "documentCategories", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "createdAt" | "profileImage" | "admin" | "verified" | "hasCompletedOnboarding" | "fpgeeFormSubmitted" | "fpgecApplicationSubmitted" | "fpgeePassed" | "fpgecCertficateIssued" | "stateBoardApplicationCompleted" | "passportScanSubmitted" | "passportPhotoSubmitted" | "pharmacyLicenseSubmitted" | "goodStandingLetterSubmitted" | "eceApplicationCompleted" | "officialTranscriptsSent" | "courseDescriptionsSubmitted" | "eceEvaluationFeeePaid" | "toeflTestRegistered" | "toeflTestCompleted" | "toeflScoresSent" | "naplexEligibilityConfirmed" | "naplexTestRegistered" | "naplexPreparationCompleted" | "naplexCompleted" | "mpjeEligibilityConfirmed" | "mpjePreparationCompleted" | "mpjeTestRegistered" | "mpjeTestCompleted" | "internshipHoursCompleted" | "pharmacyLicenseObtained" | "maintainLicensure" | "boardSpecialization" | "dateOfBirth" | "gender" | "phoneNumber" | "timezone" | "countryOfDegree" | "degreeType" | "graduationYear" | "degreeFile" | "passportFile" | "licenseFile" | "hasVisa" | "visaType" | "arrivalDate" | "preferredState" | "selectedPackage" | "toeflDuration" | "toeflType" | "documentCategories", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     documents?: boolean | User$documentsArgs<ExtArgs>
     packageSelections?: boolean | User$packageSelectionsArgs<ExtArgs>
@@ -2368,6 +2386,8 @@ export namespace Prisma {
       arrivalDate: Date | null
       preferredState: string | null
       selectedPackage: string | null
+      toeflDuration: string | null
+      toeflType: string | null
     }, ExtArgs["result"]["user"]>
     composites: {
       documentCategories: Prisma.$DocumentCategoryPayload[]
@@ -2819,6 +2839,8 @@ export namespace Prisma {
     readonly arrivalDate: FieldRef<"User", 'DateTime'>
     readonly preferredState: FieldRef<"User", 'String'>
     readonly selectedPackage: FieldRef<"User", 'String'>
+    readonly toeflDuration: FieldRef<"User", 'String'>
+    readonly toeflType: FieldRef<"User", 'String'>
   }
     
 
@@ -10374,7 +10396,9 @@ export namespace Prisma {
     visaType: 'visaType',
     arrivalDate: 'arrivalDate',
     preferredState: 'preferredState',
-    selectedPackage: 'selectedPackage'
+    selectedPackage: 'selectedPackage',
+    toeflDuration: 'toeflDuration',
+    toeflType: 'toeflType'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -10618,6 +10642,8 @@ export namespace Prisma {
     arrivalDate?: DateTimeNullableFilter<"User"> | Date | string | null
     preferredState?: StringNullableFilter<"User"> | string | null
     selectedPackage?: StringNullableFilter<"User"> | string | null
+    toeflDuration?: StringNullableFilter<"User"> | string | null
+    toeflType?: StringNullableFilter<"User"> | string | null
     documentCategories?: DocumentCategoryCompositeListFilter | DocumentCategoryObjectEqualityInput[]
     documents?: DocumentListRelationFilter
     packageSelections?: PackageSelectionListRelationFilter
@@ -10679,6 +10705,8 @@ export namespace Prisma {
     arrivalDate?: SortOrder
     preferredState?: SortOrder
     selectedPackage?: SortOrder
+    toeflDuration?: SortOrder
+    toeflType?: SortOrder
     documentCategories?: DocumentCategoryOrderByCompositeAggregateInput
     documents?: DocumentOrderByRelationAggregateInput
     packageSelections?: PackageSelectionOrderByRelationAggregateInput
@@ -10743,6 +10771,8 @@ export namespace Prisma {
     arrivalDate?: DateTimeNullableFilter<"User"> | Date | string | null
     preferredState?: StringNullableFilter<"User"> | string | null
     selectedPackage?: StringNullableFilter<"User"> | string | null
+    toeflDuration?: StringNullableFilter<"User"> | string | null
+    toeflType?: StringNullableFilter<"User"> | string | null
     documentCategories?: DocumentCategoryCompositeListFilter | DocumentCategoryObjectEqualityInput[]
     documents?: DocumentListRelationFilter
     packageSelections?: PackageSelectionListRelationFilter
@@ -10804,6 +10834,8 @@ export namespace Prisma {
     arrivalDate?: SortOrder
     preferredState?: SortOrder
     selectedPackage?: SortOrder
+    toeflDuration?: SortOrder
+    toeflType?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -10865,6 +10897,8 @@ export namespace Prisma {
     arrivalDate?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     preferredState?: StringNullableWithAggregatesFilter<"User"> | string | null
     selectedPackage?: StringNullableWithAggregatesFilter<"User"> | string | null
+    toeflDuration?: StringNullableWithAggregatesFilter<"User"> | string | null
+    toeflType?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type PackageSelectionWhereInput = {
@@ -11392,6 +11426,8 @@ export namespace Prisma {
     arrivalDate?: Date | string | null
     preferredState?: string | null
     selectedPackage?: string | null
+    toeflDuration?: string | null
+    toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentCreateNestedManyWithoutUserInput
     packageSelections?: PackageSelectionCreateNestedManyWithoutUserInput
@@ -11453,6 +11489,8 @@ export namespace Prisma {
     arrivalDate?: Date | string | null
     preferredState?: string | null
     selectedPackage?: string | null
+    toeflDuration?: string | null
+    toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     packageSelections?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
@@ -11513,6 +11551,8 @@ export namespace Prisma {
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
     selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUpdateManyWithoutUserNestedInput
     packageSelections?: PackageSelectionUpdateManyWithoutUserNestedInput
@@ -11573,6 +11613,8 @@ export namespace Prisma {
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
     selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     packageSelections?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
@@ -11634,6 +11676,8 @@ export namespace Prisma {
     arrivalDate?: Date | string | null
     preferredState?: string | null
     selectedPackage?: string | null
+    toeflDuration?: string | null
+    toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
   }
 
@@ -11689,6 +11733,8 @@ export namespace Prisma {
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
     selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
   }
 
@@ -11744,6 +11790,8 @@ export namespace Prisma {
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
     selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
   }
 
@@ -12419,6 +12467,8 @@ export namespace Prisma {
     arrivalDate?: SortOrder
     preferredState?: SortOrder
     selectedPackage?: SortOrder
+    toeflDuration?: SortOrder
+    toeflType?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -12474,6 +12524,8 @@ export namespace Prisma {
     arrivalDate?: SortOrder
     preferredState?: SortOrder
     selectedPackage?: SortOrder
+    toeflDuration?: SortOrder
+    toeflType?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -12529,6 +12581,8 @@ export namespace Prisma {
     arrivalDate?: SortOrder
     preferredState?: SortOrder
     selectedPackage?: SortOrder
+    toeflDuration?: SortOrder
+    toeflType?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -13795,6 +13849,8 @@ export namespace Prisma {
     arrivalDate?: Date | string | null
     preferredState?: string | null
     selectedPackage?: string | null
+    toeflDuration?: string | null
+    toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentCreateNestedManyWithoutUserInput
     consultations?: ConsultationCreateNestedManyWithoutUserInput
@@ -13855,6 +13911,8 @@ export namespace Prisma {
     arrivalDate?: Date | string | null
     preferredState?: string | null
     selectedPackage?: string | null
+    toeflDuration?: string | null
+    toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     consultations?: ConsultationUncheckedCreateNestedManyWithoutUserInput
@@ -13930,6 +13988,8 @@ export namespace Prisma {
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
     selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUpdateManyWithoutUserNestedInput
     consultations?: ConsultationUpdateManyWithoutUserNestedInput
@@ -13989,6 +14049,8 @@ export namespace Prisma {
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
     selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     consultations?: ConsultationUncheckedUpdateManyWithoutUserNestedInput
@@ -14049,6 +14111,8 @@ export namespace Prisma {
     arrivalDate?: Date | string | null
     preferredState?: string | null
     selectedPackage?: string | null
+    toeflDuration?: string | null
+    toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentCreateNestedManyWithoutUserInput
     packageSelections?: PackageSelectionCreateNestedManyWithoutUserInput
@@ -14109,6 +14173,8 @@ export namespace Prisma {
     arrivalDate?: Date | string | null
     preferredState?: string | null
     selectedPackage?: string | null
+    toeflDuration?: string | null
+    toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     packageSelections?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
@@ -14184,6 +14250,8 @@ export namespace Prisma {
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
     selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUpdateManyWithoutUserNestedInput
     packageSelections?: PackageSelectionUpdateManyWithoutUserNestedInput
@@ -14243,6 +14311,8 @@ export namespace Prisma {
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
     selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     packageSelections?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
@@ -14303,6 +14373,8 @@ export namespace Prisma {
     arrivalDate?: Date | string | null
     preferredState?: string | null
     selectedPackage?: string | null
+    toeflDuration?: string | null
+    toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentCreateNestedManyWithoutUserInput
     packageSelections?: PackageSelectionCreateNestedManyWithoutUserInput
@@ -14363,6 +14435,8 @@ export namespace Prisma {
     arrivalDate?: Date | string | null
     preferredState?: string | null
     selectedPackage?: string | null
+    toeflDuration?: string | null
+    toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     packageSelections?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
@@ -14438,6 +14512,8 @@ export namespace Prisma {
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
     selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUpdateManyWithoutUserNestedInput
     packageSelections?: PackageSelectionUpdateManyWithoutUserNestedInput
@@ -14497,6 +14573,8 @@ export namespace Prisma {
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
     selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     packageSelections?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
@@ -14557,6 +14635,8 @@ export namespace Prisma {
     arrivalDate?: Date | string | null
     preferredState?: string | null
     selectedPackage?: string | null
+    toeflDuration?: string | null
+    toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentCreateNestedManyWithoutUserInput
     packageSelections?: PackageSelectionCreateNestedManyWithoutUserInput
@@ -14617,6 +14697,8 @@ export namespace Prisma {
     arrivalDate?: Date | string | null
     preferredState?: string | null
     selectedPackage?: string | null
+    toeflDuration?: string | null
+    toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
     packageSelections?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
@@ -14692,6 +14774,8 @@ export namespace Prisma {
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
     selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUpdateManyWithoutUserNestedInput
     packageSelections?: PackageSelectionUpdateManyWithoutUserNestedInput
@@ -14751,6 +14835,8 @@ export namespace Prisma {
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
     selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
     packageSelections?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
@@ -14811,6 +14897,8 @@ export namespace Prisma {
     arrivalDate?: Date | string | null
     preferredState?: string | null
     selectedPackage?: string | null
+    toeflDuration?: string | null
+    toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     packageSelections?: PackageSelectionCreateNestedManyWithoutUserInput
     consultations?: ConsultationCreateNestedManyWithoutUserInput
@@ -14871,6 +14959,8 @@ export namespace Prisma {
     arrivalDate?: Date | string | null
     preferredState?: string | null
     selectedPackage?: string | null
+    toeflDuration?: string | null
+    toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     packageSelections?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
     consultations?: ConsultationUncheckedCreateNestedManyWithoutUserInput
@@ -14946,6 +15036,8 @@ export namespace Prisma {
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
     selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     packageSelections?: PackageSelectionUpdateManyWithoutUserNestedInput
     consultations?: ConsultationUpdateManyWithoutUserNestedInput
@@ -15005,6 +15097,8 @@ export namespace Prisma {
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
     selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
+    toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
     packageSelections?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
     consultations?: ConsultationUncheckedUpdateManyWithoutUserNestedInput

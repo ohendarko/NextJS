@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import Link from 'next/link';
 
 interface Service {
   id: string;
@@ -227,9 +228,11 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
                 </div>
                 <div className="flex justify-between items-center">
                   <p className="font-bold text-pharma-blue text-lg">{service.price}</p>
-                  <Button className="bg-pharma-blue hover:bg-pharma-dark-blue">
-                    Add to Cart
-                  </Button>
+                  <Link href="/dashboard/shopping">
+                    <Button className="bg-pharma-blue hover:bg-pharma-dark-blue">
+                      Add to Cart
+                    </Button>
+                  </Link>
                 </div>
               </div>
             ))}

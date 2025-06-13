@@ -28,7 +28,7 @@ interface ServiceModule {
   description: string;
   icon: React.ReactNode;
   link: string;
-  requiredService: string;
+  requiredService: string[];
 }
 
 const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
@@ -40,7 +40,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       description: "Watch expert-led pharmacy lessons",
       icon: <Video className="h-8 w-8 text-pharma-blue" />,
       link: "/dashboard/courses",
-      requiredService: "fpgee"
+      requiredService: ["fpgee"]
     },
     {
       id: "practice-questions",
@@ -48,7 +48,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       description: "Test your knowledge with thousands of questions",
       icon: <FileText className="h-8 w-8 text-pharma-blue" />,
       link: "/dashboard/practice",
-      requiredService: "fpgee"
+      requiredService: ["fpgee"]
     },
     {
       id: "study-tracker",
@@ -56,7 +56,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       description: "Track your progress and study hours",
       icon: <Calendar className="h-8 w-8 text-pharma-blue" />,
       link: "/dashboard/tracker",
-      requiredService: "fpgee"
+      requiredService: ["fpgee"]
     },
     
     // TOEFL Prep modules
@@ -66,7 +66,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       description: "Send us any speaking response to evaluate for you",
       icon: <MessageSquare className="h-8 w-8 text-pharma-blue" />,
       link: "/dashboard/speaking-labs",
-      requiredService: "toefl"
+      requiredService: ["toefl", "toefl_prep-1hr", "toefl-prep-2hr", "toefl-lifetime"]
     },
     {
       id: "writing-labs",
@@ -74,7 +74,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       description: "Send us any writing response to evaluate for you",
       icon: <Pen className="h-8 w-8 text-pharma-blue" />,
       link: "/dashboard/writing-labs",
-      requiredService: "toefl"
+      requiredService: ["toefl", "toefl_prep-1hr", "toefl-prep-2hr", "toefl-lifetime"]
     },
     {
       id: "practice-tests",
@@ -82,7 +82,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       description: "Full-length practice tests with detailed feedback",
       icon: <FileText className="h-8 w-8 text-pharma-blue" />,
       link: "/dashboard/toefl-tests",
-      requiredService: "toefl"
+      requiredService: ["toefl", "toefl_prep-1hr", "toefl-prep-2hr", "toefl-lifetime"]
     },
     
     // Documentation Help modules
@@ -92,7 +92,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       description: "Upload and manage sensitive documents",
       icon: <FileText className="h-8 w-8 text-pharma-blue" />,
       link: "/dashboard/documents/upload",
-      requiredService: "doc_assist"
+      requiredService: ["doc_assist"]
     },
     
     // Visa Support modules
@@ -122,13 +122,13 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       description: "Your comprehensive path to U.S. licensure",
       icon: <CheckCircle2 className="h-8 w-8 text-pharma-blue" />,
       link: "/dashboard/roadmap",
-      requiredService: "full"
+      requiredService: ["full"]
     }
   ];
   
   // Filter modules based on user's active services
   const availableModules = allModules.filter(module => 
-    userProfile.selectedPackage?.includes(module.requiredService) || 
+    module.requiredService.some(service => userProfile.selectedPackage?.includes(service)) || 
     userProfile.selectedPackage?.includes("full") // Full package includes all modules
   );
   
@@ -141,7 +141,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
           You don't have any active services yet. Complete onboarding or Check out our service packages to begin your journey.
         </p>
         <Button asChild>
-          <Link href="/#services">View Service Packages</Link>
+          <Link href="/dashboard/pricing">View Service Packages</Link>
         </Button>
       </div>
     );
@@ -152,12 +152,15 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       {availableModules.map((module) => (
         <Link href={module.link} key={module.id}>
           <Card className="h-full cursor-pointer hover:shadow-md transition-shadow">
-            <CardContent className="p-6 flex items-start space-x-4">
-              <div className="mt-1">{module.icon}</div>
-              <div className="space-y-1">
-                <h3 className="font-semibold">{module.title}</h3>
-                <p className="text-sm text-gray-600">{module.description}</p>
+            <CardContent className="p-6 flex flex-col gap-2 items-start space-x-4">
+              <div className='flex gap-1 '>
+                <div className="mt-1">{module.icon}</div>
+                <div className="space-y-1 mt-1">
+                  <h3 className="font-semibold">{module.title}</h3>
+                </div>
+
               </div>
+                <p className="text-sm text-gray-600">{module.description}</p>
             </CardContent>
           </Card>
         </Link>

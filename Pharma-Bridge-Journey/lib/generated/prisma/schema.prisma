@@ -76,6 +76,8 @@ model User {
   arrivalDate     DateTime?
   preferredState  String?
   selectedPackage String?
+  toeflDuration   String?
+  toeflType       String?
 
   // Relations
   packageSelections  PackageSelection[]
