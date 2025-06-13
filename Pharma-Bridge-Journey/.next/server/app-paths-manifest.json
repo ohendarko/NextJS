@@ -1,7 +1,7 @@
 {
-  "/(regularLayout)/login/page": "app/(regularLayout)/login/page.js",
-  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
-  "/(dashboard)/dashboard/shopping/page": "app/(dashboard)/dashboard/shopping/page.js",
-  "/(dashboard)/dashboard/shopping/checkout/payment/page": "app/(dashboard)/dashboard/shopping/checkout/payment/page.js",
-  "/(dashboard)/dashboard/shopping/checkout/page": "app/(dashboard)/dashboard/shopping/checkout/page.js"
+  "/api/appointments/route": "app/api/appointments/route.js",
+  "/api/document/route": "app/api/document/route.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/(dashboard)/dashboard/documents/page": "app/(dashboard)/dashboard/documents/page.js",
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js"
 }

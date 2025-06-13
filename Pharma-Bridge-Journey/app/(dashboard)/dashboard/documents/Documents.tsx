@@ -14,7 +14,8 @@ import {
   AlertCircle,
   Calendar,
   Eye,
-  Download
+  Download,
+  ArrowLeft
 } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -88,15 +89,21 @@ const Documents = ({ userProfile }) => {
   const approvedCount = getStatusCount('approved');
   const totalRequired = documents.length;
   const completionPercentage = (approvedCount / totalRequired) * 100;
+  // console.log(completionPercentage)
 
   return (
     <div className="min-h-screen bg-gray-100 py-6">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="mb-8">
-          <Link href="/dashboard" className="text-pharma-blue hover:underline mb-4 inline-block">
-            ← Back to Dashboard
+          <div className="flex items-center gap-4 mb-4">
+          <Link href="/dashboard">
+            <Button variant="outline" size="sm">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Dashboard
+            </Button>
           </Link>
+        </div>
           <h1 className="text-3xl font-bold text-pharma-blue mb-2">Document Center</h1>
           <p className="text-gray-600">
             Manage and track all your application documents in one place
@@ -167,7 +174,7 @@ const Documents = ({ userProfile }) => {
               </div>
               <Progress value={completionPercentage} className="h-3" />
               <p className="text-sm text-gray-600">
-                {completionPercentage.toFixed(0)}% of required documents have been approved
+                {(typeof completionPercentage === "number" && !isNaN(completionPercentage) ? completionPercentage : 0).toFixed(0)}% of required documents have been approved
               </p>
             </div>
           </CardContent>
@@ -260,7 +267,7 @@ const Documents = ({ userProfile }) => {
                   {filteredDocuments.length === 0 && (
                     <div className="text-center py-8">
                       <FileText className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                      <p className="text-gray-500">No documents found matching your search</p>
+                      <p className="text-gray-500">No documents found.</p>
                     </div>
                   )}
                 </div>
