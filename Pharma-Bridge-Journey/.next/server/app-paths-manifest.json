@@ -1,10 +1,6 @@
 {
-  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/api/document/route": "app/api/document/route.js",
-  "/api/user/route": "app/api/user/route.js",
-  "/api/appointments/route": "app/api/appointments/route.js",
-  "/(dashboard)/dashboard/documents/page": "app/(dashboard)/dashboard/documents/page.js",
   "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
   "/(dashboard)/dashboard/speaking-labs/page": "app/(dashboard)/dashboard/speaking-labs/page.js",
+  "/(dashboard)/dashboard/documents/page": "app/(dashboard)/dashboard/documents/page.js",
   "/(dashboard)/dashboard/toefl-tests/page": "app/(dashboard)/dashboard/toefl-tests/page.js"
 }
