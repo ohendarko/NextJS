@@ -36,12 +36,13 @@ type CartContextType = {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export const CartProvider = ({ children }: { children: ReactNode }) => {
+export const CartProvider = ({ children, userId }: { children: ReactNode; userId: string }) => {
+  const STORAGE_KEY = `pharmabridge_cart_${userId}`;
   const [cart, setCart] = useState<CartItem[]>([]);
 
   // Load cart from localStorage on mount
   useEffect(() => {
-    const storedCart = localStorage.getItem("pharmabridge_cart");
+    const storedCart = localStorage.getItem(STORAGE_KEY);
     if (storedCart) {
       try {
         setCart(JSON.parse(storedCart));
@@ -53,7 +54,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   // Save cart to localStorage on change
   useEffect(() => {
-    localStorage.setItem("pharmabridge_cart", JSON.stringify(cart));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
   }, [cart]);
   
   const addToCart = (service: Service) => {

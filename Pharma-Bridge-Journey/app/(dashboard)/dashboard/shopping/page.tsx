@@ -39,11 +39,9 @@ interface CartItem extends Service {
   quantity: number;
 }
 
-interface ShoppingProps {
-  userProfile: userProfile;
-}
 
-const Shopping: React.FC<ShoppingProps> = ({userProfile}) => {
+
+const Shopping = () => {
   const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
   // const [cart, setCart] = useState<CartItem[]>([]);
   const [searchTerm, setSearchTerm] = useState('');

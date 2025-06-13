@@ -22,11 +22,11 @@ export default function RootLayout({
  
       <SessionWrapper>
         <AuthProvider>  
-            <div>
+            
               <main >
                 {children}
               </main>
-            </div>
+            
         </AuthProvider>
       </SessionWrapper>
 

@@ -66,6 +66,16 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/appointments/route.js"
+    ],
+    "/(regularLayout)/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(regularLayout)/layout.js"
+    ],
+    "/(regularLayout)/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(regularLayout)/login/page.js"
     ]
   }
 }

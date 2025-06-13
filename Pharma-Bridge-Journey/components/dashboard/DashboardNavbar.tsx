@@ -67,6 +67,8 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ userProfile }) => {
       redirect: false, // prevent automatic redirect so you can control it
     });
 
+    // localStorage.removeItem(`pharmabridge_cart_${userId}`);
+
     toast({
       title: "Logged out",
       description: "You have been signed out.",
