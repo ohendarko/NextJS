@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -12,9 +12,8 @@ import NotificationCenter from '@/components/dashboard/NotificationCenter';
 import BillingSupport from '@/components/dashboard/BillingSupport';
 import ServiceUpgrade from '@/components/dashboard/ServiceUpgrade';
 import { useIsMobile } from "@/hooks/use-mobile";
-import { User, FileText, Calendar, MessageSquare, Settings, Upload, Menu, UserPlus, Map } from 'lucide-react';
+import { User, FileText, Calendar, Settings, Upload, Menu, UserPlus, Map } from 'lucide-react';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import Spinner from '@/components/Spinner';
 import Link from 'next/link';
 import AppointmentCenter from '@/components/dashboard/AppointmentSection';
@@ -25,77 +24,12 @@ import { useUser } from "@/context/UserContext";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");
-  const [userData, setUserData] = useState({
-    name: "User",
-    email: "jane.doe@example.com",
-    countryOfDegree: "India",
-    phoneNumber: '',
-    degreeType: "Bachelor of Pharmacy",
-    graduationYear: 2020,
-    profileImage: null,
-    hasCompletedOnboarding: false, // Flag to check if onboarding is complete
-    activeServices: ['fpgee_prep', 'toefl_prep'], // Tags for active services
-    documents: {
-      license: { uploaded: true, verificationStatus: 'verified' },
-      degree: { uploaded: true, verificationStatus: 'pending' },
-      idProof: { uploaded: false, verificationStatus: null }
-    }
-  });
   const { data: session, status } = useSession()
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [userProfile, setUserProfile] = useState(userData);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const isMobile = useIsMobile();
-  const router = useRouter();
   const { userProfile, isLoading } = useUser();
 
 
-  
-  
-  // In a real app, this would fetch user data from your backend
-  // useEffect(() => {
-  //   try {
-  //     setIsLoading(true);
-  //     const fetchUser = async () => {
-  //       try {
-  //         setIsLoading(true);
-  
-  //         if (status === 'unauthenticated') {
-  //           alert('You must be logged in to access this page.');
-  //           router.push('/login');
-  //           return;
-  //         }
-  
-  //         // if (status === 'loading') return; // Wait until session resolves
-  
-  //         const res = await fetch('/api/user');
-  //         const data = await res.json();
-  //         console.log(data)
-  
-  //         if (!res.ok) throw new Error(data.error || 'Failed to fetch user');
-  
-  //         setUserData(data);
-  //         setUserProfile(data);
-  //       } catch (error) {
-  //         console.error('Error loading user:', error);
-  //       } finally {
-  //         setIsLoading(false);
-  //       }
-  //     };
-  
-  //     fetchUser();
-      
-  //   } catch (error) {
-  //     console.error(error)
-      
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-
-  // }, [status, router]);
-
-  // console.log('userdata:',userData)
-  // console.log('userprofile:',userProfile)
 
   const navigationItems = [
     { id: 'overview', label: 'Overview', icon: Calendar },

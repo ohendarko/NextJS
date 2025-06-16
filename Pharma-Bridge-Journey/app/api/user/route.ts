@@ -1,8 +1,7 @@
-// app/api/user/route.ts
+
 import { NextResponse } from 'next/server';
-// import { getServerSession } from 'next-auth';
-// import { authOptions } from '@/lib/auth/options';
-import { PrismaClient } from '@/lib/generated/prisma'; // Adjust this import to match your project
+import { PrismaClient } from '@/lib/generated/prisma';
+
 
 const prisma = new PrismaClient();
 export async function GET(req: Request) {
@@ -19,7 +18,6 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
-    // console.log('user:', user);
     return NextResponse.json(user);
   } catch (error) {
     console.error('Error fetching user data:', error);

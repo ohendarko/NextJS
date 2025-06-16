@@ -10,10 +10,7 @@ import {
   Video, 
   Calendar, 
   CheckCircle2, 
-  // Settings, 
-  // Upload, 
 } from 'lucide-react';
-import { useSession } from 'next-auth/react';
 import Spinner from '../Spinner';
 
 interface UserProfile {
@@ -131,7 +128,6 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
     }
   ];
 
-  // console.log(status);
   useEffect(() => {
     const fetchModules = async () => {
       setIsLoading(true);

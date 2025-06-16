@@ -9,12 +9,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, Calendar as CalendarIcon } from 'lucide-react';
-import { useIsMobile } from "@/hooks/use-mobile";
+import { Calendar as CalendarIcon } from 'lucide-react';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
 
-// import Link from 'next/link';
+
+
 
 interface Appointment {
   id: string;
@@ -44,7 +43,6 @@ const AppointmentCenter = ({userProfile}) => {
     notes: ""
   });
 
-  const isMobile = useIsMobile();
 
     useEffect(() => {
       const fetchAppointments = async () => {
@@ -62,10 +60,10 @@ const AppointmentCenter = ({userProfile}) => {
       };
   
       fetchAppointments();
-      // console.log(appointments)
+
   
     }, [status]);
-    // console.log('appointments:', appointments)
+
 
   const appointmentTypes = [
     "FPGEE Consultation",
