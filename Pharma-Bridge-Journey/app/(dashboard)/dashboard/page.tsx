@@ -303,7 +303,7 @@ const Dashboard = () => {
                 <CardTitle className="text-white">Let us get to know you better</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p>Complete your profile information to help us provide the best possible guidance for your journey.</p>
+                <p>Set up your profile information to help us provide the best possible guidance for your journey. It takes less than 2 minutes to complete.</p>
                 <Link href="/dashboard/onboarding" className="inline-flex items-center justify-center w-full bg-white text-pharma-blue font-medium rounded-md px-4 py-2 hover:bg-gray-100 transition-colors">
                   <UserPlus className="mr-2 h-5 w-5" />
                   Start Onboarding

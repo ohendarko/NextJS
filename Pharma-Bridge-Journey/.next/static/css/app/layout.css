@@ -2210,6 +2210,21 @@ video {
   --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
+.from-pharma-blue\/10 {
+  --tw-gradient-from: rgb(0 120 215 / 0.1) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 120 215 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-pharma-blue\/0 {
+  --tw-gradient-from: rgb(0 120 215 / 0) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 120 215 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-pharma-blue\/50 {
+  --tw-gradient-from: rgb(0 120 215 / 0.5) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 120 215 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
 .via-white {
   --tw-gradient-to: rgb(255 255 255 / 0)  var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), #fff var(--tw-gradient-via-position), var(--tw-gradient-to);
