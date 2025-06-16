@@ -168,7 +168,7 @@ const Policy = () => {
                 </Button>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div>
+                <div id='cookies'>
                   <h3 className="text-lg font-semibold mb-3">Types of cookies we use:</h3>
                   <div className="space-y-4">
                     <div className="border-l-4 border-blue-500 pl-4">

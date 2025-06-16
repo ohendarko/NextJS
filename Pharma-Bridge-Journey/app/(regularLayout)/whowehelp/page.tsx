@@ -60,7 +60,7 @@ const WhoWeHelpSection = () => {
                     "Join student-focused prep webinars and bootcamps"
                   ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
-                      <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <Check className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700">{item}</span>
                     </div>
                   ))}
@@ -73,7 +73,7 @@ const WhoWeHelpSection = () => {
 
             {/* 2. International Pharmacists Already in U.S. */}
             <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-blue-200 hover:shadow-2xl transition-all duration-500">
-              <div className="bg-gradient-to-r from-green-600 to-emerald-700 text-white p-8">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-900 text-white p-8">
                 <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                   <div className="bg-white/20 p-4 rounded-full">
                     <Star className="h-10 w-10" />
@@ -85,12 +85,12 @@ const WhoWeHelpSection = () => {
                 </div>
               </div>
               <div className="p-8">
-                <div className="bg-green-50 p-6 rounded-xl mb-6 border-l-4 border-green-600">
+                <div className="bg-blue-50 p-6 rounded-xl mb-6 border-l-4 border-blue-600">
                   <p className="text-lg text-gray-700 italic">
                     "You're here but not yet licensed. You know the basics but need focused guidance on the FPGEE, ECE evaluation, and next steps."
                   </p>
                 </div>
-                <h4 className="text-xl font-bold text-green-700 mb-4">We help you:</h4>
+                <h4 className="text-xl font-bold text-blue-700 mb-4">We help you:</h4>
                 <div className="grid md:grid-cols-2 gap-4 mb-6">
                   {[
                     "Check FPGEE eligibility & apply through NABP",
@@ -98,8 +98,8 @@ const WhoWeHelpSection = () => {
                     "Master TOEFL requirements & speaking sections",
                     "Navigate state board applications & internship requirements"
                   ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
-                      <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <div key={index} className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                      <Check className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700">{item}</span>
                     </div>
                   ))}
@@ -112,24 +112,24 @@ const WhoWeHelpSection = () => {
 
             {/* 3. Post-Bacc/Master's Students */}
             <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-blue-200 hover:shadow-2xl transition-all duration-500">
-              <div className="bg-gradient-to-r from-purple-600 to-indigo-700 text-white p-8">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-900 text-white p-8">
                 <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                   <div className="bg-white/20 p-4 rounded-full">
                     <Star className="h-10 w-10" />
                   </div>
                   <div>
                     <h2 className="text-2xl md:text-3xl font-bold mb-2">Post-Bacc/Master's Students</h2>
-                    <p className="text-purple-100 text-lg">In pharmaceutical sciences, public health, or related programs</p>
+                    <p className="text-blue-100 text-lg">In pharmaceutical sciences, public health, or related programs</p>
                   </div>
                 </div>
               </div>
               <div className="p-8">
-                <div className="bg-purple-50 p-6 rounded-xl mb-6 border-l-4 border-purple-600">
+                <div className="bg-blue-50 p-6 rounded-xl mb-6 border-l-4 border-blue-600">
                   <p className="text-lg text-gray-700 italic">
                     "You're enhancing your credentials through additional education but want to strategically plan your pharmacy licensure timeline."
                   </p>
                 </div>
-                <h4 className="text-xl font-bold text-purple-700 mb-4">We help you:</h4>
+                <h4 className="text-xl font-bold text-blue-700 mb-4">We help you:</h4>
                 <div className="grid md:grid-cols-2 gap-4 mb-6">
                   {[
                     "Plan exam timeline around your academic schedule",
@@ -137,38 +137,38 @@ const WhoWeHelpSection = () => {
                     "Prep for FPGEE while completing your program",
                     "Transition from student to pharmacy intern smoothly"
                   ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3 p-3 bg-purple-50 rounded-lg">
-                      <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <div key={index} className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                      <Check className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700">{item}</span>
                     </div>
                   ))}
                 </div>
                 <div className="bg-gradient-to-r from-purple-50 to-white p-4 rounded-xl text-center">
-                  <p className="text-purple-700 font-semibold">Maximize your time in school — graduate job-ready.</p>
+                  <p className="text-blue-700 font-semibold">Maximize your time in school — graduate job-ready.</p>
                 </div>
               </div>
             </div>
 
             {/* 4. Pharmacy Schools & Alumni Networks */}
             <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-blue-200 hover:shadow-2xl transition-all duration-500">
-              <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white p-8">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-900 text-white p-8">
                 <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                   <div className="bg-white/20 p-4 rounded-full">
                     <Star className="h-10 w-10" />
                   </div>
                   <div>
                     <h2 className="text-2xl md:text-3xl font-bold mb-2">Pharmacy Schools & Alumni Networks</h2>
-                    <p className="text-orange-100 text-lg">Universities, professional associations, and alumni groups</p>
+                    <p className="text-blue-100 text-lg">Universities, professional associations, and alumni groups</p>
                   </div>
                 </div>
               </div>
               <div className="p-8">
-                <div className="bg-orange-50 p-6 rounded-xl mb-6 border-l-4 border-orange-600">
+                <div className="bg-blue-50 p-6 rounded-xl mb-6 border-l-4 border-blue-600">
                   <p className="text-lg text-gray-700 italic">
                     "You want to provide value to your students/members with expert U.S. licensure guidance and exclusive educational resources."
                   </p>
                 </div>
-                <h4 className="text-xl font-bold text-orange-700 mb-4">We partner with you to offer:</h4>
+                <h4 className="text-xl font-bold text-blue-700 mb-4">We partner with you to offer:</h4>
                 <div className="grid md:grid-cols-2 gap-4 mb-6">
                   {[
                     "Guest lectures & webinars for your students",
@@ -176,38 +176,38 @@ const WhoWeHelpSection = () => {
                     "Discounted group rates for members",
                     "Mentorship events & networking sessions"
                   ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3 p-3 bg-orange-50 rounded-lg">
-                      <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <div key={index} className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                      <Check className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700">{item}</span>
                     </div>
                   ))}
                 </div>
-                <div className="bg-gradient-to-r from-orange-50 to-white p-4 rounded-xl text-center">
-                  <p className="text-orange-700 font-semibold">Let's build a pipeline of success for your community.</p>
+                <div className="bg-gradient-to-r from-blue-50 to-white p-4 rounded-xl text-center">
+                  <p className="text-blue-700 font-semibold">Let's build a pipeline of success for your community.</p>
                 </div>
               </div>
             </div>
 
             {/* 5. Retake Candidates */}
             <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-blue-200 hover:shadow-2xl transition-all duration-500">
-              <div className="bg-gradient-to-r from-teal-600 to-cyan-700 text-white p-8">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-900 text-white p-8">
                 <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                   <div className="bg-white/20 p-4 rounded-full">
                     <Star className="h-10 w-10" />
                   </div>
                   <div>
                     <h2 className="text-2xl md:text-3xl font-bold mb-2">Retake Candidates</h2>
-                    <p className="text-teal-100 text-lg">Those who didn't pass on the first attempt</p>
+                    <p className="text-blue-100 text-lg">Those who didn't pass on the first attempt</p>
                   </div>
                 </div>
               </div>
               <div className="p-8">
-                <div className="bg-teal-50 p-6 rounded-xl mb-6 border-l-4 border-teal-600">
+                <div className="bg-blue-50 p-6 rounded-xl mb-6 border-l-4 border-blue-600">
                   <p className="text-lg text-gray-700 italic">
                     "You've been through this before. You need focused, strategic support to identify gaps and build confidence for your next attempt."
                   </p>
                 </div>
-                <h4 className="text-xl font-bold text-teal-700 mb-4">We help you:</h4>
+                <h4 className="text-xl font-bold text-blue-700 mb-4">We help you:</h4>
                 <div className="grid md:grid-cols-2 gap-4 mb-6">
                   {[
                     "Rebuild confidence with targeted study plans",
@@ -215,14 +215,14 @@ const WhoWeHelpSection = () => {
                     "Get personalized prep & mentor pairing",
                     "Access retake-friendly packages & pricing"
                   ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3 p-3 bg-teal-50 rounded-lg">
-                      <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <div key={index} className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                      <Check className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700">{item}</span>
                     </div>
                   ))}
                 </div>
-                <div className="bg-gradient-to-r from-teal-50 to-white p-4 rounded-xl text-center">
-                  <p className="text-teal-700 font-semibold">Your setback is your comeback — we believe in your success.</p>
+                <div className="bg-gradient-to-r from-blue-50 to-white p-4 rounded-xl text-center">
+                  <p className="text-blue-700 font-semibold">Your setback is your comeback — we believe in your success.</p>
                 </div>
               </div>
             </div>
