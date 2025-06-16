@@ -10,7 +10,10 @@ import {
   Video, 
   Calendar, 
   CheckCircle2, 
+  // Settings, 
+  // Upload, 
 } from 'lucide-react';
+import { useSession } from 'next-auth/react';
 import Spinner from '../Spinner';
 
 interface UserProfile {
@@ -128,6 +131,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
     }
   ];
 
+  // console.log(status);
   useEffect(() => {
     const fetchModules = async () => {
       setIsLoading(true);
@@ -151,25 +155,26 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
 
   if (isLoading) return <Spinner loading={true} />;
   
-  
+  // If no modules are available, show message to purchase services
+  if (availableModules.length === 0) {
+    return (
+      <div className="text-center p-8">
+        <h3 className="text-xl font-semibold mb-4">No Active Services</h3>
+        <p className="text-gray-600 mb-6">
+          You don't have any active services yet. Complete onboarding or Check out our service packages to begin your journey.
+        </p>
+        <Button asChild>
+          <Link href="/dashboard/pricing">View Service Packages</Link>
+        </Button>
+      </div>
+    );
+  }
   
   return (
     <div>
       {isLoading ? <Spinner loading={isLoading}/> :
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {availableModules.length === 0 ?
-        (
-          <div className="text-center p-8">
-            <h3 className="text-xl font-semibold mb-4">No Active Services</h3>
-            <p className="text-gray-600 mb-6">
-              You don't have any active services yet. Complete onboarding or Check out our service packages to begin your journey.
-            </p>
-            <Button asChild>
-              <Link href="/dashboard/pricing">View Service Packages</Link>
-            </Button>
-          </div>
-        )
-        : availableModules.map((module) => (
+        {availableModules.map((module) => (
           <Link href={module.link} key={module.id}>
             <Card className="h-full cursor-pointer hover:shadow-md transition-shadow">
               <CardContent className="p-6 flex flex-col gap-2 items-start space-x-4">
