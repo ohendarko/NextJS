@@ -1,22 +1,18 @@
 // app/api/user/route.ts
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth/options';
+// import { getServerSession } from 'next-auth';
+// import { authOptions } from '@/lib/auth/options';
 import { PrismaClient } from '@/lib/generated/prisma'; // Adjust this import to match your project
 
 const prisma = new PrismaClient();
-export async function GET() {
+export async function GET(req: Request) {
   
-
-  const session = await getServerSession(authOptions);
-
-  if (!session?.user?.email) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const { searchParams } = new URL(req.url);
+  const email = searchParams.get("email");
 
   try {
     const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
+      where: { email },
     });
 
     if (!user) {

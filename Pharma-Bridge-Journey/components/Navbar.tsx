@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { useIsMobile } from "@/hooks/use-mobile";
 import Image from 'next/image';
+import { Home } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +43,7 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             
+            <Link href="/" className="text-foreground hover:text-pharma-blue font-medium"><Home /></Link>
             <Link href="/whowehelp" className="text-foreground hover:text-pharma-blue font-medium">Who We Help</Link>
             <Link href="/pricing" className="text-foreground hover:text-pharma-blue font-medium">Pricing</Link>
             <Link href="/contact" className="text-foreground hover:text-pharma-blue font-medium">Contact</Link>
@@ -68,9 +70,9 @@ const Navbar = () => {
         
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden absolute text-center top-full left-0 right-0 bg-white shadow-md">
+          <div className="md:hidden absolute justify-center items-center text-center top-full left-0 right-0 bg-white shadow-md">
             <div className="flex flex-col p-4 space-y-4">
-              
+              <Link href="/" className=" flex text-foreground hover:text-pharma-blue font-medium justify-center"><Home /></Link>
               <Link href="/whowehelp" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Who We Help</Link>
               <Link href="/pricing" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Pricing</Link>
               <Link href="/contact" className="text-foreground hover:text-pharma-blue font-medium" onClick={toggleMenu}>Contact</Link>

@@ -159,7 +159,7 @@ const Pricing = () => {
                     ))}
                   </ul>
                 </CardContent>
-                <CardFooter>
+                {/* <CardFooter>
                   <Link href='/login' className='w-full'>
                     <Button className={`w-full ${
                       service.highlight
@@ -169,7 +169,7 @@ const Pricing = () => {
                       Get Started
                     </Button>
                   </Link>
-                </CardFooter>
+                </CardFooter> */}
               </Card>
             ))}
             <div className="grid md:grid-cols-1 gap-8 mb-16">
@@ -213,13 +213,13 @@ const Pricing = () => {
                     </ul>
                   </div>
                 </CardContent>
-                <CardFooter className="mt-4">
+                {/* <CardFooter className="mt-4">
                   <Link href='/login' className='w-full'>
                     <Button className="w-full bg-white hover:bg-blue-50 text-pharma-blue border border-pharma-blue">
                       Get Started
                     </Button>                    
                   </Link>
-                </CardFooter>
+                </CardFooter> */}
               </Card>
             </div>
           </div>

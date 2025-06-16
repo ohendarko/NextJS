@@ -107,7 +107,9 @@ const UpcomingAppointments: React.FC<UpcomingAppointmentsProps> = ({ userProfile
       ) : (
         <div className="text-center py-4">
           <p className="text-gray-500 mb-4 text-sm">No upcoming appointments</p>
-          <Button size={isMobile ? "sm" : "default"}>Schedule New Appointment</Button>
+          <Link href='/dashboard/appointments'>
+            <Button size={isMobile ? "sm" : "default"}>Schedule New Appointment</Button>
+          </Link>
         </div>
       )}
       

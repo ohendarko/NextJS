@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth/options";
 import { getServerSession } from "next-auth";
 import { getUserProfile } from "@/lib/db";
 import DashboardNavbar from "@/components/dashboard/DashboardNavbar";
+import { UserProvider } from "@/context/UserContext";
 
 
 
@@ -23,13 +24,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   }
 
   return (
-    <html lang="en">
-      <body>
-        <CartProvider userId={userId}>
-          <DashboardNavbar userProfile={userProfile}/>
-          {children}
-        </CartProvider>
-      </body>
-    </html>
+    <UserProvider userEmail={session?.user?.email}>
+      <CartProvider userId={userId}>
+        <DashboardNavbar userProfile={userProfile}/>
+        {children}
+      </CartProvider>
+    </UserProvider>
   );
 }

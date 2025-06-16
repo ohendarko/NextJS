@@ -62,8 +62,10 @@ const AppointmentCenter = ({userProfile}) => {
       };
   
       fetchAppointments();
+      // console.log(appointments)
   
     }, [status]);
+    // console.log('appointments:', appointments)
 
   const appointmentTypes = [
     "FPGEE Consultation",
@@ -322,7 +324,7 @@ const AppointmentCenter = ({userProfile}) => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {appointments.filter(apt => apt.status === "completed" || apt.status === "cancelled" || apt.status === "expired").map((appointment) => (
+                  {appointments.filter(apt => apt.status === "completed" || apt.status === "cancelled" || apt.status === "expired").length === 0 ? 'Nothing to show' : appointments.filter(apt => apt.status === "completed" || apt.status === "cancelled" || apt.status === "expired").map((appointment) => (
                     <div key={appointment.id} className="border rounded-lg p-4">
                       <div className="flex justify-between items-start mb-3">
                         <div>

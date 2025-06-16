@@ -8,20 +8,17 @@ import ModulesSection from '@/components/dashboard/ModuleSection';
 import UpcomingAppointments from '@/components/dashboard/UpcomingAppointments';
 import DocumentCenter from '@/components/dashboard/DocumentCenter';
 import RoadmapTracker from '@/components/dashboard/RoadmapTracker';
-import MessagingCenter from '@/components/dashboard/MessagingCenter';
 import NotificationCenter from '@/components/dashboard/NotificationCenter';
 import BillingSupport from '@/components/dashboard/BillingSupport';
 import ServiceUpgrade from '@/components/dashboard/ServiceUpgrade';
-import DashboardNavbar from '@/components/dashboard/DashboardNavbar';
 import { useIsMobile } from "@/hooks/use-mobile";
 import { User, FileText, Calendar, MessageSquare, Settings, Upload, Menu, UserPlus, Map } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Spinner from '@/components/Spinner';
-import { Alert } from '@/components/ui/alert';
-import { stat } from 'fs';
 import Link from 'next/link';
 import AppointmentCenter from '@/components/dashboard/AppointmentSection';
+import { useUser } from "@/context/UserContext";
 
 
 
@@ -45,48 +42,57 @@ const Dashboard = () => {
     }
   });
   const { data: session, status } = useSession()
-  const [isLoading, setIsLoading] = useState(true);
-  const [userProfile, setUserProfile] = useState(userData);
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [userProfile, setUserProfile] = useState(userData);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const isMobile = useIsMobile();
-
-  const router = useRouter()
+  const router = useRouter();
+  const { userProfile, isLoading } = useUser();
 
 
   
   
   // In a real app, this would fetch user data from your backend
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        setIsLoading(true);
+  // useEffect(() => {
+  //   try {
+  //     setIsLoading(true);
+  //     const fetchUser = async () => {
+  //       try {
+  //         setIsLoading(true);
+  
+  //         if (status === 'unauthenticated') {
+  //           alert('You must be logged in to access this page.');
+  //           router.push('/login');
+  //           return;
+  //         }
+  
+  //         // if (status === 'loading') return; // Wait until session resolves
+  
+  //         const res = await fetch('/api/user');
+  //         const data = await res.json();
+  //         console.log(data)
+  
+  //         if (!res.ok) throw new Error(data.error || 'Failed to fetch user');
+  
+  //         setUserData(data);
+  //         setUserProfile(data);
+  //       } catch (error) {
+  //         console.error('Error loading user:', error);
+  //       } finally {
+  //         setIsLoading(false);
+  //       }
+  //     };
+  
+  //     fetchUser();
+      
+  //   } catch (error) {
+  //     console.error(error)
+      
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
 
-        if (status === 'unauthenticated') {
-          alert('You must be logged in to access this page.');
-          router.push('/login');
-          return;
-        }
-
-        if (status === 'loading') return; // Wait until session resolves
-
-        const res = await fetch('/api/user');
-        const data = await res.json();
-
-        if (!res.ok) throw new Error(data.error || 'Failed to fetch user');
-
-        setUserData(data);
-        setUserProfile(data);
-      } catch (error) {
-        console.error('Error loading user:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchUser();
-    // console.log(userData)
-    // console.log(userProfile)
-  }, [status, router]);
+  // }, [status, router]);
 
   // console.log('userdata:',userData)
   // console.log('userprofile:',userProfile)
@@ -157,7 +163,7 @@ const Dashboard = () => {
               <CardTitle>Your Profile</CardTitle>
             </CardHeader>
             <CardContent>
-              <ProfileSection userProfile={userProfile} setUserProfile={setUserProfile} />
+              <ProfileSection userProfile={userProfile} setUserProfile={useUser} />
             </CardContent>
           </Card>
         );
@@ -281,6 +287,7 @@ const Dashboard = () => {
         return null;
     }
   };
+
 
   return (
     

@@ -1,7 +1,9 @@
 {
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
+  "/api/user/route": "app/api/user/route.js",
+  "/api/appointments/route": "app/api/appointments/route.js",
   "/(regularLayout)/page": "app/(regularLayout)/page.js",
-  "/(regularLayout)/whowehelp/page": "app/(regularLayout)/whowehelp/page.js",
-  "/(regularLayout)/privacy-policy/page": "app/(regularLayout)/privacy-policy/page.js"
+  "/(regularLayout)/login/page": "app/(regularLayout)/login/page.js",
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
+  "/(dashboard)/dashboard/notifications/page": "app/(dashboard)/dashboard/notifications/page.js"
 }
