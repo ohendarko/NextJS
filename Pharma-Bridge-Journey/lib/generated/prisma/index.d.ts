@@ -1710,6 +1710,7 @@ export namespace Prisma {
     admin: boolean | null
     verified: boolean | null
     hasCompletedOnboarding: boolean | null
+    hasPausedOnboarding: boolean | null
     fpgeeFormSubmitted: boolean | null
     fpgecApplicationSubmitted: boolean | null
     fpgeePassed: boolean | null
@@ -1752,7 +1753,6 @@ export namespace Prisma {
     visaType: string | null
     arrivalDate: Date | null
     preferredState: string | null
-    selectedPackage: string | null
     toeflDuration: string | null
     toeflType: string | null
   }
@@ -1767,6 +1767,7 @@ export namespace Prisma {
     admin: boolean | null
     verified: boolean | null
     hasCompletedOnboarding: boolean | null
+    hasPausedOnboarding: boolean | null
     fpgeeFormSubmitted: boolean | null
     fpgecApplicationSubmitted: boolean | null
     fpgeePassed: boolean | null
@@ -1809,7 +1810,6 @@ export namespace Prisma {
     visaType: string | null
     arrivalDate: Date | null
     preferredState: string | null
-    selectedPackage: string | null
     toeflDuration: string | null
     toeflType: string | null
   }
@@ -1824,6 +1824,7 @@ export namespace Prisma {
     admin: number
     verified: number
     hasCompletedOnboarding: number
+    hasPausedOnboarding: number
     fpgeeFormSubmitted: number
     fpgecApplicationSubmitted: number
     fpgeePassed: number
@@ -1883,6 +1884,7 @@ export namespace Prisma {
     admin?: true
     verified?: true
     hasCompletedOnboarding?: true
+    hasPausedOnboarding?: true
     fpgeeFormSubmitted?: true
     fpgecApplicationSubmitted?: true
     fpgeePassed?: true
@@ -1925,7 +1927,6 @@ export namespace Prisma {
     visaType?: true
     arrivalDate?: true
     preferredState?: true
-    selectedPackage?: true
     toeflDuration?: true
     toeflType?: true
   }
@@ -1940,6 +1941,7 @@ export namespace Prisma {
     admin?: true
     verified?: true
     hasCompletedOnboarding?: true
+    hasPausedOnboarding?: true
     fpgeeFormSubmitted?: true
     fpgecApplicationSubmitted?: true
     fpgeePassed?: true
@@ -1982,7 +1984,6 @@ export namespace Prisma {
     visaType?: true
     arrivalDate?: true
     preferredState?: true
-    selectedPackage?: true
     toeflDuration?: true
     toeflType?: true
   }
@@ -1997,6 +1998,7 @@ export namespace Prisma {
     admin?: true
     verified?: true
     hasCompletedOnboarding?: true
+    hasPausedOnboarding?: true
     fpgeeFormSubmitted?: true
     fpgecApplicationSubmitted?: true
     fpgeePassed?: true
@@ -2127,6 +2129,7 @@ export namespace Prisma {
     admin: boolean
     verified: boolean
     hasCompletedOnboarding: boolean
+    hasPausedOnboarding: boolean
     fpgeeFormSubmitted: boolean
     fpgecApplicationSubmitted: boolean
     fpgeePassed: boolean
@@ -2169,7 +2172,7 @@ export namespace Prisma {
     visaType: string | null
     arrivalDate: Date | null
     preferredState: string | null
-    selectedPackage: string | null
+    selectedPackage: string[]
     toeflDuration: string | null
     toeflType: string | null
     _count: UserCountAggregateOutputType | null
@@ -2201,6 +2204,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -2267,6 +2271,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -2314,7 +2319,7 @@ export namespace Prisma {
     toeflType?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "createdAt" | "profileImage" | "admin" | "verified" | "hasCompletedOnboarding" | "fpgeeFormSubmitted" | "fpgecApplicationSubmitted" | "fpgeePassed" | "fpgecCertficateIssued" | "stateBoardApplicationCompleted" | "passportScanSubmitted" | "passportPhotoSubmitted" | "pharmacyLicenseSubmitted" | "goodStandingLetterSubmitted" | "eceApplicationCompleted" | "officialTranscriptsSent" | "courseDescriptionsSubmitted" | "eceEvaluationFeeePaid" | "toeflTestRegistered" | "toeflTestCompleted" | "toeflScoresSent" | "naplexEligibilityConfirmed" | "naplexTestRegistered" | "naplexPreparationCompleted" | "naplexCompleted" | "mpjeEligibilityConfirmed" | "mpjePreparationCompleted" | "mpjeTestRegistered" | "mpjeTestCompleted" | "internshipHoursCompleted" | "pharmacyLicenseObtained" | "maintainLicensure" | "boardSpecialization" | "dateOfBirth" | "gender" | "phoneNumber" | "timezone" | "countryOfDegree" | "degreeType" | "graduationYear" | "degreeFile" | "passportFile" | "licenseFile" | "hasVisa" | "visaType" | "arrivalDate" | "preferredState" | "selectedPackage" | "toeflDuration" | "toeflType" | "documentCategories", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "createdAt" | "profileImage" | "admin" | "verified" | "hasCompletedOnboarding" | "hasPausedOnboarding" | "fpgeeFormSubmitted" | "fpgecApplicationSubmitted" | "fpgeePassed" | "fpgecCertficateIssued" | "stateBoardApplicationCompleted" | "passportScanSubmitted" | "passportPhotoSubmitted" | "pharmacyLicenseSubmitted" | "goodStandingLetterSubmitted" | "eceApplicationCompleted" | "officialTranscriptsSent" | "courseDescriptionsSubmitted" | "eceEvaluationFeeePaid" | "toeflTestRegistered" | "toeflTestCompleted" | "toeflScoresSent" | "naplexEligibilityConfirmed" | "naplexTestRegistered" | "naplexPreparationCompleted" | "naplexCompleted" | "mpjeEligibilityConfirmed" | "mpjePreparationCompleted" | "mpjeTestRegistered" | "mpjeTestCompleted" | "internshipHoursCompleted" | "pharmacyLicenseObtained" | "maintainLicensure" | "boardSpecialization" | "dateOfBirth" | "gender" | "phoneNumber" | "timezone" | "countryOfDegree" | "degreeType" | "graduationYear" | "degreeFile" | "passportFile" | "licenseFile" | "hasVisa" | "visaType" | "arrivalDate" | "preferredState" | "selectedPackage" | "toeflDuration" | "toeflType" | "documentCategories", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     documents?: boolean | User$documentsArgs<ExtArgs>
     packageSelections?: boolean | User$packageSelectionsArgs<ExtArgs>
@@ -2343,6 +2348,7 @@ export namespace Prisma {
       admin: boolean
       verified: boolean
       hasCompletedOnboarding: boolean
+      hasPausedOnboarding: boolean
       fpgeeFormSubmitted: boolean
       fpgecApplicationSubmitted: boolean
       fpgeePassed: boolean
@@ -2385,7 +2391,7 @@ export namespace Prisma {
       visaType: string | null
       arrivalDate: Date | null
       preferredState: string | null
-      selectedPackage: string | null
+      selectedPackage: string[]
       toeflDuration: string | null
       toeflType: string | null
     }, ExtArgs["result"]["user"]>
@@ -2796,6 +2802,7 @@ export namespace Prisma {
     readonly admin: FieldRef<"User", 'Boolean'>
     readonly verified: FieldRef<"User", 'Boolean'>
     readonly hasCompletedOnboarding: FieldRef<"User", 'Boolean'>
+    readonly hasPausedOnboarding: FieldRef<"User", 'Boolean'>
     readonly fpgeeFormSubmitted: FieldRef<"User", 'Boolean'>
     readonly fpgecApplicationSubmitted: FieldRef<"User", 'Boolean'>
     readonly fpgeePassed: FieldRef<"User", 'Boolean'>
@@ -2838,7 +2845,7 @@ export namespace Prisma {
     readonly visaType: FieldRef<"User", 'String'>
     readonly arrivalDate: FieldRef<"User", 'DateTime'>
     readonly preferredState: FieldRef<"User", 'String'>
-    readonly selectedPackage: FieldRef<"User", 'String'>
+    readonly selectedPackage: FieldRef<"User", 'String[]'>
     readonly toeflDuration: FieldRef<"User", 'String'>
     readonly toeflType: FieldRef<"User", 'String'>
   }
@@ -10354,6 +10361,7 @@ export namespace Prisma {
     admin: 'admin',
     verified: 'verified',
     hasCompletedOnboarding: 'hasCompletedOnboarding',
+    hasPausedOnboarding: 'hasPausedOnboarding',
     fpgeeFormSubmitted: 'fpgeeFormSubmitted',
     fpgecApplicationSubmitted: 'fpgecApplicationSubmitted',
     fpgeePassed: 'fpgeePassed',
@@ -10599,6 +10607,7 @@ export namespace Prisma {
     admin?: BoolFilter<"User"> | boolean
     verified?: BoolFilter<"User"> | boolean
     hasCompletedOnboarding?: BoolFilter<"User"> | boolean
+    hasPausedOnboarding?: BoolFilter<"User"> | boolean
     fpgeeFormSubmitted?: BoolFilter<"User"> | boolean
     fpgecApplicationSubmitted?: BoolFilter<"User"> | boolean
     fpgeePassed?: BoolFilter<"User"> | boolean
@@ -10641,7 +10650,7 @@ export namespace Prisma {
     visaType?: StringNullableFilter<"User"> | string | null
     arrivalDate?: DateTimeNullableFilter<"User"> | Date | string | null
     preferredState?: StringNullableFilter<"User"> | string | null
-    selectedPackage?: StringNullableFilter<"User"> | string | null
+    selectedPackage?: StringNullableListFilter<"User">
     toeflDuration?: StringNullableFilter<"User"> | string | null
     toeflType?: StringNullableFilter<"User"> | string | null
     documentCategories?: DocumentCategoryCompositeListFilter | DocumentCategoryObjectEqualityInput[]
@@ -10662,6 +10671,7 @@ export namespace Prisma {
     admin?: SortOrder
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
+    hasPausedOnboarding?: SortOrder
     fpgeeFormSubmitted?: SortOrder
     fpgecApplicationSubmitted?: SortOrder
     fpgeePassed?: SortOrder
@@ -10728,6 +10738,7 @@ export namespace Prisma {
     admin?: BoolFilter<"User"> | boolean
     verified?: BoolFilter<"User"> | boolean
     hasCompletedOnboarding?: BoolFilter<"User"> | boolean
+    hasPausedOnboarding?: BoolFilter<"User"> | boolean
     fpgeeFormSubmitted?: BoolFilter<"User"> | boolean
     fpgecApplicationSubmitted?: BoolFilter<"User"> | boolean
     fpgeePassed?: BoolFilter<"User"> | boolean
@@ -10770,7 +10781,7 @@ export namespace Prisma {
     visaType?: StringNullableFilter<"User"> | string | null
     arrivalDate?: DateTimeNullableFilter<"User"> | Date | string | null
     preferredState?: StringNullableFilter<"User"> | string | null
-    selectedPackage?: StringNullableFilter<"User"> | string | null
+    selectedPackage?: StringNullableListFilter<"User">
     toeflDuration?: StringNullableFilter<"User"> | string | null
     toeflType?: StringNullableFilter<"User"> | string | null
     documentCategories?: DocumentCategoryCompositeListFilter | DocumentCategoryObjectEqualityInput[]
@@ -10791,6 +10802,7 @@ export namespace Prisma {
     admin?: SortOrder
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
+    hasPausedOnboarding?: SortOrder
     fpgeeFormSubmitted?: SortOrder
     fpgecApplicationSubmitted?: SortOrder
     fpgeePassed?: SortOrder
@@ -10854,6 +10866,7 @@ export namespace Prisma {
     admin?: BoolWithAggregatesFilter<"User"> | boolean
     verified?: BoolWithAggregatesFilter<"User"> | boolean
     hasCompletedOnboarding?: BoolWithAggregatesFilter<"User"> | boolean
+    hasPausedOnboarding?: BoolWithAggregatesFilter<"User"> | boolean
     fpgeeFormSubmitted?: BoolWithAggregatesFilter<"User"> | boolean
     fpgecApplicationSubmitted?: BoolWithAggregatesFilter<"User"> | boolean
     fpgeePassed?: BoolWithAggregatesFilter<"User"> | boolean
@@ -10896,7 +10909,7 @@ export namespace Prisma {
     visaType?: StringNullableWithAggregatesFilter<"User"> | string | null
     arrivalDate?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     preferredState?: StringNullableWithAggregatesFilter<"User"> | string | null
-    selectedPackage?: StringNullableWithAggregatesFilter<"User"> | string | null
+    selectedPackage?: StringNullableListFilter<"User">
     toeflDuration?: StringNullableWithAggregatesFilter<"User"> | string | null
     toeflType?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
@@ -11383,6 +11396,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -11425,7 +11439,7 @@ export namespace Prisma {
     visaType?: string | null
     arrivalDate?: Date | string | null
     preferredState?: string | null
-    selectedPackage?: string | null
+    selectedPackage?: UserCreateselectedPackageInput | string[]
     toeflDuration?: string | null
     toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -11446,6 +11460,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -11488,7 +11503,7 @@ export namespace Prisma {
     visaType?: string | null
     arrivalDate?: Date | string | null
     preferredState?: string | null
-    selectedPackage?: string | null
+    selectedPackage?: UserCreateselectedPackageInput | string[]
     toeflDuration?: string | null
     toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -11508,6 +11523,7 @@ export namespace Prisma {
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    hasPausedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
@@ -11550,7 +11566,7 @@ export namespace Prisma {
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedPackage?: UserUpdateselectedPackageInput | string[]
     toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
     toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -11570,6 +11586,7 @@ export namespace Prisma {
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    hasPausedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
@@ -11612,7 +11629,7 @@ export namespace Prisma {
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedPackage?: UserUpdateselectedPackageInput | string[]
     toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
     toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -11633,6 +11650,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -11675,7 +11693,7 @@ export namespace Prisma {
     visaType?: string | null
     arrivalDate?: Date | string | null
     preferredState?: string | null
-    selectedPackage?: string | null
+    selectedPackage?: UserCreateselectedPackageInput | string[]
     toeflDuration?: string | null
     toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -11690,6 +11708,7 @@ export namespace Prisma {
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    hasPausedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
@@ -11732,7 +11751,7 @@ export namespace Prisma {
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedPackage?: UserUpdateselectedPackageInput | string[]
     toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
     toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -11747,6 +11766,7 @@ export namespace Prisma {
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    hasPausedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
@@ -11789,7 +11809,7 @@ export namespace Prisma {
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedPackage?: UserUpdateselectedPackageInput | string[]
     toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
     toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -12345,6 +12365,14 @@ export namespace Prisma {
     isSet?: boolean
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type DocumentCategoryCompositeListFilter = {
     equals?: DocumentCategoryObjectEqualityInput[]
     every?: DocumentCategoryWhereInput
@@ -12424,6 +12452,7 @@ export namespace Prisma {
     admin?: SortOrder
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
+    hasPausedOnboarding?: SortOrder
     fpgeeFormSubmitted?: SortOrder
     fpgecApplicationSubmitted?: SortOrder
     fpgeePassed?: SortOrder
@@ -12481,6 +12510,7 @@ export namespace Prisma {
     admin?: SortOrder
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
+    hasPausedOnboarding?: SortOrder
     fpgeeFormSubmitted?: SortOrder
     fpgecApplicationSubmitted?: SortOrder
     fpgeePassed?: SortOrder
@@ -12523,7 +12553,6 @@ export namespace Prisma {
     visaType?: SortOrder
     arrivalDate?: SortOrder
     preferredState?: SortOrder
-    selectedPackage?: SortOrder
     toeflDuration?: SortOrder
     toeflType?: SortOrder
   }
@@ -12538,6 +12567,7 @@ export namespace Prisma {
     admin?: SortOrder
     verified?: SortOrder
     hasCompletedOnboarding?: SortOrder
+    hasPausedOnboarding?: SortOrder
     fpgeeFormSubmitted?: SortOrder
     fpgecApplicationSubmitted?: SortOrder
     fpgeePassed?: SortOrder
@@ -12580,7 +12610,6 @@ export namespace Prisma {
     visaType?: SortOrder
     arrivalDate?: SortOrder
     preferredState?: SortOrder
-    selectedPackage?: SortOrder
     toeflDuration?: SortOrder
     toeflType?: SortOrder
   }
@@ -12937,6 +12966,10 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type UserCreateselectedPackageInput = {
+    set: string[]
+  }
+
   export type DocumentCategoryListCreateEnvelopeInput = {
     set?: DocumentCategoryCreateInput | DocumentCategoryCreateInput[]
   }
@@ -13042,6 +13075,11 @@ export namespace Prisma {
   export type NullableBoolFieldUpdateOperationsInput = {
     set?: boolean | null
     unset?: boolean
+  }
+
+  export type UserUpdateselectedPackageInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type DocumentCategoryListUpdateEnvelopeInput = {
@@ -13806,6 +13844,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -13848,7 +13887,7 @@ export namespace Prisma {
     visaType?: string | null
     arrivalDate?: Date | string | null
     preferredState?: string | null
-    selectedPackage?: string | null
+    selectedPackage?: UserCreateselectedPackageInput | string[]
     toeflDuration?: string | null
     toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -13868,6 +13907,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -13910,7 +13950,7 @@ export namespace Prisma {
     visaType?: string | null
     arrivalDate?: Date | string | null
     preferredState?: string | null
-    selectedPackage?: string | null
+    selectedPackage?: UserCreateselectedPackageInput | string[]
     toeflDuration?: string | null
     toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -13945,6 +13985,7 @@ export namespace Prisma {
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    hasPausedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
@@ -13987,7 +14028,7 @@ export namespace Prisma {
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedPackage?: UserUpdateselectedPackageInput | string[]
     toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
     toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14006,6 +14047,7 @@ export namespace Prisma {
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    hasPausedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
@@ -14048,7 +14090,7 @@ export namespace Prisma {
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedPackage?: UserUpdateselectedPackageInput | string[]
     toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
     toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14068,6 +14110,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -14110,7 +14153,7 @@ export namespace Prisma {
     visaType?: string | null
     arrivalDate?: Date | string | null
     preferredState?: string | null
-    selectedPackage?: string | null
+    selectedPackage?: UserCreateselectedPackageInput | string[]
     toeflDuration?: string | null
     toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14130,6 +14173,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -14172,7 +14216,7 @@ export namespace Prisma {
     visaType?: string | null
     arrivalDate?: Date | string | null
     preferredState?: string | null
-    selectedPackage?: string | null
+    selectedPackage?: UserCreateselectedPackageInput | string[]
     toeflDuration?: string | null
     toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14207,6 +14251,7 @@ export namespace Prisma {
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    hasPausedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
@@ -14249,7 +14294,7 @@ export namespace Prisma {
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedPackage?: UserUpdateselectedPackageInput | string[]
     toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
     toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14268,6 +14313,7 @@ export namespace Prisma {
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    hasPausedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
@@ -14310,7 +14356,7 @@ export namespace Prisma {
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedPackage?: UserUpdateselectedPackageInput | string[]
     toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
     toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14330,6 +14376,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -14372,7 +14419,7 @@ export namespace Prisma {
     visaType?: string | null
     arrivalDate?: Date | string | null
     preferredState?: string | null
-    selectedPackage?: string | null
+    selectedPackage?: UserCreateselectedPackageInput | string[]
     toeflDuration?: string | null
     toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14392,6 +14439,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -14434,7 +14482,7 @@ export namespace Prisma {
     visaType?: string | null
     arrivalDate?: Date | string | null
     preferredState?: string | null
-    selectedPackage?: string | null
+    selectedPackage?: UserCreateselectedPackageInput | string[]
     toeflDuration?: string | null
     toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14469,6 +14517,7 @@ export namespace Prisma {
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    hasPausedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
@@ -14511,7 +14560,7 @@ export namespace Prisma {
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedPackage?: UserUpdateselectedPackageInput | string[]
     toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
     toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14530,6 +14579,7 @@ export namespace Prisma {
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    hasPausedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
@@ -14572,7 +14622,7 @@ export namespace Prisma {
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedPackage?: UserUpdateselectedPackageInput | string[]
     toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
     toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14592,6 +14642,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -14634,7 +14685,7 @@ export namespace Prisma {
     visaType?: string | null
     arrivalDate?: Date | string | null
     preferredState?: string | null
-    selectedPackage?: string | null
+    selectedPackage?: UserCreateselectedPackageInput | string[]
     toeflDuration?: string | null
     toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14654,6 +14705,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -14696,7 +14748,7 @@ export namespace Prisma {
     visaType?: string | null
     arrivalDate?: Date | string | null
     preferredState?: string | null
-    selectedPackage?: string | null
+    selectedPackage?: UserCreateselectedPackageInput | string[]
     toeflDuration?: string | null
     toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14731,6 +14783,7 @@ export namespace Prisma {
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    hasPausedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
@@ -14773,7 +14826,7 @@ export namespace Prisma {
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedPackage?: UserUpdateselectedPackageInput | string[]
     toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
     toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14792,6 +14845,7 @@ export namespace Prisma {
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    hasPausedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
@@ -14834,7 +14888,7 @@ export namespace Prisma {
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedPackage?: UserUpdateselectedPackageInput | string[]
     toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
     toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14854,6 +14908,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -14896,7 +14951,7 @@ export namespace Prisma {
     visaType?: string | null
     arrivalDate?: Date | string | null
     preferredState?: string | null
-    selectedPackage?: string | null
+    selectedPackage?: UserCreateselectedPackageInput | string[]
     toeflDuration?: string | null
     toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14916,6 +14971,7 @@ export namespace Prisma {
     admin?: boolean
     verified?: boolean
     hasCompletedOnboarding?: boolean
+    hasPausedOnboarding?: boolean
     fpgeeFormSubmitted?: boolean
     fpgecApplicationSubmitted?: boolean
     fpgeePassed?: boolean
@@ -14958,7 +15014,7 @@ export namespace Prisma {
     visaType?: string | null
     arrivalDate?: Date | string | null
     preferredState?: string | null
-    selectedPackage?: string | null
+    selectedPackage?: UserCreateselectedPackageInput | string[]
     toeflDuration?: string | null
     toeflType?: string | null
     documentCategories?: XOR<DocumentCategoryListCreateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -14993,6 +15049,7 @@ export namespace Prisma {
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    hasPausedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
@@ -15035,7 +15092,7 @@ export namespace Prisma {
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedPackage?: UserUpdateselectedPackageInput | string[]
     toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
     toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]
@@ -15054,6 +15111,7 @@ export namespace Prisma {
     admin?: BoolFieldUpdateOperationsInput | boolean
     verified?: BoolFieldUpdateOperationsInput | boolean
     hasCompletedOnboarding?: BoolFieldUpdateOperationsInput | boolean
+    hasPausedOnboarding?: BoolFieldUpdateOperationsInput | boolean
     fpgeeFormSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgecApplicationSubmitted?: BoolFieldUpdateOperationsInput | boolean
     fpgeePassed?: BoolFieldUpdateOperationsInput | boolean
@@ -15096,7 +15154,7 @@ export namespace Prisma {
     visaType?: NullableStringFieldUpdateOperationsInput | string | null
     arrivalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preferredState?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedPackage?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedPackage?: UserUpdateselectedPackageInput | string[]
     toeflDuration?: NullableStringFieldUpdateOperationsInput | string | null
     toeflType?: NullableStringFieldUpdateOperationsInput | string | null
     documentCategories?: XOR<DocumentCategoryListUpdateEnvelopeInput, DocumentCategoryCreateInput> | DocumentCategoryCreateInput[]

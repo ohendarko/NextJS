@@ -123,6 +123,7 @@ exports.Prisma.UserScalarFieldEnum = {
   admin: 'admin',
   verified: 'verified',
   hasCompletedOnboarding: 'hasCompletedOnboarding',
+  hasPausedOnboarding: 'hasPausedOnboarding',
   fpgeeFormSubmitted: 'fpgeeFormSubmitted',
   fpgecApplicationSubmitted: 'fpgecApplicationSubmitted',
   fpgeePassed: 'fpgeePassed',

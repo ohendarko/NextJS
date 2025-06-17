@@ -4,6 +4,7 @@ import { PrismaClient } from '@/lib/generated/prisma';
 
 
 const prisma = new PrismaClient();
+
 export async function GET(req: Request) {
   
   const { searchParams } = new URL(req.url);
@@ -69,6 +70,7 @@ export async function POST(req: Request) {
     arrivalDate: arrivalDate ? new Date(arrivalDate) : undefined,
     preferredState,
     selectedPackage,
+    hasPausedOnboarding: false,
     hasCompletedOnboarding: true
   };
 

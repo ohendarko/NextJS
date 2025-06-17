@@ -26,6 +26,7 @@ export interface UserProfile {
   boardSpecialization: boolean;
   maintainLicensure: boolean;
   hasCompletedOnboarding: boolean;
+  hasPausedOnboarding: boolean;
   fpgeeFormSubmitted: boolean;
   fpgecApplicationSubmitted: boolean;
   fpgecCertficateIssued: boolean;

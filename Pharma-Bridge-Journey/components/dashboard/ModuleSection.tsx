@@ -136,12 +136,14 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
     const fetchModules = async () => {
       setIsLoading(true);
       try {
-        const selectedPackage = userProfile.selectedPackage || [];
+        const selectedPackages = userProfile?.selectedPackage || [];
 
-        const filtered = allModules.filter(module =>
-          module.requiredService.some(service => selectedPackage.includes(service)) ||
-          selectedPackage.includes("full")
+        const filtered = allModules.filter((module) =>
+          module.requiredService.some((service: string) =>
+            selectedPackages.includes(service)
+          ) || selectedPackages.includes("full")
         );
+
         setAvailableModules(filtered);
       } catch (error) {
         console.error("Failed to load modules:", error);
@@ -150,8 +152,11 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       }
     };
 
-    fetchModules();
+    if (userProfile) {
+      fetchModules();
+    }
   }, [userProfile]);
+
 
   if (isLoading) return <Spinner loading={true} />;
   

@@ -303,7 +303,7 @@ const Dashboard = () => {
                 Welcome back, {userProfile.name}! Here's your personalized journey.
               </p>
             </div>
-            { userProfile.hasCompletedOnboarding === false &&
+            { (userProfile.hasCompletedOnboarding === false && userProfile.hasPausedOnboarding === false ) &&
               <Card className="bg-gradient-to-br from-pharma-blue/90 to-pharma-blue text-white mb-10">
               <CardHeader>
                 <CardTitle className="text-white">Let us get to know you better</CardTitle>
@@ -313,6 +313,20 @@ const Dashboard = () => {
                 <Link href="/dashboard/onboarding" className="inline-flex items-center justify-center w-full bg-white text-pharma-blue font-medium rounded-md px-4 py-2 hover:bg-gray-100 transition-colors">
                   <UserPlus className="mr-2 h-5 w-5" />
                   Start Onboarding
+                </Link>
+              </CardContent>
+            </Card>}
+
+            { userProfile.hasPausedOnboarding === true &&
+              <Card className="bg-gradient-to-br from-pharma-blue/90 to-pharma-blue text-white mb-10">
+              <CardHeader>
+                <CardTitle className="text-white">Finish where you left off</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p>Complete your onboarding to help us provide the best possible guidance for your journey.</p>
+                <Link href="/dashboard/onboarding" className="inline-flex items-center justify-center w-full bg-white text-pharma-blue font-medium rounded-md px-4 py-2 hover:bg-gray-100 transition-colors">
+                  <UserPlus className="mr-2 h-5 w-5" />
+                  Continue Onboarding
                 </Link>
               </CardContent>
             </Card>}
