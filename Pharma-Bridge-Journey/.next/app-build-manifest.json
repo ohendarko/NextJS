@@ -57,20 +57,25 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/appointments/route.js"
     ],
-    "/(dashboard)/dashboard/notifications/page": [
+    "/(dashboard)/admin/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/dashboard/notifications/page.js"
+      "static/chunks/app/(dashboard)/admin/page.js"
     ],
-    "/(dashboard)/dashboard/pricing/page": [
+    "/api/admin/check/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/dashboard/pricing/page.js"
+      "static/chunks/app/api/admin/check/route.js"
     ],
-    "/(dashboard)/dashboard/onboarding/page": [
+    "/(dashboard)/admin/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/dashboard/onboarding/page.js"
+      "static/chunks/app/(dashboard)/admin/dashboard/page.js"
+    ],
+    "/api/admin/clients/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/admin/clients/route.js"
     ]
   }
 }

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -18,6 +18,9 @@ import Spinner from '@/components/Spinner';
 import Link from 'next/link';
 import AppointmentCenter from '@/components/dashboard/AppointmentSection';
 import { useUser } from "@/context/UserContext";
+import { useRouter } from 'next/navigation';
+import { toast } from '@/hooks/use-toast';
+
 
 
 
@@ -28,6 +31,9 @@ const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const isMobile = useIsMobile();
   const { userProfile, isLoading } = useUser();
+  // const router = useRouter()
+
+  
 
 
 

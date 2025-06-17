@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "@/hooks/use-toast";
 
 export interface UserProfile {
   id: string;
@@ -83,9 +84,14 @@ export const UserProvider = ({ children, userEmail }: UserProviderProps) => {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+
   const fetchUser = async () => {
     try {
+      if (status === "unauthenticated") {
+        return
+      }
       setIsLoading(true);
+  
       const res = await fetch(`/api/user?email=${userEmail}`);
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to fetch user");
@@ -99,6 +105,11 @@ export const UserProvider = ({ children, userEmail }: UserProviderProps) => {
 
   useEffect(() => {
     if (status === "unauthenticated") {
+      toast({
+        title: 'Acess Denied',
+        description: 'You need to be logged in to acess this page',
+        variant: 'destructive',
+      });
       router.push("/login");
       return;
     }
