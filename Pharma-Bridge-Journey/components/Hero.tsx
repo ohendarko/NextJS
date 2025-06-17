@@ -68,9 +68,11 @@ const Hero = () => {
                   Start My Journey
                 </Button>
               </Link>
-              <Button variant="outline" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto border-pharma-navy text-pharma-navy hover:bg-pharma-light-blue font-medium">
-                Book Free Consultation
-              </Button> 
+              <Link href="/createaccount">
+                <Button variant="outline" size={isMobile ? "default" : "lg"} className="w-full sm:w-auto border-pharma-navy text-pharma-navy hover:bg-pharma-light-blue font-medium">
+                  Book Free Consultation
+                </Button>
+              </Link> 
             </div>
           </div>  
         </div>

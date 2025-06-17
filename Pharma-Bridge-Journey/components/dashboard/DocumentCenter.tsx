@@ -244,6 +244,13 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
         [dbField]: true,
       }));
 
+      toast({
+        title: 'Upload successful',
+        description: 'Your Document has been uploaded succssfully',
+        // variant: 'success',
+        duration: 5000,
+      });
+
       // Dynamically update the field specified by dbid to true
       
       

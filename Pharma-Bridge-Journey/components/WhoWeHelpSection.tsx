@@ -73,7 +73,7 @@ const WhoWeHelpSection = () => {
         <div className="text-center">
           <p className="text-lg font-medium text-pharma-navy mb-6">You don't have to figure it all out alone — we'll guide you every step of the way.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/who-we-help">
+            <Link href="/whowehelp">
               <Button variant="outline" size="lg" className="border-pharma-navy text-pharma-navy hover:bg-pharma-light-blue">
                 Learn More About Our Support
               </Button>
