@@ -1,11 +1,6 @@
 {
-  "/api/admin/check/route": "app/api/admin/check/route.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/api/user/route": "app/api/user/route.js",
-  "/api/admin/clients/route": "app/api/admin/clients/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/(regularLayout)/page": "app/(regularLayout)/page.js",
-  "/(regularLayout)/login/page": "app/(regularLayout)/login/page.js",
-  "/(dashboard)/admin/page": "app/(dashboard)/admin/page.js",
-  "/(dashboard)/admin/dashboard/page": "app/(dashboard)/admin/dashboard/page.js",
-  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js"
+  "/(regularLayout)/pricing/page": "app/(regularLayout)/pricing/page.js"
 }

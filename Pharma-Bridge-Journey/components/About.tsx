@@ -6,13 +6,13 @@ const teamMembers = [
     name: "Dr. Benjamin Appau",
     title: "Co-Founder & Principal Consultant",
     bio: "Ghanaian & U.S. licensed pharmacist practicing in New Jersey with extensive experience guiding international pharmacists through the licensure process.",
-    image: "/square-user.svg"
+    image: "/benjamin.JPG"
   },
   {
     name: "Dr. Claudia Serwaa Agyei Marfo",
     title: "Co-Founder & TOEFL Specialist",
     bio: "Ghanaian Pharmacist with TOEFL success and FPGEE eligibility. Expert in navigating the complex licensure process for international graduates.",
-    image: "/square-user.svg"
+    image: "/claudia.JPG"
   }
 ];
 
@@ -21,7 +21,7 @@ const AboutCard = ({ name, title, bio, image }: { name: string, title: string, b
     <div className="bg-white rounded-xl overflow-hidden shadow-md">
       <div className="md:flex">
         <div className="md:shrink-0">
-          <img className="h-48 w-full object-contain md:h-full md:w-48" src={image} alt={name}/>
+          <img className="h-48 w-full object-cover md:h-full md:w-48" src={image} alt={name}/>
         </div>
         <div className="p-8">
           <h3 className="text-xl font-semibold mb-1">{name}</h3>

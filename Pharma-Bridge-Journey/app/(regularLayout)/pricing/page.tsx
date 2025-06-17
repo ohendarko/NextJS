@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
+import { features } from 'process';
 
 const Pricing = () => {
   // Function to render check icon
@@ -78,6 +79,39 @@ const Pricing = () => {
         'Test-taking strategies and mock exam reviews'
       ],
       highlight: false
+    },
+    {
+      id: 'toefl_prep-1hr',
+      title: 'TOEFL  One-on-One Classes: 1 hour class',
+      features: ['Focused preparation for the TOEFL iBT exam'],
+      price: '$35',
+      highlight: false
+    },
+    {
+      id: 'toefl-prep-2hr',
+      title: 'TOEFL One-on-One Classes: 2 hours',
+      features: [
+        'Personalized TOEFL preparation with expert instructors.',
+        'Choose your duration and class type.'
+        ],
+      price: '$70',
+      highlight: false,
+    },
+    {
+      id: 'toefl-lifetime',
+      title: 'TOEFL Lifetime Subscription',
+      features: [
+        'Complete TOEFL preparation package:',
+        '4 two-hour classes OR 8 one-hour classes',
+        'Comprehensive drills',
+        'Templates Strategies',
+        'Speaking and Writing feedback',
+        'Test samples',
+        'Reading questions ',
+        'Registration support'
+      ],
+      price: '$250',
+      highlight: true,
     }
   ];
   
@@ -175,7 +209,7 @@ const Pricing = () => {
             ))}
             <div className="grid md:grid-cols-1 gap-8 mb-16">
             {/* TOEFL Preparation */}
-              <Card className="border-2 border-gray-200 hover:border-pharma-light-blue hover:shadow-md transition-all rounded-xl overflow-hidden h-full">
+              {/* <Card className="border-2 border-gray-200 hover:border-pharma-light-blue hover:shadow-md transition-all rounded-xl overflow-hidden h-full">
                 <CardHeader>
                   <CardTitle className="text-xl text-pharma-blue">TOEFL-iBT Speaking & Writing Prep</CardTitle>
                 </CardHeader>
@@ -221,7 +255,7 @@ const Pricing = () => {
                     </Button>                    
                   </Link>
                 </CardFooter>
-              </Card>
+              </Card> */}
             </div>
           </div>
           
@@ -277,7 +311,7 @@ const Pricing = () => {
            
 
             {/* Custom Packages */}
-            <Card className="border-2 border-gray-200 hover:border-pharma-light-blue hover:shadow-md transition-all rounded-xl overflow-hidden h-full bg-gradient-to-br from-white to-blue-50">
+            {/* <Card className="border-2 border-gray-200 hover:border-pharma-light-blue hover:shadow-md transition-all rounded-xl overflow-hidden h-full bg-gradient-to-br from-white to-blue-50">
               <CardHeader>
                 <CardTitle className="text-xl text-pharma-blue">Custom Solutions</CardTitle>
               </CardHeader>
@@ -303,7 +337,7 @@ const Pricing = () => {
                   Contact Us
                 </Button>
               </CardFooter>
-            </Card>
+            </Card> */}
           </div>
 
           {/* Additional Services */}
