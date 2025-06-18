@@ -1,11 +1,14 @@
-
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
-import { LucideShoppingBag } from 'lucide-react';
+import { LucideShoppingBag, ShoppingCart } from 'lucide-react';
+import { ScrollArea } from '../ui/scroll-area';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+
 
 interface Service {
   id: string;
@@ -23,84 +26,15 @@ interface ServiceUpgradeProps {
 
 const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
 
-  const { cart, addToCart } = useCart()
+  const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
+  const cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   // Services data from pricing page
 
-  const mainServices = [
- 
-    {
-      title: "FPGEC Certificate Pathway Coaching",
-      price: "$800",
-      features: [
-        'Credential evaluation (ECE & NABP) assistance',
-        'Transcript and certification preparation',
-        'NABP e-Profile setup',
-        'FPGEE eligibility application support',
-        'TOEFL registration + study resources',
-        'Prometric exam scheduling',
-        'Personalized FPGEE and TOEFL prep plans'
-      ],
-      highlight: false
-    },
-    {
-      title: "Full Licensure Pathway Support",
-      price: "$3,000",
-      features: [
-        'Credential evaluation (ECE & NABP)',
-        'TOEFL and FPGEE preparation',
-        'NABP e-Profile setup & application support',
-        'Prometric test scheduling',
-        'NAPLEX & MPJE prep strategy',
-        'Internship placement guidance',
-        'Timeline & eligibility tracking'
-      ],
-      highlight: true
-    },
-    {
-      title: "FPGEE Exam Preparation Only",
-      price: "$500",
-      features: [
-        'Focus on high-yield topics: Pharmacology, Clinical Sciences, and more',
-        'Personalized study plans based on NABP Competency Requirements',
-        'Resource guidance (books, platforms, practice tests)',
-        'Test-taking strategies and mock exam reviews'
-      ],
-      highlight: false
-    },
-    {
-      id: 'toefl_prep-1hr',
-      title: 'TOEFL  One-on-One Classes: 1 hour class',
-      features: ['Focused preparation for the TOEFL iBT exam'],
-      price: '$35',
-      highlight: false
-    },
-    {
-      id: 'toefl-prep-2hr',
-      title: 'TOEFL One-on-One Classes: 2 hours',
-      features: [
-        'Personalized TOEFL preparation with expert instructors.',
-        'Choose your duration and class type.'
-        ],
-      price: '$70',
-      highlight: false,
-    },
-    {
-      id: 'toefl-lifetime',
-      title: 'TOEFL Lifetime Subscription',
-      features: [
-        'Complete TOEFL preparation package:',
-        '4 two-hour classes OR 8 one-hour classes',
-        'Comprehensive drills',
-        'Templates Strategies',
-        'Speaking and Writing feedback',
-        'Test samples',
-        'Reading questions ',
-        'Registration support'
-      ],
-      price: '$250',
-      highlight: true,
-    }
-  ];
+  const isAddedToCart = (cartId: string) => {
+    return cart.some(item => item.id === cartId);
+  };
 
   const services: Service[] = [
    
@@ -116,7 +50,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
         "Resource guidance (books, platforms, practice tests)",
         "Test-taking strategies and mock exam reviews"
       ],
-      upgradeFrom: ["credential_guidance", "fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
+      upgradeFrom: ["credential_guidance", "fpgee_prep_only", "fpgec_pathway", "toefl_prep", "toefl-prep-2hr", "toefl-prep-1hr"]
     },
     {
       id: "fpgec_pathway",
@@ -132,7 +66,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
         "Prometric exam scheduling",
         "Personalized FPGEE and TOEFL prep plans"
       ],
-      upgradeFrom: ["credential_guidance", "fpgee_prep_only", "toefl_prep"],
+      upgradeFrom: ["credential_guidance", "fpgee_prep_only", "toefl_prep", "toefl-prep-2hr", "toefl-prep-1hr"],
       popular: true
     },
     // {
@@ -209,21 +143,21 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
       upgradeFrom: [ "toefl_prep", "fpgee_prep_only", "fpgec_pathway", "toefl-prep-2hr", "toefl-prep-1hr"]
 
     },
-    {
-      id: "toefl_prep",
-      name: "TOEFL-iBT Speaking & Writing Prep",
-      description: "Comprehensive TOEFL preparation with multiple options",
-      price: 35,
-      features: [
-        "1-Hour Class ($35)",
-        "2-Hour Class ($70)",
-        "7-Day Intensive Program ($250)",
-        "Speaking & Writing test practice with feedback",
-        "Access to drills, templates, and strategies",
-        "TOEFL registration support and exam planning"
-      ],
-      upgradeFrom: ["credential_guidance", "fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
-    },
+    // {
+    //   id: "toefl_prep",
+    //   name: "TOEFL-iBT Speaking & Writing Prep",
+    //   description: "Comprehensive TOEFL preparation with multiple options",
+    //   price: 35,
+    //   features: [
+    //     "1-Hour Class ($35)",
+    //     "2-Hour Class ($70)",
+    //     "7-Day Intensive Program ($250)",
+    //     "Speaking & Writing test practice with feedback",
+    //     "Access to drills, templates, and strategies",
+    //     "TOEFL registration support and exam planning"
+    //   ],
+    //   upgradeFrom: ["credential_guidance", "fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
+    // },
     {
       id: "full",
       name: "Full Licensure Pathway Support",
@@ -238,7 +172,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
         "Internship placement guidance",
         "Timeline & eligibility tracking"
       ],
-      upgradeFrom: ["credential_guidance", "fpgee_prep_only", "fpgec_pathway", "toefl_prep"],
+      upgradeFrom: ["credential_guidance", "fpgee_prep_only", "fpgec_pathway", "toefl_prep", "toefl-prep-2hr", "toefl-prep-1hr"],
       popular: true
     }
   ];
@@ -274,6 +208,11 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
   
   const recommendedUpgrades = getRecommendedUpgrades();
 
+  const handleCheckout = () => {
+    // Here you would integrate with payment processing
+    alert(`Proceeding to checkout with ${cartItemCount} items totaling $${cartTotal}`);
+  };
+
   return (
     <div className="space-y-6">
       {/* Progress Section */}
@@ -308,7 +247,23 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
       {/* Recommended Upgrades */}
       {recommendedUpgrades.length > 0 && (
         <div>
-          <h3 className="text-lg font-semibold mb-4 text-pharma-blue">Recommended Next Steps</h3>
+          <div className='flex justify-between'>
+
+            <h3 className="text-lg font-semibold mb-4 text-pharma-blue">Recommended Next Steps</h3>
+            <Button 
+              variant="outline" 
+              className="relative"
+              onClick={() => setIsCartOpen(!isCartOpen)}
+            >
+              <ShoppingCart className="h-5 w-5 mr-2" />
+              Cart ({cartItemCount})
+              {cartItemCount > 0 && (
+                <Badge className="absolute -top-2 -right-2 bg-pharma-blue text-white">
+                  {cartItemCount}
+                </Badge>
+              )}
+            </Button>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {recommendedUpgrades.map(service => (
               <div key={service.id} className="border-2 border-pharma-blue bg-blue-50 rounded-lg p-4">
@@ -333,16 +288,31 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
                     )}
                   </ul>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col justify-between items-center">
                   <p className="font-bold text-pharma-blue text-lg">${service.price}</p>
-                  <Link href="/dashboard/shopping">
-                    <Button
-                      className="bg-pharma-blue hover:bg-pharma-dark-blue"
-                      onClick={() => addToCart(service)}
+                  {isAddedToCart(service.id) ?
+                    <div>
+                    <Button 
+                      onClick={() => removeFromCart(service.id)}
+                      className="bg-pharma-blue hover:bg-pharma-navy"
+                      
                     >
-                      Add to Cart
+                      <ShoppingCart className="h-4 w-4 mr-2" />
+                      Remove From Cart
                     </Button>
-                  </Link>
+                    <p className='text-xs text-center text-red-500 bg-gray-100 border rounded-sm w-50 py-1'>Added to Cart</p>
+                    </div> : 
+                    <div>
+                      <Button 
+                        onClick={() => addToCart(service)}
+                        className="bg-pharma-blue hover:bg-pharma-navy"
+                        
+                      >
+                        <ShoppingCart className="h-4 w-4 mr-2" />
+                        Add to Cart
+                      </Button>
+                    </div>
+                  }
                 </div>
               </div>
             ))}
@@ -350,81 +320,22 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
         </div>
       )}
 
-      {/* All Available Services */}
-      {/* <div>
-        <h3 className="text-lg font-semibold mb-4 text-pharma-blue">All Available Services</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {services.map(service => (
-            <div 
-              key={service.id} 
-              className={`border rounded-lg p-4 ${
-                isServiceActive(service.id) 
-                  ? 'border-green-200 bg-green-50' 
-                  : canUpgradeTo(service)
-                  ? 'border-pharma-blue bg-blue-50'
-                  : 'border-gray-200 bg-gray-50'
-              }`}
-            >
-              <div className="flex justify-between items-start mb-3">
-                <div>
-                  <h4 className="font-semibold">{service.name}</h4>
-                  <p className="text-sm text-gray-600">{service.description}</p>
-                </div>
-                {isServiceActive(service.id) && (
-                  <Badge variant="secondary" className="bg-green-100 text-green-800">Active</Badge>
-                )}
-                {service.popular && !isServiceActive(service.id) && (
-                  <Badge className="bg-pharma-blue text-white">Popular</Badge>
-                )}
-              </div>
-              
-              <div className="mb-4">
-                <h5 className="font-medium text-sm mb-2">Features:</h5>
-                <ul className="text-xs text-gray-600 space-y-1">
-                  {service.features.slice(0, 2).map((feature, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="text-pharma-blue mr-2">•</span>
-                      {feature}
-                    </li>
-                  ))}
-                  {service.features.length > 2 && (
-                    <li className="text-pharma-blue text-xs">+{service.features.length - 2} more</li>
-                  )}
-                </ul>
-              </div>
-              
-              <div className="flex justify-between items-center">
-                <p className="font-bold text-lg">${service.price}</p>
-                {isServiceActive(service.id) ? (
-                  <Button disabled variant="outline">
-                    Active
-                  </Button>
-                ) : canUpgradeTo(service) ? (
-                  <Link href="/dashboard/shopping">
-                    <Button
-                      className="bg-pharma-blue hover:bg-pharma-dark-blue"
-                      onClick={() => addToCart(service)}
-                    >
-                      Add to Cart
-                    </Button>
-                  </Link>
-                ) : (
-                  <Button variant="outline" disabled>
-                    Not Available
-                  </Button>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div> */}
-      <div className='flex justify-center'>
+
+      <div className='flex gap-5 justify-center'>
         <Link href='/dashboard/shopping'>
           <Button>
             <LucideShoppingBag />
             Go to Shop
           </Button>
         </Link>
+
+        {cart.length > 0 && <Link href='/dashboard/shopping/checkout'>
+          <Button
+          >
+            <LucideShoppingBag />
+            Proceed to Checkout
+          </Button>
+        </Link>}
       </div>
 
       {/* Contact for Custom Solutions */}
@@ -437,6 +348,96 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
           Contact Us for Custom Package
         </Button>
       </div>
+
+      {/* Shopping Cart Sidebar */}
+      {isCartOpen && (
+        <div className="fixed inset-0 z-50 lg:relative lg:inset-auto">
+          <div className="absolute inset-0 bg-black bg-opacity-50 lg:hidden" onClick={() => setIsCartOpen(false)} />
+          <div className="absolute right-0 top-0 h-full w-80 bg-white shadow-xl lg:relative lg:w-full lg:max-w-md lg:mx-auto lg:mt-8">
+            <Card className="h-full">
+              <CardHeader>
+                <div className="flex justify-between items-center">
+                  <CardTitle>Shopping Cart</CardTitle>
+                  <Button variant="ghost" onClick={() => setIsCartOpen(false)}>
+                    ×
+                  </Button>
+                </div>
+              </CardHeader>
+              
+              <CardContent className="h-full flex flex-col">
+                {cart.length === 0 ? (
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="text-center">
+                      <ShoppingCart className="h-12 w-12 text-gray-300 mx-auto mb-3" />
+                      <p className="text-gray-500">Your cart is empty</p>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <ScrollArea className="flex-1">
+                      <div className="space-y-4">
+                        {cart.map(item => (
+                          <div key={item.id} className="border rounded-lg p-3">
+                            <div className="flex justify-between items-start mb-2">
+                              <h4 className="font-medium text-sm">{item.name}</h4>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => removeFromCart(item.id)}
+                                className="text-red-500 hover:text-red-700"
+                              >
+                                ×
+                              </Button>
+                            </div>
+                            
+                            <div className="flex justify-between items-center">
+                              <div className="flex items-center space-x-2">
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                  disabled
+                                >
+                                  -
+                                </Button>
+                                <span>{item.quantity}</span>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                  disabled
+                                >
+                                  +
+                                </Button>
+                              </div>
+                              <span className="font-medium">${item.price * item.quantity}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </ScrollArea>
+                    
+                    <div className="border-t pt-4 mt-4">
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="font-bold">Total:</span>
+                        <span className="font-bold text-xl">${cartTotal}</span>
+                      </div>
+                      
+                      <Button 
+                        onClick={handleCheckout}
+                        className="w-full bg-pharma-blue hover:bg-pharma-navy"
+                        disabled={cart.length === 0}
+                      >
+                        Proceed to Checkout
+                      </Button>
+                    </div>
+                  </>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

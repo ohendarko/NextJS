@@ -11,6 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { ArrowLeft, ShoppingCart } from 'lucide-react';
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useCart } from "@/context/CartContext";
+import { useRouter } from 'next/navigation';
 
 
 
@@ -47,10 +48,11 @@ const Shopping = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isCartOpen, setIsCartOpen] = useState(false);
   const isMobile = useIsMobile();
+  const router = useRouter()
 
-  const isAddedToCart = (cartId) => {
-  return cart.some(item => item.id === cartId);
-};
+  const isAddedToCart = (cartId: string) => {
+    return cart.some(item => item.id === cartId);
+  };
 
 
 
@@ -257,12 +259,16 @@ const Shopping = () => {
       
       <div className="pt-20 px-4 md:px-6 lg:px-8">
         <div className="flex items-center gap-4 mb-4">
-          <Link href="/dashboard">
-            <Button variant="outline" size="sm">
+          
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => router.back()}
+              >
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Dashboard
+              Back
             </Button>
-          </Link>
+         
         </div>
         <div className="container mx-auto py-8">
           {/* Header */}
