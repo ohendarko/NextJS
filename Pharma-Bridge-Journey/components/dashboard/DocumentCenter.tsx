@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef  } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,16 +13,21 @@ import {
   Image
 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import { useSession } from 'next-auth/react';
+
 
 interface DocumentCenterProps {
   userProfile: any;
 }
 
 const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
+  const { data: session, status } = useSession()
+  const userEmail = session?.user?.email
   const [activeTab, setActiveTab] = useState("ece");
   const [fileState, setFileState] = useState<Record<string, File | null>>({});
   const [uploadingState, setUploadingState] = useState<Record<string, boolean>>({});
   const [completionState, setCompletionState] = useState<Record<string, boolean>>({});
+  const fileInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
   
   
   // const [isUploading, setIsUploading] = useState(false);
@@ -137,7 +142,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
 
       
       //fetch userdata and update in real time
-      const res = await fetch('/api/user');
+      const res = await fetch(`/api/user?email=${userEmail}`);
       const updatedProfile = await res.json();
 
       setCompletedItems({
@@ -176,14 +181,12 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
   };
 
 
-
   const handleFileChange = (itemId: string, file: File | null) => {
     setFileState(prev => ({
       ...prev,
       [itemId]: file,
     }));
   };
-
 
   //When upload is clicked
   const handleUpload = async (itemId: string, category: string, dbField: string) => {
@@ -233,8 +236,17 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       const updateData = await updateRes.json();
       if (!updateRes.ok) throw new Error(updateData.error || 'User update failed');
 
+      toast({
+        title: 'Upload successful',
+        description: 'Your Document has been uploaded succssfully',
+        // variant: 'success',
+        duration: 5000,
+        variant: 'success'
+      });
+
 
       setFileState(prev => ({ ...prev, [itemId]: null }));
+      fileInputRefs.current[itemId]!.value = "";
       setCompletionState(prev => ({
         ...prev,
         [itemId]: true,
@@ -244,15 +256,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
         [dbField]: true,
       }));
 
-      toast({
-        title: 'Upload successful',
-        description: 'Your Document has been uploaded succssfully',
-        // variant: 'success',
-        duration: 5000,
-      });
-
-      // Dynamically update the field specified by dbid to true
-      
+      userProfile[dbField] = true;// Dynamically update the field specified by dbid to true   
       
     } catch (err) {
       console.error(err);
@@ -489,6 +493,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
                     type="file"
                     accept="image/*,.pdf"
                     className="flex-1"
+                    ref={el => { fileInputRefs.current[req.id] = el; }}
                     onChange={(e) => handleFileChange(req.id, e.target.files?.[0] || null)}
                   />
                   <Button
@@ -573,9 +578,6 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
           <TabsTrigger value="mpje">MPJE</TabsTrigger>
         </TabsList>
         
-        <TabsContent value="fpgee" className="space-y-4">
-          {renderChecklistSection("FPGEE Requirements", fpgeeRequirements, true)}
-        </TabsContent>
         
         <TabsContent value="ece" className="space-y-4">
           {renderChecklistSection("ECE Requirements", eceRequirements)}
@@ -583,6 +585,10 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
 
         <TabsContent value="toefl" className="space-y-4">
           {renderChecklistSection("TOEFL Requirements", toeflRequirements)}
+        </TabsContent>
+
+        <TabsContent value="fpgee" className="space-y-4">
+          {renderChecklistSection("FPGEE Requirements", fpgeeRequirements, true)}
         </TabsContent>
 
         <TabsContent value="naplex" className="space-y-4">
