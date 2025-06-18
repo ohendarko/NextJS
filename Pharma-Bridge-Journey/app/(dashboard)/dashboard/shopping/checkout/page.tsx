@@ -148,6 +148,7 @@ const Cart: React.FC = () => {
                             size="sm"
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
                             className="h-8 w-8 p-0"
+                            disabled
                           >
                             -
                           </Button>
@@ -157,6 +158,7 @@ const Cart: React.FC = () => {
                             size="sm"
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
                             className="h-8 w-8 p-0"
+                            disabled
                           >
                             +
                           </Button>

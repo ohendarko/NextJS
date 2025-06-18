@@ -5,6 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
+import { LucideShoppingBag } from 'lucide-react';
 
 interface Service {
   id: string;
@@ -24,20 +25,86 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
 
   const { cart, addToCart } = useCart()
   // Services data from pricing page
-  const services: Service[] = [
+
+  const mainServices = [
+ 
     {
-      id: "credential_guidance",
-      name: "Credential Evaluation Guidance",
-      description: "Support submitting transcripts and degree certificates to ECE",
-      price: 200,
+      title: "FPGEC Certificate Pathway Coaching",
+      price: "$800",
       features: [
-        "Support submitting transcripts and degree certificates to ECE",
-        "Step-by-step guidance for gathering and organizing credentials",
-        "Timeline planning to meet FPGEE eligibility deadlines",
-        "Avoid costly documentation errors or delays"
+        'Credential evaluation (ECE & NABP) assistance',
+        'Transcript and certification preparation',
+        'NABP e-Profile setup',
+        'FPGEE eligibility application support',
+        'TOEFL registration + study resources',
+        'Prometric exam scheduling',
+        'Personalized FPGEE and TOEFL prep plans'
       ],
-      upgradeFrom: []
+      highlight: false
     },
+    {
+      title: "Full Licensure Pathway Support",
+      price: "$3,000",
+      features: [
+        'Credential evaluation (ECE & NABP)',
+        'TOEFL and FPGEE preparation',
+        'NABP e-Profile setup & application support',
+        'Prometric test scheduling',
+        'NAPLEX & MPJE prep strategy',
+        'Internship placement guidance',
+        'Timeline & eligibility tracking'
+      ],
+      highlight: true
+    },
+    {
+      title: "FPGEE Exam Preparation Only",
+      price: "$500",
+      features: [
+        'Focus on high-yield topics: Pharmacology, Clinical Sciences, and more',
+        'Personalized study plans based on NABP Competency Requirements',
+        'Resource guidance (books, platforms, practice tests)',
+        'Test-taking strategies and mock exam reviews'
+      ],
+      highlight: false
+    },
+    {
+      id: 'toefl_prep-1hr',
+      title: 'TOEFL  One-on-One Classes: 1 hour class',
+      features: ['Focused preparation for the TOEFL iBT exam'],
+      price: '$35',
+      highlight: false
+    },
+    {
+      id: 'toefl-prep-2hr',
+      title: 'TOEFL One-on-One Classes: 2 hours',
+      features: [
+        'Personalized TOEFL preparation with expert instructors.',
+        'Choose your duration and class type.'
+        ],
+      price: '$70',
+      highlight: false,
+    },
+    {
+      id: 'toefl-lifetime',
+      title: 'TOEFL Lifetime Subscription',
+      features: [
+        'Complete TOEFL preparation package:',
+        '4 two-hour classes OR 8 one-hour classes',
+        'Comprehensive drills',
+        'Templates Strategies',
+        'Speaking and Writing feedback',
+        'Test samples',
+        'Reading questions ',
+        'Registration support'
+      ],
+      price: '$250',
+      highlight: true,
+    }
+  ];
+
+  const services: Service[] = [
+   
+    
     {
       id: "fpgee_prep_only",
       name: "FPGEE Exam Preparation Only",
@@ -65,45 +132,82 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
         "Prometric exam scheduling",
         "Personalized FPGEE and TOEFL prep plans"
       ],
-      upgradeFrom: ["credential_guidance", "fpgee_prep_only", "fpgec_pathway", "toefl_prep"],
+      upgradeFrom: ["credential_guidance", "fpgee_prep_only", "toefl_prep"],
       popular: true
     },
+    // {
+    //   id: "nabp_application",
+    //   name: "NABP Application & Exam Scheduling",
+    //   description: "Complete application and scheduling support",
+    //   price: 150,
+    //   features: [
+    //     "NABP e-Profile setup",
+    //     "FPGEE eligibility application guidance",
+    //     "Prometric testing center scheduling"
+    //   ],
+    //   upgradeFrom: ["credential_guidance", "fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
+    // },
+    // {
+    //   id: "accommodation_support",
+    //   name: "Accommodation, Flight & Hosting Support",
+    //   description: "Complete travel and accommodation assistance",
+    //   price: 300,
+    //   features: [
+    //     "Flight booking guidance",
+    //     "Temporary housing support (Airbnb, student housing, extended stays)",
+    //     "Local hosting orientation and connection (in select cities)",
+    //     "U.S. culture overview: transport, shopping, safety tips"
+    //   ],
+    //   upgradeFrom: ["fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
+    // },
+    // {
+    //   id: "internship_placement",
+    //   name: "Internship Placement Strategy",
+    //   description: "Coaching on where and how to apply for internships",
+    //   price: 100,
+    //   features: [
+    //     "Coaching on where and how to apply",
+    //     "Interview preparation",
+    //     "Resume review and employer outreach support"
+    //   ],
+    //   upgradeFrom: ["fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
+    // },
     {
-      id: "nabp_application",
-      name: "NABP Application & Exam Scheduling",
-      description: "Complete application and scheduling support",
-      price: 150,
-      features: [
-        "NABP e-Profile setup",
-        "FPGEE eligibility application guidance",
-        "Prometric testing center scheduling"
-      ],
-      upgradeFrom: ["credential_guidance", "fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
+      id: 'toefl-prep-1hr',
+      name: 'TOEFL One-on-One Classes: 1 hour class',
+      description: "TOEFL class in one hours",
+      price: 35,
+      features: ['Focused preparation for the TOEFL iBT exam'],
+      upgradeFrom: ["toefl_prep", "fpgee_prep_only", "fpgec_pathway"]
     },
     {
-      id: "accommodation_support",
-      name: "Accommodation, Flight & Hosting Support",
-      description: "Complete travel and accommodation assistance",
-      price: 300,
+      id: 'toefl-prep-2hr',
+      name: 'TOEFL One-on-One Classes: 2 hours',
+      description: "TOEFL class in two hours",
+      price: 70,
       features: [
-        "Flight booking guidance",
-        "Temporary housing support (Airbnb, student housing, extended stays)",
-        "Local hosting orientation and connection (in select cities)",
-        "U.S. culture overview: transport, shopping, safety tips"
-      ],
-      upgradeFrom: ["fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
+        'Personalized TOEFL preparation with expert instructors.',
+        'Choose your duration and class type.'
+        ],
+      upgradeFrom: ["toefl_prep", "fpgee_prep_only", "fpgec_pathway", "toefl-prep-1hr"]
     },
     {
-      id: "internship_placement",
-      name: "Internship Placement Strategy",
-      description: "Coaching on where and how to apply for internships",
-      price: 100,
+      id: 'toefl-lifetime',
+      name: 'TOEFL Lifetime Subscription',
+      description: "Comprehensive TOEFL preparation with all options",
+      price: 250,
       features: [
-        "Coaching on where and how to apply",
-        "Interview preparation",
-        "Resume review and employer outreach support"
+        'Complete TOEFL preparation package:',
+        '4 two-hour classes OR 8 one-hour classes',
+        'Comprehensive drills',
+        'Templates Strategies',
+        'Speaking and Writing feedback',
+        'Test samples',
+        'Reading questions ',
+        'Registration support'
       ],
-      upgradeFrom: ["fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
+      upgradeFrom: [ "toefl_prep", "fpgee_prep_only", "fpgec_pathway", "toefl-prep-2hr", "toefl-prep-1hr"]
+
     },
     {
       id: "toefl_prep",
@@ -206,7 +310,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
         <div>
           <h3 className="text-lg font-semibold mb-4 text-pharma-blue">Recommended Next Steps</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            {recommendedUpgrades.slice(0, 4).map(service => (
+            {recommendedUpgrades.map(service => (
               <div key={service.id} className="border-2 border-pharma-blue bg-blue-50 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-semibold text-pharma-blue">{service.name}</h4>
@@ -247,7 +351,7 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
       )}
 
       {/* All Available Services */}
-      <div>
+      {/* <div>
         <h3 className="text-lg font-semibold mb-4 text-pharma-blue">All Available Services</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map(service => (
@@ -313,6 +417,14 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
             </div>
           ))}
         </div>
+      </div> */}
+      <div className='flex justify-center'>
+        <Link href='/dashboard/shopping'>
+          <Button>
+            <LucideShoppingBag />
+            Go to Shop
+          </Button>
+        </Link>
       </div>
 
       {/* Contact for Custom Solutions */}

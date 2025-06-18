@@ -48,6 +48,11 @@ const Shopping = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const isMobile = useIsMobile();
 
+  const isAddedToCart = (cartId) => {
+  return cart.some(item => item.id === cartId);
+};
+
+
 
 
   const services: Service[] = [
@@ -135,6 +140,23 @@ const Shopping = () => {
         "Eligibility application guidance",
         "Prometric scheduling"
       ]
+    },
+    {
+      id: "fpgec_pathway",
+      name: "FPGEC Certificate Pathway Coaching",
+      description: "Comprehensive support for the FPGEC certificate pathway",
+      price: 800,
+      category: 'coaching',
+      features: [
+        "Credential evaluation (ECE & NABP) assistance",
+        "Transcript and certification preparation",
+        "NABP e-Profile setup",
+        "FPGEE eligibility application support",
+        "TOEFL registration + study resources",
+        "Prometric exam scheduling",
+        "Personalized FPGEE and TOEFL prep plans"
+      ],
+     
     },
     {
       id: "travel_support",
@@ -360,13 +382,29 @@ const Shopping = () => {
                           )}
                         </div>
                         
-                        <Button 
-                          onClick={() => addToCart(service)}
-                          className="bg-pharma-blue hover:bg-pharma-navy"
-                        >
-                          <ShoppingCart className="h-4 w-4 mr-2" />
-                          Add to Cart
-                        </Button>
+                        {isAddedToCart(service.id) ?
+                          <div>
+                          <Button 
+                            onClick={() => removeFromCart(service.id)}
+                            className="bg-pharma-blue hover:bg-pharma-navy"
+                            
+                          >
+                            <ShoppingCart className="h-4 w-4 mr-2" />
+                            Remove From Cart
+                          </Button>
+                          <p className='text-xs text-center text-red-500 bg-gray-100 border rounded-sm w-50 py-1'>Added to Cart</p>
+                          </div> : 
+                          <div>
+                            <Button 
+                              onClick={() => addToCart(service)}
+                              className="bg-pharma-blue hover:bg-pharma-navy"
+                              
+                            >
+                              <ShoppingCart className="h-4 w-4 mr-2" />
+                              Add to Cart
+                            </Button>
+                          </div>
+                        }
                       </div>
                     </CardContent>
                   </Card>
@@ -422,6 +460,7 @@ const Shopping = () => {
                                       variant="outline"
                                       size="sm"
                                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                      disabled
                                     >
                                       -
                                     </Button>
@@ -430,6 +469,7 @@ const Shopping = () => {
                                       variant="outline"
                                       size="sm"
                                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                      disabled
                                     >
                                       +
                                     </Button>

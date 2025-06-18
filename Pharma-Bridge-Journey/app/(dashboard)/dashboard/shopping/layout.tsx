@@ -22,13 +22,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     return <div>User profile not found</div>;
   }
   return (
-    <html lang="en">
-      <body>
-        <DashboardNavbar userProfile={userProfile}/>
-        <main>
-          {children}
-        </main>
-      </body>
-    </html>
+
+    <>
+      <DashboardNavbar userProfile={userProfile}/>
+      <main>
+        {children}
+      </main>
+    </>
+
   );
 }

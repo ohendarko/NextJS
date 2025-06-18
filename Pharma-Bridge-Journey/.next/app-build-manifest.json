@@ -12,91 +12,40 @@
       "static/css/app/not-found.css",
       "static/chunks/app/not-found.js"
     ],
-    "/(regularLayout)/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(regularLayout)/layout.js"
-    ],
-    "/(regularLayout)/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(regularLayout)/page.js"
-    ],
-    "/api/auth/[...nextauth]/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/auth/[...nextauth]/route.js"
-    ],
     "/(dashboard)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(dashboard)/layout.js"
-    ],
-    "/(dashboard)/admin/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/admin/page.js"
-    ],
-    "/api/user/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/user/route.js"
-    ],
-    "/(dashboard)/not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/(dashboard)/not-found/page.css",
-      "static/chunks/app/(dashboard)/not-found/page.js"
-    ],
-    "/(regularLayout)/createaccount/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(regularLayout)/createaccount/page.js"
-    ],
-    "/(regularLayout)/whowehelp/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(regularLayout)/whowehelp/page.js"
-    ],
-    "/(regularLayout)/login/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(regularLayout)/login/page.js"
     ],
     "/(dashboard)/dashboard/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(dashboard)/dashboard/layout.js"
     ],
-    "/(dashboard)/dashboard/page": [
+    "/(dashboard)/dashboard/shopping/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(dashboard)/dashboard/page.js"
+      "static/chunks/app/(dashboard)/dashboard/shopping/layout.js"
     ],
-    "/api/appointments/route": [
+    "/(dashboard)/dashboard/shopping/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/appointments/route.js"
-    ],
-    "/api/upload/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/upload/route.js"
-    ],
-    "/api/document/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/document/route.js"
-    ],
-    "/api/user/update/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/user/update/route.js"
+      "static/chunks/app/(dashboard)/dashboard/shopping/page.js"
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/_not-found/page.js"
+    ],
+    "/api/auth/[...nextauth]/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/auth/[...nextauth]/route.js"
+    ],
+    "/api/user/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/user/route.js"
     ]
   }
 }
