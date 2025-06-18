@@ -69,43 +69,6 @@ const ServiceUpgrade: React.FC<ServiceUpgradeProps> = ({ userProfile }) => {
       upgradeFrom: ["credential_guidance", "fpgee_prep_only", "toefl_prep", "toefl-prep-2hr", "toefl-prep-1hr"],
       popular: true
     },
-    // {
-    //   id: "nabp_application",
-    //   name: "NABP Application & Exam Scheduling",
-    //   description: "Complete application and scheduling support",
-    //   price: 150,
-    //   features: [
-    //     "NABP e-Profile setup",
-    //     "FPGEE eligibility application guidance",
-    //     "Prometric testing center scheduling"
-    //   ],
-    //   upgradeFrom: ["credential_guidance", "fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
-    // },
-    // {
-    //   id: "accommodation_support",
-    //   name: "Accommodation, Flight & Hosting Support",
-    //   description: "Complete travel and accommodation assistance",
-    //   price: 300,
-    //   features: [
-    //     "Flight booking guidance",
-    //     "Temporary housing support (Airbnb, student housing, extended stays)",
-    //     "Local hosting orientation and connection (in select cities)",
-    //     "U.S. culture overview: transport, shopping, safety tips"
-    //   ],
-    //   upgradeFrom: ["fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
-    // },
-    // {
-    //   id: "internship_placement",
-    //   name: "Internship Placement Strategy",
-    //   description: "Coaching on where and how to apply for internships",
-    //   price: 100,
-    //   features: [
-    //     "Coaching on where and how to apply",
-    //     "Interview preparation",
-    //     "Resume review and employer outreach support"
-    //   ],
-    //   upgradeFrom: ["fpgee_prep_only", "fpgec_pathway", "toefl_prep"]
-    // },
     {
       id: 'toefl-prep-1hr',
       name: 'TOEFL One-on-One Classes: 1 hour class',
