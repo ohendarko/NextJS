@@ -12,7 +12,7 @@ import NotificationCenter from '@/components/dashboard/NotificationCenter';
 import BillingSupport from '@/components/dashboard/BillingSupport';
 import ServiceUpgrade from '@/components/dashboard/ServiceUpgrade';
 import { useIsMobile } from "@/hooks/use-mobile";
-import { User, FileText, Calendar, Settings, Upload, Menu, UserPlus, Map } from 'lucide-react';
+import { User, FileText, Calendar, Settings, Upload, Menu, UserPlus, Map, CheckCircle2, Pen, MessageSquare, Video } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Spinner from '@/components/Spinner';
 import Link from 'next/link';
@@ -21,7 +21,14 @@ import { useUser } from "@/context/UserContext";
 // import { useRouter } from 'next/navigation';
 // import { toast } from '@/hooks/use-toast';
 
-
+interface ServiceModule {
+  id: string;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  link: string;
+  requiredService: string[];
+}
 
 
 
@@ -30,11 +37,63 @@ const Dashboard = () => {
   const { data: session, status } = useSession()
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const isMobile = useIsMobile();
-  const { userProfile, isLoading } = useUser();
+  const { userProfile, isLoading,setUserProfile } = useUser();
   // const router = useRouter()
 
-  
+  // const servicePackages = [
+  //   {
+  //     id: 'fpgee_prep_only',
+  //     name: 'FPGEE Exam Preparation Only',
+  //     description: 'Preparation for FPGEE exam',
+  //     price: '$500',
+  //     popular: false
+  //   },
+  //   {
+  //     id: 'fpgec_pathway',
+  //     name: 'FPGEE Pathway Support',
+  //     description: 'Guidance through credential evaluation, TOEFL, FPGEE, and Prometric scheduling—includes e-Profile setup & personalized prep plans.',
+  //     price: '$800',
+  //     popular: false
+  //   },
+  //   {
+  //     id: 'full',
+  //     name: 'Full Licensure Pathway',
+  //     description: 'Complete guidance from credential evaluation through state licensure',
+  //     price: '$3,000',
+  //     mostPopular: true
+  //   },
+  //   {
+  //     id: 'toefl_prep-1hr',
+  //     name: 'TOEFL  One-on-One Classes: 1 hour class',
+  //     description: 'Focused preparation for the TOEFL iBT exam',
+  //     price: '$35',
+  //     popular: false
+  //   },
+  //   {
+  //     id: 'toefl-prep-2hr',
+  //     name: 'TOEFL One-on-One Classes: 2 hours',
+  //     description: 'Personalized TOEFL preparation with expert instructors. Choose your duration and class type.',
+  //     price: '$70',
+  //     popular: false,
+  //     hasToeflOptions: true
+  //   },
+  //   {
+  //     id: 'toefl-lifetime',
+  //     name: 'TOEFL Lifetime Subscription',
+  //     description: 'Complete TOEFL preparation package: 4 two-hour classes OR 8 one-hour classes, comprehensive drills, templates, strategies, speaking and writing feedback, test samples, reading questions, registration support',
+  //     price: '$250',
+  //     popular: true,
+  //     hasToeflOptions: false
+  //   }
+  // ];
 
+  const selectedPackages = userProfile?.selectedPackage || [];
+
+  const nonClassBasedModules = ['fpgec_pathway', 'full'];
+
+  const isClassBasedModule = selectedPackages.every(
+    pkg => !nonClassBasedModules.includes(pkg)
+  );
 
 
   const navigationItems = [
@@ -46,6 +105,16 @@ const Dashboard = () => {
     { id: 'billing', label: 'Billing & Support', icon: Settings },
     { id: 'upgrade', label: 'Add-on Service', icon: Upload }
   ];
+
+
+  const filteredNavigationItems = navigationItems.filter(item => {
+    if (isClassBasedModule && (item.id === 'documents' || item.id === 'roadmap')) {
+      return false;
+    }
+    return true;
+  });
+
+
 
   const renderContent = () => {
     switch (activeTab) {
@@ -103,10 +172,11 @@ const Dashboard = () => {
               <CardTitle>Your Profile</CardTitle>
             </CardHeader>
             <CardContent>
-              <ProfileSection userProfile={userProfile} setUserProfile={useUser} />
+              <ProfileSection userProfile={userProfile} setUserProfile={setUserProfile} />
             </CardContent>
           </Card>
         );
+
       case 'documents':
         return (
           userProfile.hasCompletedOnboarding === false ? 
@@ -129,6 +199,8 @@ const Dashboard = () => {
             </CardContent>
           </Card>)
         );
+
+        
       case 'roadmap':
         return (
           userProfile.hasCompletedOnboarding === false ? 
@@ -261,7 +333,7 @@ const Dashboard = () => {
         `}>
           <ScrollArea className="h-full">
             <div className="p-4 space-y-2">
-              {navigationItems.map((item) => {
+              {filteredNavigationItems.map((item) => {
                 const IconComponent = item.icon;
                 return (
                   <Button

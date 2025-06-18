@@ -13,7 +13,6 @@ import {
   // Settings, 
   // Upload, 
 } from 'lucide-react';
-import { useSession } from 'next-auth/react';
 import Spinner from '../Spinner';
 
 interface UserProfile {
@@ -145,6 +144,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
         );
 
         setAvailableModules(filtered);
+        
       } catch (error) {
         console.error("Failed to load modules:", error);
       } finally {

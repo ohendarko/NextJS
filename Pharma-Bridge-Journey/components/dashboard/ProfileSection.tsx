@@ -37,11 +37,13 @@ const degrees = [
 const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserProfile }) => {
 
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({ ...userProfile });
+  const [formData, setFormData] = useState<UserProfile | null>(null);
   const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
-    setFormData({ ...userProfile });
+    if (userProfile) {
+      setFormData({ ...userProfile });
+    }
   }, [userProfile]);
   
   
@@ -192,6 +194,9 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
       </span>
     );
   };
+  
+  if (!formData) return <p>Loading...</p>;
+
 
   return (
     <div className="space-y-8">
@@ -201,9 +206,9 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
       <div className="flex flex-col md:flex-col items-start md:items-center gap-6">
         <div className="relative">
           <Avatar className="h-24 w-24 border-4 border-white shadow-md">
-            <AvatarImage src={formData.profileImage || ""} />
+            <AvatarImage src={formData?.profileImage || ""} />
             <AvatarFallback className="text-3xl">
-              {formData.name.charAt(0)}
+              {formData?.name.charAt(0)}
             </AvatarFallback>
           </Avatar>
           
@@ -236,7 +241,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
             <Input 
               id="name" 
               name="name" 
-              value={formData.name} 
+              value={formData?.name} 
               onChange={handleInputChange} 
               disabled={!isEditing}
             />
@@ -248,7 +253,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
               id="email" 
               name="email" 
               type="email" 
-              value={formData.email} 
+              value={formData?.email} 
               onChange={handleInputChange} 
               disabled={true} // Email typically shouldn't be editable without verification
             />
@@ -260,7 +265,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
             <Label htmlFor="country">Country</Label>
             {isEditing ? (
               <Select
-                value={formData.countryOfDegree}
+                value={formData?.countryOfDegree}
                 onValueChange={(val) => handleSelectChange("countryOfDegree", val)}
               >
                 <SelectTrigger>
@@ -278,7 +283,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
                   id="countryofDegree" 
                   name="countryofDegree" 
                   type="countryofDegree" 
-                  value={formData.countryOfDegree || 'Not Selected'} 
+                  value={formData?.countryOfDegree || 'Not Selected'} 
                   onChange={handleInputChange} 
                   disabled={true} //
                 />
@@ -290,7 +295,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
             <Label htmlFor="degree">Pharmacy Degree</Label>
             {isEditing ? (
               <Select
-                value={formData.degreeType}
+                value={formData?.degreeType}
                 onValueChange={(val) => handleSelectChange("degreeType", val)}
               >
                 <SelectTrigger>
@@ -308,7 +313,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
                   id="degreeType" 
                   name="degreeType" 
                   type="degreeType" 
-                  value={formData.degreeType || 'Not Selected'} 
+                  value={formData?.degreeType || 'Not Selected'} 
                   onChange={handleInputChange} 
                   disabled={true} //
                 />
@@ -324,7 +329,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
               id="graduationYear" 
               name="graduationYear" 
               type="number" 
-              value={formData.graduationYear} 
+              value={formData?.graduationYear} 
               onChange={handleInputChange} 
               disabled={!isEditing}
             />
@@ -335,7 +340,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
             <Input 
               id="phoneNumber" 
               name="phoneNumber" 
-              value={formData.phoneNumber} 
+              value={formData?.phoneNumber} 
               onChange={handleInputChange} 
               disabled={!isEditing} 
               placeholder="+15551234567"

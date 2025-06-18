@@ -66,12 +66,14 @@ interface UserContextType {
   userProfile: UserProfile | null;
   isLoading: boolean;
   refetchUser: () => Promise<void>;
+  setUserProfile: React.Dispatch<React.SetStateAction<UserProfile | null>>;
 }
 
 const UserContext = createContext<UserContextType>({
   userProfile: null,
   isLoading: true,
   refetchUser: async () => {},
+  setUserProfile: () => {},
 });
 
 interface UserProviderProps {
@@ -120,7 +122,7 @@ export const UserProvider = ({ children, userEmail }: UserProviderProps) => {
   }, [status]);
 
   return (
-    <UserContext.Provider value={{ userProfile, isLoading, refetchUser: fetchUser }}>
+    <UserContext.Provider value={{ userProfile, isLoading, setUserProfile, refetchUser: fetchUser }}>
       {children}
     </UserContext.Provider>
   );
