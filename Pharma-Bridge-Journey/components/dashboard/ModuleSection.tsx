@@ -9,7 +9,8 @@ import {
   Pen, 
   Video, 
   Calendar, 
-  CheckCircle2, 
+  CheckCircle2,
+  Briefcase, 
   // Settings, 
   // Upload, 
 } from 'lucide-react';
@@ -60,6 +61,14 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       description: "Track your progress and study hours",
       icon: <Calendar className="h-6 w-6 text-pharma-blue" />,
       link: "/dashboard/tracker",
+      requiredService: ["fpgee"]
+    },
+    {
+      id: "resources",
+      title: "Resources",
+      description: "Download resources for your exam preparation",
+      icon: <Briefcase className="h-6 w-6 text-pharma-blue" />,
+      link: "/dashboard/resources",
       requiredService: ["fpgee"]
     },
     
@@ -144,7 +153,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
         );
 
         setAvailableModules(filtered);
-        
+
       } catch (error) {
         console.error("Failed to load modules:", error);
       } finally {

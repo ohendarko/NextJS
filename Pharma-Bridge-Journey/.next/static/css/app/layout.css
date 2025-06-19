@@ -1737,6 +1737,12 @@ video {
 .whitespace-nowrap {
   white-space: nowrap;
 }
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
+.text-wrap {
+  text-wrap: wrap;
+}
 .break-words {
   overflow-wrap: break-word;
 }
@@ -2264,9 +2270,17 @@ video {
 .fill-current {
   fill: currentColor;
 }
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+.object-center {
+  -o-object-position: center;
+     object-position: center;
 }
 .p-0 {
   padding: 0px;
@@ -2474,11 +2488,17 @@ video {
 .text-right {
   text-align: right;
 }
+.align-top {
+  vertical-align: top;
+}
 .align-middle {
   vertical-align: middle;
 }
 .font-mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.font-sans {
+  font-family: Inter, sans-serif;
 }
 .text-2xl {
   font-size: 1.5rem;

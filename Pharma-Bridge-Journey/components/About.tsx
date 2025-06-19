@@ -4,29 +4,57 @@ import React from 'react';
 const teamMembers = [
   {
     name: "Dr. Benjamin Appau",
-    title: "Co-Founder & Principal Consultant",
-    bio: "Ghanaian & U.S. licensed pharmacist practicing in New Jersey with extensive experience guiding international pharmacists through the licensure process.",
-    image: "/benjamin.JPG"
+    title: "Co-Founder  | U.S. Licensed Pharmacist | Global Pharmacy Mentor",
+    bio: `
+Dr. Benjamin Appau is a U.S.-licensed pharmacist originally trained in Ghana. He successfully transitioned through the FPGEE, TOEFL, NAPLEX, and U.S. licensure pathway — and now helps others do the same.
+
+Background:
+• PharmD from KNUST
+• Passed FPGEE, TOEFL, NAPLEX, and U.S. state licensure
+• Experienced in hospital & retail pharmacy in the U.S.
+• Focuses on roadmap clarity, test-taking strategy, and real-world prep
+
+Mentorship Style:
+Benjamin is direct, encouraging, and strategic. He believes in smart prep, realistic timelines, and keeping clients motivated with actionable steps.
+
+Why He Does It:
+“There’s no reason to walk this road alone. I’ve been there — and I’m here now to shorten the path for others who want to build their career in the U.S.”
+    `,
+    image: "/Benji.jpg"
   },
   {
     name: "Dr. Claudia Serwaa Agyei Marfo",
-    title: "Co-Founder & TOEFL Specialist",
-    bio: "Ghanaian Pharmacist with TOEFL success and FPGEE eligibility. Expert in navigating the complex licensure process for international graduates.",
-    image: "/claudia.JPG"
+    title: "Co-Founder | U.S. Licensed Pharmacist | Global Pharmacy Mentor",
+    bio: `
+Dr. Claudia is a foreign-trained pharmacist with firsthand experience navigating the complex journey toward becoming a licensed pharmacist in the United States. As a current FPGEE candidate and a passionate educator, Claudia brings deep empathy and practical insight to international pharmacists aiming to take the same path.
+
+Background:
+• PharmD-equivalent degree from KNUST, Ghana
+• TOEFL completed | FPGEE eligible | U.S. pre-anesthesiologist preparation
+• Passionate about mentoring and simplifying licensing hurdles
+• Leads the FPGEE strategy, study coaching, and resource development at PharmaBridge
+
+Mentorship Style:
+Claudia is organized, thorough, and deeply committed to clarity. Her structured coaching methods are built to reduce confusion and guide clients from step one — even if they’ve never heard of ECE or NABP before.
+
+Why She Does It:
+“I want every foreign-trained pharmacist to feel like their dream is possible — because it is. I’ve lived it, I know the fear and the questions. Now, I help you cross that bridge with confidence.”
+      `,
+    image: "/Claudiaa.jpg"
   }
 ];
 
 const AboutCard = ({ name, title, bio, image }: { name: string, title: string, bio: string, image: string }) => {
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-md">
-      <div className="md:flex">
-        <div className="md:shrink-0">
-          <img className="h-48 w-full object-cover md:h-full md:w-48" src={image} alt={name}/>
+      <div className="md:flex items-start">
+        <div className="flex md:shrink-0">
+          <img className="flex h-48 w-full object-contain md:h-full md:w-48" src={image} alt={name}/>
         </div>
         <div className="p-8">
           <h3 className="text-xl font-semibold mb-1">{name}</h3>
           <p className="text-pharma-blue mb-3">{title}</p>
-          <p className="text-gray-600">{bio}</p>
+          <pre className="font-sans text-gray-600 text-wrap">{bio}</pre>
         </div>
       </div>
     </div>
@@ -47,7 +75,7 @@ const About = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-1 gap-8">
           {teamMembers.map((member, index) => (
             <AboutCard 
               key={index}

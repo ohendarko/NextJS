@@ -201,7 +201,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
   return (
     <div className="space-y-8">
         <Button onClick={handleEditToggle}>
-          <Settings />
+          {isEditing ? 'Cancel' : 'Edit'}
         </Button>
       <div className="flex flex-col md:flex-col items-start md:items-center gap-6">
         <div className="relative">

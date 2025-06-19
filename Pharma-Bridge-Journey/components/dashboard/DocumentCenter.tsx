@@ -311,8 +311,7 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
       dbid: 'goodStandingLetterSubmitted',
       title: "Letter of Good Standing Checklist",
       description: "Completed checklist for letter of good standing from licensing board",
-      imageRequired: true,
-      manual: false,
+      manual: true,
       required: true
     }
   ];
