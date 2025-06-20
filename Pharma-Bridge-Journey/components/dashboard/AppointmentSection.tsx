@@ -44,25 +44,25 @@ const AppointmentCenter = ({userProfile}) => {
   });
 
 
-    useEffect(() => {
-      const fetchAppointments = async () => {
-        try {
-          setIsLoading(true)
-          const res = await fetch(`/api/appointments`);
-          const data = await res.json();
-          setAppointments(data);  
-        } catch (error) {
-          setIsLoading(false)
-          console.error('Error loading appointments:', error)
-        } finally {
-          setIsLoading(false);
-        }
-      };
-  
-      fetchAppointments();
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        setIsLoading(true)
+        const res = await fetch(`/api/appointments`);
+        const data = await res.json();
+        setAppointments(data);  
+      } catch (error) {
+        setIsLoading(false)
+        console.error('Error loading appointments:', error)
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  
-    }, [status]);
+    fetchAppointments();
+
+
+  }, [userProfile]);
 
 
   const appointmentTypes = [
@@ -76,11 +76,8 @@ const AppointmentCenter = ({userProfile}) => {
   ];
 
   const advisors = [
-    "Dr. Smith",
-    "Dr. Johnson", 
-    "Ms. Rodriguez",
-    "Dr. Patel",
-    "Ms. Chen"
+    "Dr. Cludia",
+    "Dr. Benjamin",
   ];
 
   const timeSlots = [

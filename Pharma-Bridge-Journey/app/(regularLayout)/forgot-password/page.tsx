@@ -115,7 +115,7 @@ const ForgotPassword = () => {
       }
 
       // Step 2: Proceed with password update
-      const updateRes = await fetch("/api/user/update", {
+      const updateRes = await fetch("/api/user/update/password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

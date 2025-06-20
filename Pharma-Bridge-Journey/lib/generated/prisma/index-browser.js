@@ -245,6 +245,27 @@ exports.Prisma.AppointmentScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.TransactionScalarFieldEnum = {
+  id: 'id',
+  userEmail: 'userEmail',
+  date: 'date',
+  description: 'description',
+  amount: 'amount',
+  status: 'status'
+};
+
+exports.Prisma.InvoiceScalarFieldEnum = {
+  id: 'id',
+  userEmail: 'userEmail',
+  date: 'date',
+  dueDate: 'dueDate',
+  amount: 'amount',
+  paid: 'paid',
+  status: 'status',
+  cloudinaryUrl: 'cloudinaryUrl',
+  items: 'items'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -254,7 +275,19 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
+exports.TransactionStatus = exports.$Enums.TransactionStatus = {
+  paid: 'paid',
+  pending: 'pending',
+  failed: 'failed'
+};
 
+exports.InvoiceStatus = exports.$Enums.InvoiceStatus = {
+  draft: 'draft',
+  pending: 'pending',
+  paid: 'paid',
+  overdue: 'overdue',
+  cancelled: 'cancelled'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
@@ -264,7 +297,9 @@ exports.Prisma.ModelName = {
   Session: 'Session',
   VerificationToken: 'VerificationToken',
   Document: 'Document',
-  Appointment: 'Appointment'
+  Appointment: 'Appointment',
+  Transaction: 'Transaction',
+  Invoice: 'Invoice'
 };
 
 /**

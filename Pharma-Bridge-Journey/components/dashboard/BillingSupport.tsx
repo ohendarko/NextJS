@@ -1,5 +1,5 @@
-
-import React, { useState } from 'react';
+'use client'
+import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -11,6 +11,7 @@ import {
   Settings
 } from 'lucide-react';
 import { toast } from "@/hooks/use-toast";
+import Spinner from '../Spinner';
 
 interface BillingSupportProps {
   userProfile: any;
@@ -26,10 +27,13 @@ interface Transaction {
 
 interface Invoice {
   id: string;
+  userEmail: string;
   date: string;
   dueDate: string;
   amount: number;
   paid: boolean;
+  status: "draft" | "pending" | "paid" | "overdue" | "cancelled";
+  cloudinaryUrl?: string;
   items: {
     name: string;
     price: number;
@@ -40,60 +44,44 @@ const BillingSupport: React.FC<BillingSupportProps> = ({ userProfile }) => {
   const [activeTab, setActiveTab] = useState("transactions");
   const [supportMessage, setSupportMessage] = useState("");
   
-  // Mock transactions data - in a real app, this would come from your backend
-  const transactions: Transaction[] = [
-    {
-      id: "txn-1",
-      date: "May 20, 2025",
-      description: "FPGEE Preparation Program - Monthly",
-      amount: 199,
-      status: "paid"
-    },
-    {
-      id: "txn-2",
-      date: "April 20, 2025",
-      description: "FPGEE Preparation Program - Monthly",
-      amount: 199,
-      status: "paid"
-    },
-    {
-      id: "txn-3",
-      date: "March 20, 2025",
-      description: "Documentation Assistance - One-time",
-      amount: 299,
-      status: "paid"
-    }
-  ];
-  
-  // Mock invoices data - in a real app, this would come from your backend
-  const invoices: Invoice[] = [
-    {
-      id: "inv-1",
-      date: "May 20, 2025",
-      dueDate: "May 25, 2025",
-      amount: 199,
-      paid: true,
-      items: [
-        {
-          name: "FPGEE Preparation Program - Monthly",
-          price: 199
-        }
-      ]
-    },
-    {
-      id: "inv-2",
-      date: "April 20, 2025",
-      dueDate: "April 25, 2025",
-      amount: 199,
-      paid: true,
-      items: [
-        {
-          name: "FPGEE Preparation Program - Monthly",
-          price: 199
-        }
-      ]
-    }
-  ];
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [invoices, setInvoices] = useState<Invoice[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBillingData = async () => {
+      try {
+        const email = userProfile?.email;
+        if (!email) return;
+
+        const [txnRes, invRes] = await Promise.all([
+          fetch(`/api/transactions`),
+          fetch(`/api/invoices`)
+        ]);
+
+        const txnData = await txnRes.json();
+        const invData = await invRes.json();
+
+        if (!txnRes.ok) throw new Error(txnData.error || "Failed to fetch transactions");
+        if (!invRes.ok) throw new Error(invData.error || "Failed to fetch invoices");
+
+        setTransactions(txnData);
+        setInvoices(invData);
+      } catch (err) {
+        console.error("Billing fetch error:", err);
+        toast({
+          title: "Error",
+          description: "Could not load billing data.",
+          variant: "destructive"
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBillingData();
+  }, [userProfile]);
+
   
   const handleSendSupportMessage = () => {
     if (!supportMessage.trim()) return;
@@ -107,7 +95,16 @@ const BillingSupport: React.FC<BillingSupportProps> = ({ userProfile }) => {
   };
   
   const handleDownloadInvoice = (invoiceId: string) => {
-    // In a real app, this would download the invoice
+    const invoice = invoices.find((inv) => inv.id === invoiceId);
+    if (invoice?.cloudinaryUrl) {
+      window.open(invoice.cloudinaryUrl, "_blank");
+    } else {
+      toast({
+        title: "Download Unavailable",
+        description: "Invoice file not found.",
+        variant: "destructive"
+      });
+    }
     toast({
       title: "Invoice Download",
       description: `Invoice ${invoiceId} would be downloaded here.`,
@@ -129,11 +126,11 @@ const BillingSupport: React.FC<BillingSupportProps> = ({ userProfile }) => {
 
   return (
     <div className="w-full">
+      
       <Tabs defaultValue="transactions" value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="mb-10 w-full grid grid-cols-2 lg:grid-cols-4">
           <TabsTrigger value="transactions" className="text-xs sm:text-sm">Transactions</TabsTrigger>
           <TabsTrigger value="invoices" className="text-xs sm:text-sm">Invoices</TabsTrigger>
-          <TabsTrigger value="payment-methods" className="text-xs sm:text-sm">Payment</TabsTrigger>
           <TabsTrigger value="support" className="text-xs sm:text-sm">Support</TabsTrigger>
         </TabsList>
         
@@ -141,81 +138,96 @@ const BillingSupport: React.FC<BillingSupportProps> = ({ userProfile }) => {
           <div className="space-y-4">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <h3 className="font-semibold text-lg">Transaction History</h3>
-              <Input placeholder="Search transactions..." className="w-full sm:max-w-xs" />
+              <Input placeholder={transactions.length == 0 ?"Nothing to Search" : "Search transactions..."} className="w-full sm:max-w-xs" />
             </div>
-            
-            {/* Mobile view - Card layout */}
-            <div className="block md:hidden space-y-4">
-              {transactions.map(transaction => (
-                <div key={transaction.id} className="border rounded-lg p-4 space-y-3">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="font-medium text-sm">{transaction.description}</p>
-                      <p className="text-xs text-gray-500">{transaction.date}</p>
-                    </div>
-                    {getStatusBadge(transaction.status)}
-                  </div>
-                  <div className="text-right">
-                    <span className="text-lg font-semibold">${transaction.amount.toFixed(2)}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            {/* Desktop view - Table layout */}
-            <div className="hidden md:block border rounded-lg overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                        Date
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                        Description
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                        Status
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">
-                        Amount
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {transactions.map(transaction => (
-                      <tr key={transaction.id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {transaction.date}
-                        </td>
-                        <td className="px-6 py-4 whitespace-wrap text-sm">
-                          {transaction.description}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {getStatusBadge(transaction.status)}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-medium">
-                          ${transaction.amount.toFixed(2)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            {/* Conditional rendering of content */}
+            { loading ? <Spinner loading={loading} /> : transactions.length == 0 ? 
+              <div>
+                <p className='pt-2 text-sm text-gray-600'>You have not perfromed any transactions</p>
               </div>
-            </div>
-            
-            <div className="flex justify-center">
-              <Button variant="outline" className="text-sm">Load More</Button>
-            </div>
+              : 
+              <div>
+              {/* Mobile view - Card layout */}
+              <div className="block md:hidden space-y-4">
+                {transactions.map(transaction => (
+                  <div key={transaction.id} className="border rounded-lg p-4 space-y-3">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <p className="font-medium text-sm">{transaction.description}</p>
+                        <p className="text-xs text-gray-500">{transaction.date}</p>
+                      </div>
+                      {getStatusBadge(transaction.status)}
+                    </div>
+                    <div className="text-right">
+                      <span className="text-lg font-semibold">${transaction.amount.toFixed(2)}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Desktop view - Table layout */}
+              <div className="hidden md:block border rounded-lg overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                          Date
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                          Description
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                          Status
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">
+                          Amount
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {transactions.map(transaction => (
+                        <tr key={transaction.id}>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {transaction.date}
+                          </td>
+                          <td className="px-6 py-4 whitespace-wrap text-sm">
+                            {transaction.description}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {getStatusBadge(transaction.status)}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-medium">
+                            ${transaction.amount.toFixed(2)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              
+              <div className="flex justify-center">
+                <Button variant="outline" className="text-sm">Load More</Button>
+              </div>  
+            </div>}
+
           </div>
         </TabsContent>
         
         <TabsContent value="invoices">
           <div className="space-y-6">
-            <h3 className="font-semibold text-lg">Invoices</h3>
+            <div className='flex gap-4 justify-between'>
+              <h3 className="font-semibold text-lg items-end">Invoices</h3>
+              <Input placeholder={transactions.length == 0 ?"Nothing to Search" : "Search invoices..."} className="w-full sm:max-w-xs" />
+            </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {invoices.map(invoice => (
+              {loading ? <Spinner loading={loading} /> : invoices.length == 0 ?
+              <div>
+                <p className='pt-2 text-sm text-gray-600'>You have no invoices on record</p>
+              </div>
+               : invoices.map(invoice => (
                 <div key={invoice.id} className="border rounded-lg p-4">
                   <div className="flex flex-col sm:flex-row justify-between items-start gap-3">
                     <div className="flex-1">
@@ -253,35 +265,6 @@ const BillingSupport: React.FC<BillingSupportProps> = ({ userProfile }) => {
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-        </TabsContent>
-        
-        <TabsContent value="payment-methods">
-          <div className="space-y-6">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-5">
-              <h3 className="font-semibold text-lg">Payment Methods</h3>
-              <Button className="w-full sm:w-auto">
-                <Calendar className="h-4 w-4 mr-2" />
-                Add Payment Method
-              </Button>
-            </div>
-            
-            <div className="border rounded-lg p-4 sm:p-6">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
-                <div className="p-2 bg-gray-100 rounded">
-                  <Calendar className="h-6 w-6 text-gray-700" />
-                </div>
-                <div className="flex-1">
-                  <p className="font-medium">Visa ending in 4242</p>
-                  <p className="text-sm text-gray-500">Expires 12/2026</p>
-                </div>
-                <div className="w-full sm:w-auto">
-                  <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700 w-full sm:w-auto">
-                    Remove
-                  </Button>
-                </div>
-              </div>
             </div>
           </div>
         </TabsContent>

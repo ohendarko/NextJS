@@ -205,3 +205,39 @@ model Appointment {
   notes     String?
   createdAt DateTime @default(now())
 }
+
+model Transaction {
+  id          String             @id @default(auto())  @map("_id") @db.ObjectId
+  userEmail   String
+  date        DateTime
+  description String
+  amount      Float
+  status      TransactionStatus
+}
+
+enum TransactionStatus {
+  paid
+  pending
+  failed
+}
+
+model Invoice {
+  id            String         @id @default(auto())  @map("_id") @db.ObjectId
+  userEmail     String
+  date          DateTime
+  dueDate       DateTime
+  amount        Float
+  paid          Boolean
+  status        InvoiceStatus  @default(pending)
+  cloudinaryUrl String?
+  items         Json           // stores: [{ name, price }]
+}
+
+enum InvoiceStatus {
+  draft
+  pending
+  paid
+  overdue
+  cancelled
+}
+

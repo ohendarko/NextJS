@@ -8,7 +8,7 @@ import ModulesSection from '@/components/dashboard/ModuleSection';
 import UpcomingAppointments from '@/components/dashboard/UpcomingAppointments';
 import DocumentCenter from '@/components/dashboard/DocumentCenter';
 import RoadmapTracker from '@/components/dashboard/RoadmapTracker';
-import NotificationCenter from '@/components/dashboard/NotificationCenter';
+import QuickActions from '@/components/dashboard/QuickActions';
 import BillingSupport from '@/components/dashboard/BillingSupport';
 import ServiceUpgrade from '@/components/dashboard/ServiceUpgrade';
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -137,21 +137,22 @@ const Dashboard = () => {
                   <CardTitle>Quick Actions</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <NotificationCenter userProfile={userProfile} limit={3} />
+                  <QuickActions userProfile={userProfile} limit={3} />
                 </CardContent>
               </Card>)}
             </div>
             
             { userProfile.hasCompletedOnboarding === false ? <div></div> :
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <Card className="lg:col-span-2">
+
+                {!isClassBasedModule && <Card className="lg:col-span-2">
                   <CardHeader>
                     <CardTitle>Your Progress</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <RoadmapTracker userProfile={userProfile} compact={true} />
                   </CardContent>
-                </Card>
+                </Card>}
                 
                 <Card>
                   <CardHeader>

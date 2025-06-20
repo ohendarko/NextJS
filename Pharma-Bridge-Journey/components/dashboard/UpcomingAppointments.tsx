@@ -12,6 +12,7 @@ interface Appointment {
   date: string;
   time: string;
   type: string;
+  status: string;
   advisor: string;
   medium?: "video" | "phone";
 }
@@ -50,7 +51,7 @@ const UpcomingAppointments: React.FC<UpcomingAppointmentsProps> = ({ userProfile
   }, [status, router]);
 
   // If limit is provided, show only that many appointments
-  const displayAppointments = limit ? appointments.slice(0, limit) : appointments;
+  const displayAppointments = limit ? appointments.filter(app => app.status === 'upcoming').slice(0, limit) : appointments;
 
   const getMediumIcon = (medium?: "video" | "phone") => {
     switch (medium) {
@@ -120,7 +121,7 @@ const UpcomingAppointments: React.FC<UpcomingAppointmentsProps> = ({ userProfile
       )}
       <Link href='/dashboard/appointments'>
         <Button variant="ghost" className="w-full mt-2 text-xs md:text-sm">
-          Go to Appointments ({appointments.length})
+          Go to Appointments ({displayAppointments.length})
         </Button>
       </Link>
     </div>
