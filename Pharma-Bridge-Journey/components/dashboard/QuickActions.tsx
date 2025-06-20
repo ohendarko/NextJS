@@ -87,7 +87,7 @@ const QuickActions: React.FC<QuickActionsProps> = ({ userProfile, limit }) => {
     
     <div className="space-y-3 md:space-y-4">
       {displayQuickActions.map(action => (
-        <div className='flex'>
+        <div className='flex' key={action.id}>
           <div>
             <Link href={action.action.url}>
               <Card className="h-full cursor-pointer hover:shadow-md transition-shadow justify-center items-center">
