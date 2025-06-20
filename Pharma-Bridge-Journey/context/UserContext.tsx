@@ -91,6 +91,11 @@ export const UserProvider = ({ children, userEmail }: UserProviderProps) => {
   const fetchUser = async () => {
     try {
       if (status === "unauthenticated") {
+        toast({
+        title: 'Acess Denied',
+        description: 'You need to be logged in to acess this page',
+        variant: 'destructive',
+      });
         return
       }
       setIsLoading(true);
