@@ -2456,9 +2456,6 @@ video {
 .pt-4 {
   padding-top: 1rem;
 }
-.pt-5 {
-  padding-top: 1.25rem;
-}
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -2471,17 +2468,8 @@ video {
 .text-right {
   text-align: right;
 }
-.text-end {
-  text-align: end;
-}
-.align-baseline {
-  vertical-align: baseline;
-}
 .align-middle {
   vertical-align: middle;
-}
-.align-text-bottom {
-  vertical-align: text-bottom;
 }
 .font-mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -4270,10 +4258,6 @@ video {
 
   .sm\:rounded-lg {
     border-radius: var(--radius);
-  }
-
-  .sm\:p-6 {
-    padding: 1.5rem;
   }
 
   .sm\:px-6 {

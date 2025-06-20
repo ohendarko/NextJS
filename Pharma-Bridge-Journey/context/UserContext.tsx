@@ -109,11 +109,11 @@ export const UserProvider = ({ children, userEmail }: UserProviderProps) => {
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/login");
-      toast({
-        title: 'Acess Denied',
-        description: 'You need to be logged in to acess this page',
-        variant: 'destructive',
-      });
+      // toast({
+      //   title: 'Acess Denied',
+      //   description: 'You need to be logged in to acess this page',
+      //   variant: 'destructive',
+      // });
       return;
     }
     if (status === "authenticated") {
