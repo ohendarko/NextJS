@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -10,7 +10,7 @@ import Link from 'next/link';
 
 interface Notification {
   id: string;
-  type: "reminder" | "update" | "alert" | "event";
+  type: string;
   title: string;
   message: string;
   date: string;
@@ -29,91 +29,107 @@ const Notifications = () => {
   const [activeTab, setActiveTab] = useState("all");
   
   const [notifications, setNotifications] = useState<Notification[]>([
-    {
-      id: "notif-1",
-      type: "reminder",
-      title: "FPGEE Application Deadline Approaching",
-      message: "Your FPGEE application deadline is in 2 weeks. Make sure to complete all required documents including your pharmacy degree verification and English proficiency scores.",
-      date: "June 9, 2025",
-      time: "1 hour ago",
-      read: false,
-      priority: "high",
-      action: {
-        label: "View Documents",
-        url: "/dashboard/documents"
-      }
-    },
-    {
-      id: "notif-2",
-      type: "event",
-      title: "Upcoming Study Session",
-      message: "Your next FPGEE study session with Dr. Smith is scheduled for tomorrow at 10:00 AM. Please review the materials beforehand.",
-      date: "June 9, 2025",
-      time: "3 hours ago",
-      read: false,
-      priority: "medium",
-      action: {
-        label: "Join Session",
-        url: "/dashboard/appointments"
-      }
-    },
-    {
-      id: "notif-3",
-      type: "update",
-      title: "Document Verification Complete",
-      message: "Your pharmacy degree has been successfully verified by our team. You can now proceed with the next step in your application process.",
-      date: "June 8, 2025",
-      time: "1 day ago",
-      read: true,
-      priority: "medium",
-      action: {
-        label: "View Roadmap",
-        url: "/dashboard/roadmap"
-      }
-    },
-    {
-      id: "notif-4",
-      type: "alert",
-      title: "Payment Due Soon",
-      message: "Your monthly payment for the FPGEE preparation program is due in 3 days. Please update your payment method if needed.",
-      date: "June 7, 2025",
-      time: "2 days ago",
-      read: true,
-      priority: "high",
-      action: {
-        label: "Make Payment",
-        url: "/dashboard/billing"
-      }
-    },
-    {
-      id: "notif-5",
-      type: "update",
-      title: "New Study Materials Available",
-      message: "Fresh practice questions and video lessons have been added to your FPGEE preparation course. Check them out now!",
-      date: "June 6, 2025",
-      time: "3 days ago",
-      read: true,
-      priority: "low",
-      action: {
-        label: "View Materials",
-        url: "/dashboard/video-courses"
-      }
-    },
-    {
-      id: "notif-6",
-      type: "event",
-      title: "TOEFL Speaking Lab Session",
-      message: "Don't forget about your TOEFL speaking practice session scheduled for this Friday at 2:00 PM.",
-      date: "June 5, 2025",
-      time: "4 days ago",
-      read: true,
-      priority: "medium",
-      action: {
-        label: "View Session",
-        url: "/dashboard/speaking-labs"
-      }
-    }
+    // {
+    //   id: "notif-1",
+    //   type: "reminder",
+    //   title: "FPGEE Application Deadline Approaching",
+    //   message: "Your FPGEE application deadline is in 2 weeks. Make sure to complete all required documents including your pharmacy degree verification and English proficiency scores.",
+    //   date: "June 9, 2025",
+    //   time: "1 hour ago",
+    //   read: false,
+    //   priority: "high",
+    //   action: {
+    //     label: "View Documents",
+    //     url: "/dashboard/documents"
+    //   }
+    // },
+    // {
+    //   id: "notif-2",
+    //   type: "event",
+    //   title: "Upcoming Study Session",
+    //   message: "Your next FPGEE study session with Dr. Smith is scheduled for tomorrow at 10:00 AM. Please review the materials beforehand.",
+    //   date: "June 9, 2025",
+    //   time: "3 hours ago",
+    //   read: false,
+    //   priority: "medium",
+    //   action: {
+    //     label: "Join Session",
+    //     url: "/dashboard/appointments"
+    //   }
+    // },
+    // {
+    //   id: "notif-3",
+    //   type: "update",
+    //   title: "Document Verification Complete",
+    //   message: "Your pharmacy degree has been successfully verified by our team. You can now proceed with the next step in your application process.",
+    //   date: "June 8, 2025",
+    //   time: "1 day ago",
+    //   read: true,
+    //   priority: "medium",
+    //   action: {
+    //     label: "View Roadmap",
+    //     url: "/dashboard/roadmap"
+    //   }
+    // },
+    // {
+    //   id: "notif-4",
+    //   type: "alert",
+    //   title: "Payment Due Soon",
+    //   message: "Your monthly payment for the FPGEE preparation program is due in 3 days. Please update your payment method if needed.",
+    //   date: "June 7, 2025",
+    //   time: "2 days ago",
+    //   read: true,
+    //   priority: "high",
+    //   action: {
+    //     label: "Make Payment",
+    //     url: "/dashboard/billing"
+    //   }
+    // },
+    // {
+    //   id: "notif-5",
+    //   type: "update",
+    //   title: "New Study Materials Available",
+    //   message: "Fresh practice questions and video lessons have been added to your FPGEE preparation course. Check them out now!",
+    //   date: "June 6, 2025",
+    //   time: "3 days ago",
+    //   read: true,
+    //   priority: "low",
+    //   action: {
+    //     label: "View Materials",
+    //     url: "/dashboard/video-courses"
+    //   }
+    // },
+    // {
+    //   id: "notif-6",
+    //   type: "event",
+    //   title: "TOEFL Speaking Lab Session",
+    //   message: "Don't forget about your TOEFL speaking practice session scheduled for this Friday at 2:00 PM.",
+    //   date: "June 5, 2025",
+    //   time: "4 days ago",
+    //   read: true,
+    //   priority: "medium",
+    //   action: {
+    //     label: "View Session",
+    //     url: "/dashboard/speaking-labs"
+    //   }
+    // }
   ]);
+
+  useEffect(() => {
+      const stored = localStorage.getItem("notifications")
+      if (stored) {
+        setNotifications(JSON.parse(stored))
+      } else {
+        fetch("/api/notifications")
+          .then(res => res.json())
+          .then(data => {
+            setNotifications(data)
+            localStorage.setItem("notifications", JSON.stringify(data))
+          })
+          .catch(err => console.error("Failed to fetch notifications", err))
+      }
+    }, [])
+  
 
   const getNotificationIcon = (type: string) => {
     switch (type) {
@@ -143,19 +159,63 @@ const Notifications = () => {
     }
   };
 
-  const markAsRead = (id: string) => {
-    setNotifications(notifications.map(notif => 
-      notif.id === id ? { ...notif, read: true } : notif
-    ));
-  };
 
-  const markAllAsRead = () => {
-    setNotifications(notifications.map(notif => ({ ...notif, read: true })));
-  };
 
-  const deleteNotification = (id: string) => {
-    setNotifications(notifications.filter(notif => notif.id !== id));
-  };
+  const markAllAsRead = async () => {
+    const updatedNotifications = notifications.map(notif => ({ ...notif, read: true }))
+    setNotifications(updatedNotifications)
+    localStorage.setItem("notifications", JSON.stringify(updatedNotifications))
+
+    // Update each notification on the backend
+    await Promise.all(
+      notifications
+        .filter(notif => !notif.read)
+        .map(notif =>
+          fetch(`/api/notifications/${notif.id}`, {
+            method: "PUT",
+          })
+        )
+    )
+  }
+
+  const markAsRead = async (id: string) => {
+    const res = await fetch(`/api/notifications/${id}`, {
+      method: "PUT",
+    })
+
+    if (!res.ok) throw new Error("Failed to mark as read")
+    const updated = await res.json()
+
+    const stored = localStorage.getItem("notifications")
+    if (stored) {
+      const parsed = JSON.parse(stored)
+      const updatedList = parsed.map((n: any) =>
+        n.id === id ? { ...n, read: true } : n
+      )
+      localStorage.setItem("notifications", JSON.stringify(updatedList))
+      return updatedList
+    }
+
+    return [updated] // fallback
+  }
+
+  const deleteNotification = async (id: string) => {
+    const res = await fetch(`/api/notifications/${id}`, {
+      method: "DELETE",
+    })
+
+    if (!res.ok) throw new Error("Failed to delete notification")
+
+    const stored = localStorage.getItem("notifications")
+    if (stored) {
+      const parsed = JSON.parse(stored)
+      const updatedList = parsed.filter((n: any) => n.id !== id)
+      localStorage.setItem("notifications", JSON.stringify(updatedList))
+      return updatedList
+    }
+
+    return [] // fallback
+  }
 
   const filteredNotifications = notifications.filter(notif => {
     switch (activeTab) {

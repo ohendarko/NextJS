@@ -64,7 +64,8 @@ const DocumentCenter: React.FC<DocumentCenterProps> = ({ userProfile }) => {
 
   useEffect(() => {
     // console.log(completedItems)
-  }, [completedItems])
+    console.log(completionState)
+  }, [completedItems, status])
 
 
   //When checkbox is checked or unchecked

@@ -25,7 +25,8 @@ export async function POST(req: NextRequest) {
     // Upload to Cloudinary
     const result = await cloudinary.uploader.upload(tempFilePath, {
       folder: "pharmabridge/profile_images",
-      resource_type: "auto",
+      resource_type: "raw",
+      type: "upload", // ← must be public!
     });
 
     return new Response(JSON.stringify({ url: result.secure_url }), { status: 200 });

@@ -266,6 +266,31 @@ exports.Prisma.InvoiceScalarFieldEnum = {
   items: 'items'
 };
 
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  items: 'items',
+  totalAmount: 'totalAmount',
+  status: 'status',
+  paymentRef: 'paymentRef',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  title: 'title',
+  message: 'message',
+  date: 'date',
+  time: 'time',
+  read: 'read',
+  priority: 'priority',
+  action: 'action',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -299,7 +324,9 @@ exports.Prisma.ModelName = {
   Document: 'Document',
   Appointment: 'Appointment',
   Transaction: 'Transaction',
-  Invoice: 'Invoice'
+  Invoice: 'Invoice',
+  Order: 'Order',
+  Notification: 'Notification'
 };
 
 /**

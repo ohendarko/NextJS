@@ -15,8 +15,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Bell, Settings, User } from 'lucide-react';
-import { useIsMobile } from "@/hooks/use-mobile";
+import { Bell, LogOut, User } from 'lucide-react';
+// import { useIsMobile } from "@/hooks/use-mobile";
 import { toast } from "@/hooks/use-toast";
 import Cookies from 'js-cookie';
 
@@ -34,12 +34,7 @@ interface DashboardNavbarProps {
 }
 
 const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ userProfile }) => {
-  const [notifications, setNotifications] = useState([
-    { id: 1, message: "New study material available", read: false },
-    { id: 2, message: "Upcoming session in 2 days", read: false },
-    { id: 3, message: "Document verification completed", read: true }
-  ]);
-  const isMobile = useIsMobile();
+  const [notifications, setNotifications] = useState([]);
 
   const unreadCount = notifications.filter(n => !n.read).length;
 
@@ -52,6 +47,7 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ userProfile }) => {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
+      console.log(isLoggedIn)
     }
   };
 
@@ -60,7 +56,23 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ userProfile }) => {
     checkAuthStatus();
     window.addEventListener('focus', checkAuthStatus);
     return () => window.removeEventListener('focus', checkAuthStatus);
+    
   }, []);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("notifications")
+    if (stored) {
+      setNotifications(JSON.parse(stored))
+    } else {
+      fetch("/api/notifications")
+        .then(res => res.json())
+        .then(data => {
+          setNotifications(data)
+          localStorage.setItem("notifications", JSON.stringify(data))
+        })
+        .catch(err => console.error("Failed to fetch notifications", err))
+    }
+  }, [])
 
   const handleLogout = async () => {
     await signOut({
@@ -79,9 +91,63 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ userProfile }) => {
     router.push("/login"); // redirect after sign out
   };
 
-  const markAllRead = () => {
-    setNotifications(notifications.map(n => ({ ...n, read: true })));
-  };
+  const markAllRead = async () => {
+    const updatedNotifications = notifications.map(notif => ({ ...notif, read: true }))
+    setNotifications(updatedNotifications)
+    localStorage.setItem("notifications", JSON.stringify(updatedNotifications))
+
+    // Update each notification on the backend
+    await Promise.all(
+      notifications
+        .filter(notif => !notif.read)
+        .map(notif =>
+          fetch(`/api/notifications/${notif.id}`, {
+            method: "PUT",
+          })
+        )
+    )
+  }
+
+  // const markNotificationAsRead = async (id: string) => {
+  //   const res = await fetch(`/api/notifications/${id}`, {
+  //     method: "PUT",
+  //   })
+
+  //   if (!res.ok) throw new Error("Failed to mark as read")
+  //   const updated = await res.json()
+
+  //   const stored = localStorage.getItem("notifications")
+  //   if (stored) {
+  //     const parsed = JSON.parse(stored)
+  //     const updatedList = parsed.map((n: any) =>
+  //       n.id === id ? { ...n, read: true } : n
+  //     )
+  //     localStorage.setItem("notifications", JSON.stringify(updatedList))
+  //     return updatedList
+  //   }
+
+  //   return [updated] // fallback
+  // }
+
+  // const deleteNotification = async (id: string) => {
+  //   const res = await fetch(`/api/notifications/${id}`, {
+  //     method: "DELETE",
+  //   })
+
+  //   if (!res.ok) throw new Error("Failed to delete notification")
+
+  //   const stored = localStorage.getItem("notifications")
+  //   if (stored) {
+  //     const parsed = JSON.parse(stored)
+  //     const updatedList = parsed.filter((n: any) => n.id !== id)
+  //     localStorage.setItem("notifications", JSON.stringify(updatedList))
+  //     return updatedList
+  //   }
+
+  //   return [] // fallback
+  // }
+
+
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
@@ -151,16 +217,20 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ userProfile }) => {
                 <DropdownMenuLabel className="text-xs md:text-sm truncate">{userProfile?.email}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="cursor-pointer text-xs md:text-sm">
-                  <User className="mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />
-                  <span>My Profile</span>
+                  <Link href="/dashboard/profile">
+                  <div className='flex'>
+                    <User className="mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />
+                    <span>My Profile</span>
+                  </div>
+                  </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer text-xs md:text-sm">
+                {/* <DropdownMenuItem className="cursor-pointer text-xs md:text-sm">
                   <Settings className="mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />
                   <span>Settings</span>
-                </DropdownMenuItem>
+                </DropdownMenuItem> */}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="cursor-pointer text-xs md:text-sm" onClick={handleLogout}>
-                  <Settings className="mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />
+                  <LogOut className="mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />
                   <span>Log out</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>

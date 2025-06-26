@@ -48,7 +48,7 @@ const UpcomingAppointments: React.FC<UpcomingAppointmentsProps> = ({ userProfile
   
     fetchAppointments();
 
-  }, [status, router]);
+  }, []);
 
   // If limit is provided, show only that many appointments
   const displayAppointments = limit ? appointments.filter(app => app.status === 'upcoming').slice(0, limit) : appointments;

@@ -1,42 +1,24 @@
-'use client'
 
-import { useSession } from 'next-auth/react'
-import { useEffect, useState } from 'react'
+import { getUserProfile } from "@/lib/db";
+import Profile from "./Profile";
+import { authOptions } from "@/lib/auth/options";
+import { getServerSession } from "next-auth";
+// import { useSession } from "next-auth/react";
 
-export default function Profile() {
-  const { data: session, status } = useSession()
-  const [user, setUser] = useState<any>(null)
-  const [error, setError] = useState('')
+export default async function DashboardPage() {
+  // const {data: session, status} = useSession()
+  const session = await getServerSession(authOptions);
+  const userId = session?.user?.id;
 
-  useEffect(() => {
-    if (session?.user?.email) {
-      fetch(`/api/user?email=${session.user.email}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.error) {
-            setError(data.error)
-          } else {
-            setUser(data)
-          }
-        })
-        .catch(() => setError('Failed to fetch user'))
-    }
-  }, [session])
+  if (!userId) {
+    return <div>Not authenticated</div>;
+  }
 
-  if (status === 'loading') return <p>Loading session...</p>
-  if (!session) return <p>You must be signed in to view this page.</p>
+  const userProfile = await getUserProfile(userId);
 
-  return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">Profile</h1>
-      {error && <p className="text-red-500">{error}</p>}
-      {user && (
-        <div className="mt-4 border p-4 rounded">
-          <p><strong>ID:</strong> {user.id}</p>
-          <p><strong>Name:</strong> {user.name}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-        </div>
-      )}
-    </div>
-  )
+  if (!userProfile) {
+    return <div>User profile not found</div>;
+  }
+
+  return <Profile userProfile={userProfile} />;
 }

@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
-import { Upload, Settings } from 'lucide-react';
+import { Upload } from 'lucide-react';
 
 interface UserProfile {
   name: string;
@@ -179,21 +179,21 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
     }));
   };
 
-  const getStatusBadge = (status: string | null) => {
-    if (!status) return null;
+  // const getStatusBadge = (status: string | null) => {
+  //   if (!status) return null;
     
-    const statusClasses = {
-      verified: "bg-green-100 text-green-800",
-      pending: "bg-yellow-100 text-yellow-800",
-      rejected: "bg-red-100 text-red-800"
-    };
+  //   const statusClasses = {
+  //     verified: "bg-green-100 text-green-800",
+  //     pending: "bg-yellow-100 text-yellow-800",
+  //     rejected: "bg-red-100 text-red-800"
+  //   };
     
-    return (
-      <span className={`px-2 py-1 rounded-full text-xs ${statusClasses[status as keyof typeof statusClasses] || ''}`}>
-        {status.charAt(0).toUpperCase() + status.slice(1)}
-      </span>
-    );
-  };
+  //   return (
+  //     <span className={`px-2 py-1 rounded-full text-xs ${statusClasses[status as keyof typeof statusClasses] || ''}`}>
+  //       {status.charAt(0).toUpperCase() + status.slice(1)}
+  //     </span>
+  //   );
+  // };
   
   if (!formData) return <p>Loading...</p>;
 

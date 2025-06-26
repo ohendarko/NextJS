@@ -85,6 +85,8 @@ model User {
   consultations      Consultation[]
   accounts           Account[]
   sessions           Session[]
+  orders             Order[]
+  notifications      Notification[]
   documentCategories DocumentCategory[]
 
   @@map("users")
@@ -234,4 +236,34 @@ enum InvoiceStatus {
   paid
   overdue
   cancelled
+}
+
+model Order {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  items       Json // Array of items: [{ name, price, quantity }]
+  totalAmount Float
+  status      String // e.g. "pending", "paid", "shipped", "completed"
+  paymentRef  String? // optional payment reference
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Notification {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  type     String
+  title    String
+  message  String
+  date     String // stored as string (e.g. "2025-06-25")
+  time     String // stored as string (e.g. "22:35")
+  read     Boolean @default(false)
+  priority String // "high" | "medium" | "low"
+
+  action Json? // Optional: { label: string; url: string }
+
+  createdAt DateTime @default(now())
 }

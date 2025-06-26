@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, Calendar as CalendarIcon } from 'lucide-react';
-import { useIsMobile } from "@/hooks/use-mobile";
+// import { useIsMobile } from "@/hooks/use-mobile";
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -62,11 +62,11 @@ const AppointmentCenter = () => {
 
     fetchAppointments();
 
-  }, [status, router]);
+  }, [status]);
   
   // console.log(appointments);
 
-  const isMobile = useIsMobile();
+  // const isMobile = useIsMobile();
 
   const appointmentTypes = [
     "FPGEE Consultation",

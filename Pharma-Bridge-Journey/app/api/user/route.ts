@@ -102,3 +102,29 @@ export async function POST(req: Request) {
     await prisma.$disconnect();
   }
 }
+
+// ✅ DELETE user by email
+export async function DELETE(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const email = searchParams.get("email");
+
+  if (!email) {
+    return NextResponse.json({ error: "Missing email in query" }, { status: 400 });
+  }
+
+  try {
+    const existing = await prisma.user.findUnique({ where: { email } });
+    if (!existing) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+
+    await prisma.user.delete({ where: { email } });
+
+    return NextResponse.json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error("DELETE user error:", error);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
+  }
+}

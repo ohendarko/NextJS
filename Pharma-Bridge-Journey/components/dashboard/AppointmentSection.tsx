@@ -62,7 +62,7 @@ const AppointmentCenter = ({userProfile}) => {
     fetchAppointments();
 
 
-  }, [userProfile]);
+  }, []);
 
 
   const appointmentTypes = [

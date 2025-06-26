@@ -30,6 +30,7 @@ interface Document {
   expiryDate?: string;
   size?: string;
   type?: string;
+  url: string
   description: string;
 }
 
@@ -40,6 +41,8 @@ const Documents = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [documents, setDocuments] = useState<Document[]>([]);
+  const [downloading, setDownloading] = useState<{ [url: string]: boolean }>({})
+
   
   
 
@@ -90,6 +93,33 @@ const Documents = () => {
   const totalRequired = documents.length;
   const completionPercentage = (approvedCount / totalRequired) * 100;
   // console.log(completionPercentage)
+
+  const downloadFile = async (url: string, filename?: string) => {
+    try {
+      setDownloading(prev => ({ ...prev, [url]: true }))
+      const response = await fetch(url)
+      if (!response.ok) throw new Error("Failed to fetch file")
+
+      const blob = await response.blob()
+      const blobUrl = URL.createObjectURL(blob)
+
+      const link = document.createElement("a")
+      link.href = blobUrl
+      link.download = filename || "download"
+
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+
+      URL.revokeObjectURL(blobUrl)
+    } catch (error) {
+      console.error("Download failed:", error)
+      alert("Could not download file.")
+    } finally {
+      setDownloading(prev => ({ ...prev, [url]: false }))
+    }
+  }
+
 
   return (
     <div className="min-h-screen bg-gray-100 py-6 mt-20">
@@ -232,13 +262,19 @@ const Documents = () => {
                           
                           {doc.status !== 'missing' && (
                             <div className="flex gap-2">
-                              <Button variant="outline" size="sm">
-                                <Eye className="h-3 w-3 mr-1" />
-                                View
-                              </Button>
-                              <Button variant="outline" size="sm">
+                              <Link href={doc.url} target='_blank'>
+                                <Button variant="outline" size="sm">
+                                  <Eye className="h-3 w-3 mr-1" />
+                                  View
+                                </Button>
+                              </Link>
+                              <Button
+                              variant="outline"
+                              size="sm"
+                              disabled={downloading[doc.url]}
+                              onClick={() => downloadFile(doc.url)}>
                                 <Download className="h-3 w-3 mr-1" />
-                                Download
+                                {downloading[doc.url] ? "Downloading" : "Download"}
                               </Button>
                             </div>
                           )}

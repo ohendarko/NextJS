@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ArrowLeft, ShoppingCart } from 'lucide-react';
-import { useIsMobile } from "@/hooks/use-mobile";
+// import { useIsMobile } from "@/hooks/use-mobile";
 import { useCart } from "@/context/CartContext";
 import { useRouter } from 'next/navigation';
 
@@ -27,16 +27,16 @@ interface Service {
   type?: string;
 }
 
-interface userProfile {
-  name: string;
-  email: string;
-  profileImage: string | null;
-  [key: string]: any;
-}
+// interface userProfile {
+//   name: string;
+//   email: string;
+//   profileImage: string | null;
+//   [key: string]: any;
+// }
 
-interface CartItem extends Service {
-  quantity: number;
-}
+// interface CartItem extends Service {
+//   quantity: number;
+// }
 
 
 
@@ -46,7 +46,7 @@ const Shopping = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const isMobile = useIsMobile();
+  // const isMobile = useIsMobile();
   const router = useRouter()
 
   const isAddedToCart = (cartId: string) => {
@@ -159,32 +159,32 @@ const Shopping = () => {
       ],
      
     },
-    {
-      id: "travel_support",
-      name: "Travel & Accommodation Support",
-      description: "Complete travel and housing assistance",
-      price: 300,
-      category: "Travel",
-      features: [
-        "Flight booking guidance",
-        "Housing support",
-        "Local orientation",
-        "Culture overview"
-      ]
-    },
-    {
-      id: "internship_placement",
-      name: "Internship Placement Strategy",
-      description: "Professional guidance for internship applications",
-      price: 100,
-      category: "Career",
-      features: [
-        "Application coaching",
-        "Interview preparation",
-        "Resume review",
-        "Employer outreach"
-      ]
-    },
+    // {
+    //   id: "travel_support",
+    //   name: "Travel & Accommodation Support",
+    //   description: "Complete travel and housing assistance",
+    //   price: 300,
+    //   category: "Travel",
+    //   features: [
+    //     "Flight booking guidance",
+    //     "Housing support",
+    //     "Local orientation",
+    //     "Culture overview"
+    //   ]
+    // },
+    // {
+    //   id: "internship_placement",
+    //   name: "Internship Placement Strategy",
+    //   description: "Professional guidance for internship applications",
+    //   price: 100,
+    //   category: "Career",
+    //   features: [
+    //     "Application coaching",
+    //     "Interview preparation",
+    //     "Resume review",
+    //     "Employer outreach"
+    //   ]
+    // },
     {
       id: "full_licensure",
       name: "Full Licensure Pathway Support",
@@ -420,8 +420,11 @@ const Shopping = () => {
 
           {/* Shopping Cart Sidebar */}
           {isCartOpen && (
-            <div className="fixed inset-0 z-50 lg:relative lg:inset-auto">
-              <div className="absolute inset-0 bg-black bg-opacity-50 lg:hidden" onClick={() => setIsCartOpen(false)} />
+            <div
+              className={`z-50 ${isCartOpen ? 'fixed inset-0' : 'hidden'} lg:relative lg:block lg:inset-auto`}>
+              <div
+                className={`absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-200 lg:hidden ${isCartOpen ? 'block' : 'hidden'}`}
+                onClick={() => setIsCartOpen(false)} />
               <div className="absolute right-0 top-0 h-full w-80 bg-white shadow-xl lg:relative lg:w-full lg:max-w-md lg:mx-auto lg:mt-8">
                 <Card className="h-full">
                   <CardHeader>
@@ -484,8 +487,6 @@ const Shopping = () => {
                               </div>
                             ))}
                           </div>
-                        </ScrollArea>
-                        
                         <div className="border-t pt-4 mt-4">
                           <div className="flex justify-between items-center mb-4">
                             <span className="font-bold">Total:</span>
@@ -499,7 +500,9 @@ const Shopping = () => {
                           >
                             Proceed to Checkout
                           </Button>
+                        
                         </div>
+                        </ScrollArea>
                       </>
                     )}
                   </CardContent>
