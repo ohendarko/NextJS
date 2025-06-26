@@ -452,7 +452,7 @@ const Profile = ({userProfile}) => {
           <CardContent>
             <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
               <AlertDialogTrigger asChild>
-                <Button variant="destructive" className="flex items-center" dis>
+                <Button variant="destructive" className="flex items-center" disabled>
                   <Trash2 className="w-4 h-4 mr-2" />
                   Delete Account
                 </Button>
@@ -491,3 +491,5 @@ const Profile = ({userProfile}) => {
 };
 
 export default Profile;
+
+
