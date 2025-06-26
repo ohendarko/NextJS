@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  email          String           @unique
+  name           String?
+  moduleProgress ModuleProgress[]
+  certificate    Certificate?
+
+  @@map("users")
+}
+
+model Module {
+  id          String           @id @default(auto()) @map("_id") @db.ObjectId
+  number      Int              @unique
+  title       String
+  description String
+  introVideo  String
+  sections    Section[]
+  postTest    Quiz[]
+  progress    ModuleProgress[] // ✅ back-reference for ModuleProgress.module
+}
+
+model Section {
+  id       String         @id @default(auto()) @map("_id") @db.ObjectId
+  number   Int
+  title    String
+  content  String?
+  moduleId String         @db.ObjectId
+  module   Module         @relation(fields: [moduleId], references: [id])
+  cards    LearningCard[]
+  quizzes  Quiz[]
+}
+
+model LearningCard {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  content   String
+  order     Int
+  sectionId String  @db.ObjectId
+  section   Section @relation(fields: [sectionId], references: [id])
+  quiz      Quiz?   @relation("CardQuiz")
+  quizId    String? @unique @db.ObjectId
+}
+
+model Quiz {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  question       String
+  options        String[] // e.g. ["A", "B", "C"]
+  correct        String
+  isPostTest     Boolean       @default(false)
+  sectionId      String?       @db.ObjectId
+  section        Section?      @relation(fields: [sectionId], references: [id])
+  moduleId       String?       @db.ObjectId
+  module         Module?       @relation(fields: [moduleId], references: [id])
+  learningCard   LearningCard? @relation("CardQuiz", fields: [learningCardId], references: [id])
+  learningCardId String?       @unique @db.ObjectId
+}
+
+model ModuleProgress {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String          @db.ObjectId
+  moduleId      String          @db.ObjectId
+  sectionStatus SectionStatus[]
+  postTestScore Int
+  passed        Boolean         @default(false)
+  user          User            @relation(fields: [userId], references: [id])
+  module        Module          @relation(fields: [moduleId], references: [id])
+  // ❌ Removed invalid `progress` field
+}
+
+model SectionStatus {
+  id               String         @id @default(auto()) @map("_id") @db.ObjectId
+  moduleProgressId String         @db.ObjectId
+  sectionId        String         @db.ObjectId
+  completed        Boolean        @default(false)
+  moduleProgress   ModuleProgress @relation(fields: [moduleProgressId], references: [id])
+}
+
+model Certificate {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId   String   @unique @db.ObjectId
+  issuedAt DateTime @default(now())
+  user     User     @relation(fields: [userId], references: [id])
+}
