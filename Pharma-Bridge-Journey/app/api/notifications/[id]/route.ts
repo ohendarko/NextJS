@@ -7,15 +7,17 @@ const prisma = new PrismaClient()
 
 export async function PUT(
   _req: NextRequest,
-  { params }: { params: { id: string } } // must be inline!
+  {params}: {params: Promise<{ id: string }>} 
 ) {
   const session = await getServerSession(authOptions)
   if (!session?.user?.email) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
+  const { id } = await params
+
   const notification = await prisma.notification.update({
-    where: { id: params.id },
+    where: { id: id },
     data: { read: true },
   })
 
@@ -24,15 +26,17 @@ export async function PUT(
 
 export async function DELETE(
   _req: NextRequest,
-  { params }: { params: { id: string } } // must be inline!
+  {params}: {params: Promise<{ id: string }>} // must be inline!
 ) {
   const session = await getServerSession(authOptions)
   if (!session?.user?.email) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
+  const { id } = await params
+
   await prisma.notification.delete({
-    where: { id: params.id },
+    where: { id: id },
   })
 
   return NextResponse.json({ message: "Notification deleted" })

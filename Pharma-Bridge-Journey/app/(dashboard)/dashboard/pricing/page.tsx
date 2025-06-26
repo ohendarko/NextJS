@@ -116,15 +116,16 @@ const Pricing = () => {
   return (
     <div className="min-h-screen flex flex-col mt-20">
       <main className="flex-grow pt-16 pb-16 bg-gradient-to-b from-white to-blue-50">
-        <div className="flex items-center gap-4 mb-4">
-          <Link href="/dashboard">
-            <Button variant="outline" size="sm">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Dashboard
-            </Button>
-          </Link>
-        </div>
+        
         <div className="container mx-auto px-4">
+          <div className="flex items-center gap-4 mb-4">
+            <Link href="/dashboard">
+              <Button variant="outline" size="sm">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Dashboard
+              </Button>
+            </Link>
+          </div>
           {/* Header section */}
           <div className="text-center mb-12">
             <h1 className="text-3xl md:text-4xl font-bold mb-3 text-pharma-blue">Service Packages & Pricing</h1>
@@ -165,7 +166,7 @@ const Pricing = () => {
             ))}
             <div className="grid md:grid-cols-1 gap-8 mb-16">
             {/* TOEFL Preparation */}
-              <Card className="border-2 border-gray-200 hover:border-pharma-light-blue hover:shadow-md transition-all rounded-xl overflow-hidden h-full">
+              <Card className="border-2 border-gray-200 hover:border-pharma-light-blue hover:shadow-md transition-all rounded-xl overflow-hidden h-full pb-8">
                 <CardHeader>
                   <CardTitle className="text-xl text-pharma-blue">TOEFL-iBT Speaking & Writing Prep</CardTitle>
                 </CardHeader>
@@ -212,7 +213,7 @@ const Pricing = () => {
           <div className="grid md:grid-cols-1 gap-8 mb-16">
 
             {/* Custom Packages */}
-            <Card className="border-2 border-gray-200 hover:border-pharma-light-blue hover:shadow-md transition-all rounded-xl overflow-hidden h-full bg-gradient-to-br from-white to-blue-50">
+            {/* <Card className="border-2 border-gray-200 hover:border-pharma-light-blue hover:shadow-md transition-all rounded-xl overflow-hidden h-full bg-gradient-to-br from-white to-blue-50">
               <CardHeader>
                 <CardTitle className="text-xl text-pharma-blue">Custom Solutions</CardTitle>
               </CardHeader>
@@ -238,7 +239,7 @@ const Pricing = () => {
                   Contact Us
                 </Button>
               </CardFooter>
-            </Card>
+            </Card> */}
           </div>
 
           <div className="mt-16 text-center">
