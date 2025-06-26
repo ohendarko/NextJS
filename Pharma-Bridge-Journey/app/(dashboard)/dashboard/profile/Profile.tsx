@@ -134,27 +134,27 @@ const Profile = ({userProfile}) => {
         }),
       });
   
-        const saveData = await saveRes.json();
-        if (!saveRes.ok) throw new Error(saveData.error || "Failed to save document");
-  
-        // Update profileImage to use uploaded URL
-        setFormData((prev) => ({
-          ...prev,
-          profileImage: uploadData.secure_url,
-        }));
-  
-        toast({
-          title: "Profile Image",
-          description: "Image uploaded successfully.",
-        });
-      } catch (err: any) {
-        toast({
-          title: "Upload Error",
-          description: err.message || "Something went wrong.",
-        });
-      } finally {
-        setIsUploading(false);
-      }
+      const saveData = await saveRes.json();
+      if (!saveRes.ok) throw new Error(saveData.error || "Failed to save document");
+
+      // Update profileImage to use uploaded URL
+      setFormData((prev) => ({
+        ...prev,
+        profileImage: uploadData.secure_url,
+      }));
+
+      toast({
+        title: "Profile Image",
+        description: "Image uploaded successfully.",
+      });
+    } catch (err: any) {
+      toast({
+        title: "Upload Error",
+        description: err.message || "Something went wrong.",
+      });
+    } finally {
+      setIsUploading(false);
+    }
     };
 
   
@@ -209,6 +209,7 @@ const Profile = ({userProfile}) => {
               <Button
                 onClick={() => isEditing ? handleSave() : setIsEditing(true)}
                 className="bg-pharma-blue hover:bg-pharma-dark-blue"
+                disabled={isUploading}
               >
                 {isEditing ? <Save className="w-4 h-4 mr-2" /> : <Edit className="w-4 h-4 mr-2" />}
                 {isEditing ? 'Save Changes' : 'Edit Profile'}
@@ -216,6 +217,7 @@ const Profile = ({userProfile}) => {
               {isEditing && 
                 <Button
                   onClick={() => setIsEditing(false)}
+                  disabled={isUploading}
                 >
                   Cancel
                 </Button>}
