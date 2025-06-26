@@ -171,7 +171,7 @@ const Profile = ({userProfile}) => {
     }
     toast({
       title: "Account Deletion Requested",
-      description: "Your account deletion request has been submitted. You will receive a confirmation email.",
+      description: "Your account deletion request has been completed. You will receive a confirmation email.",
       variant: "destructive"
     });
     setShowDeleteDialog(false);
@@ -213,6 +213,12 @@ const Profile = ({userProfile}) => {
                 {isEditing ? <Save className="w-4 h-4 mr-2" /> : <Edit className="w-4 h-4 mr-2" />}
                 {isEditing ? 'Save Changes' : 'Edit Profile'}
               </Button>
+              {isEditing && 
+                <Button
+                  onClick={() => setIsEditing(false)}
+                >
+                  Cancel
+                </Button>}
               <Link href="/dashboard">
                 <Button variant="outline">Back to Dashboard</Button>
               </Link>

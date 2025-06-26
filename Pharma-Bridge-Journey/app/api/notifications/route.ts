@@ -45,30 +45,3 @@ export async function POST(req: Request) {
 
   return NextResponse.json(notification)
 }
-
-export async function PUT({ params }: { params: { id: string } }) {
-  const session = await getServerSession(authOptions)
-  if (!session?.user?.email) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-
-  const { id } = params
-
-  const notification = await prisma.notification.update({
-    where: { id },
-    data: { read: true },
-  })
-
-  return NextResponse.json(notification)
-}
-
-export async function DELETE({ params }: { params: { id: string } }) {
-  const session = await getServerSession(authOptions)
-  if (!session?.user?.email) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-
-  const { id } = params
-
-  await prisma.notification.delete({
-    where: { id },
-  })
-
-  return NextResponse.json({ message: "Notification deleted" })
-}

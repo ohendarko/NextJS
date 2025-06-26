@@ -15,7 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Bell, LogOut, User } from 'lucide-react';
+import { Bell, LogOut, Settings, User } from 'lucide-react';
 // import { useIsMobile } from "@/hooks/use-mobile";
 import { toast } from "@/hooks/use-toast";
 import Cookies from 'js-cookie';
@@ -219,8 +219,8 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ userProfile }) => {
                 <DropdownMenuItem className="cursor-pointer text-xs md:text-sm">
                   <Link href="/dashboard/profile">
                   <div className='flex'>
-                    <User className="mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />
-                    <span>My Profile</span>
+                    <Settings className="mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />
+                    <span>Settings</span>
                   </div>
                   </Link>
                 </DropdownMenuItem>

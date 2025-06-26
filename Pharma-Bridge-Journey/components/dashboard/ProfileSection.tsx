@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 import { Upload } from 'lucide-react';
+import Link from 'next/link';
 
 interface UserProfile {
   name: string;
@@ -407,6 +408,11 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ userProfile, setUserPro
           </div>
         </div>
       </div> */}
+      <Link href='dashboard/profile'>
+      <Button className='mt-10'>
+          More Settings
+        </Button>
+      </Link>
     </div>
   );
 };
