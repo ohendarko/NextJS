@@ -140,7 +140,7 @@ const AppointmentCenter = ({userProfile}) => {
           </TabsList>
 
           <TabsContent value="upcoming" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
               <Card className="lg:col-span-2">
                 <CardHeader>
                   <CardTitle>Your Upcoming Appointments</CardTitle>

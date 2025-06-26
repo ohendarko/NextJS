@@ -106,16 +106,16 @@ const UpcomingAppointments: React.FC<UpcomingAppointmentsProps> = ({ userProfile
           )}
         </>
       ) : (
-        <div className="text-center py-4">
+        <div className="text-center py-4 flex flex-col flex-wrap justify-center items-center">
           <p className="text-gray-500 mb-4 text-sm">No upcoming appointments</p>
           <Link href='/dashboard/appointments'>
-            <Button size={isMobile ? "sm" : "default"}>Schedule New Appointment</Button>
+            <Button size={isMobile ? "sm" : "default"} className='flex'>Schedule New Appointment</Button>
           </Link>
         </div>
       )}
       
       {!limit && (
-        <Button className="w-full mt-4" size={isMobile ? "sm" : "default"}>
+        <Button className="w-full flex mt-4" size={isMobile ? "sm" : "default"}>
           Schedule New Appointment
         </Button>
       )}

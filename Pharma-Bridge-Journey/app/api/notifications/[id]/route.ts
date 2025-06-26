@@ -5,32 +5,34 @@ import { PrismaClient } from "@/lib/generated/prisma"
 
 const prisma = new PrismaClient()
 
-type RouteContext = {
-  params: { id: string }
-}
-
-export async function PUT(_req: NextRequest, context : RouteContext) {
+export async function PUT(
+  _req: NextRequest,
+  { params }: { params: { id: string } } // must be inline!
+) {
   const session = await getServerSession(authOptions)
-  if (!session?.user?.email) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-
-  const { id } = context.params
+  if (!session?.user?.email) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  }
 
   const notification = await prisma.notification.update({
-    where: { id },
+    where: { id: params.id },
     data: { read: true },
   })
 
   return NextResponse.json(notification)
 }
 
-export async function DELETE(_req: NextRequest, context: RouteContext) {
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: { id: string } } // must be inline!
+) {
   const session = await getServerSession(authOptions)
-  if (!session?.user?.email) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-
-  const { id } = context.params
+  if (!session?.user?.email) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  }
 
   await prisma.notification.delete({
-    where: { id },
+    where: { id: params.id },
   })
 
   return NextResponse.json({ message: "Notification deleted" })
