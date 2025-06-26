@@ -5,7 +5,11 @@ import { PrismaClient } from "@/lib/generated/prisma"
 
 const prisma = new PrismaClient()
 
-export async function PUT(_req: NextRequest, context : { params: { id: string } }) {
+type RouteContext = {
+  params: { id: string }
+}
+
+export async function PUT(_req: NextRequest, context : RouteContext) {
   const session = await getServerSession(authOptions)
   if (!session?.user?.email) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
 
@@ -19,7 +23,7 @@ export async function PUT(_req: NextRequest, context : { params: { id: string } 
   return NextResponse.json(notification)
 }
 
-export async function DELETE(_req: NextRequest, context: { params: { id: string } }) {
+export async function DELETE(_req: NextRequest, context: RouteContext) {
   const session = await getServerSession(authOptions)
   if (!session?.user?.email) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
 

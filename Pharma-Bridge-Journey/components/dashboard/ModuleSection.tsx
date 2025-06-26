@@ -190,16 +190,16 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {availableModules.map((module) => (
           <Link href={module.link} key={module.id}>
-            <Card className="h-full cursor-pointer hover:shadow-md transition-shadow">
+            <Card className="h-full cursor-pointer hover:shadow-md transition-shadow flex">
               <CardContent className="p-6 flex flex-col gap-2 items-start space-x-4">
                 <div className='flex gap-1 '>
                   <div className="mt-1">{module.icon}</div>
-                  <div className="space-y-1 mt-1">
-                    <h3 className="font-semibold">{module.title}</h3>
+                  <div className="space-y-1 mt-1 pr-2">
+                    <h3 className="font-semibold pr-2">{module.title}</h3>
                   </div>
 
                 </div>
-                  <p className="text-sm text-gray-600">{module.description}</p>
+                  <p className="text-sm text-gray-600 !ml-0">{module.description}</p>
               </CardContent>
             </Card>
           </Link>
