@@ -131,7 +131,7 @@ export default function Module1Page() {
   const allSectionsCompleted = completedSections === sections.length
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen pt-24 pb-16 px-0 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto max-w-7xl">
         {/* Back Navigation */}
         <div className="mb-6">
@@ -169,10 +169,7 @@ export default function Module1Page() {
                     Module Complete
                   </Badge>
                 )}
-                <div className="text-sm text-gray-500">
-                  <p>3 Sections</p>
-                  <p>45 minutes</p>
-                </div>
+                
               </div>
             </div>
           </CardHeader>
