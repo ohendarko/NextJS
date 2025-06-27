@@ -38,7 +38,7 @@ export default function Hero() {
             </div>
 
             {/* Core Values */}
-            <div className="grid grid-cols-5 gap-4 py-6">
+            <div className="grid grid-cols-3 gap-4 py-6">
               {coreValues.map((value, index) => (
                 <div key={index} className="text-center group">
                   <div className="w-12 h-12 mx-auto mb-2 gradient-orange-blue rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
