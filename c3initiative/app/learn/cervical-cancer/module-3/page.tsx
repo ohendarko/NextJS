@@ -18,9 +18,9 @@ import {
   Users,
 } from "lucide-react"
 import Link from "next/link"
-import Section1_1 from "@/components/sections/section-1-1"
-import Section1_2 from "@/components/sections/section-1-2"
-import Section1_3 from "@/components/sections/section-1-3"
+import Section3_1 from "@/components/sections/section-3-1"
+import Section3_2 from "@/components/sections/section-3-2"
+import Section3_3 from "@/components/sections/section-3-3"
 import InteractiveProgressBar from "@/components/interactive-progress-bar"
 
 const modules = [
@@ -28,7 +28,7 @@ const modules = [
     id: 1,
     title: "Introduction to Cervical Cancer",
     shortTitle: "Introduction",
-    completed: false,
+    completed: true,
     unlocked: true,
     icon: BookOpen,
   },
@@ -42,10 +42,10 @@ const modules = [
   },
   {
     id: 3,
-    title: "Screening and Early Detection",
+    title: "Risk Factors, Signs, Symptoms and Screening",
     shortTitle: "Screening",
     completed: false,
-    unlocked: false,
+    unlocked: true,
     icon: Search,
   },
   {
@@ -77,38 +77,34 @@ const modules = [
 const sections = [
   {
     id: 1,
-    title: "Reasons to Focus on Cervical Cancer",
-    description: "Understanding the global impact and importance of cervical cancer prevention",
-    component: Section1_1,
+    title: "Risk Factors",
+    description: "HPV infection, weakened immune system, lifestyle factors",
+    component: Section3_1,
     completed: false,
     unlocked: true,
   },
   {
     id: 2,
-    title: "Epidemiology of cervical cancer",
-    description: "Exploring the primary causes and risk factors for cervical cancer",
-    component: Section1_2,
+    title: "Signs and Symptoms",
+    description: "Early disease symptoms vs. advanced disease symptoms",
+    component: Section3_2,
     completed: false,
     unlocked: false,
   },
   {
     id: 3,
-    title: "Female Pelvic Anatomy and Physiology",
-    description: "Introduction to the female pelvic anatomy and physiology",
-    component: Section1_3,
+    title: "Screening Methods",
+    description: "HPV testing, VIA, and cytology-based screening",
+    component: Section3_3,
     completed: false,
     unlocked: false,
   },
 ]
 
-type SectionProgress = {
-  [key: number]: { completed: boolean; unlocked: boolean }
-}
-
-export default function Module1Page() {
+export default function Module3Page() {
   const [activeSection, setActiveSection] = useState(1)
-  const [sectionProgress, setSectionProgress] = useState<SectionProgress>(
-    sections.reduce((acc, section) => ({ ...acc, [section.id]: { completed: false, unlocked: section.unlocked } }), {} as SectionProgress),
+  const [sectionProgress, setSectionProgress] = useState(
+    sections.reduce((acc, section) => ({ ...acc, [section.id]: { completed: false, unlocked: section.unlocked } }), {}),
   )
 
   const handleSectionComplete = (sectionId: number) => {
@@ -120,18 +116,18 @@ export default function Module1Page() {
   }
 
   const handleModuleClick = (moduleId: number) => {
-    if (moduleId !== 1) {
+    if (moduleId !== 3) {
       // Navigate to other modules when they're unlocked
       window.location.href = `/learn/cervical-cancer/module-${moduleId}`
     }
   }
 
-  const ActiveSectionComponent = sections.find((s) => s.id === activeSection)?.component || Section1_1
+  const ActiveSectionComponent = sections.find((s) => s.id === activeSection)?.component || Section3_1
   const completedSections = Object.values(sectionProgress).filter((p) => p.completed).length
   const allSectionsCompleted = completedSections === sections.length
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-0 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto max-w-7xl">
         {/* Back Navigation */}
         <div className="mb-6">
@@ -147,7 +143,7 @@ export default function Module1Page() {
         <div className="mb-8">
           <InteractiveProgressBar
             modules={modules}
-            currentModule={1}
+            currentModule={3}
             onModuleClick={handleModuleClick}
             showCertificate={true}
           />
@@ -158,9 +154,9 @@ export default function Module1Page() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-3xl">Module 1: Introduction to Cervical Cancer</CardTitle>
+                <CardTitle className="text-3xl">Module 3: Risk Factors, Signs, Symptoms and Screening</CardTitle>
                 <p className="text-gray-600 dark:text-gray-400 mt-2">
-                  Understanding the basics and importance of cervical cancer prevention
+                  Identifying risk factors, recognizing symptoms, and understanding screening methods
                 </p>
               </div>
               <div className="text-right space-y-2">
@@ -169,7 +165,10 @@ export default function Module1Page() {
                     Module Complete
                   </Badge>
                 )}
-                
+                <div className="text-sm text-gray-500">
+                  <p>3 Sections</p>
+                  <p>52 minutes</p>
+                </div>
               </div>
             </div>
           </CardHeader>
@@ -183,7 +182,7 @@ export default function Module1Page() {
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                  <Button size="lg" className="gradient-orange-blue text-white">
+                  <Button size="lg" className="gradient-orange-pink text-white">
                     <Play className="w-6 h-6 mr-2" />
                     Watch Introduction
                   </Button>
@@ -212,7 +211,7 @@ export default function Module1Page() {
 
               {/* Section Pathline */}
               <div className="relative">
-                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 to-blue-500 opacity-30"></div>
+                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 to-pink-500 opacity-30"></div>
 
                 {sections.map((section, index) => (
                   <div key={section.id} className="relative flex items-start mb-4">
@@ -222,7 +221,7 @@ export default function Module1Page() {
                         sectionProgress[section.id]?.completed
                           ? "bg-green-500 text-white"
                           : sectionProgress[section.id]?.unlocked
-                            ? "gradient-orange-blue text-white"
+                            ? "gradient-orange-pink text-white"
                             : "bg-gray-300 text-gray-500"
                       }`}
                     >
@@ -283,13 +282,13 @@ export default function Module1Page() {
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto">
                   <CheckCircle className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-green-600">Module 1 Complete!</h3>
+                <h3 className="text-2xl font-bold text-green-600">Module 3 Complete!</h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Congratulations! You've successfully completed the Introduction to Cervical Cancer module.
+                  Congratulations! You've successfully completed the Risk Factors, Signs, Symptoms and Screening module.
                 </p>
                 <div className="flex justify-center space-x-4">
                   <Link href="/learn/cervical-cancer">
-                    <Button className="gradient-orange-blue text-white hover-shadow-gradient">
+                    <Button className="gradient-orange-pink text-white hover-shadow-gradient">
                       Continue to Next Module
                     </Button>
                   </Link>
