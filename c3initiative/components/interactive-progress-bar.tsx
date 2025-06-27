@@ -134,7 +134,7 @@ export default function InteractiveProgressBar({
 
   return (
     <Card className="hover-shadow-gradient overflow-hidden">
-      <CardContent className="p-6">
+      <CardContent className="p-3">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-lg font-semibold">Learning Progress</h3>
@@ -157,7 +157,7 @@ export default function InteractiveProgressBar({
 
         <div className="relative">
           {/* Scroll Buttons */}
-          {canScrollLeft && (
+          {/* {canScrollLeft && (
             <Button
               variant="outline"
               size="sm"
@@ -166,9 +166,9 @@ export default function InteractiveProgressBar({
             >
               <ChevronLeft className="w-4 h-4" />
             </Button>
-          )}
+          )} */}
 
-          {canScrollRight && (
+          {/* {canScrollRight && (
             <Button
               variant="outline"
               size="sm"
@@ -177,7 +177,7 @@ export default function InteractiveProgressBar({
             >
               <ChevronRight className="w-4 h-4" />
             </Button>
-          )}
+          )} */}
 
           {/* Progress Container */}
           <div
@@ -185,16 +185,28 @@ export default function InteractiveProgressBar({
             className="overflow-x-auto scrollbar-hide pb-4"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            <div className="flex items-center space-x-4 min-w-max px-8">
+            <div className="flex items-center space-x-0 min-w-max px-2 relative">
+              {/* Background Roadmap Line */}
+              <div className="absolute top-8 left-12 right-12 h-1 bg-gray-200 dark:bg-gray-700 rounded-full z-0"></div>
+
+              {/* Dynamic Progress Line */}
+              <div
+                className="absolute top-8 left-8 h-1 bg-gradient-to-r from-orange-500 via-blue-500 to-green-500 rounded-full z-0 transition-all duration-1000 ease-out"
+                style={{
+                  width: `${Math.max(0, (completedModules / totalModules) * 100)}%`,
+                  maxWidth: `calc(100% - 4rem)`,
+                }}
+              ></div>
+
               {progressItems.map((item, index) => {
                 const IconComponent = item.icon
                 const isCurrentModule = currentModule === item.id
                 const isClickable = item.unlocked && !item.isCertificate && onModuleClick
 
                 return (
-                  <div key={item.id} className="flex items-center">
+                  <div key={item.id} className="flex items-center relative z-10">
                     {/* Progress Item */}
-                    <div className="flex flex-col items-center space-y-2">
+                    <div className="flex flex-col items-center space-y-2 px-4">
                       {/* Circle with Icon */}
                       <div
                         className={`relative w-16 h-16 rounded-full flex items-center justify-center border-4 transition-all duration-300 ${
@@ -226,6 +238,11 @@ export default function InteractiveProgressBar({
                           <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center">
                             <CheckCircle className="w-4 h-4 text-white" />
                           </div>
+                        )}
+
+                        {/* Progress Pulse Animation for Current Module */}
+                        {isCurrentModule && (
+                          <div className="absolute inset-0 rounded-full border-4 border-orange-400 animate-ping opacity-30"></div>
                         )}
                       </div>
 
@@ -277,24 +294,19 @@ export default function InteractiveProgressBar({
                       </div>
                     </div>
 
-                    {/* Connecting Line */}
+                    {/* Milestone Markers */}
                     {index < progressItems.length - 1 && (
-                      <div className="flex-1 h-1 mx-4 relative">
-                        <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
+                      <div className="absolute top-8 left-full w-8 h-1 flex items-center justify-center z-10">
+                        {/* Progress Dot */}
                         <div
-                          className={`absolute inset-0 rounded-full transition-all duration-500 ${
+                          className={`w-2 h-2 rounded-full transition-all duration-500 ${
                             item.completed
-                              ? "bg-gradient-to-r from-green-500 to-green-400 w-full"
+                              ? "bg-green-400 shadow-lg"
                               : isCurrentModule
-                                ? "bg-gradient-to-r from-orange-500 to-blue-500 w-1/2"
-                                : "w-0"
+                                ? "bg-orange-400 animate-pulse shadow-md"
+                                : "bg-gray-300"
                           }`}
                         ></div>
-
-                        {/* Animated Progress Dots */}
-                        {isCurrentModule && (
-                          <div className="absolute top-1/2 left-1/2 transform -translate-y-1/2 w-2 h-2 bg-white rounded-full animate-ping"></div>
-                        )}
                       </div>
                     )}
                   </div>
@@ -319,6 +331,10 @@ export default function InteractiveProgressBar({
               <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
               <span>Locked</span>
             </div>
+            <div className="flex items-center space-x-1">
+              <div className="w-8 h-1 bg-gradient-to-r from-orange-500 to-green-500 rounded-full"></div>
+              <span>Learning Path</span>
+            </div>
           </div>
 
           {showCertificate && (
@@ -328,6 +344,15 @@ export default function InteractiveProgressBar({
                   ? "🎉 Ready to claim certificate!"
                   : `${totalModules - completedModules} modules remaining`}
               </p>
+              <div className="flex items-center justify-end space-x-1 mt-1">
+                <div className="w-16 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-orange-500 to-green-500 transition-all duration-1000"
+                    style={{ width: `${(completedModules / totalModules) * 100}%` }}
+                  ></div>
+                </div>
+                <span className="text-xs">{Math.round((completedModules / totalModules) * 100)}%</span>
+              </div>
             </div>
           )}
         </div>
