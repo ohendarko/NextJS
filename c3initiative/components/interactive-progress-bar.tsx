@@ -305,14 +305,14 @@ export default function InteractiveProgressBar({
         </div>
 
         {/* Progress Summary */}
-        <div className="mt-4 flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
-          <div className="flex items-center space-x-4">
+        <div className="mt-4 flex flex-wrap items-center justify-between text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex flex-wrap space-x-4 mb-2">
             <div className="flex items-center space-x-1">
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
               <span>Completed</span>
             </div>
             <div className="flex items-center space-x-1">
-              <div className="w-3 h-3 gradient-orange-blue rounded-full"></div>
+              <div className="w-3 h-3 gradient-orange-blue rounded-full !ml-0"></div>
               <span>Current/Available</span>
             </div>
             <div className="flex items-center space-x-1">

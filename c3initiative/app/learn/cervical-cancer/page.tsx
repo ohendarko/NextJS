@@ -117,7 +117,7 @@ export default function CervicalCancerLearnPage() {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen pt-24 pb-16 px-0 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-8">
@@ -207,8 +207,8 @@ export default function CervicalCancerLearnPage() {
                       }`}
                     >
                       <CardHeader>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-4">
+                        <div className="flex flex-col items-center justify-between">
+                          <div className="flex  items-center space-x-4">
                             {/* Mobile Path Node */}
                             <div
                               className={`w-12 h-12 rounded-full flex items-center justify-center border-2 md:hidden ${
@@ -227,14 +227,16 @@ export default function CervicalCancerLearnPage() {
                                 <Lock className="w-6 h-6 text-gray-500" />
                               )}
                             </div>
-
                             <div>
                               <CardTitle className="text-xl">
                                 Module {module.id}: {module.title}
                               </CardTitle>
-                              <p className="text-gray-600 dark:text-gray-400 mt-1">{module.description}</p>
                             </div>
                           </div>
+
+                          <div className="mt-4">
+                              <p className="text-gray-600 dark:text-gray-400 mt-1">{module.description}</p>
+                            </div>
 
                           <div className="text-right space-y-2">
                             {moduleProgress[module.id]?.completed && (
@@ -242,21 +244,16 @@ export default function CervicalCancerLearnPage() {
                                 Completed
                               </Badge>
                             )}
-                            <div className="text-sm text-gray-500">
-                              <p>{module.sections} sections</p>
-                              <p>{module.duration}</p>
-                            </div>
+                            
                           </div>
                         </div>
                       </CardHeader>
 
                       <CardContent>
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">
-                            <span>📚 {module.sections} Sections</span>
-                            <span>⏱️ {module.duration}</span>
+                          {/* <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">                          
                             <span>🎯 Interactive Learning</span>
-                          </div>
+                          </div> */}
 
                           {moduleProgress[module.id]?.unlocked ? (
                             <Link href={`/learn/cervical-cancer/module-${module.id}`}>
