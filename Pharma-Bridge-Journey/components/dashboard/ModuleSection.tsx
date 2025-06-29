@@ -175,7 +175,7 @@ const ModulesSection: React.FC<ModulesSectionProps> = ({ userProfile }) => {
       <div className="text-center p-8">
         <h3 className="text-xl font-semibold mb-4">No Active Services</h3>
         <p className="text-gray-600 mb-6">
-          {userProfile.hasCompletedOnboarding ? "Your Service Package doesn't have any supported modules yet. This is probably a mistake from our end. If you believe this to be an error, Kindly support@pharmabridge.com. " : "You don't have any active services yet. Complete onboarding or Check out our service packages to begin your journey."}
+          {userProfile.hasCompletedOnboarding ? "Your Service Package doesn't have any supported modules yet. This is probably a mistake from our end. If you believe this to be an error, Kindly contact support@pharmabridge.com." : "You don't have any active services yet. Complete onboarding or Check out our service packages to begin your journey."}
         </p>
         <Button asChild>
           <Link href="/dashboard/pricing">View Service Packages</Link>
