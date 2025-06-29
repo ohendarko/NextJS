@@ -42,7 +42,7 @@ const OnboardingForm = ({ userEmail }) => {
   graduationYear: new Date().getFullYear(),
   preferredState: '',
   timezone: '',
-  selectedPackage: [] as string[],
+  selectedPackage: [],
   arrivalDate: '',
   profileImage: '',
 
@@ -107,13 +107,6 @@ const OnboardingForm = ({ userEmail }) => {
 
   
   useEffect(() => {
-    if (status === 'loading') {
-      setIsLoading(true);
-      return;
-    }
-    setFormData(userProfile)
-    setIsLoading(false);
-    
 
     if (status === 'unauthenticated') {
       alert('You must be logged in to access this page.');
@@ -121,6 +114,19 @@ const OnboardingForm = ({ userEmail }) => {
     } 
     
   }, [status, navigate])
+
+  useEffect(() => {
+    if (userProfile?.email) {
+      setFormData((prev) => ({
+        ...userProfile,
+        selectedPackage: prev.selectedPackage.length > 0
+          ? prev.selectedPackage
+          : userProfile.selectedPackage
+      }));
+      setIsLoading(false);
+    }
+  }, [userProfile]);
+
 
   
   
@@ -142,8 +148,17 @@ const OnboardingForm = ({ userEmail }) => {
       ...formData,
       [name]: value
     });
-    // console.log('radio:',[value, name])
+    console.log('handleradio:',[value, name])
   };
+
+  const handlePackageRadioChange = (value: string) => {
+    // if (formData.selectedPackage?.[0] === value) return; // only update when changed
+    // if (currentSelection === value) return;
+
+    setCurrentSelection(value);
+    console.log('radio:', value, 'selectedPackage', currentSelection);
+  };
+
 
   const handleBooleanRadioChange = (field: string, value: string) => {
     const parsedValue = value === 'yes' ? true : value === 'no' ? false : value;
@@ -154,12 +169,16 @@ const OnboardingForm = ({ userEmail }) => {
   };
 
   const handlePackageSelect = (value: string) => {
-  setFormData((prev) => ({
-    ...prev,
-    selectedPackage: [...new Set([...prev.selectedPackage, value])], // ensures no duplicates
-  }));
-  // console.log('Package:',value)
-};
+    setFormData((prev) => ({
+      ...prev,
+      selectedPackage: [value], // ✅ overwrite
+    }));
+  };
+
+
+
+
+
   
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -178,7 +197,7 @@ const OnboardingForm = ({ userEmail }) => {
       setCurrentStep(currentStep + 1);
       window.scrollTo(0, 0);
     }
-    console.log("formData:", formData);
+    // console.log("formData:", formData);
   };
   
   const handlePrevious = () => {
@@ -261,11 +280,13 @@ const OnboardingForm = ({ userEmail }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     
     if (currentStep < totalSteps) {
       handleNext();
       return;
     }
+    
     
     // Validate required fields in the final step
     if (!formData.selectedPackage) {
@@ -285,7 +306,14 @@ const OnboardingForm = ({ userEmail }) => {
     // In a real app, you'd make an API call to save the data
     // Making the API call to submit the form data
 
-    const cleanedData = sanitizeFormData(formData);
+    const updatedSelectedPackage = [...new Set([...formData.selectedPackage, currentSelection])];
+
+    const newFormData = sanitizeFormData({
+      ...formData,
+      selectedPackage: updatedSelectedPackage,
+    });
+
+    const cleanedData = sanitizeFormData(newFormData);
 
     try {
       setIsLoading(true);
@@ -293,6 +321,7 @@ const OnboardingForm = ({ userEmail }) => {
         email: session.user.email,
         ...cleanedData,
       };
+      console.log(payload)
       // console.log('Submitting payload:', payload);
 
       const res = await fetch(`/api/user?email=${userEmail}`, {
@@ -300,24 +329,22 @@ const OnboardingForm = ({ userEmail }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          email: session.user.email,
-          ...formData,
-        }),
+        body: JSON.stringify(payload),
       })
 
       if (!res.ok) {
         setIsLoading(false);
         throw new Error('Failed to submit onboarding data');
         
+      } else {
+        toast({
+          title: "Onboarding Completed",
+          description: "Your information has been saved successfully",
+          variant: "success",
+        });
+        navigate.push('/dashboard')
       }
-      toast({
-        title: "Onboarding Completed",
-        description: "Your information has been saved successfully",
-        variant: "success",
-      });
 
-      navigate.push('/dashboard')
     } catch (err) {
       console.error(err)
       setIsLoading(false);
@@ -327,7 +354,7 @@ const OnboardingForm = ({ userEmail }) => {
     
     toast({
       title: "Submission Successful",
-      description: "Thank you! Our team will review your details shortly.",
+      description: "Thank you! Our team will review your details shortly. You may need to refresh the page.",
     });
     
     // Navigate to the dashboard page
@@ -366,7 +393,7 @@ const OnboardingForm = ({ userEmail }) => {
   // Service packages with pricing from the pricing page
   const servicePackages = [
     {
-      id: 'fpgee_prep_only',
+      id: 'fpgee',
       name: 'FPGEE Exam Preparation Only',
       description: 'Preparation for FPGEE exam',
       price: '$500',
@@ -633,28 +660,30 @@ const OnboardingForm = ({ userEmail }) => {
             
             <RadioGroup
               value={currentSelection}
-              onValueChange={(value) => {
-                setCurrentSelection(value);
-                handlePackageSelect(value);
-              }}
+              onValueChange={(value) => handlePackageRadioChange(value)}
               className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6"
             >
               {servicePackages.map((pkg) => (
+                <label key={pkg.id} htmlFor={pkg.id} className="block cursor-pointer">
                 <Card 
                   key={pkg.id}
                   className={`border-2 cursor-pointer transition-all hover:shadow-md ${
-                    formData?.selectedPackage[0] === pkg.id 
+                    currentSelection === pkg.id 
                       ? 'border-pharma-blue bg-blue-50' 
                       : 'border-gray-200'
-                  }`}
-                  onClick={() => handleRadioChange('selectedPackage', pkg.id)}
+                  } h-full`}
+                  // onClick={() => handlePackageRadioChange(pkg.id)}
                 >
                   <CardContent className="p-6">
                     <div className="flex items-start">
                       <RadioGroupItem 
                         id={pkg.id} 
-                        className="mt-1" 
                         value={pkg.id}
+                        className="mt-1 pointer-events-none" 
+                        checked={currentSelection === pkg.id} // ✅ make it reflect selection
+                        tabIndex={-1}
+                        // aria-hidden="true"
+                        // readOnly // ✅ prevent it from firing internal state changes
                       />
                       <div className="ml-3">
                         <Label htmlFor={pkg.id} className="text-lg font-medium">
@@ -678,6 +707,7 @@ const OnboardingForm = ({ userEmail }) => {
                     </div>
                   </CardContent>
                 </Card>
+                </label>
               ))}
             </RadioGroup>
 
@@ -799,7 +829,7 @@ const OnboardingForm = ({ userEmail }) => {
                 <Button
                   type="submit"
                   className="bg-pharma-blue hover:bg-pharma-dark-blue"
-                  disabled={!formData?.selectedPackage}
+                  disabled={!formData?.selectedPackage || isLoading}
                 >
                   {isLoading ? "Submitting" : "Submit & Proceed to Dashboard"}
                 </Button>

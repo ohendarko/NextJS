@@ -47,7 +47,7 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ userProfile }) => {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
-      console.log(isLoggedIn)
+      // console.log(isLoggedIn)
     }
   };
 

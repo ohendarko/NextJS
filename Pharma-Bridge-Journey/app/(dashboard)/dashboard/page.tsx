@@ -37,7 +37,7 @@ const Dashboard = () => {
   const { data: session, status } = useSession()
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const isMobile = useIsMobile();
-  const { userProfile, isLoading,setUserProfile } = useUser();
+  const { userProfile, isLoading, setUserProfile } = useUser();
   // const router = useRouter()
 
   // const servicePackages = [

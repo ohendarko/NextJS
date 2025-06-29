@@ -124,7 +124,7 @@ export const UserProvider = ({ children, userEmail }: UserProviderProps) => {
     if (status === "authenticated") {
       fetchUser();
     }
-  }, [status]);
+  }, [status, router]);
 
   return (
     <UserContext.Provider value={{ userProfile, isLoading, setUserProfile, refetchUser: fetchUser }}>

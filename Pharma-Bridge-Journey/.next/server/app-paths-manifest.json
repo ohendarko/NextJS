@@ -1,6 +1,7 @@
 {
+  "/api/user/route": "app/api/user/route.js",
+  "/api/appointments/route": "app/api/appointments/route.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/(regularLayout)/login/page": "app/(regularLayout)/login/page.js",
-  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
-  "/(dashboard)/dashboard/pricing/page": "app/(dashboard)/dashboard/pricing/page.js"
+  "/(dashboard)/dashboard/onboarding/page": "app/(dashboard)/dashboard/onboarding/page.js",
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js"
 }

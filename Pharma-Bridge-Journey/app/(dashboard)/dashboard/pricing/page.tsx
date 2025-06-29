@@ -166,7 +166,7 @@ const Pricing = () => {
             ))}
             <div className="grid md:grid-cols-1 gap-8 mb-16">
             {/* TOEFL Preparation */}
-              <Card className="border-2 border-gray-200 hover:border-pharma-light-blue hover:shadow-md transition-all rounded-xl overflow-hidden h-full pb-8">
+              {/* <Card className="border-2 border-gray-200 hover:border-pharma-light-blue hover:shadow-md transition-all rounded-xl overflow-hidden h-full pb-8">
                 <CardHeader>
                   <CardTitle className="text-xl text-pharma-blue">TOEFL-iBT Speaking & Writing Prep</CardTitle>
                 </CardHeader>
@@ -206,7 +206,7 @@ const Pricing = () => {
                   </div>
                 </CardContent>
                 
-              </Card>
+              </Card> */}
             </div>
           </div>
           

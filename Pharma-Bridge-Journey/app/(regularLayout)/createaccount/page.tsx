@@ -77,14 +77,14 @@ const CreateAccount = () => {
       return;
     }
     const password = formData.password;
-    const passwordIsValid = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@_()#^$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+    const passwordIsValid = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@_()#^$!%*?&-])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
 
 
 
     if (!passwordIsValid) {
       toast({
         title: "Weak Password",
-        description: "Check if password is at least 8 characters long and contains: at least one letter, one digit and one special character. (@_()#^$!%*?&)",
+        description: "Check if password is at least 8 characters long and contains: at least one letter, one digit and one special character. (@_()#^$!%*?&-)",
         variant: "destructive",
       });
       // alert("Password must be at least 8 characters long and contain at least one letter and one digit.");
@@ -217,7 +217,7 @@ const CreateAccount = () => {
                   Password must be at least 8 characters. <br/>
                   Must contain at least one letter. <br/>
                   Must contain at least one digit. <br/>
-                  Must contain at least one special character. [ ! @ # $ % ^ & * ( ) _ ]
+                  Must contain at least one special character. [ ! @ # $ % ^ & * ( ) _ - ]
                 </p>
               </div>
 
