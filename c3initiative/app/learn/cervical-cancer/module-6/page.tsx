@@ -81,7 +81,7 @@ const modules = [
   },
 ]
 
-export const sections = [
+const sections = [
   {
     id: 1,
     title: "What Is Cancer?",
