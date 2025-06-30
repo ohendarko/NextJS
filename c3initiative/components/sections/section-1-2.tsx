@@ -3,154 +3,70 @@
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
-import { ArrowRight, Lock, Globe, MapPin, TrendingUp, AlertTriangle, Users, Heart } from "lucide-react"
+import { CheckCircle, ArrowRight, Microscope } from "lucide-react"
 import LearningCard from "@/components/learning-card"
-import QuizModal from "@/components/quiz-modal"
-
-interface Section1_2Props {
-  onComplete: () => void
-  isUnlocked: boolean
-}
 
 const learningCards = [
   {
     id: 1,
-    title: "Global Cervical Cancer Statistics",
+    title: "Understanding HPV",
     content:
-      "Cervical cancer is the 4th most common cancer in women worldwide. In 2022, there were about 660,000 new cases and 350,000 deaths globally. By 2030, new cases are estimated to rise to 760,100 cases, with 411,000 deaths - showing the urgent need for prevention and treatment programs.",
-    question: {
-      text: "What is the global ranking of cervical cancer among cancers in women?",
-      options: ["2nd most common", "3rd most common", "4th most common", "5th most common"],
-      correct: 2,
-      explanation:
-        "Cervical cancer is the 4th most common cancer in women worldwide, with approximately 660,000 new cases in 2022.",
-    },
+      "Human papillomavirus (HPV) is a group of more than 200 related viruses. HPV is so common that nearly all sexually active men and women get the virus at some point in their lives.\n\nMost HPV infections go away on their own within 2 years. But sometimes HPV infections persist and can cause cancer. HPV infections can cause cancers of the cervix, vagina, vulva, penis, anus, and oropharynx.",
+    infographic: "/placeholder.svg?height=300&width=400&text=HPV+Types+and+Risks",
   },
   {
     id: 2,
-    title: "Global Health Inequality",
+    title: "High-Risk HPV Types",
     content:
-      "Around 94% of cervical cancer deaths happen in low- and middle-income countries, revealing a major gap in access to care. This stark disparity highlights how economic factors directly impact women's health outcomes and survival rates from preventable diseases.",
-    question: {
-      text: "What percentage of cervical cancer deaths occur in low- and middle-income countries?",
-      options: ["85%", "90%", "94%", "98%"],
-      correct: 2,
-      explanation:
-        "Around 94% of cervical cancer deaths occur in low- and middle-income countries, showing a major healthcare access gap.",
-    },
+      "There are about 14 high-risk HPV types that can cause cancer. HPV types 16 and 18 cause about 70% of cervical cancers and precancerous cervical lesions.\nOther high-risk HPV types include 31, 33, 35, 39, 45, 51, 52, 56, 58, 59, 66, and 68. These types are responsible for the remaining 30% of cervical cancer cases.\n\nSeveral factors increase the risk of developing persistent HPV infection that may lead to cervical cancer:\n\n• Having many sexual partners\n• Having sex at an early age\n• Having other sexually transmitted infections\n• Having a weakened immune system\n• Smoking tobacco\n• Long-term use of birth control pills",
+    infographic: "/placeholder.svg?height=300&width=400&text=High-Risk+HPV+Types+Chart",
   },
   {
     id: 3,
-    title: "High-Risk Regions",
+    title: "Progression to Cancer",
     content:
-      "The highest rates of cervical cancer and deaths are seen in Sub-Saharan Africa, Central America, and South-East Asia. These differences are mainly due to inequality in access to HPV vaccines, cervical cancer screening, and proper treatment facilities.",
-    question: {
-      text: "Which regions have the highest cervical cancer rates?",
-      options: [
-        "Europe and North America",
-        "Sub-Saharan Africa, Central America, and South-East Asia",
-        "East Asia and Pacific",
-        "Middle East and North Africa",
-      ],
-      correct: 1,
-      explanation:
-        "Sub-Saharan Africa, Central America, and South-East Asia have the highest cervical cancer rates due to limited healthcare access.",
-    },
+      "HPV infection doesn't usually cause cancer right away. The process typically takes 10-20 years, giving plenty of time for detection and treatment.\n\nFirst, HPV causes changes in cervical cells (dysplasia). If not treated, these abnormal cells can become cancerous. This slow progression is why regular screening is so effective at preventing cervical cancer.",
+    infographic: "/placeholder.svg?height=300&width=400&text=HPV+Risk+Factors+Diagram",
   },
-  {
-    id: 4,
-    title: "Africa's Disproportionate Burden",
-    content:
-      "Africa bears a disproportionate cervical cancer burden with the highest rates globally. In Africa, 34 out of every 100,000 women are diagnosed with cervical cancer and 23 out of every 100,000 women die from it every year. This represents a significant public health challenge.",
-    question: {
-      text: "In Africa, how many women per 100,000 are diagnosed with cervical cancer annually?",
-      options: ["24", "29", "34", "39"],
-      correct: 2,
-      explanation:
-        "In Africa, 34 out of every 100,000 women are diagnosed with cervical cancer annually, representing the highest global rates.",
-    },
-  },
-  {
-    id: 5,
-    title: "Causes of African Disparities",
-    content:
-      "The high cervical cancer burden in Africa is mainly due to limited access to healthcare, low vaccination rates against HPV, and few women getting screening or early treatment. These systemic issues create barriers to prevention and early intervention.",
-    question: {
-      text: "What are the main causes of high cervical cancer rates in Africa?",
-      options: [
-        "Genetic factors only",
-        "Limited healthcare access, low HPV vaccination, poor screening uptake",
-        "Environmental pollution",
-        "Dietary factors only",
-      ],
-      correct: 1,
-      explanation:
-        "High rates in Africa are due to limited healthcare access, low HPV vaccination rates, and poor screening uptake.",
-    },
-  },
-  {
-    id: 6,
-    title: "Ghana's Cervical Cancer Statistics",
-    content:
-      "Ghana has a high incidence rate of cervical cancer, about 18.3 cases per 100,000 women each year. More specifically, 29.3 out of every 100,000 women are diagnosed with cervical cancer and 27.6 out of every 100,000 women die from it annually in Ghana.",
-    question: {
-      text: "What is Ghana's cervical cancer incidence rate per 100,000 women?",
-      options: ["15.3", "18.3", "21.3", "25.3"],
-      correct: 1,
-      explanation: "Ghana has a cervical cancer incidence rate of about 18.3 cases per 100,000 women each year.",
-    },
-  },
-  {
-    id: 7,
-    title: "Cultural and Healthcare Barriers in Ghana",
-    content:
-      "Several factors contribute to Ghana's high cervical cancer numbers: strong trust in traditional healers and mistrust of hospital care, cultural beliefs about causes and treatment, limited access to HPV vaccine, low awareness of symptoms, and low screening uptake.",
-    question: {
-      text: "Which factor contributes to high cervical cancer rates in Ghana?",
-      options: [
-        "High vaccination rates",
-        "Excellent screening programs",
-        "Strong trust in traditional healers and mistrust of hospitals",
-        "High awareness of symptoms",
-      ],
-      correct: 2,
-      explanation:
-        "Strong trust in traditional healers and mistrust of hospital care is one of several factors contributing to high rates in Ghana.",
-    },
-  },
+  
 ]
+
+interface Section1_2Props {
+  onComplete: (nextSection?: number) => void
+  isUnlocked: boolean
+}
 
 export default function Section1_2({ onComplete, isUnlocked }: Section1_2Props) {
   const [currentCard, setCurrentCard] = useState(0)
   const [completedCards, setCompletedCards] = useState<number[]>([])
-  const [showQuiz, setShowQuiz] = useState(false)
   const [sectionCompleted, setSectionCompleted] = useState(false)
 
   const handleCardComplete = () => {
-    if (!completedCards.includes(currentCard)) {
-      setCompletedCards([...completedCards, currentCard])
+    const cardId = learningCards[currentCard].id
+    if (!completedCards.includes(cardId)) {
+      setCompletedCards([...completedCards, cardId])
     }
-    setShowQuiz(true)
-  }
-
-  const handleQuizComplete = (correct: boolean) => {
-    setShowQuiz(false)
 
     if (currentCard < learningCards.length - 1) {
       setCurrentCard(currentCard + 1)
-    } else if (completedCards.length === learningCards.length - 1) {
+    } else {
       setSectionCompleted(true)
-      onComplete()
     }
+  }
+
+  const handleSectionComplete = () => {
+    onComplete(3) // Navigate to section 3
   }
 
   if (!isUnlocked) {
     return (
       <Card className="p-8 text-center">
-        <Lock className="w-16 h-16 mx-auto mb-4 text-gray-400" />
-        <h3 className="text-xl font-semibold mb-2">Section Locked</h3>
-        <p className="text-gray-600 dark:text-gray-400">Complete the previous section to unlock this content.</p>
+        <CardContent className="p-8 text-center">
+          <h3 className="text-xl font-semibold mb-4">Section Locked</h3>
+          <p className="text-gray-600 dark:text-gray-400">Complete the previous section to unlock this content.</p>
+        </CardContent>
       </Card>
     )
   }
@@ -160,22 +76,27 @@ export default function Section1_2({ onComplete, isUnlocked }: Section1_2Props) 
       {/* Section Header */}
       <Card className="hover-shadow-gradient">
         <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 gradient-blue-pink rounded-full flex items-center justify-center">
-                <Globe className="w-6 h-6 text-white" />
-              </div>
-              <span>Section 2: Epidemiology of Cervical Cancer</span>
-            </div>
-            {sectionCompleted && <span className="text-green-600 text-sm font-normal">✓ Completed</span>}
-          </CardTitle>
           <div className="flex items-center justify-between">
-            <p className="text-gray-600 dark:text-gray-400">
-              Understanding global, African, and Ghanaian cervical cancer statistics and disparities
-            </p>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-blue-500 rounded-full flex items-center justify-center">
+                <Microscope className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <CardTitle className="text-xl">Section 2: Risk Factors and Causes</CardTitle>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Exploring the primary causes and risk factors for cervical cancer
+                </p>
+              </div>
+            </div>
             <div className="text-right">
-              <p className="text-sm text-gray-500">
-                {completedCards.length} / {learningCards.length} cards completed
+              {sectionCompleted && (
+                <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
+                  <CheckCircle className="w-4 h-4 mr-1" />
+                  Complete
+                </Badge>
+              )}
+              <p className="text-sm text-gray-500 mt-1">
+                {completedCards.length} / {learningCards.length} cards
               </p>
             </div>
           </div>
@@ -185,207 +106,42 @@ export default function Section1_2({ onComplete, isUnlocked }: Section1_2Props) 
         </CardContent>
       </Card>
 
-      {/* Key Statistics Overview */}
-      <div className="grid md:grid-cols-3 gap-4 mb-6">
-        <Card className="hover-shadow-gradient">
-          <CardContent className="p-4 text-center">
-            <div className="w-12 h-12 gradient-orange-blue rounded-full flex items-center justify-center mx-auto mb-3">
-              <Globe className="w-6 h-6 text-white" />
-            </div>
-            <div className="text-2xl font-bold text-orange-600">660K</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Global New Cases (2022)</div>
-          </CardContent>
-        </Card>
-
-        <Card className="hover-shadow-gradient">
-          <CardContent className="p-4 text-center">
-            <div className="w-12 h-12 gradient-blue-pink rounded-full flex items-center justify-center mx-auto mb-3">
-              <MapPin className="w-6 h-6 text-white" />
-            </div>
-            <div className="text-2xl font-bold text-blue-600">34/100K</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Africa Incidence Rate</div>
-          </CardContent>
-        </Card>
-
-        <Card className="hover-shadow-gradient">
-          <CardContent className="p-4 text-center">
-            <div className="w-12 h-12 gradient-orange-pink rounded-full flex items-center justify-center mx-auto mb-3">
-              <Heart className="w-6 h-6 text-white" />
-            </div>
-            <div className="text-2xl font-bold text-pink-600">18.3/100K</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Ghana Incidence Rate</div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Learning Cards Navigation */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2 mb-6">
+      {/* Learning Cards */}
+      <div className="space-y-4">
         {learningCards.map((card, index) => (
-          <Button
+          <LearningCard
             key={card.id}
-            variant={currentCard === index ? "default" : completedCards.includes(index) ? "secondary" : "outline"}
-            size="sm"
-            className={`h-12 ${
-              currentCard === index
-                ? "gradient-blue-pink text-white"
-                : completedCards.includes(index)
-                  ? "bg-green-100 text-green-800 hover:bg-green-200"
-                  : ""
-            }`}
-            onClick={() => setCurrentCard(index)}
-            disabled={index > Math.max(...completedCards, -1) + 1}
-          >
-            {completedCards.includes(index) ? "✓" : index + 1}
-          </Button>
+            card={card}
+            isActive={index === currentCard}
+            isCompleted={completedCards.includes(card.id)}
+            onComplete={handleCardComplete}
+            canExpand={index <= currentCard}
+          />
         ))}
       </div>
 
-      {/* Current Learning Card */}
-      <LearningCard
-        card={learningCards[currentCard]}
-        onComplete={handleCardComplete}
-        isCompleted={completedCards.includes(currentCard)}
-      />
-
-      {/* Quiz Modal */}
-      <QuizModal
-        isOpen={showQuiz}
-        question={learningCards[currentCard]?.question}
-        onComplete={handleQuizComplete}
-        onClose={() => setShowQuiz(false)}
-      />
-
-      {/* Regional Impact Visualization */}
-      <Card className="hover-shadow-gradient">
-        <CardHeader>
-          <CardTitle className="flex items-center space-x-2">
-            <TrendingUp className="w-5 h-5 text-orange-500" />
-            <span>Regional Impact Comparison</span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-4 h-4 bg-red-500 rounded-full"></div>
-                <span className="font-medium">Sub-Saharan Africa</span>
+      {/* Section Completion */}
+      {sectionCompleted && (
+        <Card className="hover-shadow-gradient border-green-200 dark:border-green-800">
+          <CardContent className="p-6">
+            <div className="text-center space-y-4">
+              <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto">
+                <CheckCircle className="w-8 h-8 text-white" />
               </div>
-              <div className="text-right">
-                <div className="text-lg font-bold text-red-600">34/100K</div>
-                <div className="text-xs text-gray-500">Highest burden globally</div>
+              <div>
+                <h3 className="text-lg font-semibold text-green-600 dark:text-green-400">Section 2 Complete!</h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  You've learned about HPV and the risk factors for cervical cancer development.
+                </p>
               </div>
+              <Button onClick={handleSectionComplete} className="gradient-orange-blue text-white hover-shadow-gradient">
+                Continue to Next Section
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
             </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
-                <span className="font-medium">Ghana</span>
-              </div>
-              <div className="text-right">
-                <div className="text-lg font-bold text-orange-600">18.3/100K</div>
-                <div className="text-xs text-gray-500">High national burden</div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-                <span className="font-medium">Global Average</span>
-              </div>
-              <div className="text-right">
-                <div className="text-lg font-bold text-blue-600">13.3/100K</div>
-                <div className="text-xs text-gray-500">Worldwide incidence</div>
-              </div>
-            </div>
-
-            <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
-              <div className="flex items-start space-x-2">
-                <AlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5" />
-                <div>
-                  <h4 className="font-semibold text-yellow-800 dark:text-yellow-300">Key Insight</h4>
-                  <p className="text-sm text-yellow-700 dark:text-yellow-400">
-                    94% of cervical cancer deaths occur in low- and middle-income countries, highlighting the critical
-                    need for improved healthcare access and prevention programs.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Ghana-Specific Challenges */}
-      <Card className="hover-shadow-gradient">
-        <CardHeader>
-          <CardTitle className="flex items-center space-x-2">
-            <Users className="w-5 h-5 text-pink-500" />
-            <span>Ghana's Specific Challenges</span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800 dark:text-gray-200">Cultural Barriers</h4>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-2"></div>
-                  <span>Strong trust in traditional healers</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-2"></div>
-                  <span>Mistrust of hospital care</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-2"></div>
-                  <span>Cultural beliefs about disease causes</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800 dark:text-gray-200">Healthcare Access Issues</h4>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-                  <span>Limited access to HPV vaccine</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-                  <span>Low awareness of symptoms</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-                  <span>Poor screening uptake</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Navigation */}
-      <div className="flex justify-between">
-        <Button
-          variant="outline"
-          onClick={() => setCurrentCard(Math.max(0, currentCard - 1))}
-          disabled={currentCard === 0}
-        >
-          Previous Card
-        </Button>
-
-        {sectionCompleted ? (
-          <Button className="gradient-blue-pink text-white">Section Complete ✓</Button>
-        ) : (
-          <Button
-            onClick={() => setCurrentCard(Math.min(learningCards.length - 1, currentCard + 1))}
-            disabled={currentCard >= Math.max(...completedCards, -1) + 1}
-            className="gradient-blue-pink text-white"
-          >
-            Next Card
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
-        )}
-      </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   )
 }

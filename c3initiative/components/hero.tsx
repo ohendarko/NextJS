@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 dark:from-gray-900 dark:via-gray-800/50 dark:to-gray-700/30">
       <div className="container mx-auto max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="flex gap-12 items-center">
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-orange-100 to-pink-100 dark:from-orange-900/30 dark:to-pink-900/30 text-sm font-medium text-orange-700 dark:text-orange-300">
@@ -49,7 +49,7 @@ export default function Hero() {
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/signup">
                 <Button size="lg" className="gradient-orange-blue text-white hover-shadow-gradient group">
                   Join the Movement
@@ -60,9 +60,9 @@ export default function Hero() {
                 <Play className="mr-2 w-5 h-5" />
                 Watch Our Impact
               </Button>
-            </div>
+            </div> */}
 
-            <div className="flex items-center space-x-8 pt-4">
+            {/* <div className="flex items-center space-x-8 pt-4">
               <div className="flex items-center space-x-2">
                 <Users className="w-5 h-5 text-orange-500" />
                 <span className="text-sm text-gray-600 dark:text-gray-400">10,000+ Ghanaian Students</span>
@@ -75,16 +75,17 @@ export default function Hero() {
                 <Shield className="w-5 h-5 text-pink-500" />
                 <span className="text-sm text-gray-600 dark:text-gray-400">Lives Saved</span>
               </div>
-            </div>
+            </div> */}
           </div>
 
-          <div className="relative">
-            <div className="relative z-10 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 hover-shadow-gradient">
+          {/* <div className="relative"> */}
+            {/* <div className="relative z-10 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 hover-shadow-gradient">
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 gradient-orange-pink rounded-full flex items-center justify-center">
                     <Crown className="w-6 h-6 text-white" />
                   </div>
+                  
                   <div>
                     <h3 className="font-semibold text-lg">Empowering Education</h3>
                     <p className="text-gray-600 dark:text-gray-400">Building knowledge that saves lives</p>
@@ -122,12 +123,12 @@ export default function Hero() {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Background decoration */}
-            <div className="absolute -top-4 -right-4 w-72 h-72 gradient-triple rounded-full opacity-20 blur-3xl"></div>
-            <div className="absolute -bottom-8 -left-8 w-64 h-64 gradient-blue-pink rounded-full opacity-20 blur-3xl"></div>
-          </div>
+            {/* <div className="absolute -top-4 -right-4 w-72 h-72 gradient-triple rounded-full opacity-20 blur-3xl"></div>
+            <div className="absolute -bottom-8 -left-8 w-64 h-64 gradient-blue-pink rounded-full opacity-20 blur-3xl"></div> */}
+          {/* </div> */}
         </div>
       </div>
     </section>

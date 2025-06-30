@@ -1,27 +1,30 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
 import {
-  Play,
-  CheckCircle,
-  Lock,
   ArrowLeft,
+  CheckCircle,
+  Users,
+  ArrowRight,
   BookOpen,
   Microscope,
   Search,
   Shield,
   Stethoscope,
-  Users,
+  Lock,
+  Play,
 } from "lucide-react"
 import Link from "next/link"
+import InteractiveProgressBar from "@/components/interactive-progress-bar"
 import Section1_1 from "@/components/sections/section-1-1"
 import Section1_2 from "@/components/sections/section-1-2"
 import Section1_3 from "@/components/sections/section-1-3"
-import InteractiveProgressBar from "@/components/interactive-progress-bar"
+import PostTestModal from "@/components/post-test-modal"
 
 const modules = [
   {
@@ -85,7 +88,7 @@ const sections = [
   },
   {
     id: 2,
-    title: "Epidemiology of cervical cancer",
+    title: "Risk Factors and Causes",
     description: "Exploring the primary causes and risk factors for cervical cancer",
     component: Section1_2,
     completed: false,
@@ -93,8 +96,8 @@ const sections = [
   },
   {
     id: 3,
-    title: "Female Pelvic Anatomy and Physiology",
-    description: "Introduction to the female pelvic anatomy and physiology",
+    title: "Prevention Overview",
+    description: "Introduction to prevention strategies and early intervention",
     component: Section1_3,
     completed: false,
     unlocked: false,
@@ -106,23 +109,43 @@ type SectionProgress = {
 }
 
 export default function Module1Page() {
+  const router = useRouter()
   const [activeSection, setActiveSection] = useState(1)
   const [sectionProgress, setSectionProgress] = useState<SectionProgress>(
-    sections.reduce((acc, section) => ({ ...acc, [section.id]: { completed: false, unlocked: section.unlocked } }), {} as SectionProgress),
+    sections.reduce((acc, section) => ({ ...acc, [section.id]: { completed: false, unlocked: section.unlocked } }), {}),
   )
+  const [showPostTest, setShowPostTest] = useState(false)
 
-  const handleSectionComplete = (sectionId: number) => {
+  const handleSectionComplete = (sectionId: number, nextSection?: number) => {
     setSectionProgress((prev) => ({
       ...prev,
       [sectionId]: { ...prev[sectionId], completed: true },
       [sectionId + 1]: { ...prev[sectionId + 1], unlocked: true },
     }))
+
+    // Navigate to next section if specified
+    if (nextSection && nextSection <= sections.length) {
+      setActiveSection(nextSection)
+    }
+
+    // Check if all sections are completed
+    const allCompleted = sections.every((section) => section.id === sectionId || sectionProgress[section.id]?.completed)
+
+    if (allCompleted) {
+      setShowPostTest(true)
+    }
+  }
+
+  const handlePostTestPass = () => {
+    setShowPostTest(false)
+    // Navigate to next module
+    router.push("/learn/cervical-cancer/module-2")
   }
 
   const handleModuleClick = (moduleId: number) => {
     if (moduleId !== 1) {
       // Navigate to other modules when they're unlocked
-      window.location.href = `/learn/cervical-cancer/module-${moduleId}`
+      router.push(`/learn/cervical-cancer/module-${moduleId}`)
     }
   }
 
@@ -131,7 +154,7 @@ export default function Module1Page() {
   const allSectionsCompleted = completedSections === sections.length
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-0 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto max-w-7xl">
         {/* Back Navigation */}
         <div className="mb-6">
@@ -144,14 +167,14 @@ export default function Module1Page() {
         </div>
 
         {/* Module Progress Bar */}
-        <div className="mb-8">
+        {/* <div className="mb-8">
           <InteractiveProgressBar
             modules={modules}
             currentModule={1}
             onModuleClick={handleModuleClick}
             showCertificate={true}
           />
-        </div>
+        </div> */}
 
         {/* Module Header */}
         <Card className="mb-8 hover-shadow-gradient">
@@ -169,7 +192,7 @@ export default function Module1Page() {
                     Module Complete
                   </Badge>
                 )}
-                
+               
               </div>
             </div>
           </CardHeader>
@@ -269,14 +292,14 @@ export default function Module1Page() {
           {/* Section Content */}
           <div className="lg:col-span-3">
             <ActiveSectionComponent
-              onComplete={() => handleSectionComplete(activeSection)}
+              onComplete={(nextSection) => handleSectionComplete(activeSection, nextSection)}
               isUnlocked={sectionProgress[activeSection]?.unlocked || false}
             />
           </div>
         </div>
 
         {/* Module Completion */}
-        {allSectionsCompleted && (
+        {allSectionsCompleted && !showPostTest && (
           <Card className="mt-8 hover-shadow-gradient">
             <CardContent className="p-6">
               <div className="text-center space-y-4">
@@ -288,11 +311,13 @@ export default function Module1Page() {
                   Congratulations! You've successfully completed the Introduction to Cervical Cancer module.
                 </p>
                 <div className="flex justify-center space-x-4">
-                  <Link href="/learn/cervical-cancer">
-                    <Button className="gradient-orange-blue text-white hover-shadow-gradient">
-                      Continue to Next Module
-                    </Button>
-                  </Link>
+                  <Button
+                    onClick={() => router.push("/learn/cervical-cancer/module-2")}
+                    className="gradient-orange-blue text-white hover-shadow-gradient"
+                  >
+                    Continue to Module 2
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
                   <Button variant="outline" onClick={() => window.location.reload()}>
                     Review Module
                   </Button>
@@ -301,6 +326,15 @@ export default function Module1Page() {
             </CardContent>
           </Card>
         )}
+
+        {/* Post Test Modal */}
+        {/* <PostTestModal
+          isOpen={showPostTest}
+          onClose={() => setShowPostTest(false)}
+          onPass={handlePostTestPass}
+          moduleTitle="Introduction to Cervical Cancer"
+          moduleId={1}
+        /> */}
       </div>
     </div>
   )
