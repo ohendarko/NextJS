@@ -11,33 +11,28 @@ import LearningCard from "@/components/learning-card"
 const learningCards = [
   {
     id: 1,
-    title: "Global Impact of Cervical Cancer",
+    title: "Common Risk Factors",
     content:
-      "Every year, around 266,000 women die from cervical cancer worldwide. This staggering number represents not just statistics, but real lives lost to a largely preventable disease.\n\nMost of these deaths can be prevented through proper cervical cancer prevention and treatment programs. This highlights the critical importance of education, screening, and accessible healthcare.",
-    infographic: "/placeholder.svg?height=300&width=400&text=Global+Cervical+Cancer+Statistics",
+      "• Human papillomavirus (HPV) infection\n• Weakened immune system – immunocompromised persons (eg. those living with HIV)\n• Other sexually transmitted infections (STIs) such as herpes, chlamydia, gonorrhoea, syphilis\n• Multiple sexual partners\n• Early onset of sexual activity",
+    infographic: "/placeholder.svg?height=300&width=400&text=HPV+Risk+Factors",
   },
   {
     id: 2,
-    title: "HPV Connection",
+    title: "Lifestyle Risk Factors",
     content:
-      "Almost all cervical cancer is caused by a long-lasting infection with certain harmful types of the human papillomavirus (HPV). Understanding this connection is key to prevention strategies.\n\nThe disease usually develops slowly over 10–20 years. This gives enough time to detect and treat it early, making regular screening incredibly valuable for prevention.",
-    infographic: "/placeholder.svg?height=300&width=400&text=HPV+to+Cancer+Timeline",
+      "• Tobacco smoking\n• Use of oral contraceptives for over five years\n\nThese behaviors can increase the likelihood of persistent HPV infection or promote cell changes in the cervix.",
+    infographic: "/placeholder.svg?height=300&width=400&text=Lifestyle+Factors",
   },
-  {
-    id: 3,
-    title: "Early Detection Methods",
-    content:
-      "There are low-cost tests that can find pre-cancer early. These screening methods are accessible and effective tools for preventing cervical cancer development.\n\nHPV vaccines are now available. If given to girls before they become sexually active, a large portion of cervical cancer can be prevented. This represents a major breakthrough in prevention.",
-    infographic: "/placeholder.svg?height=300&width=400&text=Prevention+Methods+Infographic",
-  },
-]
+];
+
+
 
 interface Section1_1Props {
   onComplete: (nextSection?: number) => void
   isUnlocked: boolean
 }
 
-export default function Section1_1({ onComplete, isUnlocked }: Section1_1Props) {
+export default function Section3_1({ onComplete, isUnlocked }: Section1_1Props) {
   const [currentCard, setCurrentCard] = useState(0)
   const [completedCards, setCompletedCards] = useState<number[]>([])
   const [sectionCompleted, setSectionCompleted] = useState(false)
@@ -81,7 +76,7 @@ export default function Section1_1({ onComplete, isUnlocked }: Section1_1Props) 
                 <Globe className="w-5 h-5 text-white" />
               </div>
               <div>
-                <CardTitle className="text-xl">Section 1: Reasons to Focus on Cervical Cancer</CardTitle>
+                <CardTitle className="text-xl">Section 1: Risk Factors</CardTitle>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
                   Understanding the global impact and importance of cervical cancer prevention
                 </p>

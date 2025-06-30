@@ -154,8 +154,8 @@ export default function Module1Page() {
   const allSectionsCompleted = completedSections === sections.length
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto max-w-7xl">
+    <div className="min-h-screen pt-24 pb-16 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+      <div className="container mx-auto max-w-7xl px-3">
         {/* Back Navigation */}
         <div className="mb-6">
           <Link href="/learn/cervical-cancer">

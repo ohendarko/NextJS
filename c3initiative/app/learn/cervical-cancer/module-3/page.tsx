@@ -155,8 +155,8 @@ export default function Module2Page() {
   const allSectionsCompleted = completedSections === sections.length
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto max-w-7xl">
+    <div className="min-h-screen pt-24 pb-16 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+      <div className="container mx-auto max-w-7xl px-3">
         {/* Back Navigation */}
         <div className="mb-6">
           <Link href="/learn/cervical-cancer">
@@ -182,9 +182,9 @@ export default function Module2Page() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-3xl">Module 2: Cervical Cancer: An Overview</CardTitle>
+                <CardTitle className="text-3xl">Module 3: {modules[2].title} </CardTitle>
                 <p className="text-gray-600 dark:text-gray-400 mt-2">
-                  Understanding the genesis and progression of cervical cancer
+                  {modules[2].title}
                 </p>
               </div>
               <div className="text-right space-y-2">

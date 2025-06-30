@@ -11,34 +11,26 @@ import LearningCard from "@/components/learning-card"
 const learningCards = [
   {
     id: 1,
-    title: "Understanding HPV",
+    title: "Early Disease Symptoms",
     content:
-      "Human papillomavirus (HPV) is a group of more than 200 related viruses. HPV is so common that nearly all sexually active men and women get the virus at some point in their lives.\n\nMost HPV infections go away on their own within 2 years. But sometimes HPV infections persist and can cause cancer. HPV infections can cause cancers of the cervix, vagina, vulva, penis, anus, and oropharynx.",
-    infographic: "/placeholder.svg?height=300&width=400&text=HPV+Types+and+Risks",
+      "Early on, cervical cancer usually doesn’t have symptoms.\nWhen symptoms occur, they may include:\n• Bleeding after sex\n• Bleeding after menopause\n• Bleeding between periods\n• Foul-smelling vaginal discharge\n• Pain during sex",
+    infographic: "/placeholder.svg?height=300&width=400&text=Early+Symptoms",
   },
   {
     id: 2,
-    title: "High-Risk HPV Types",
+    title: "Advanced Disease Symptoms",
     content:
-      "There are about 14 high-risk HPV types that can cause cancer. HPV types 16 and 18 cause about 70% of cervical cancers and precancerous cervical lesions.\nOther high-risk HPV types include 31, 33, 35, 39, 45, 51, 52, 56, 58, 59, 66, and 68. These types are responsible for the remaining 30% of cervical cancer cases.\n\nSeveral factors increase the risk of developing persistent HPV infection that may lead to cervical cancer:\n\n• Having many sexual partners\n• Having sex at an early age\n• Having other sexually transmitted infections\n• Having a weakened immune system\n• Smoking tobacco\n• Long-term use of birth control pills",
-    infographic: "/placeholder.svg?height=300&width=400&text=High-Risk+HPV+Types+Chart",
+      "As the cancer progresses, symptoms may include:\n• Painful bowel movements or rectal bleeding\n• Painful urination or blood in urine\n• Swelling of the legs\n• Backache\n• Pain in abdomen\n• Feeling tired",
+    infographic: "/placeholder.svg?height=300&width=400&text=Advanced+Symptoms",
   },
-  {
-    id: 3,
-    title: "Progression to Cancer",
-    content:
-      "HPV infection doesn't usually cause cancer right away. The process typically takes 10-20 years, giving plenty of time for detection and treatment.\n\nFirst, HPV causes changes in cervical cells (dysplasia). If not treated, these abnormal cells can become cancerous. This slow progression is why regular screening is so effective at preventing cervical cancer.",
-    infographic: "/placeholder.svg?height=300&width=400&text=HPV+Risk+Factors+Diagram",
-  },
-  
-]
+];
 
 interface Section1_2Props {
   onComplete: (nextSection?: number) => void
   isUnlocked: boolean
 }
 
-export default function Section1_2({ onComplete, isUnlocked }: Section1_2Props) {
+export default function Section3_2({ onComplete, isUnlocked }: Section1_2Props) {
   const [currentCard, setCurrentCard] = useState(0)
   const [completedCards, setCompletedCards] = useState<number[]>([])
   const [sectionCompleted, setSectionCompleted] = useState(false)
@@ -82,7 +74,7 @@ export default function Section1_2({ onComplete, isUnlocked }: Section1_2Props) 
                 <Microscope className="w-5 h-5 text-white" />
               </div>
               <div>
-                <CardTitle className="text-xl">Section 2: Risk Factors and Causes</CardTitle>
+                <CardTitle className="text-xl">Section 2: Signs and Symptoms</CardTitle>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
                   Exploring the primary causes and risk factors for cervical cancer
                 </p>
