@@ -20,7 +20,7 @@ import {
   Play,
 } from "lucide-react"
 import Link from "next/link"
-import InteractiveProgressBar from "@/components/interactive-progress-bar"
+// import InteractiveProgressBar from "@/components/interactive-progress-bar"
 import Section2_1 from "@/components/sections/section-2-1"
 import Section2_2 from "@/components/sections/section-2-2"
 import Section2_3 from "@/components/sections/section-2-3"
@@ -28,7 +28,7 @@ import Section2_4 from "@/components/sections/section-2-4"
 import Section2_5 from "@/components/sections/section-2-5"
 import Section2_6 from "@/components/sections/section-2-6"
 import Section2_7 from "@/components/sections/section-2-7"
-import PostTestModal from "@/components/post-test-modal"
+// import PostTestModal from "@/components/post-test-modal"
 
 const modules = [
   {

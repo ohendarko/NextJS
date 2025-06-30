@@ -20,11 +20,11 @@ import {
   Play,
 } from "lucide-react"
 import Link from "next/link"
-import InteractiveProgressBar from "@/components/interactive-progress-bar"
+// import InteractiveProgressBar from "@/components/interactive-progress-bar"
 import Section1_1 from "@/components/sections/section-1-1"
 import Section1_2 from "@/components/sections/section-1-2"
 import Section1_3 from "@/components/sections/section-1-3"
-import PostTestModal from "@/components/post-test-modal"
+// import PostTestModal from "@/components/post-test-modal"
 
 const modules = [
   {
