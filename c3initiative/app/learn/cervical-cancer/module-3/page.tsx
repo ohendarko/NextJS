@@ -101,10 +101,14 @@ const sections = [
   },
 ]
 
+type SectionProgress = {
+  [key: number]: { completed: boolean; unlocked: boolean }
+}
+
 export default function Module3Page() {
   const [activeSection, setActiveSection] = useState(1)
-  const [sectionProgress, setSectionProgress] = useState(
-    sections.reduce((acc, section) => ({ ...acc, [section.id]: { completed: false, unlocked: section.unlocked } }), {}),
+  const [sectionProgress, setSectionProgress] = useState<SectionProgress>(
+    sections.reduce((acc, section) => ({ ...acc, [section.id]: { completed: false, unlocked: section.unlocked } }), {} as SectionProgress),
   )
 
   const handleSectionComplete = (sectionId: number) => {
@@ -266,12 +270,12 @@ export default function Module3Page() {
           </div>
 
           {/* Section Content */}
-          <div className="lg:col-span-3">
+          {/* <div className="lg:col-span-3">
             <ActiveSectionComponent
               onComplete={() => handleSectionComplete(activeSection)}
               isUnlocked={sectionProgress[activeSection]?.unlocked || false}
             />
-          </div>
+          </div> */}
         </div>
 
         {/* Module Completion */}
