@@ -3,136 +3,71 @@
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
-import { ArrowRight, Lock, Shield } from "lucide-react"
+import { CheckCircle, ArrowRight, Microscope } from "lucide-react"
 import LearningCard from "@/components/learning-card"
-import QuizModal from "@/components/quiz-modal"
-
-interface Section2_3Props {
-  onComplete: () => void
-  isUnlocked: boolean
-}
+import { sections } from "@/app/learn/cervical-cancer/module-2/page"
 
 const learningCards = [
   {
     id: 1,
-    title: "HPV as the Primary Cause",
+    title: "What Causes Cervical Cancer?",
     content:
-      "Cervical cancer is caused by long-lasting infection with certain high-risk types of HPV. This makes HPV the most important risk factor for cervical cancer development. Understanding this connection is crucial for prevention strategies.",
-    question: {
-      text: "What causes cervical cancer?",
-      options: [
-        "Genetic factors only",
-        "Long-lasting infection with certain high-risk types of HPV",
-        "Poor hygiene",
-        "Age-related changes",
-      ],
-      correct: 1,
-      explanation: "Cervical cancer is caused by long-lasting infection with certain high-risk types of HPV.",
-    },
+      "• Cervical cancer is caused by long-lasting infection with certain high-risk types of HPV.\n• It starts when cells in the cervix begin to change abnormally.",
+    infographic: "/placeholder.svg?height=300&width=400&text=Cervical+Cancer+Cause",
   },
   {
     id: 2,
-    title: "The Process of Cell Changes",
+    title: "Cervical Cancer is Preventable",
     content:
-      "Cervical cancer starts when cells in the cervix begin to change abnormally. These changes don't happen overnight but develop gradually over time. The process begins with normal cells that become infected with high-risk HPV.",
-    question: {
-      text: "How does cervical cancer start?",
-      options: [
-        "Cells suddenly become cancerous",
-        "Cells in the cervix begin to change abnormally",
-        "Only older cells are affected",
-        "It starts in other organs first",
-      ],
-      correct: 1,
-      explanation: "Cervical cancer starts when cells in the cervix begin to change abnormally over time.",
-    },
+      "• It is the only gynecologic cancer that can be prevented through regular screening and HPV vaccination.",
+    infographic: "/placeholder.svg?height=300&width=400&text=Prevention+Options",
   },
   {
     id: 3,
-    title: "The Only Preventable Gynecologic Cancer",
+    title: "Early Detection and Treatment",
     content:
-      "Cervical cancer is the only gynecologic cancer that can be prevented through regular screening and HPV vaccination. This makes it unique among cancers affecting women's reproductive organs and highlights the importance of prevention programs.",
-    question: {
-      text: "What makes cervical cancer unique among gynecologic cancers?",
-      options: [
-        "It's the most common",
-        "It only affects young women",
-        "It's the only one that can be prevented through screening and vaccination",
-        "It has no symptoms",
-      ],
-      correct: 2,
-      explanation:
-        "Cervical cancer is the only gynecologic cancer that can be prevented through regular screening and HPV vaccination.",
-    },
+      "• This helps detect or stop these abnormal changes before they turn into cancer.\n• In addition, if detected early and treated, cervical cancer can be cured.",
+    infographic: "/placeholder.svg?height=300&width=400&text=Early+Detection+Matters",
   },
-  {
-    id: 4,
-    title: "Early Detection and Prevention",
-    content:
-      "Regular screening helps detect or stop abnormal changes before they turn into cancer. This is why screening programs are so effective - they can catch problems early when they're easier to treat or even prevent cancer from developing.",
-    question: {
-      text: "How does regular screening help with cervical cancer?",
-      options: [
-        "It cures existing cancer",
-        "It helps detect or stop abnormal changes before they turn into cancer",
-        "It only works for older women",
-        "It prevents all types of cancer",
-      ],
-      correct: 1,
-      explanation:
-        "Regular screening helps detect or stop abnormal changes before they turn into cancer, making prevention possible.",
-    },
-  },
-  {
-    id: 5,
-    title: "Early Detection Leads to Cure",
-    content:
-      "In addition, if detected early and treated, cervical cancer can be cured. This emphasizes the critical importance of regular screening and early intervention. The earlier cervical cancer is found, the better the chances of successful treatment.",
-    question: {
-      text: "What happens when cervical cancer is detected early?",
-      options: [
-        "It spreads more quickly",
-        "It can be cured with proper treatment",
-        "It becomes more aggressive",
-        "Treatment is not possible",
-      ],
-      correct: 1,
-      explanation: "When detected early and treated properly, cervical cancer can be cured.",
-    },
-  },
-]
+];
 
-export default function Section2_3({ onComplete, isUnlocked }: Section2_3Props) {
+
+interface Section1_2Props {
+  onComplete: (nextSection?: number) => void
+  isUnlocked: boolean
+}
+
+export default function Section2_3({ onComplete, isUnlocked }: Section1_2Props) {
   const [currentCard, setCurrentCard] = useState(0)
   const [completedCards, setCompletedCards] = useState<number[]>([])
-  const [showQuiz, setShowQuiz] = useState(false)
   const [sectionCompleted, setSectionCompleted] = useState(false)
 
   const handleCardComplete = () => {
-    if (!completedCards.includes(currentCard)) {
-      setCompletedCards([...completedCards, currentCard])
+    const cardId = learningCards[currentCard].id
+    if (!completedCards.includes(cardId)) {
+      setCompletedCards([...completedCards, cardId])
     }
-    setShowQuiz(true)
-  }
-
-  const handleQuizComplete = (correct: boolean) => {
-    setShowQuiz(false)
 
     if (currentCard < learningCards.length - 1) {
       setCurrentCard(currentCard + 1)
-    } else if (completedCards.length === learningCards.length - 1) {
+    } else {
       setSectionCompleted(true)
-      onComplete()
     }
+  }
+
+  const handleSectionComplete = () => {
+    onComplete(3) // Navigate to section 3
   }
 
   if (!isUnlocked) {
     return (
       <Card className="p-8 text-center">
-        <Lock className="w-16 h-16 mx-auto mb-4 text-gray-400" />
-        <h3 className="text-xl font-semibold mb-2">Section Locked</h3>
-        <p className="text-gray-600 dark:text-gray-400">Complete the previous section to unlock this content.</p>
+        <CardContent className="p-8 text-center">
+          <h3 className="text-xl font-semibold mb-4">Section Locked</h3>
+          <p className="text-gray-600 dark:text-gray-400">Complete the previous section to unlock this content.</p>
+        </CardContent>
       </Card>
     )
   }
@@ -142,22 +77,27 @@ export default function Section2_3({ onComplete, isUnlocked }: Section2_3Props) 
       {/* Section Header */}
       <Card className="hover-shadow-gradient">
         <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 gradient-orange-blue rounded-full flex items-center justify-center">
-                <Shield className="w-6 h-6 text-white" />
-              </div>
-              <span>Section 3: What is Cervical Cancer?</span>
-            </div>
-            {sectionCompleted && <span className="text-green-600 text-sm font-normal">✓ Completed</span>}
-          </CardTitle>
           <div className="flex items-center justify-between">
-            <p className="text-gray-600 dark:text-gray-400">
-              Understanding cervical cancer development, prevention, and the importance of early detection
-            </p>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-blue-500 rounded-full flex items-center justify-center">
+                <Microscope className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <CardTitle className="text-xl">Section 3: {sections[2].title} </CardTitle>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Exploring the primary causes and risk factors for cervical cancer
+                </p>
+              </div>
+            </div>
             <div className="text-right">
-              <p className="text-sm text-gray-500">
-                {completedCards.length} / {learningCards.length} cards completed
+              {sectionCompleted && (
+                <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
+                  <CheckCircle className="w-4 h-4 mr-1" />
+                  Complete
+                </Badge>
+              )}
+              <p className="text-sm text-gray-500 mt-1">
+                {completedCards.length} / {learningCards.length} cards
               </p>
             </div>
           </div>
@@ -167,66 +107,42 @@ export default function Section2_3({ onComplete, isUnlocked }: Section2_3Props) 
         </CardContent>
       </Card>
 
-      {/* Learning Cards Navigation */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-6">
+      {/* Learning Cards */}
+      <div className="space-y-4">
         {learningCards.map((card, index) => (
-          <Button
+          <LearningCard
             key={card.id}
-            variant={currentCard === index ? "default" : completedCards.includes(index) ? "secondary" : "outline"}
-            size="sm"
-            className={`h-12 ${
-              currentCard === index
-                ? "gradient-orange-blue text-white"
-                : completedCards.includes(index)
-                  ? "bg-green-100 text-green-800 hover:bg-green-200"
-                  : ""
-            }`}
-            onClick={() => setCurrentCard(index)}
-            disabled={index > Math.max(...completedCards, -1) + 1}
-          >
-            {completedCards.includes(index) ? "✓" : index + 1}
-          </Button>
+            card={card}
+            isActive={index === currentCard}
+            isCompleted={completedCards.includes(card.id)}
+            onComplete={handleCardComplete}
+            canExpand={index <= currentCard}
+          />
         ))}
       </div>
 
-      {/* Current Learning Card */}
-      <LearningCard
-        card={learningCards[currentCard]}
-        onComplete={handleCardComplete}
-        isCompleted={completedCards.includes(currentCard)}
-      />
-
-      {/* Quiz Modal */}
-      <QuizModal
-        isOpen={showQuiz}
-        question={learningCards[currentCard]?.question}
-        onComplete={handleQuizComplete}
-        onClose={() => setShowQuiz(false)}
-      />
-
-      {/* Navigation */}
-      <div className="flex justify-between">
-        <Button
-          variant="outline"
-          onClick={() => setCurrentCard(Math.max(0, currentCard - 1))}
-          disabled={currentCard === 0}
-        >
-          Previous Card
-        </Button>
-
-        {sectionCompleted ? (
-          <Button className="gradient-orange-blue text-white">Section Complete ✓</Button>
-        ) : (
-          <Button
-            onClick={() => setCurrentCard(Math.min(learningCards.length - 1, currentCard + 1))}
-            disabled={currentCard >= Math.max(...completedCards, -1) + 1}
-            className="gradient-orange-blue text-white"
-          >
-            Next Card
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
-        )}
-      </div>
+      {/* Section Completion */}
+      {sectionCompleted && (
+        <Card className="hover-shadow-gradient border-green-200 dark:border-green-800">
+          <CardContent className="p-6">
+            <div className="text-center space-y-4">
+              <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto">
+                <CheckCircle className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-green-600 dark:text-green-400">Section 2 Complete!</h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  You've learned about HPV and the risk factors for cervical cancer development.
+                </p>
+              </div>
+              <Button onClick={handleSectionComplete} className="gradient-orange-blue text-white hover-shadow-gradient">
+                Continue to Next Section
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   )
 }

@@ -1,34 +1,41 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
 import {
-  Play,
-  CheckCircle,
-  Lock,
   ArrowLeft,
+  CheckCircle,
+  Users,
+  ArrowRight,
   BookOpen,
   Microscope,
   Search,
   Shield,
   Stethoscope,
-  Users,
+  Lock,
+  Play,
 } from "lucide-react"
 import Link from "next/link"
-import Section3_1 from "@/components/sections/section-3-1"
-import Section3_2 from "@/components/sections/section-3-2"
-import Section3_3 from "@/components/sections/section-3-3"
 import InteractiveProgressBar from "@/components/interactive-progress-bar"
+import Section2_1 from "@/components/sections/section-2-1"
+import Section2_2 from "@/components/sections/section-2-2"
+import Section2_3 from "@/components/sections/section-2-3"
+import Section2_4 from "@/components/sections/section-2-4"
+import Section2_5 from "@/components/sections/section-2-5"
+import Section2_6 from "@/components/sections/section-2-6"
+import Section2_7 from "@/components/sections/section-2-7"
+import PostTestModal from "@/components/post-test-modal"
 
 const modules = [
   {
     id: 1,
     title: "Introduction to Cervical Cancer",
     shortTitle: "Introduction",
-    completed: true,
+    completed: false,
     unlocked: true,
     icon: BookOpen,
   },
@@ -42,10 +49,10 @@ const modules = [
   },
   {
     id: 3,
-    title: "Risk Factors, Signs, Symptoms and Screening",
+    title: "Screening and Early Detection",
     shortTitle: "Screening",
     completed: false,
-    unlocked: true,
+    unlocked: false,
     icon: Search,
   },
   {
@@ -74,59 +81,111 @@ const modules = [
   },
 ]
 
-const sections = [
+export const sections = [
   {
     id: 1,
-    title: "Risk Factors",
-    description: "HPV infection, weakened immune system, lifestyle factors",
-    component: Section3_1,
+    title: "What Is Cancer?",
+    description: "Understanding how abnormal cells lead to cancer",
+    component: Section2_1,
     completed: false,
     unlocked: true,
   },
   {
     id: 2,
-    title: "Signs and Symptoms",
-    description: "Early disease symptoms vs. advanced disease symptoms",
-    component: Section3_2,
+    title: "What is Cervical Pre-Cancer?",
+    description: "How cervical pre-cancer forms and why it matters",
+    component: Section2_2,
     completed: false,
     unlocked: false,
   },
   {
     id: 3,
-    title: "Screening Methods",
-    description: "HPV testing, VIA, and cytology-based screening",
-    component: Section3_3,
+    title: "What is Cervical Cancer?",
+    description: "Learn how HPV causes cervical cancer and how it can be prevented",
+    component: Section2_3,
     completed: false,
     unlocked: false,
   },
-]
+  {
+    id: 4,
+    title: "HPV Infection",
+    description: "Understand what HPV is, how it's transmitted, and why it's so common",
+    component: Section2_4,
+    completed: false,
+    unlocked: false,
+  },
+  {
+    id: 5,
+    title: "Timeline of Cervical Cancer",
+    description: "How cervical cancer develops slowly and the importance of early detection",
+    component: Section2_5,
+    completed: false,
+    unlocked: false,
+  },
+  {
+    id: 6,
+    title: "How Cancer Spreads",
+    description: "Explore the four ways cervical cancer can spread through the body",
+    component: Section2_6,
+    completed: false,
+    unlocked: false,
+  },
+  {
+    id: 7,
+    title: "HIV and Cervical Cancer",
+    description: "Understand how HIV increases risk and affects the outcome of cervical cancer",
+    component: Section2_7,
+    completed: false,
+    unlocked: false,
+  },
+];
 
 type SectionProgress = {
   [key: number]: { completed: boolean; unlocked: boolean }
 }
 
-export default function Module3Page() {
+export default function Module2Page() {
+  const router = useRouter()
   const [activeSection, setActiveSection] = useState(1)
   const [sectionProgress, setSectionProgress] = useState<SectionProgress>(
-    sections.reduce((acc, section) => ({ ...acc, [section.id]: { completed: false, unlocked: section.unlocked } }), {} as SectionProgress),
+    sections.reduce((acc, section) => ({ ...acc, [section.id]: { completed: false, unlocked: section.unlocked } }), {}),
   )
+  const [showPostTest, setShowPostTest] = useState(false)
 
-  const handleSectionComplete = (sectionId: number) => {
+  const handleSectionComplete = (sectionId: number, nextSection?: number) => {
     setSectionProgress((prev) => ({
       ...prev,
       [sectionId]: { ...prev[sectionId], completed: true },
       [sectionId + 1]: { ...prev[sectionId + 1], unlocked: true },
     }))
-  }
 
-  const handleModuleClick = (moduleId: number) => {
-    if (moduleId !== 3) {
-      // Navigate to other modules when they're unlocked
-      window.location.href = `/learn/cervical-cancer/module-${moduleId}`
+    // Navigate to next section if specified
+    if (nextSection && nextSection <= sections.length) {
+      setActiveSection(nextSection)
+    }
+
+    // Check if all sections are completed
+    const allCompleted = sections.every((section) => section.id === sectionId || sectionProgress[section.id]?.completed)
+
+    if (allCompleted) {
+      setShowPostTest(true)
     }
   }
 
-  const ActiveSectionComponent = sections.find((s) => s.id === activeSection)?.component || Section3_1
+  const handlePostTestPass = () => {
+    setShowPostTest(false)
+    // Navigate to next module
+    router.push("/learn/cervical-cancer/module-2")
+  }
+
+  const handleModuleClick = (moduleId: number) => {
+    if (moduleId !== 1) {
+      // Navigate to other modules when they're unlocked
+      router.push(`/learn/cervical-cancer/module-${moduleId}`)
+    }
+  }
+
+  const ActiveSectionComponent = sections.find((s) => s.id === activeSection)?.component || Section2_1
   const completedSections = Object.values(sectionProgress).filter((p) => p.completed).length
   const allSectionsCompleted = completedSections === sections.length
 
@@ -144,23 +203,23 @@ export default function Module3Page() {
         </div>
 
         {/* Module Progress Bar */}
-        <div className="mb-8">
+        {/* <div className="mb-8">
           <InteractiveProgressBar
             modules={modules}
-            currentModule={3}
+            currentModule={1}
             onModuleClick={handleModuleClick}
             showCertificate={true}
           />
-        </div>
+        </div> */}
 
         {/* Module Header */}
         <Card className="mb-8 hover-shadow-gradient">
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-3xl">Module 3: Risk Factors, Signs, Symptoms and Screening</CardTitle>
+                <CardTitle className="text-3xl">Module 2: Cervical Cancer: An Overview</CardTitle>
                 <p className="text-gray-600 dark:text-gray-400 mt-2">
-                  Identifying risk factors, recognizing symptoms, and understanding screening methods
+                  Understanding the genesis and progression of cervical cancer
                 </p>
               </div>
               <div className="text-right space-y-2">
@@ -169,10 +228,7 @@ export default function Module3Page() {
                     Module Complete
                   </Badge>
                 )}
-                <div className="text-sm text-gray-500">
-                  <p>3 Sections</p>
-                  <p>52 minutes</p>
-                </div>
+               
               </div>
             </div>
           </CardHeader>
@@ -186,7 +242,7 @@ export default function Module3Page() {
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                  <Button size="lg" className="gradient-orange-pink text-white">
+                  <Button size="lg" className="gradient-orange-blue text-white">
                     <Play className="w-6 h-6 mr-2" />
                     Watch Introduction
                   </Button>
@@ -215,7 +271,7 @@ export default function Module3Page() {
 
               {/* Section Pathline */}
               <div className="relative">
-                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 to-pink-500 opacity-30"></div>
+                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 to-blue-500 opacity-30"></div>
 
                 {sections.map((section, index) => (
                   <div key={section.id} className="relative flex items-start mb-4">
@@ -225,7 +281,7 @@ export default function Module3Page() {
                         sectionProgress[section.id]?.completed
                           ? "bg-green-500 text-white"
                           : sectionProgress[section.id]?.unlocked
-                            ? "gradient-orange-pink text-white"
+                            ? "gradient-orange-blue text-white"
                             : "bg-gray-300 text-gray-500"
                       }`}
                     >
@@ -270,32 +326,34 @@ export default function Module3Page() {
           </div>
 
           {/* Section Content */}
-          {/* <div className="lg:col-span-3">
+          <div className="lg:col-span-3">
             <ActiveSectionComponent
-              onComplete={() => handleSectionComplete(activeSection)}
+              onComplete={(nextSection) => handleSectionComplete(activeSection, nextSection)}
               isUnlocked={sectionProgress[activeSection]?.unlocked || false}
             />
-          </div> */}
+          </div>
         </div>
 
         {/* Module Completion */}
-        {allSectionsCompleted && (
+        {allSectionsCompleted && !showPostTest && (
           <Card className="mt-8 hover-shadow-gradient">
             <CardContent className="p-6">
               <div className="text-center space-y-4">
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto">
                   <CheckCircle className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-green-600">Module 3 Complete!</h3>
+                <h3 className="text-2xl font-bold text-green-600">Module 2 Complete!</h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Congratulations! You've successfully completed the Risk Factors, Signs, Symptoms and Screening module.
+                  Congratulations! You've successfully completed the Introduction to Cervical Cancer module.
                 </p>
                 <div className="flex justify-center space-x-4">
-                  <Link href="/learn/cervical-cancer">
-                    <Button className="gradient-orange-pink text-white hover-shadow-gradient">
-                      Continue to Next Module
-                    </Button>
-                  </Link>
+                  <Button
+                    onClick={() => router.push("/learn/cervical-cancer/module-2")}
+                    className="gradient-orange-blue text-white hover-shadow-gradient"
+                  >
+                    Continue to Module 2
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
                   <Button variant="outline" onClick={() => window.location.reload()}>
                     Review Module
                   </Button>
@@ -304,6 +362,15 @@ export default function Module3Page() {
             </CardContent>
           </Card>
         )}
+
+        {/* Post Test Modal */}
+        {/* <PostTestModal
+          isOpen={showPostTest}
+          onClose={() => setShowPostTest(false)}
+          onPass={handlePostTestPass}
+          moduleTitle="Introduction to Cervical Cancer"
+          moduleId={1}
+        /> */}
       </div>
     </div>
   )

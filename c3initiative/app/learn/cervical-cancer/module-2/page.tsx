@@ -21,9 +21,13 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import InteractiveProgressBar from "@/components/interactive-progress-bar"
-import Section1_1 from "@/components/sections/section-1-1"
-import Section1_2 from "@/components/sections/section-1-2"
-import Section1_3 from "@/components/sections/section-1-3"
+import Section2_1 from "@/components/sections/section-2-1"
+import Section2_2 from "@/components/sections/section-2-2"
+import Section2_3 from "@/components/sections/section-2-3"
+import Section2_4 from "@/components/sections/section-2-4"
+import Section2_5 from "@/components/sections/section-2-5"
+import Section2_6 from "@/components/sections/section-2-6"
+import Section2_7 from "@/components/sections/section-2-7"
 import PostTestModal from "@/components/post-test-modal"
 
 const modules = [
@@ -77,38 +81,70 @@ const modules = [
   },
 ]
 
-const sections = [
+export const sections = [
   {
     id: 1,
-    title: "Reasons to Focus on Cervical Cancer",
-    description: "Understanding the global impact and importance of cervical cancer prevention",
-    component: Section1_1,
+    title: "What Is Cancer?",
+    description: "Understanding how abnormal cells lead to cancer",
+    component: Section2_1,
     completed: false,
     unlocked: true,
   },
   {
     id: 2,
-    title: "Risk Factors and Causes",
-    description: "Exploring the primary causes and risk factors for cervical cancer",
-    component: Section1_2,
+    title: "What is Cervical Pre-Cancer?",
+    description: "How cervical pre-cancer forms and why it matters",
+    component: Section2_2,
     completed: false,
     unlocked: false,
   },
   {
     id: 3,
-    title: "Prevention Overview",
-    description: "Introduction to prevention strategies and early intervention",
-    component: Section1_3,
+    title: "What is Cervical Cancer?",
+    description: "Learn how HPV causes cervical cancer and how it can be prevented",
+    component: Section2_3,
     completed: false,
     unlocked: false,
   },
-]
+  {
+    id: 4,
+    title: "HPV Infection",
+    description: "Understand what HPV is, how it's transmitted, and why it's so common",
+    component: Section2_4,
+    completed: false,
+    unlocked: false,
+  },
+  {
+    id: 5,
+    title: "Timeline of Cervical Cancer",
+    description: "How cervical cancer develops slowly and the importance of early detection",
+    component: Section2_5,
+    completed: false,
+    unlocked: false,
+  },
+  {
+    id: 6,
+    title: "How Cancer Spreads",
+    description: "Explore the four ways cervical cancer can spread through the body",
+    component: Section2_6,
+    completed: false,
+    unlocked: false,
+  },
+  {
+    id: 7,
+    title: "HIV and Cervical Cancer",
+    description: "Understand how HIV increases risk and affects the outcome of cervical cancer",
+    component: Section2_7,
+    completed: false,
+    unlocked: false,
+  },
+];
 
 type SectionProgress = {
   [key: number]: { completed: boolean; unlocked: boolean }
 }
 
-export default function Module1Page() {
+export default function Module2Page() {
   const router = useRouter()
   const [activeSection, setActiveSection] = useState(1)
   const [sectionProgress, setSectionProgress] = useState<SectionProgress>(
@@ -149,7 +185,7 @@ export default function Module1Page() {
     }
   }
 
-  const ActiveSectionComponent = sections.find((s) => s.id === activeSection)?.component || Section1_1
+  const ActiveSectionComponent = sections.find((s) => s.id === activeSection)?.component || Section2_1
   const completedSections = Object.values(sectionProgress).filter((p) => p.completed).length
   const allSectionsCompleted = completedSections === sections.length
 
@@ -181,9 +217,9 @@ export default function Module1Page() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-3xl">Module 1: Introduction to Cervical Cancer</CardTitle>
+                <CardTitle className="text-3xl">Module 2: Cervical Cancer: An Overview</CardTitle>
                 <p className="text-gray-600 dark:text-gray-400 mt-2">
-                  Understanding the basics and importance of cervical cancer prevention
+                  Understanding the genesis and progression of cervical cancer
                 </p>
               </div>
               <div className="text-right space-y-2">
@@ -306,7 +342,7 @@ export default function Module1Page() {
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto">
                   <CheckCircle className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-green-600">Module 1 Complete!</h3>
+                <h3 className="text-2xl font-bold text-green-600">Module 2 Complete!</h3>
                 <p className="text-gray-600 dark:text-gray-400">
                   Congratulations! You've successfully completed the Introduction to Cervical Cancer module.
                 </p>
@@ -315,7 +351,7 @@ export default function Module1Page() {
                     onClick={() => router.push("/learn/cervical-cancer/module-2")}
                     className="gradient-orange-blue text-white hover-shadow-gradient"
                   >
-                    Continue to Module 3
+                    Continue to Module 2
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                   <Button variant="outline" onClick={() => window.location.reload()}>

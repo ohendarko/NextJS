@@ -7,37 +7,39 @@ import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { CheckCircle, ArrowRight, Globe } from "lucide-react"
 import LearningCard from "@/components/learning-card"
+import { sections } from "@/app/learn/cervical-cancer/module-2/page"
 
 const learningCards = [
   {
     id: 1,
-    title: "Global Impact of Cervical Cancer",
+    title: "How the Body Works",
     content:
-      "Every year, around 266,000 women die from cervical cancer worldwide. This staggering number represents not just statistics, but real lives lost to a largely preventable disease.\n\nMost of these deaths can be prevented through proper cervical cancer prevention and treatment programs. This highlights the critical importance of education, screening, and accessible healthcare.",
-    infographic: "/placeholder.svg?height=300&width=400&text=Global+Cervical+Cancer+Statistics",
+      "The human body is made up of millions of cells. Every day, new cells are made to help the body grow and to replace cells that are old or damaged.\n\nThis is a normal and healthy process that keeps our bodies functioning properly.",
+    infographic: "/placeholder.svg?height=300&width=400&text=Normal+Cell+Cycle",
   },
   {
     id: 2,
-    title: "HPV Connection",
+    title: "What Happens When Cells Go Wrong",
     content:
-      "Almost all cervical cancer is caused by a long-lasting infection with certain harmful types of the human papillomavirus (HPV). Understanding this connection is key to prevention strategies.\n\nThe disease usually develops slowly over 10–20 years. This gives enough time to detect and treat it early, making regular screening incredibly valuable for prevention.",
-    infographic: "/placeholder.svg?height=300&width=400&text=HPV+to+Cancer+Timeline",
+      "Sometimes, during the cell-making process, cells may grow abnormally and become unhealthy. Normally, the body fixes these abnormal cells.\n\nBut if it can’t fix them, these cells may continue to grow and divide out of control.",
+    infographic: "/placeholder.svg?height=300&width=400&text=Abnormal+Cell+Growth",
   },
   {
     id: 3,
-    title: "Early Detection Methods",
+    title: "What Is Cancer?",
     content:
-      "There are low-cost tests that can find pre-cancer early. These screening methods are accessible and effective tools for preventing cervical cancer development.\n\nHPV vaccines are now available. If given to girls before they become sexually active, a large portion of cervical cancer can be prevented. This represents a major breakthrough in prevention.",
-    infographic: "/placeholder.svg?height=300&width=400&text=Prevention+Methods+Infographic",
+      "Cancer is the term used when abnormal cells grow and divide in a malignant, uncontrolled way. These cells do not respond to normal body signals to stop growing.\n\nThis uncontrolled growth is what leads to tumors and other serious health problems.",
+    infographic: "/placeholder.svg?height=300&width=400&text=What+Is+Cancer",
   },
-]
+];
+
 
 interface Section1_1Props {
   onComplete: (nextSection?: number) => void
   isUnlocked: boolean
 }
 
-export default function Section1_1({ onComplete, isUnlocked }: Section1_1Props) {
+export default function Section2_1({ onComplete, isUnlocked }: Section1_1Props) {
   const [currentCard, setCurrentCard] = useState(0)
   const [completedCards, setCompletedCards] = useState<number[]>([])
   const [sectionCompleted, setSectionCompleted] = useState(false)
@@ -81,7 +83,7 @@ export default function Section1_1({ onComplete, isUnlocked }: Section1_1Props) 
                 <Globe className="w-5 h-5 text-white" />
               </div>
               <div>
-                <CardTitle className="text-xl">Section 1: Reasons to Focus on Cervical Cancer</CardTitle>
+                <CardTitle className="text-xl">Section 1: {sections[0].title}</CardTitle>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
                   Understanding the global impact and importance of cervical cancer prevention
                 </p>

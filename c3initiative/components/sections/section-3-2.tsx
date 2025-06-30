@@ -3,230 +3,73 @@
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle, Stethoscope, AlertCircle, Activity, Zap } from "lucide-react"
+import { Progress } from "@/components/ui/progress"
+import { CheckCircle, ArrowRight, Microscope } from "lucide-react"
 import LearningCard from "@/components/learning-card"
-import QuizModal from "@/components/quiz-modal"
-
-interface Section32Props {
-  onComplete: () => void
-}
 
 const learningCards = [
   {
     id: 1,
-    title: "Understanding Early vs Advanced Disease",
-    content: `Cervical cancer symptoms vary significantly depending on the stage of the disease. Understanding this distinction is crucial for early detection and treatment.
-
-Key differences:
-• Early disease: Often asymptomatic or subtle symptoms
-• Advanced disease: More obvious and severe symptoms
-• Symptoms usually begin after cancer has spread
-• Early detection through screening is vital
-• Many women have no symptoms until cancer is advanced`,
-    icon: Stethoscope,
-    color: "blue",
-    quiz: {
-      question: "When do cervical cancer symptoms typically begin to appear?",
-      options: [
-        "Immediately when cancer develops",
-        "Only in very advanced stages",
-        "Usually after the cancer has spread",
-        "Only during menstruation",
-      ],
-      correctAnswer: 2,
-      explanation:
-        "Cervical cancer symptoms usually begin after the cancer has spread beyond the cervix. Early-stage cervical cancer is often asymptomatic, which is why regular screening is so important.",
-    },
+    title: "Understanding HPV",
+    content:
+      "Human papillomavirus (HPV) is a group of more than 200 related viruses. HPV is so common that nearly all sexually active men and women get the virus at some point in their lives.\n\nMost HPV infections go away on their own within 2 years. But sometimes HPV infections persist and can cause cancer. HPV infections can cause cancers of the cervix, vagina, vulva, penis, anus, and oropharynx.",
+    infographic: "/placeholder.svg?height=300&width=400&text=HPV+Types+and+Risks",
   },
   {
     id: 2,
-    title: "Bleeding After Sexual Intercourse",
-    content: `Post-coital bleeding (bleeding after sex) is one of the most common early symptoms of cervical cancer and should always be investigated.
-
-Important characteristics:
-• May be light spotting or heavier bleeding
-• Can occur immediately after intercourse
-• Often painless initially
-• May be the only symptom present
-• Should never be ignored, especially in women over 40
-• Can also indicate other cervical conditions`,
-    icon: AlertCircle,
-    color: "red",
-    quiz: {
-      question: "What should women do if they experience bleeding after sexual intercourse?",
-      options: [
-        "Wait to see if it happens again",
-        "Only worry if it's heavy bleeding",
-        "Seek medical evaluation promptly",
-        "It's normal and nothing to worry about",
-      ],
-      correctAnswer: 2,
-      explanation:
-        "Bleeding after sexual intercourse should always be evaluated by a healthcare provider, as it can be an early sign of cervical cancer or other serious conditions.",
-    },
+    title: "High-Risk HPV Types",
+    content:
+      "There are about 14 high-risk HPV types that can cause cancer. HPV types 16 and 18 cause about 70% of cervical cancers and precancerous cervical lesions.\nOther high-risk HPV types include 31, 33, 35, 39, 45, 51, 52, 56, 58, 59, 66, and 68. These types are responsible for the remaining 30% of cervical cancer cases.\n\nSeveral factors increase the risk of developing persistent HPV infection that may lead to cervical cancer:\n\n• Having many sexual partners\n• Having sex at an early age\n• Having other sexually transmitted infections\n• Having a weakened immune system\n• Smoking tobacco\n• Long-term use of birth control pills",
+    infographic: "/placeholder.svg?height=300&width=400&text=High-Risk+HPV+Types+Chart",
   },
   {
     id: 3,
-    title: "Postmenopausal Bleeding",
-    content: `Any vaginal bleeding that occurs after menopause (when periods have stopped for 12+ months) is abnormal and requires immediate medical attention.
-
-Key points about postmenopausal bleeding:
-• Always considered abnormal
-• Can be a sign of cervical cancer
-• May also indicate endometrial cancer
-• Should be evaluated urgently
-• Even light spotting is significant
-• Never assume it's "normal" aging`,
-    icon: Activity,
-    color: "orange",
-    quiz: {
-      question: "How should postmenopausal bleeding be regarded?",
-      options: [
-        "Normal part of aging",
-        "Only concerning if heavy",
-        "Always abnormal and requires evaluation",
-        "Common and usually harmless",
-      ],
-      correctAnswer: 2,
-      explanation:
-        "Any vaginal bleeding after menopause is abnormal and should be evaluated immediately, as it can be a sign of cervical cancer or other serious gynecological conditions.",
-    },
+    title: "Progression to Cancer",
+    content:
+      "HPV infection doesn't usually cause cancer right away. The process typically takes 10-20 years, giving plenty of time for detection and treatment.\n\nFirst, HPV causes changes in cervical cells (dysplasia). If not treated, these abnormal cells can become cancerous. This slow progression is why regular screening is so effective at preventing cervical cancer.",
+    infographic: "/placeholder.svg?height=300&width=400&text=HPV+Risk+Factors+Diagram",
   },
-  {
-    id: 4,
-    title: "Abnormal Menstrual Bleeding",
-    content: `Changes in menstrual patterns can be an early sign of cervical cancer, including bleeding between periods or unusually heavy/long periods.
-
-Types of abnormal bleeding:
-• Intermenstrual bleeding (between periods)
-• Menorrhagia (heavy menstrual bleeding)
-• Prolonged menstrual periods
-• Irregular menstrual cycles
-• Bleeding after douching
-• Any unusual change in normal pattern`,
-    icon: Zap,
-    color: "purple",
-    quiz: {
-      question: "Which of the following represents abnormal menstrual bleeding that could indicate cervical cancer?",
-      options: ["Regular 28-day cycles", "Bleeding between periods", "Light periods", "Periods that last 5 days"],
-      correctAnswer: 1,
-      explanation:
-        "Bleeding between periods (intermenstrual bleeding) is abnormal and can be an early sign of cervical cancer. Any change from a woman's normal menstrual pattern should be evaluated.",
-    },
-  },
-  {
-    id: 5,
-    title: "Abnormal Vaginal Discharge",
-    content: `Changes in vaginal discharge, particularly foul-smelling discharge, can be an early symptom of cervical cancer.
-
-Characteristics of concerning discharge:
-• Foul or unusual odor
-• Change in color (bloody, brown, or unusual)
-• Change in consistency
-• Increased amount
-• Associated with other symptoms
-• Persistent despite treatment`,
-    icon: AlertCircle,
-    color: "pink",
-    quiz: {
-      question: "What type of vaginal discharge is most concerning for cervical cancer?",
-      options: [
-        "Clear, odorless discharge",
-        "Foul-smelling discharge",
-        "White, thick discharge",
-        "Discharge only during ovulation",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Foul-smelling vaginal discharge is particularly concerning and can be an early symptom of cervical cancer. Any persistent change in discharge should be evaluated.",
-    },
-  },
-  {
-    id: 6,
-    title: "Pain During Sexual Intercourse",
-    content: `Dyspareunia (pain during sex) can be an early symptom of cervical cancer, particularly deep pelvic pain.
-
-Types of pain that may indicate cervical cancer:
-• Deep pelvic pain during penetration
-• Pain that's new or worsening
-• Pain associated with bleeding
-• Persistent pain not related to other causes
-• Pain that doesn't improve with lubrication
-• May be accompanied by other symptoms`,
-    icon: AlertCircle,
-    color: "red",
-    quiz: {
-      question: "What type of pain during intercourse is most concerning for cervical cancer?",
-      options: [
-        "Mild discomfort with first intercourse",
-        "Deep pelvic pain that's new or worsening",
-        "Pain only with certain positions",
-        "Pain that improves with lubrication",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Deep pelvic pain during intercourse that is new, worsening, or persistent can be an early symptom of cervical cancer and should be evaluated by a healthcare provider.",
-    },
-  },
-  {
-    id: 7,
-    title: "Advanced Disease Symptoms",
-    content: `When cervical cancer spreads beyond the cervix, it causes more severe symptoms affecting multiple body systems.
-
-Advanced symptoms include:
-• Bowel problems: painful/difficult bowel movements, rectal bleeding
-• Urinary problems: painful urination, blood in urine
-• Swelling of legs (lymphedema)
-• Persistent dull backache
-• Abdominal pain
-• Fatigue and weakness
-• Weight loss`,
-    icon: Activity,
-    color: "gray",
-    quiz: {
-      question: "Which symptoms indicate cervical cancer has spread beyond the cervix?",
-      options: [
-        "Only vaginal bleeding",
-        "Bowel and urinary problems, leg swelling, back pain",
-        "Only pelvic pain",
-        "Only abnormal discharge",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Advanced cervical cancer symptoms include bowel and urinary problems, leg swelling, persistent back pain, and systemic symptoms, indicating the cancer has spread beyond the cervix.",
-    },
-  },
+  
 ]
 
-export default function Section32({ onComplete }: Section32Props) {
+interface Section1_2Props {
+  onComplete: (nextSection?: number) => void
+  isUnlocked: boolean
+}
+
+export default function Section1_2({ onComplete, isUnlocked }: Section1_2Props) {
   const [currentCard, setCurrentCard] = useState(0)
   const [completedCards, setCompletedCards] = useState<number[]>([])
-  const [showQuiz, setShowQuiz] = useState(false)
-  const [quizCompleted, setQuizCompleted] = useState<number[]>([])
+  const [sectionCompleted, setSectionCompleted] = useState(false)
 
-  const handleCardComplete = (cardId: number) => {
+  const handleCardComplete = () => {
+    const cardId = learningCards[currentCard].id
     if (!completedCards.includes(cardId)) {
       setCompletedCards([...completedCards, cardId])
     }
-  }
 
-  const handleQuizComplete = (cardId: number) => {
-    if (!quizCompleted.includes(cardId)) {
-      setQuizCompleted([...quizCompleted, cardId])
-    }
-    setShowQuiz(false)
-
-    // Move to next card or complete section
     if (currentCard < learningCards.length - 1) {
       setCurrentCard(currentCard + 1)
-    } else if (quizCompleted.length + 1 === learningCards.length) {
-      onComplete()
+    } else {
+      setSectionCompleted(true)
     }
   }
 
-  const progress = ((completedCards.length + quizCompleted.length) / (learningCards.length * 2)) * 100
+  const handleSectionComplete = () => {
+    onComplete(3) // Navigate to section 3
+  }
+
+  if (!isUnlocked) {
+    return (
+      <Card className="p-8 text-center">
+        <CardContent className="p-8 text-center">
+          <h3 className="text-xl font-semibold mb-4">Section Locked</h3>
+          <p className="text-gray-600 dark:text-gray-400">Complete the previous section to unlock this content.</p>
+        </CardContent>
+      </Card>
+    )
+  }
 
   return (
     <div className="space-y-6">
@@ -234,107 +77,70 @@ export default function Section32({ onComplete }: Section32Props) {
       <Card className="hover-shadow-gradient">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <div>
-              <CardTitle className="flex items-center space-x-2">
-                <Stethoscope className="w-6 h-6 text-blue-500" />
-                <span>Section 2: Signs and Symptoms</span>
-              </CardTitle>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">
-                Recognizing early and advanced symptoms of cervical cancer
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-blue-500 rounded-full flex items-center justify-center">
+                <Microscope className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <CardTitle className="text-xl">Section 2: Risk Factors and Causes</CardTitle>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Exploring the primary causes and risk factors for cervical cancer
+                </p>
+              </div>
+            </div>
+            <div className="text-right">
+              {sectionCompleted && (
+                <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
+                  <CheckCircle className="w-4 h-4 mr-1" />
+                  Complete
+                </Badge>
+              )}
+              <p className="text-sm text-gray-500 mt-1">
+                {completedCards.length} / {learningCards.length} cards
               </p>
             </div>
-            <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">Early & Advanced</Badge>
           </div>
         </CardHeader>
         <CardContent>
-          <div className="mb-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium">Section Progress</span>
-              <span className="text-sm text-gray-600 dark:text-gray-400">{Math.round(progress)}% Complete</span>
-            </div>
-            <Progress value={progress} className="h-2" />
-          </div>
-
-          <div className="grid grid-cols-7 gap-2">
-            {learningCards.map((card, index) => (
-              <div
-                key={card.id}
-                className={`h-2 rounded-full ${
-                  completedCards.includes(card.id) && quizCompleted.includes(card.id)
-                    ? "bg-green-500"
-                    : completedCards.includes(card.id)
-                      ? "bg-blue-500"
-                      : "bg-gray-200 dark:bg-gray-700"
-                }`}
-              />
-            ))}
-          </div>
+          <Progress value={(completedCards.length / learningCards.length) * 100} className="h-2" />
         </CardContent>
       </Card>
 
-      {/* Learning Content */}
-      <div className="grid lg:grid-cols-4 gap-6">
-        {/* Card Navigation */}
-        <div className="lg:col-span-1">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Symptoms</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              {learningCards.map((card, index) => {
-                const Icon = card.icon
-                const isCompleted = completedCards.includes(card.id) && quizCompleted.includes(card.id)
-                const isActive = currentCard === index
-
-                return (
-                  <Button
-                    key={card.id}
-                    variant={isActive ? "default" : "ghost"}
-                    className={`w-full justify-start text-left h-auto p-3 ${
-                      isCompleted ? "bg-green-50 hover:bg-green-100 dark:bg-green-900/20" : ""
-                    }`}
-                    onClick={() => setCurrentCard(index)}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <Icon className={`w-4 h-4 ${isCompleted ? "text-green-600" : ""}`} />
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium truncate">{card.title}</p>
-                      </div>
-                      {isCompleted && <CheckCircle className="w-4 h-4 text-green-600" />}
-                    </div>
-                  </Button>
-                )
-              })}
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Main Content */}
-        <div className="lg:col-span-3">
+      {/* Learning Cards */}
+      <div className="space-y-4">
+        {learningCards.map((card, index) => (
           <LearningCard
-            {...learningCards[currentCard]}
-            onComplete={() => handleCardComplete(learningCards[currentCard].id)}
-            // onQuiz={() => setShowQuiz(true)}
-            isCompleted={completedCards.includes(learningCards[currentCard].id)}
-            // isQuizCompleted={quizCompleted.includes(learningCards[currentCard].id)}
-            card={learningCards[0]}
+            key={card.id}
+            card={card}
+            isActive={index === currentCard}
+            isCompleted={completedCards.includes(card.id)}
+            onComplete={handleCardComplete}
+            canExpand={index <= currentCard}
           />
-        </div>
+        ))}
       </div>
 
-      {/* Quiz Modal */}
-      {showQuiz && (
-        <QuizModal
-          isOpen={showQuiz}
-          onClose={() => setShowQuiz(false)}
-          onComplete={() => handleQuizComplete(learningCards[currentCard].id)}
-          question={{
-            text: learningCards[currentCard].quiz.question,
-            options: learningCards[currentCard].quiz.options,
-            correct: learningCards[currentCard].quiz.correctAnswer,
-            explanation: learningCards[currentCard].quiz.explanation,
-          }}
-        />
+      {/* Section Completion */}
+      {sectionCompleted && (
+        <Card className="hover-shadow-gradient border-green-200 dark:border-green-800">
+          <CardContent className="p-6">
+            <div className="text-center space-y-4">
+              <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto">
+                <CheckCircle className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-green-600 dark:text-green-400">Section 2 Complete!</h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  You've learned about HPV and the risk factors for cervical cancer development.
+                </p>
+              </div>
+              <Button onClick={handleSectionComplete} className="gradient-orange-blue text-white hover-shadow-gradient">
+                Continue to Next Section
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       )}
     </div>
   )
