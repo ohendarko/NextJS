@@ -109,7 +109,7 @@ type SectionProgress = {
   [key: number]: { completed: boolean; unlocked: boolean }
 }
 
-export default function Module2Page() {
+export default function Module3Page() {
   const router = useRouter()
   const [activeSection, setActiveSection] = useState(1)
   const [sectionProgress, setSectionProgress] = useState<SectionProgress>(
