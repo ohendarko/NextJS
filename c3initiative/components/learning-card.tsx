@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ChevronDown, ChevronRight, CheckCircle, ArrowRight, Lock } from "lucide-react"
+import { ChevronDown, ChevronRight, CheckCircle, ArrowRight, Lock, ArrowLeft } from "lucide-react"
 import Image from "next/image"
 
 interface LearningCardProps {
@@ -16,7 +16,8 @@ interface LearningCardProps {
   }
   isActive: boolean
   isCompleted: boolean
-  onComplete: () => void
+  onComplete: (direction: "next" | "prev") => void
+
   canExpand: boolean
 }
 
@@ -30,7 +31,7 @@ export default function LearningCard({ card, isActive, isCompleted, onComplete, 
   }
 
   const handleComplete = () => {
-    onComplete()
+    onComplete('next')
   }
 
   // Auto-expand when card becomes active
@@ -40,7 +41,7 @@ export default function LearningCard({ card, isActive, isCompleted, onComplete, 
 
   return (
     <Card
-      className={`transition-all duration-300 ${
+      className={`transition-all duration-300 mb-10 ${
         isCompleted
           ? "border-green-200 dark:border-green-800 bg-green-50/50 dark:bg-green-900/10"
           : isActive
@@ -84,11 +85,11 @@ export default function LearningCard({ card, isActive, isCompleted, onComplete, 
                 Current
               </Badge>
             )}
-            {canExpand && (
+            {/* {canExpand && (
               <div className="text-gray-400">
                 {isExpanded ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </CardHeader>
@@ -98,7 +99,7 @@ export default function LearningCard({ card, isActive, isCompleted, onComplete, 
           {/* Infographic */}
           {card.infographic && (
             <div className="mb-6">
-              <div className="relative w-full h-64 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
+              <div className="relative w-full h-64 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden ">
                 <Image
                   src={card.infographic || "/placeholder.svg"}
                   alt={`Infographic for ${card.title}`}
@@ -116,23 +117,36 @@ export default function LearningCard({ card, isActive, isCompleted, onComplete, 
           </div>
 
           {/* Action Button */}
-          {isActive && !isCompleted && (
-            <div className="flex justify-end">
-              <Button onClick={handleComplete} className="gradient-orange-blue text-white hover-shadow-gradient">
+          {isActive && (
+            <div className="flex justify-between">
+              <Button
+                onClick={() => onComplete("prev")}
+                disabled={card.id === 1}
+                className="gradient-orange-blue text-white hover-shadow-gradient"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Previous
+              </Button>
+
+              <Button
+                onClick={() => onComplete("next")}
+                className="gradient-orange-blue text-white hover-shadow-gradient"
+              >
                 Next
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </div>
           )}
 
-          {isCompleted && (
+
+          {/* {isCompleted && (
             <div className="flex justify-end">
               <div className="flex items-center text-green-600 dark:text-green-400 text-sm">
                 <CheckCircle className="w-4 h-4 mr-2" />
                 Completed
               </div>
             </div>
-          )}
+          )} */}
         </CardContent>
       )}
     </Card>

@@ -154,7 +154,7 @@ export default function Module1Page() {
   const allSectionsCompleted = completedSections === sections.length
 
   return (
-    <div className="min-h-screen pt-24 pb-16 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen pt-24 pb-[200px] mb-[200px] sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto max-w-7xl px-3">
         {/* Back Navigation */}
         <div className="mb-6">
@@ -222,7 +222,7 @@ export default function Module1Page() {
                   {completedSections} / {sections.length} Complete
                 </span>
               </div>
-              <Progress value={(completedSections / sections.length) * 100} className="h-2" />
+              <Progress value={(completedSections / sections.length) * 100} className="h-2 [&>div]:bg-orange-400 text-black" />
             </div>
           </CardContent>
         </Card>
@@ -290,8 +290,9 @@ export default function Module1Page() {
           </div>
 
           {/* Section Content */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 mb-10">
             <ActiveSectionComponent
+              key={activeSection}
               onComplete={(nextSection) => handleSectionComplete(activeSection, nextSection)}
               isUnlocked={sectionProgress[activeSection]?.unlocked || false}
             />

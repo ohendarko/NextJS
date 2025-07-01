@@ -1,79 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { CheckCircle, ArrowRight, Globe } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 import LearningCard from "@/components/learning-card"
-
-import Section2_1 from "@/components/sections/section-2-1"
-import Section2_2 from "@/components/sections/section-2-2"
-import Section2_3 from "@/components/sections/section-2-3"
-import Section2_4 from "@/components/sections/section-2-4"
-import Section2_5 from "@/components/sections/section-2-5"
-import Section2_6 from "@/components/sections/section-2-6"
-import Section2_7 from "@/components/sections/section-2-7"
-
-export const sections = [
-  {
-    id: 1,
-    title: "What Is Cancer?",
-    description: "Understanding how abnormal cells lead to cancer",
-    component: Section2_1,
-    completed: false,
-    unlocked: true,
-  },
-  {
-    id: 2,
-    title: "What is Cervical Pre-Cancer?",
-    description: "How cervical pre-cancer forms and why it matters",
-    component: Section2_2,
-    completed: false,
-    unlocked: false,
-  },
-  {
-    id: 3,
-    title: "What is Cervical Cancer?",
-    description: "Learn how HPV causes cervical cancer and how it can be prevented",
-    component: Section2_3,
-    completed: false,
-    unlocked: false,
-  },
-  {
-    id: 4,
-    title: "HPV Infection",
-    description: "Understand what HPV is, how it's transmitted, and why it's so common",
-    component: Section2_4,
-    completed: false,
-    unlocked: false,
-  },
-  {
-    id: 5,
-    title: "Timeline of Cervical Cancer",
-    description: "How cervical cancer develops slowly and the importance of early detection",
-    component: Section2_5,
-    completed: false,
-    unlocked: false,
-  },
-  {
-    id: 6,
-    title: "How Cancer Spreads",
-    description: "Explore the four ways cervical cancer can spread through the body",
-    component: Section2_6,
-    completed: false,
-    unlocked: false,
-  },
-  {
-    id: 7,
-    title: "HIV and Cervical Cancer",
-    description: "Understand how HIV increases risk and affects the outcome of cervical cancer",
-    component: Section2_7,
-    completed: false,
-    unlocked: false,
-  },
-];
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "../ui/dialog"
 
 const learningCards = [
   {
@@ -108,22 +43,32 @@ export default function Section1_1({ onComplete, isUnlocked }: Section1_1Props) 
   const [currentCard, setCurrentCard] = useState(0)
   const [completedCards, setCompletedCards] = useState<number[]>([])
   const [sectionCompleted, setSectionCompleted] = useState(false)
+  const [showCompletionModal, setShowCompletionModal] = useState(false)
+
+  useEffect(() => {
+    if (sectionCompleted) {
+      console.log("✅ Section is marked complete")
+    }
+  }, [sectionCompleted])
+
 
   const handleCardComplete = () => {
     const cardId = learningCards[currentCard].id
     if (!completedCards.includes(cardId)) {
-      setCompletedCards([...completedCards, cardId])
+      setCompletedCards((prev) => [...prev, cardId])
     }
 
     if (currentCard < learningCards.length - 1) {
-      setCurrentCard(currentCard + 1)
+      setCurrentCard((prev) => prev + 1)
     } else {
-      setSectionCompleted(true)
+      setShowCompletionModal(true)
     }
   }
 
+
+
   const handleSectionComplete = () => {
-    onComplete(2) // Navigate to section 2
+    onComplete(2)
   }
 
   if (!isUnlocked) {
@@ -161,51 +106,62 @@ export default function Section1_1({ onComplete, isUnlocked }: Section1_1Props) 
                   Complete
                 </Badge>
               )}
-              
             </div>
           </div>
         </CardHeader>
         <CardContent>
-          <Progress value={(completedCards.length / learningCards.length) * 100} className="h-2" />
+          <Progress value={(completedCards.length / learningCards.length) * 100} className="h-2 [&>div]:bg-orange-400 [&>div]:rounded" />
         </CardContent>
       </Card>
 
-      {/* Learning Cards */}
-      <div className="space-y-4">
-        {learningCards.map((card, index) => (
-          <LearningCard
-            key={card.id}
-            card={card}
-            isActive={index === currentCard}
-            isCompleted={completedCards.includes(card.id)}
-            onComplete={handleCardComplete}
-            canExpand={index <= currentCard}
-          />
-        ))}
+      {/* Slide View for Learning Cards */}
+      <div className="relative flex !mb-10">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentCard}
+            initial={{ x: 300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -300, opacity: 0 }}
+            transition={{ duration: 0.1 }}
+            className="absolute w-full h-full !mb-10"
+          >
+            <LearningCard
+              key={learningCards[currentCard].id}
+              card={learningCards[currentCard]}
+              isActive
+              isCompleted={completedCards.includes(learningCards[currentCard].id)}
+              onComplete={handleCardComplete}
+              canExpand
+            />
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Section Completion */}
-      {sectionCompleted && (
-        <Card className="hover-shadow-gradient border-green-200 dark:border-green-800">
-          <CardContent className="p-6">
-            <div className="text-center space-y-4">
-              <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto">
+      {/* Modal for Section Complete */}
+      <Dialog open={showCompletionModal} onOpenChange={setShowCompletionModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <div className="flex justify-center mb-4">
+              <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
                 <CheckCircle className="w-8 h-8 text-white" />
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-green-600 dark:text-green-400">Section 1 Complete!</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  You've learned about the global impact of cervical cancer and why prevention is crucial.
-                </p>
-              </div>
-              <Button onClick={handleSectionComplete} className="gradient-orange-blue text-white hover-shadow-gradient">
-                Continue to Next Section
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
             </div>
-          </CardContent>
-        </Card>
-      )}
+            <DialogTitle className="text-center text-green-600">Section 1 Complete!</DialogTitle>
+          </DialogHeader>
+          <div className="text-center text-sm text-gray-700 dark:text-gray-300 mb-6">
+            <DialogDescription className="text-center text-gray-600 dark:text-gray-400">
+              You've completed this section. Let's move to the next one.
+            </DialogDescription>
+          </div>
+          <DialogFooter className="flex justify-center">
+            <Button onClick={handleSectionComplete} className="gradient-orange-blue text-white hover-shadow-gradient">
+              Continue to Next Section
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
