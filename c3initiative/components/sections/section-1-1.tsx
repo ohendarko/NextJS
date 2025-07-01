@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -45,11 +45,11 @@ export default function Section1_1({ onComplete, isUnlocked }: Section1_1Props) 
   const [sectionCompleted, setSectionCompleted] = useState(false)
   const [showCompletionModal, setShowCompletionModal] = useState(false)
 
-  useEffect(() => {
-    if (sectionCompleted) {
-      console.log("✅ Section is marked complete")
-    }
-  }, [sectionCompleted])
+  // useEffect(() => {
+  //   if (sectionCompleted) {
+  //     console.log("✅ Section is marked complete")
+  //   }
+  // }, [sectionCompleted])
 
 
   const handleCardComplete = () => {

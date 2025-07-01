@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { CheckCircle, ArrowRight, Microscope } from "lucide-react"
 import LearningCard from "@/components/learning-card"
-import { sections } from "./section-1-1"
+import { sections } from "./section-1"
 
 const learningCards = [
   {

@@ -7,6 +7,72 @@ import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { CheckCircle, ArrowRight, Globe } from "lucide-react"
 import LearningCard from "@/components/learning-card"
+import Section2_1 from "@/components/sections/section-2-1"
+import Section2_2 from "@/components/sections/section-2-2"
+import Section2_3 from "@/components/sections/section-2-3"
+import Section2_4 from "@/components/sections/section-2-4"
+import Section2_5 from "@/components/sections/section-2-5"
+import Section2_6 from "@/components/sections/section-2-6"
+import Section2_7 from "@/components/sections/section-2-7"
+
+export const sections = [
+  {
+    id: 1,
+    title: "What Is Cancer?",
+    description: "Understanding how abnormal cells lead to cancer",
+    component: Section2_1,
+    completed: false,
+    unlocked: true,
+  },
+  {
+    id: 2,
+    title: "What is Cervical Pre-Cancer?",
+    description: "How cervical pre-cancer forms and why it matters",
+    component: Section2_2,
+    completed: false,
+    unlocked: false,
+  },
+  {
+    id: 3,
+    title: "What is Cervical Cancer?",
+    description: "Learn how HPV causes cervical cancer and how it can be prevented",
+    component: Section2_3,
+    completed: false,
+    unlocked: false,
+  },
+  {
+    id: 4,
+    title: "HPV Infection",
+    description: "Understand what HPV is, how it's transmitted, and why it's so common",
+    component: Section2_4,
+    completed: false,
+    unlocked: false,
+  },
+  {
+    id: 5,
+    title: "Timeline of Cervical Cancer",
+    description: "How cervical cancer develops slowly and the importance of early detection",
+    component: Section2_5,
+    completed: false,
+    unlocked: false,
+  },
+  {
+    id: 6,
+    title: "How Cancer Spreads",
+    description: "Explore the four ways cervical cancer can spread through the body",
+    component: Section2_6,
+    completed: false,
+    unlocked: false,
+  },
+  {
+    id: 7,
+    title: "HIV and Cervical Cancer",
+    description: "Understand how HIV increases risk and affects the outcome of cervical cancer",
+    component: Section2_7,
+    completed: false,
+    unlocked: false,
+  },
+];
 
 const learningCards = [
   {
@@ -37,7 +103,7 @@ interface Section1_1Props {
   isUnlocked: boolean
 }
 
-export default function Section1_1({ onComplete, isUnlocked }: Section1_1Props) {
+export default function Section1({ onComplete, isUnlocked }: Section1_1Props) {
   const [currentCard, setCurrentCard] = useState(0)
   const [completedCards, setCompletedCards] = useState<number[]>([])
   const [sectionCompleted, setSectionCompleted] = useState(false)
