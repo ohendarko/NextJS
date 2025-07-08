@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import { useParams, useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -28,48 +28,48 @@ import Section1_3 from "@/components/sections/section-1-3"
 
 const modules = [
   {
-    order: 1,
-    title: "Why Focus On Cervical Cancer",
+    id: 1,
+    title: "Introduction to Cervical Cancer",
     shortTitle: "Introduction",
     completed: false,
     unlocked: true,
     icon: BookOpen,
   },
   {
-    order: 2,
-    title: "Cervical Cancer: An Overview",
+    id: 2,
+    title: "HPV and Cervical Cancer Connection",
     shortTitle: "HPV Connection",
     completed: false,
     unlocked: false,
     icon: Microscope,
   },
   {
-    order: 3,
-    title: "Risk Factors, Signs, Symptoms and Screening Tests For Cervical Cancer",
+    id: 3,
+    title: "Screening and Early Detection",
     shortTitle: "Screening",
     completed: false,
     unlocked: false,
     icon: Search,
   },
   {
-    order: 4,
-    title: "HPV Vaccination",
+    id: 4,
+    title: "Prevention Strategies",
     shortTitle: "Prevention",
     completed: false,
     unlocked: false,
     icon: Shield,
   },
   {
-    order: 5,
-    title: "Diagnosis and Staging of Cervical Cancer",
+    id: 5,
+    title: "Treatment and Management",
     shortTitle: "Treatment",
     completed: false,
     unlocked: false,
     icon: Stethoscope,
   },
   {
-    order: 6,
-    title: "Treatment and Palliative Care",
+    id: 6,
+    title: "Community Health and Advocacy",
     shortTitle: "Community Health",
     completed: false,
     unlocked: false,
@@ -115,7 +115,27 @@ export default function Module1Page() {
     sections.reduce((acc, section) => ({ ...acc, [section.id]: { completed: false, unlocked: section.unlocked } }), {}),
   )
   const [showPostTest, setShowPostTest] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [module, setModule] = useState(false)
 
+  const  params = useParams()
+  const { name } = params as  {name: string}
+
+  useEffect(()  =>  {
+    const fetchmodule = async() => {
+      try {
+        setIsLoading(true)
+        const res = await fetch(`/api/module?id=${name}`);
+        const data = await res.json();
+        setModule(data)
+      } catch (error) {
+        console.error(error)
+      }  finally  {
+        setIsLoading(false)
+      }
+    }
+  })
+  
   const handleSectionComplete = (sectionId: number, nextSection?: number) => {
     setSectionProgress((prev) => ({
       ...prev,

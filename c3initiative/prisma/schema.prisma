@@ -26,38 +26,49 @@ model User {
 
 model Module {
   id          String           @id @default(auto()) @map("_id") @db.ObjectId
-  number      Int              @unique
+  module      String           @unique             // e.g. "module-1"
   title       String
   description String
+  icon        String?
+  completed   Boolean          @default(false)
+  unlocked    Boolean          @default(false)
+  order       Int
   introVideo  String
   sections    Section[]
   postTest    Quiz[]
-  progress    ModuleProgress[] // ✅ back-reference for ModuleProgress.module
+  progress    ModuleProgress[] // back-reference
+
+  @@map("modules") // maps to MongoDB "modules" collection
 }
 
 model Section {
-  id       String         @id @default(auto()) @map("_id") @db.ObjectId
-  number   Int
-  title    String
-  content  String?
-  moduleId String         @db.ObjectId
-  module   Module         @relation(fields: [moduleId], references: [id])
-  cards    LearningCard[]
-  quizzes  Quiz[]
+  id        String         @id @default(auto()) @map("_id") @db.ObjectId
+  name      String         @unique
+  title     String
+  description String
+  order     Int
+  moduleId  String         @db.ObjectId
+  module    Module         @relation(fields: [moduleId], references: [id])
+  cards     LearningCard[]
+  quizzes   Quiz[]
 }
 
 model LearningCard {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  content   String
-  order     Int
-  sectionId String  @db.ObjectId
-  section   Section @relation(fields: [sectionId], references: [id])
-  quiz      Quiz?   @relation("CardQuiz")
-  quizId    String? @unique @db.ObjectId
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  name      String         @unique
+  title       String
+  content     String
+  infographic String?
+  cardOrder   Int
+  sectionId   String      @db.ObjectId
+  section     Section     @relation(fields: [sectionId], references: [id])
+  quiz        Quiz?       @relation("CardQuiz")
+  quizId      String?     @unique @db.ObjectId
 }
 
 model Quiz {
   id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  name           String         @unique
   question       String
   options        String[] // e.g. ["A", "B", "C"]
   correct        String
@@ -79,7 +90,6 @@ model ModuleProgress {
   passed        Boolean         @default(false)
   user          User            @relation(fields: [userId], references: [id])
   module        Module          @relation(fields: [moduleId], references: [id])
-  // ❌ Removed invalid `progress` field
 }
 
 model SectionStatus {
