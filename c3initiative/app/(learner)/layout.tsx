@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import "./globals.css"
+import "../globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "@/components/header"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -22,6 +22,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <Header />
           <ThemeToggle />
           {children}
         </ThemeProvider>
