@@ -66,7 +66,7 @@ export default function Header() {
                 About
               </Link>
               <Link
-                href="/modules"
+                href="/learn/cervical-cancer"
                 className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors"
               >
                 Modules
