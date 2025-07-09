@@ -9,7 +9,7 @@ import Image from "next/image"
 
 interface LearningCardProps {
   card: {
-    id: number
+    id: number | string
     title: string
     content: string
     infographic?: string
@@ -129,7 +129,13 @@ export default function LearningCard({ card, isActive, isCompleted, onComplete, 
               </Button>
 
               <Button
-                onClick={() => onComplete("next")}
+                onClick={() => {
+                  if (!isCompleted) {
+                    onComplete("next") // Let parent handle it
+                  } else {
+                    onComplete("next")
+                  }
+                }}
                 className="gradient-orange-blue text-white hover-shadow-gradient"
               >
                 Next

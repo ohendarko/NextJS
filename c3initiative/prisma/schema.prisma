@@ -15,60 +15,85 @@ datasource db {
 }
 
 model User {
-  id             String           @id @default(auto()) @map("_id") @db.ObjectId
-  email          String           @unique
-  name           String?
-  moduleProgress ModuleProgress[]
-  certificate    Certificate?
+  id                String           @id @default(auto()) @map("_id") @db.ObjectId
+  email             String           @unique
+  name              String?
+  moduleProgress    ModuleProgress[]
+  currentModule   String?          @default("module-1") // e.g. "module-1"
+  module1Completed  Boolean          @default(false)
+  module2Completed  Boolean          @default(false)
+  module3Completed  Boolean          @default(false)
+  module4Completed  Boolean          @default(false)
+  module5Completed  Boolean          @default(false)
+  module6Completed  Boolean          @default(false)
+  completedSections String[]         @default([])
+  certificate       Certificate?
 
   @@map("users")
 }
 
-model Module {
-  id          String           @id @default(auto()) @map("_id") @db.ObjectId
-  module      String           @unique             // e.g. "module-1"
-  title       String
-  description String
-  icon        String?
-  completed   Boolean          @default(false)
-  unlocked    Boolean          @default(false)
+model ModuleSummary {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
   order       Int
-  introVideo  String
-  sections    Section[]
-  postTest    Quiz[]
-  progress    ModuleProgress[] // back-reference
+  name        String? @unique
+  title       String
+  shortTitle  String
+  description String?
+  completed   Boolean @default(false)
+  unlocked    Boolean @default(false)
+  icon        String?
+  introVideo  String?
 
-  @@map("modules") // maps to MongoDB "modules" collection
+  @@map("moduleSummary")
+}
+
+model Module {
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  module         String           @unique // e.g. "module-1"
+  completed      Boolean
+  unlocked       Boolean
+  icon           String
+  title          String
+  description    String
+  order          Int
+  introVideo     String
+  sections       Json // raw array of section objects
+  postTest       Json // raw array of quiz objects
+  Section        Section[]
+  Quiz           Quiz[]
+  ModuleProgress ModuleProgress[]
+
+  @@map("modules") // maps to "modules" collection
 }
 
 model Section {
-  id        String         @id @default(auto()) @map("_id") @db.ObjectId
-  name      String         @unique
-  title     String
+  id          String         @id @default(auto()) @map("_id") @db.ObjectId
+  name        String         @unique
+  title       String
   description String
-  order     Int
-  moduleId  String         @db.ObjectId
-  module    Module         @relation(fields: [moduleId], references: [id])
-  cards     LearningCard[]
-  quizzes   Quiz[]
+  order       Int
+  moduleId    String         @db.ObjectId
+  module      Module         @relation(fields: [moduleId], references: [id])
+  cards       LearningCard[]
+  quizzes     Quiz[]
 }
 
 model LearningCard {
-  id          String      @id @default(auto()) @map("_id") @db.ObjectId
-  name      String         @unique
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  name        String  @unique
   title       String
   content     String
   infographic String?
   cardOrder   Int
-  sectionId   String      @db.ObjectId
-  section     Section     @relation(fields: [sectionId], references: [id])
-  quiz        Quiz?       @relation("CardQuiz")
-  quizId      String?     @unique @db.ObjectId
+  sectionId   String  @db.ObjectId
+  section     Section @relation(fields: [sectionId], references: [id])
+  quiz        Quiz?   @relation("CardQuiz")
+  quizId      String? @unique @db.ObjectId
 }
 
 model Quiz {
   id             String        @id @default(auto()) @map("_id") @db.ObjectId
-  name           String         @unique
+  name           String        @unique
   question       String
   options        String[] // e.g. ["A", "B", "C"]
   correct        String

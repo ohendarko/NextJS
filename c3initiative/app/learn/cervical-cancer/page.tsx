@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -18,75 +18,123 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import InteractiveProgressBar from "@/components/interactive-progress-bar"
+import * as Icons from "lucide-react"
+import { LucideProps } from "lucide-react"
+import { ComponentType } from "react"
+import Skeleton from "@mui/material/Skeleton"
 
-const modules = [
-  {
-    id: 1,
-    title: "Introduction to Cervical Cancer",
-    shortTitle: "Introduction",
-    description: "Understanding the basics and importance of cervical cancer prevention",
-    sections: 3,
-    duration: "45 min",
-    completed: false,
-    unlocked: true,
-    icon: BookOpen,
-  },
-  {
-    id: 2,
-    title: "HPV and Cervical Cancer Connection",
-    shortTitle: "HPV Connection",
-    description: "Learn about Human Papillomavirus and its role in cervical cancer",
-    sections: 4,
-    duration: "60 min",
-    completed: false,
-    unlocked: false,
-    icon: Microscope,
-  },
-  {
-    id: 3,
-    title: "Screening and Early Detection",
-    shortTitle: "Screening",
-    description: "Pap smears, HPV testing, and screening guidelines",
-    sections: 3,
-    duration: "50 min",
-    completed: false,
-    unlocked: false,
-    icon: Search,
-  },
-  {
-    id: 4,
-    title: "Prevention Strategies",
-    shortTitle: "Prevention",
-    description: "Vaccination, lifestyle factors, and preventive measures",
-    sections: 2,
-    duration: "40 min",
-    completed: false,
-    unlocked: false,
-    icon: Shield,
-  },
-  {
-    id: 5,
-    title: "Treatment and Management",
-    shortTitle: "Treatment",
-    description: "Treatment options and patient care approaches",
-    sections: 4,
-    duration: "55 min",
-    completed: false,
-    unlocked: false,
-    icon: Stethoscope,
-  },
-  {
-    id: 6,
-    title: "Community Health and Advocacy",
-    shortTitle: "Community Health",
-    description: "Public health approaches and patient communication",
-    sections: 3,
-    duration: "35 min",
-    completed: false,
-    unlocked: false,
-    icon: Users,
-  },
-]
+
+type ModuleSummary = {
+  id: string;
+  order: number;
+  description: string;
+  name: string;         // e.g., "module-1"
+  title: string;
+  shortTitle: string;
+  completed: boolean;
+  unlocked: boolean;
+  icon: string;         // name of the Lucide icon (e.g., "Users", "Shield")
+  introVideo: string;
+};
+
+const iconMap = {
+  BookOpen,
+  Microscope,
+  Search,
+  Shield,
+  Stethoscope,
+  Users
+}
+
+const userdata = {
+  "id": "64b3d35a0e9150f1c1234567",
+  "email": "jane.doe@example.com",
+  "name": "Jane Doe",
+  "currentModule": "module-1",
+  "module1Completed": false,
+  "module2Completed": false,
+  "module3Completed": false,
+  "module4Completed": false,
+  "module5Completed": false,
+  "module6Completed": false,
+  "completedSections": [
+    "section-1-1",
+    "section-1-2",
+    "section-1-3"
+  ]
+}
+
+
+
+
+// const modules = [
+//   {
+//     id: 1,
+//     title: "Introduction to Cervical Cancer",
+//     shortTitle: "Introduction",
+//     description: "Understanding the basics and importance of cervical cancer prevention",
+//     sections: 3,
+//     duration: "45 min",
+//     completed: false,
+//     unlocked: true,
+//     icon: BookOpen,
+//   },
+//   {
+//     id: 2,
+//     title: "HPV and Cervical Cancer Connection",
+//     shortTitle: "HPV Connection",
+//     description: "Learn about Human Papillomavirus and its role in cervical cancer",
+//     sections: 4,
+//     duration: "60 min",
+//     completed: false,
+//     unlocked: false,
+//     icon: Microscope,
+//   },
+//   {
+//     id: 3,
+//     title: "Screening and Early Detection",
+//     shortTitle: "Screening",
+//     description: "Pap smears, HPV testing, and screening guidelines",
+//     sections: 3,
+//     duration: "50 min",
+//     completed: false,
+//     unlocked: false,
+//     icon: Search,
+//   },
+//   {
+//     id: 4,
+//     title: "Prevention Strategies",
+//     shortTitle: "Prevention",
+//     description: "Vaccination, lifestyle factors, and preventive measures",
+//     sections: 2,
+//     duration: "40 min",
+//     completed: false,
+//     unlocked: false,
+//     icon: Shield,
+//   },
+//   {
+//     id: 5,
+//     title: "Treatment and Management",
+//     shortTitle: "Treatment",
+//     description: "Treatment options and patient care approaches",
+//     sections: 4,
+//     duration: "55 min",
+//     completed: false,
+//     unlocked: false,
+//     icon: Stethoscope,
+//   },
+//   {
+//     id: 6,
+//     title: "Community Health and Advocacy",
+//     shortTitle: "Community Health",
+//     description: "Public health approaches and patient communication",
+//     sections: 3,
+//     duration: "35 min",
+//     completed: false,
+//     unlocked: false,
+//     icon: Users,
+//   },
+// ]
 
 type ModuleProgress = {
   [id: number]: {
@@ -96,32 +144,70 @@ type ModuleProgress = {
 }
 
 export default function CervicalCancerLearnPage() {
-  const [moduleProgress, setModuleProgress] = useState<ModuleProgress>(
-    modules.reduce((acc, module) => ({ ...acc, [module.id]: { completed: false, unlocked: module.unlocked } }), {} as ModuleProgress),
-  )
+  const [modules, setModules] = useState<ModuleSummary[]>([]);
+  const [moduleProgress, setModuleProgress] = useState<ModuleProgress | null>(null)
 
-  const completedModules = Object.values(moduleProgress).filter((p) => p.completed).length
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    const fetchModuleSummary = async () => {
+      try {
+        setIsLoading(true)
+        const res = await fetch('/api/module-summary')
+        const moduleSummaries: ModuleSummary[] = await res.json()
+        setModules(moduleSummaries)
+
+        const progress: ModuleProgress = moduleSummaries.reduce((acc, mod) => {
+          acc[mod.order] = {
+            completed: Boolean(userdata[`module${mod.order}Completed` as keyof typeof userdata]) ?? false,
+            unlocked: mod.unlocked
+          }
+          return acc
+        }, {} as ModuleProgress)
+
+        setModuleProgress(progress)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchModuleSummary()
+  }, [])
+
+
+
+
+  const completedModules = moduleProgress ? Object.values(moduleProgress).filter((p) => p.completed).length : 0
   const allModulesCompleted = completedModules === modules.length
 
   // Prepare modules for progress bar
   const progressModules = modules.map((module) => ({
     ...module,
-    completed: moduleProgress[module.id]?.completed || false,
-    unlocked: moduleProgress[module.id]?.unlocked || false,
+    completed: moduleProgress?.[module.order]?.completed || false,
+    unlocked: moduleProgress?.[module.order]?.unlocked || false,
   }))
 
   const handleModuleClick = (moduleId: number) => {
-    if (moduleProgress[moduleId]?.unlocked) {
+    if (moduleProgress && moduleProgress[moduleId]?.unlocked) {
       window.location.href = `/learn/cervical-cancer/module-${moduleId}`
     }
   }
+
+  const gotToModuleClick = (name: string, order: number) => {
+  if (moduleProgress && moduleProgress[order]?.unlocked) {
+    window.location.href = `/learn/cervical-cancer/${name}`
+  }
+}
+
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-0 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">
+          {isLoading ? <Skeleton height={200}/> : <div><h1 className="text-3xl font-bold mb-2">
             Cervical Cancer{" "}
             <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">
               Learning Modules
@@ -129,21 +215,22 @@ export default function CervicalCancerLearnPage() {
           </h1>
           <p className="text-gray-600 dark:text-gray-300">
             Master cervical cancer prevention, detection, and treatment through our comprehensive learning modules.
-          </p>
+          </p></div> }
         </div>
 
         {/* Interactive Progress Bar */}
         <div className="mb-8">
-          <InteractiveProgressBar
-            modules={progressModules}
+          
+          { isLoading ? <Skeleton height={400} /> : <InteractiveProgressBar
+            modules={modules && modules}
             currentModule={1}
             onModuleClick={handleModuleClick}
             showCertificate={true}
-          />
+          />}
         </div>
 
         {/* Certificate Section */}
-        {allModulesCompleted && (
+        {isLoading ? <Skeleton /> : allModulesCompleted && (
           <Card className="mb-8 hover-shadow-gradient border-2 border-green-500">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -174,105 +261,108 @@ export default function CervicalCancerLearnPage() {
 
           <div className="space-y-8">
             {modules.map((module, index) => {
-              const IconComponent = module.icon
+              const IconComponent = iconMap[module.icon as keyof typeof iconMap] || BookOpen
 
               return (
-                <div key={module.id} className="relative flex items-start">
-                  {/* Path Node */}
-                  <div
-                    className={`relative z-10 w-16 h-16 rounded-full flex items-center justify-center border-4 mr-6 hidden md:flex ${
-                      moduleProgress[module.id]?.completed
-                        ? "bg-green-500 border-green-500"
-                        : moduleProgress[module.id]?.unlocked
-                          ? "gradient-orange-blue border-transparent"
-                          : "bg-gray-300 border-gray-300"
-                    }`}
-                  >
-                    {moduleProgress[module.id]?.completed ? (
-                      <CheckCircle className="w-8 h-8 text-white" />
-                    ) : moduleProgress[module.id]?.unlocked ? (
-                      <IconComponent className="w-8 h-8 text-white" />
-                    ) : (
-                      <Lock className="w-8 h-8 text-gray-500" />
-                    )}
-                  </div>
-
-                  {/* Module Card */}
-                  <div className="flex-1">
-                    <Card
-                      className={`transition-all duration-300 ${
-                        moduleProgress[module.id]?.unlocked
-                          ? "hover-shadow-gradient cursor-pointer hover:scale-[1.02]"
-                          : "opacity-50"
+                <div key={module.order}>
+                  {isLoading ? <Skeleton height={600} /> : <div key={module.order} className="relative flex items-start">
+                    {/* Path Node */}
+                    <div
+                      className={`relative z-10 w-16 h-16 rounded-full flex items-center justify-center border-4 mr-6 hidden md:flex ${
+                        moduleProgress && moduleProgress[module.order]?.completed
+                          ? "bg-green-500 border-green-500"
+                          : moduleProgress && moduleProgress[module.order]?.unlocked
+                            ? "gradient-orange-blue border-transparent"
+                            : "bg-gray-300 border-gray-300"
                       }`}
                     >
-                      <CardHeader>
-                        <div className="flex flex-col items-center justify-between">
-                          <div className="flex  items-center space-x-4">
-                            {/* Mobile Path Node */}
-                            <div
-                              className={`w-12 h-12 rounded-full flex items-center justify-center border-2 md:hidden ${
-                                moduleProgress[module.id]?.completed
-                                  ? "bg-green-500 border-green-500"
-                                  : moduleProgress[module.id]?.unlocked
-                                    ? "gradient-orange-blue border-transparent"
-                                    : "bg-gray-300 border-gray-300"
-                              }`}
-                            >
-                              {moduleProgress[module.id]?.completed ? (
-                                <CheckCircle className="w-6 h-6 text-white" />
-                              ) : moduleProgress[module.id]?.unlocked ? (
-                                <IconComponent className="w-6 h-6 text-white" />
-                              ) : (
-                                <Lock className="w-6 h-6 text-gray-500" />
+                      {moduleProgress && moduleProgress[module.order]?.completed ? (
+                        <CheckCircle className="w-8 h-8 text-white" />
+                      ) : moduleProgress && moduleProgress[module.order]?.unlocked ? (
+                        <IconComponent className="w-8 h-8 text-white" />
+                      ) : (
+                        <Lock className="w-8 h-8 text-gray-500" />
+                      )}
+                    </div>
+
+                    {/* Module Card */}
+                    <div className="flex-1">
+                      <Card
+                        className={`transition-all duration-300 ${
+                          moduleProgress && moduleProgress[module.order]?.unlocked
+                            ? "hover-shadow-gradient cursor-pointer hover:scale-[1.02]"
+                            : "opacity-50"
+                        }`}
+                      >
+                        <CardHeader>
+                          <div className="flex flex-col items-center justify-between">
+                            <div className="flex  items-center space-x-4">
+                              {/* Mobile Path Node */}
+                              <div
+                                className={`w-12 h-12 rounded-full flex items-center justify-center border-2 md:hidden ${
+                                  moduleProgress && moduleProgress[module.order]?.completed
+                                    ? "bg-green-500 border-green-500"
+                                    : moduleProgress && moduleProgress[module.order]?.unlocked
+                                      ? "gradient-orange-blue border-transparent"
+                                      : "bg-gray-300 border-gray-300"
+                                }`}
+                              >
+                                {moduleProgress && moduleProgress[module.order]?.completed ? (
+                                  <CheckCircle className="w-6 h-6 text-white" />
+                                ) : moduleProgress && moduleProgress[module.order]?.unlocked ? (
+                                  <IconComponent className="w-6 h-6 text-white" />
+                                ) : (
+                                  <Lock className="w-6 h-6 text-gray-500" />
+                                )}
+                              </div>
+                              <div>
+                                <CardTitle className="text-xl">
+                                  Module {module.order}: {module.title}
+                                </CardTitle>
+                              </div>
+                            </div>
+
+                            <div className="mt-4">
+                                <p className="text-gray-600 dark:text-gray-400 mt-1">{module.description}</p>
+                              </div>
+
+                            <div className="text-right space-y-2">
+                              {moduleProgress && moduleProgress[module.order]?.completed && (
+                                <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
+                                  Completed
+                                </Badge>
                               )}
-                            </div>
-                            <div>
-                              <CardTitle className="text-xl">
-                                Module {module.id}: {module.title}
-                              </CardTitle>
+                              
                             </div>
                           </div>
+                        </CardHeader>
 
-                          <div className="mt-4">
-                              <p className="text-gray-600 dark:text-gray-400 mt-1">{module.description}</p>
-                            </div>
+                        <CardContent>
+                          <div className="flex items-center justify-between">
+                            {/* <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">                          
+                              <span>🎯 Interactive Learning</span>
+                            </div> */}
 
-                          <div className="text-right space-y-2">
-                            {moduleProgress[module.id]?.completed && (
-                              <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
-                                Completed
-                              </Badge>
-                            )}
-                            
-                          </div>
-                        </div>
-                      </CardHeader>
-
-                      <CardContent>
-                        <div className="flex items-center justify-between">
-                          {/* <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">                          
-                            <span>🎯 Interactive Learning</span>
-                          </div> */}
-
-                          {moduleProgress[module.id]?.unlocked ? (
-                            <Link href={`/learn/cervical-cancer/module-${module.id}`}>
-                              <Button className="gradient-orange-blue text-white hover-shadow-gradient group">
-                                {moduleProgress[module.id]?.completed ? "Review Module" : "Start Learning"}
-                                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            {moduleProgress && moduleProgress[module.order]?.unlocked ? (
+                              <Link href={`/learn/cervical-cancer/${module.name}`}>
+                                <Button className="gradient-orange-blue text-white hover-shadow-gradient group">
+                                  {moduleProgress[module.order]?.completed ? "Review Module" : "Start Learning"}
+                                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </Button>
+                              </Link>
+                            ) : (
+                              <Button disabled className="opacity-50">
+                                <Lock className="w-4 h-4 mr-2" />
+                                Locked
                               </Button>
-                            </Link>
-                          ) : (
-                            <Button disabled className="opacity-50">
-                              <Lock className="w-4 h-4 mr-2" />
-                              Locked
-                            </Button>
-                          )}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
+                            )}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </div>}
                 </div>
+                
               )
             })}
           </div>

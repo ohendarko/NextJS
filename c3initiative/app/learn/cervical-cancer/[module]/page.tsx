@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import { useParams, useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
@@ -21,14 +22,46 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 // import InteractiveProgressBar from "@/components/interactive-progress-bar"
-import Section2_1 from "@/components/sections/section-2-1"
-import Section2_2 from "@/components/sections/section-2-2"
-import Section2_3 from "@/components/sections/section-2-3"
-import Section2_4 from "@/components/sections/section-2-4"
-import Section2_5 from "@/components/sections/section-2-5"
-import Section2_6 from "@/components/sections/section-2-6"
-import Section2_7 from "@/components/sections/section-2-7"
+import Skeleton from "@mui/material/Skeleton"
+import SectionRenderer from "@/components/SectionRenderer"
 // import PostTestModal from "@/components/post-test-modal"
+
+type LearningCard = {
+  id: string
+  title: string
+  content: string
+  infographic?: string
+}
+
+type Section = {
+  id: string
+  title: string
+  description: string
+  order: number
+  learningCards: LearningCard[]
+  quizzes: any[] // define if needed
+}
+
+type PostTest = {
+  id: string
+  question: string
+  options: string[]
+  correct: string
+}
+
+type Module = {
+  id: string
+  module: string
+  title: string
+  description: string
+  icon: string
+  order: number
+  introVideo: string
+  completed: boolean
+  unlocked: boolean
+  sections: Section[]
+  postTest: PostTest[]
+}
 
 const modules = [
   {
@@ -81,77 +114,58 @@ const modules = [
   },
 ]
 
-const sections = [
-  {
-    id: 1,
-    title: "What Is Cancer?",
-    description: "Understanding how abnormal cells lead to cancer",
-    component: Section2_1,
-    completed: false,
-    unlocked: true,
-  },
-  {
-    id: 2,
-    title: "What is Cervical Pre-Cancer?",
-    description: "How cervical pre-cancer forms and why it matters",
-    component: Section2_2,
-    completed: false,
-    unlocked: false,
-  },
-  {
-    id: 3,
-    title: "What is Cervical Cancer?",
-    description: "Learn how HPV causes cervical cancer and how it can be prevented",
-    component: Section2_3,
-    completed: false,
-    unlocked: false,
-  },
-  {
-    id: 4,
-    title: "HPV Infection",
-    description: "Understand what HPV is, how it's transmitted, and why it's so common",
-    component: Section2_4,
-    completed: false,
-    unlocked: false,
-  },
-  {
-    id: 5,
-    title: "Timeline of Cervical Cancer",
-    description: "How cervical cancer develops slowly and the importance of early detection",
-    component: Section2_5,
-    completed: false,
-    unlocked: false,
-  },
-  {
-    id: 6,
-    title: "How Cancer Spreads",
-    description: "Explore the four ways cervical cancer can spread through the body",
-    component: Section2_6,
-    completed: false,
-    unlocked: false,
-  },
-  {
-    id: 7,
-    title: "HIV and Cervical Cancer",
-    description: "Understand how HIV increases risk and affects the outcome of cervical cancer",
-    component: Section2_7,
-    completed: false,
-    unlocked: false,
-  },
-];
 
 type SectionProgress = {
   [key: number]: { completed: boolean; unlocked: boolean }
 }
 
-export default function Module2Page() {
+export default function ModulePage() {
   const router = useRouter()
   const [activeSection, setActiveSection] = useState(1)
-  const [sectionProgress, setSectionProgress] = useState<SectionProgress>(
-    sections.reduce((acc, section) => ({ ...acc, [section.id]: { completed: false, unlocked: section.unlocked } }), {}),
-  )
+  const [sectionProgress, setSectionProgress] = useState<SectionProgress>({})
   const [showPostTest, setShowPostTest] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [lesson, setLesson] = useState<Module | null>(null)
+  const [showCompletionModal, setShowCompletionModal] = useState(false)
 
+  const  params = useParams()
+  const { module } = params as  {module: string}
+
+  useEffect(() => {
+    const fetchModule = async () => {
+      try {
+        setIsLoading(true)
+        const res = await fetch(`/api/modules/${module}`)
+        if (!res.ok) throw new Error("Failed to fetch")
+        const json = await res.json()
+        setLesson(json)
+
+        const newProgress: SectionProgress = {}
+        json.sections.forEach((section: Section) => {
+          newProgress[section.order] = {
+            completed: false,
+            unlocked: section.order === 1,
+          }
+        })
+        setSectionProgress(newProgress)
+      } catch (err) {
+        console.error(err)
+        setLesson(null)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    if (module) {
+      fetchModule()
+    }
+  }, [module])
+
+
+
+  // console.log(lesson)
+  // console.log('sectionprogress', sectionProgress)
+  
   const handleSectionComplete = (sectionId: number, nextSection?: number) => {
     setSectionProgress((prev) => ({
       ...prev,
@@ -159,13 +173,13 @@ export default function Module2Page() {
       [sectionId + 1]: { ...prev[sectionId + 1], unlocked: true },
     }))
 
-    // Navigate to next section if specified
-    if (nextSection && nextSection <= sections.length) {
+    if (nextSection && lesson && nextSection <= lesson.sections.length) {
       setActiveSection(nextSection)
     }
 
-    // Check if all sections are completed
-    const allCompleted = sections.every((section) => section.id === sectionId || sectionProgress[section.id]?.completed)
+    const allCompleted = lesson?.sections.every(
+      (section) => section.order === sectionId || sectionProgress[section.order]?.completed
+    )
 
     if (allCompleted) {
       setShowPostTest(true)
@@ -185,13 +199,19 @@ export default function Module2Page() {
     }
   }
 
-  const ActiveSectionComponent = sections.find((s) => s.id === activeSection)?.component || Section2_1
+  const activeSectionData = lesson && lesson.sections.find(s => s.order === activeSection)
   const completedSections = Object.values(sectionProgress).filter((p) => p.completed).length
-  const allSectionsCompleted = completedSections === sections.length
+  const allSectionsCompleted = completedSections === lesson?.sections.length
+
+  useEffect(() => {
+    if (allSectionsCompleted && !showCompletionModal) {
+      setShowCompletionModal(true)
+    }
+  }, [allSectionsCompleted, showCompletionModal])
 
   return (
-    <div className="min-h-screen pt-24 pb-16 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto max-w-7xl px-3">
+    <div className="min-h-screen pt-24 pb-4 mb-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+      {isLoading ? <Skeleton variant="rectangular" height={500} /> : <div className="container mx-auto max-w-7xl px-3">
         {/* Back Navigation */}
         <div className="mb-6">
           <Link href="/learn/cervical-cancer">
@@ -217,9 +237,9 @@ export default function Module2Page() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-3xl">Module 2: Cervical Cancer: An Overview</CardTitle>
+                <CardTitle className="text-3xl">Module {lesson?.order}: {lesson?.title} </CardTitle>
                 <p className="text-gray-600 dark:text-gray-400 mt-2">
-                  Understanding the genesis and progression of cervical cancer
+                  {lesson?.description}
                 </p>
               </div>
               <div className="text-right space-y-2">
@@ -255,10 +275,10 @@ export default function Module2Page() {
               <div className="flex items-center justify-between mb-2">
                 <h4 className="font-semibold">Section Progress</h4>
                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {completedSections} / {sections.length} Complete
+                  {completedSections} / {lesson?.sections.length} Complete
                 </span>
               </div>
-              <Progress value={(completedSections / sections.length) * 100} className="h-2" />
+              <Progress value={lesson && (completedSections / lesson.sections.length) * 100} className="h-2 [&>div]:bg-orange-400 text-black" />
             </div>
           </CardContent>
         </Card>
@@ -273,21 +293,21 @@ export default function Module2Page() {
               <div className="relative">
                 <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 to-blue-500 opacity-30"></div>
 
-                {sections.map((section, index) => (
-                  <div key={section.id} className="relative flex items-start mb-4">
+                {lesson && lesson.sections.map((section, index) => (
+                  <div key={section.order} className="relative flex items-start mb-4">
                     {/* Path Node */}
                     <div
                       className={`relative z-10 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${
-                        sectionProgress[section.id]?.completed
+                        sectionProgress[section.order]?.completed
                           ? "bg-green-500 text-white"
-                          : sectionProgress[section.id]?.unlocked
+                          : sectionProgress[section.order]?.unlocked
                             ? "gradient-orange-blue text-white"
                             : "bg-gray-300 text-gray-500"
                       }`}
                     >
-                      {sectionProgress[section.id]?.completed ? (
+                      {sectionProgress[section.order]?.completed ? (
                         <CheckCircle className="w-4 h-4" />
-                      ) : sectionProgress[section.id]?.unlocked ? (
+                      ) : sectionProgress[section.order]?.unlocked ? (
                         section.id
                       ) : (
                         <Lock className="w-3 h-3" />
@@ -297,15 +317,15 @@ export default function Module2Page() {
                     {/* Section Tab */}
                     <div
                       className={`ml-3 flex-1 cursor-pointer transition-all duration-300 ${
-                        sectionProgress[section.id]?.unlocked ? "hover:scale-105" : "opacity-50 cursor-not-allowed"
+                        sectionProgress[section.order]?.unlocked ? "hover:scale-105" : "opacity-50 cursor-not-allowed"
                       }`}
-                      onClick={() => sectionProgress[section.id]?.unlocked && setActiveSection(section.id)}
+                      onClick={() => {sectionProgress[section.order]?.unlocked && setActiveSection(section.order); console.log(completedSections)}}
                     >
                       <Card
                         className={`${
-                          activeSection === section.id
+                          activeSection === section.order
                             ? "ring-2 ring-orange-500 shadow-lg"
-                            : sectionProgress[section.id]?.unlocked
+                            : sectionProgress[section.order]?.unlocked
                               ? "hover-shadow-gradient"
                               : ""
                         }`}
@@ -313,7 +333,7 @@ export default function Module2Page() {
                         <CardContent className="p-3">
                           <h5 className="font-medium text-sm mb-1">{section.title}</h5>
                           <p className="text-xs text-gray-600 dark:text-gray-400">{section.description}</p>
-                          {sectionProgress[section.id]?.completed && (
+                          {sectionProgress[section.order]?.completed && (
                             <Badge className="bg-green-100 text-green-800 text-xs mt-2">Complete</Badge>
                           )}
                         </CardContent>
@@ -326,41 +346,52 @@ export default function Module2Page() {
           </div>
 
           {/* Section Content */}
-          <div className="lg:col-span-3">
-            <ActiveSectionComponent
-              onComplete={(nextSection) => handleSectionComplete(activeSection, nextSection)}
-              isUnlocked={sectionProgress[activeSection]?.unlocked || false}
-            />
+          <div className="lg:col-span-3 mb-10">
+            {activeSectionData && (
+              <SectionRenderer
+                key={activeSection}
+                section={activeSectionData}
+                onComplete={(nextSection) => handleSectionComplete(activeSection, nextSection)}
+                isUnlocked={sectionProgress[activeSection]?.unlocked || false}
+              />
+            )}
           </div>
         </div>
 
         {/* Module Completion */}
-        {allSectionsCompleted && !showPostTest && (
-          <Card className="mt-8 hover-shadow-gradient">
-            <CardContent className="p-6">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto">
-                  <CheckCircle className="w-10 h-10 text-white" />
+        {allSectionsCompleted
+        // && !showPostTest 
+        && (
+          
+          <Dialog open={showCompletionModal} onOpenChange={setShowCompletionModal}>
+            <DialogContent className="max-w-md">
+              <DialogHeader>
+                <div className="flex justify-center mb-4">
+                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                    <CheckCircle className="w-8 h-8 text-white" />
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-green-600">Module 2 Complete!</h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Congratulations! You've successfully completed the Introduction to Cervical Cancer module.
-                </p>
+                <DialogTitle className="text-center text-2xl font-bold text-green-600">Module {lesson.order} Complete!</DialogTitle>
+                <DialogDescription className="text-center text-gray-600 dark:text-gray-400">
+                  Congratulations! You've successfully completed the {lesson.title} module.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter className="flex justify-center">
                 <div className="flex justify-center space-x-4">
                   <Button
-                    onClick={() => router.push("/learn/cervical-cancer/module-2")}
+                    onClick={() => router.push(`/learn/cervical-cancer/module-${lesson.order + 1}`)}
                     className="gradient-orange-blue text-white hover-shadow-gradient"
                   >
-                    Continue to Module 2
+                    Continue to Module {lesson.order + 1}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                   <Button variant="outline" onClick={() => window.location.reload()}>
                     Review Module
                   </Button>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         )}
 
         {/* Post Test Modal */}
@@ -371,7 +402,7 @@ export default function Module2Page() {
           moduleTitle="Introduction to Cervical Cancer"
           moduleId={1}
         /> */}
-      </div>
+      </div>}
     </div>
   )
 }

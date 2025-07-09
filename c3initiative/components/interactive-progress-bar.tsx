@@ -19,13 +19,35 @@ import {
 } from "lucide-react"
 
 interface Module {
-  id: number
-  title: string
-  shortTitle: string
-  icon: any
-  completed: boolean
-  unlocked: boolean
+  id: string;
+  order: number;
+  description: string;
+  name: string;         // e.g., "module-1"
+  title: string;
+  shortTitle: string;
+  completed: boolean;
+  unlocked: boolean;
+  icon: string;         // name of the Lucide icon (e.g., "Users", "Shield")
+  introVideo: string;
   current?: boolean
+}
+
+const userdata = {
+  "id": "64b3d35a0e9150f1c1234567",
+  "email": "jane.doe@example.com",
+  "name": "Jane Doe",
+  "currentModule": "module-1",
+  "module1Completed": false,
+  "module2Completed": false,
+  "module3Completed": false,
+  "module4Completed": false,
+  "module5Completed": false,
+  "module6Completed": false,
+  "completedSections": [
+    "section-1-1",
+    "section-1-2",
+    "section-1-3"
+  ]
 }
 
 interface InteractiveProgressBarProps {
@@ -60,7 +82,7 @@ export default function InteractiveProgressBar({
 
   // Add certificate as final step if enabled
   const progressItems = [
-    ...modules.map((module, index) => ({
+    ...modules.map((module: Module, index) => ({
       ...module,
       icon: moduleIcons[index] || BookOpen,
       isCertificate: false,
@@ -68,6 +90,7 @@ export default function InteractiveProgressBar({
     ...(showCertificate
       ? [
           {
+            name: 'certificate',
             id: totalModules + 1,
             title: "Certificate",
             shortTitle: "Certificate",
@@ -119,7 +142,7 @@ export default function InteractiveProgressBar({
   // Auto-scroll to current module
   useEffect(() => {
     if (currentModule && scrollContainerRef.current) {
-      const currentIndex = modules.findIndex((m) => m.id === currentModule)
+      const currentIndex = modules.findIndex((m) => m.id === String(currentModule))
       if (currentIndex !== -1) {
         const itemWidth = 160 // Approximate width of each progress item
         const scrollPosition = currentIndex * itemWidth - scrollContainerRef.current.clientWidth / 2 + itemWidth / 2
@@ -200,7 +223,7 @@ export default function InteractiveProgressBar({
 
               {progressItems.map((item, index) => {
                 const IconComponent = item.icon
-                const isCurrentModule = currentModule === item.id
+                const isCurrentModule = userdata.currentModule === item.name
                 const isClickable = item.unlocked && !item.isCertificate && onModuleClick
 
                 return (
@@ -218,7 +241,7 @@ export default function InteractiveProgressBar({
                                 ? "gradient-orange-blue border-transparent"
                                 : "bg-gray-300 border-gray-300"
                         } ${isClickable ? "cursor-pointer hover:scale-105" : ""}`}
-                        onClick={() => isClickable && onModuleClick(item.id)}
+                        onClick={() => isClickable && onModuleClick(Number(item.id))}
                       >
                         {item.completed ? (
                           <CheckCircle className="w-8 h-8 text-white" />
@@ -259,7 +282,7 @@ export default function InteractiveProgressBar({
                                   : "text-gray-500"
                           }`}
                         >
-                          {item.isCertificate ? "Certificate" : `Module ${item.id}`}
+                          {item.isCertificate ? "Certificate" : `Module ${index + 1}`}
                         </p>
                         <p
                           className={`text-xs ${
