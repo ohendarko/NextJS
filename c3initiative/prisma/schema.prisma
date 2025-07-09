@@ -27,6 +27,7 @@ model User {
   module5Completed  Boolean          @default(false)
   module6Completed  Boolean          @default(false)
   completedSections String[]         @default([])
+  completedModules  String[]         @default([])
   certificate       Certificate?
 
   @@map("users")
