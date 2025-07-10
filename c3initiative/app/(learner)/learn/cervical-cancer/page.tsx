@@ -154,7 +154,8 @@ export default function CervicalCancerLearnPage() {
       try {
         setIsLoading(true)
         const res = await fetch('/api/module-summary')
-        const moduleSummaries: ModuleSummary[] = await res.json()
+        const data = await res.json()
+        const moduleSummaries: ModuleSummary[] = data.summaries
         setModules(moduleSummaries)
 
         const progress: ModuleProgress = moduleSummaries.reduce((acc, mod) => {

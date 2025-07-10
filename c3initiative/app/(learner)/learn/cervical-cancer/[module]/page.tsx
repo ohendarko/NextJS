@@ -31,6 +31,7 @@ type LearningCard = {
   title: string
   content: string
   infographic?: string
+  order: number
 }
 
 type Section = {
@@ -127,6 +128,9 @@ export default function ModulePage() {
   const [isLoading, setIsLoading] = useState(false)
   const [lesson, setLesson] = useState<Module | null>(null)
   const [showCompletionModal, setShowCompletionModal] = useState(false)
+  const [hasShownCompletionModal, setHasShownCompletionModal] = useState(false)
+  const [totalModules, setTotalModules] = useState(0)
+
 
   const  params = useParams()
   const { module } = params as  {module: string}
@@ -135,6 +139,9 @@ export default function ModulePage() {
     const fetchModule = async () => {
       try {
         setIsLoading(true)
+        const  data =  await fetch("/api/module-summary")
+        const datares = await data.json()
+        setTotalModules(datares.summaryCount)
         const res = await fetch(`/api/modules/${module}`)
         if (!res.ok) throw new Error("Failed to fetch")
         const json = await res.json()
@@ -162,7 +169,7 @@ export default function ModulePage() {
   }, [module])
 
 
-
+  // console.log('totalmodules',totalModules)
   // console.log(lesson)
   // console.log('sectionprogress', sectionProgress)
   
@@ -204,10 +211,14 @@ export default function ModulePage() {
   const allSectionsCompleted = completedSections === lesson?.sections.length
 
   useEffect(() => {
-    if (allSectionsCompleted && !showCompletionModal) {
+    const allCompleted = completedSections === lesson?.sections.length
+
+    if (allCompleted && !hasShownCompletionModal) {
       setShowCompletionModal(true)
+      setHasShownCompletionModal(true)
     }
-  }, [allSectionsCompleted, showCompletionModal])
+  }, [completedSections, lesson, hasShownCompletionModal])
+
 
   return (
     <div className="min-h-screen pt-24 pb-4 mb-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
@@ -349,6 +360,7 @@ export default function ModulePage() {
           <div className="lg:col-span-3 mb-10">
             {activeSectionData && (
               <SectionRenderer
+                totalSections={lesson.sections.length}
                 key={activeSection}
                 section={activeSectionData}
                 onComplete={(nextSection) => handleSectionComplete(activeSection, nextSection)}
@@ -372,19 +384,20 @@ export default function ModulePage() {
                   </div>
                 </div>
                 <DialogTitle className="text-center text-2xl font-bold text-green-600">Module {lesson.order} Complete!</DialogTitle>
-                <DialogDescription className="text-center text-gray-600 dark:text-gray-400">
+                <DialogDescription className="text-center text-gray-600 dark:text-gray-400 text wrap">
                   Congratulations! You've successfully completed the {lesson.title} module.
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter className="flex justify-center">
-                <div className="flex justify-center space-x-4">
+                <div className="flex justify-center space-x-4 gap-3 flex-wrap">
+                  {lesson.order < totalModules  && 
                   <Button
                     onClick={() => router.push(`/learn/cervical-cancer/module-${lesson.order + 1}`)}
                     className="gradient-orange-blue text-white hover-shadow-gradient"
                   >
                     Continue to Module {lesson.order + 1}
                     <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
+                  </Button>}
                   <Button variant="outline" onClick={() => window.location.reload()}>
                     Review Module
                   </Button>
@@ -393,6 +406,27 @@ export default function ModulePage() {
             </DialogContent>
           </Dialog>
         )}
+
+        {allSectionsCompleted  && 
+        // lesson.order < totalModules  &&
+          <Card>
+            <CardHeader className="text-sm text-gray-500">You've successfully completed the {lesson.title} module.</CardHeader>
+            <CardContent>
+              <div className="flex justify-center space-x-4 gap-3 flex-wrap">
+                {lesson.order < totalModules && <Button
+                  onClick={() => router.push(`/learn/cervical-cancer/module-${lesson.order + 1}`)}
+                  className="gradient-orange-blue text-white hover-shadow-gradient"
+                >
+                  Continue to Module {lesson.order + 1}
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>}
+                <Button variant="outline" onClick={() => window.location.reload()}>
+                  Review Module
+                </Button>
+              </div>
+            </CardContent>
+          </Card>  
+        }
 
         {/* Post Test Modal */}
         {/* <PostTestModal

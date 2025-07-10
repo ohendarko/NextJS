@@ -13,6 +13,7 @@ interface LearningCardProps {
     title: string
     content: string
     infographic?: string
+    order: number
   }
   isActive: boolean
   isCompleted: boolean
@@ -121,7 +122,7 @@ export default function LearningCard({ card, isActive, isCompleted, onComplete, 
             <div className="flex justify-between">
               <Button
                 onClick={() => onComplete("prev")}
-                disabled={card.id === 1}
+                disabled={card.order === 1}
                 className="gradient-orange-blue text-white hover-shadow-gradient"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />

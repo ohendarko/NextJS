@@ -21,16 +21,26 @@ interface SectionRendererProps {
       title: string
       content: string
       infographic?: string
+      order: number
     }[]
   }
   onComplete: (nextSection?: number) => void
   isUnlocked: boolean
+  totalSections: number
 }
 
-export default function SectionRenderer({ section, onComplete, isUnlocked }: SectionRendererProps) {
-  const [currentCard, setCurrentCard] = useState(0)
-  const [completedCards, setCompletedCards] = useState<number[]>([])
+  type Card = {
+    id: string
+    title: string
+    content: string
+    infographic?: string
+    order: number
+  }
 
+export default function SectionRenderer({ section, onComplete, isUnlocked, totalSections }: SectionRendererProps) {
+  const [currentCardOrder, setCurrentCardOrder] = useState(section.learningCards[0]?.order || 1)
+  const [animationDirection, setAnimationDirection] = useState<"next" | "prev">("next")
+  const [completedCards, setCompletedCards] = useState<number[]>([])
   const [showCompletionModal, setShowCompletionModal] = useState(false)
 
   useEffect(() => {
@@ -41,22 +51,34 @@ export default function SectionRenderer({ section, onComplete, isUnlocked }: Sec
   }, [completedCards, section.learningCards.length])
 
   const handleCardComplete = (direction: "next" | "prev") => {
-    if (!completedCards.includes(currentCard)) {
-      setCompletedCards((prev) => [...prev, currentCard])
-    }
+    const current = section.learningCards.find(c => c.order === currentCardOrder);
+    if (!current) return;
+
+    setAnimationDirection(direction);
 
     if (direction === "next") {
-      if (currentCard < section.learningCards.length - 1) {
-        setCurrentCard((prev) => prev + 1)
+      if (!completedCards.includes(current.order)) {
+        setCompletedCards((prev) => [...prev, current.order]);
+      }
+
+      if (currentCardOrder < section.learningCards.length) {
+        setCurrentCardOrder((prev) => prev + 1);
       }
     }
 
     if (direction === "prev") {
-      if (currentCard > 0) {
-        setCurrentCard((prev) => prev - 1)
+      if (currentCardOrder > 1) {
+        setCurrentCardOrder((prev) => prev - 1);
       }
     }
-  }
+  };
+
+
+
+  const currentCard = section.learningCards.find(card => card.order === currentCardOrder)
+  if (!currentCard) return null;
+
+
 
 
   const handleSectionComplete = () => {
@@ -110,23 +132,33 @@ export default function SectionRenderer({ section, onComplete, isUnlocked }: Sec
 
       {/* Learning Cards Carousel */}
       <div className="relative flex">
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
-            key={currentCard}
-            initial={{ x: 300, opacity: 0 }}
+            key={currentCard.order}
+            initial={{ x: animationDirection === "next" ? 300 : -300, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -300, opacity: 0 }}
-            transition={{ duration: 0.1 }}
+            // exit={{ x: animationDirection === "next" ? -300 : 300, opacity: 0 }}
+            transition={{ duration: 0.1, ease: "easeInOut" }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            onDragEnd={(e, info) => {
+              if (info.offset.x < -100) {
+                handleCardComplete("next")
+              } else if (info.offset.x > 100) {
+                handleCardComplete("prev")
+              }
+            }}
             className="w-full h-full"
           >
-            <LearningCard
-              key={section.learningCards[currentCard].id}
-              card={section.learningCards[currentCard]}
-              isActive
-              isCompleted={completedCards.includes(currentCard)}
-              onComplete={handleCardComplete}
-              canExpand
-            />
+          <LearningCard
+            key={currentCard.order}
+            card={currentCard}
+            isActive
+            isCompleted={completedCards.includes(currentCardOrder)}
+            onComplete={handleCardComplete}
+            canExpand
+          />
+
           </motion.div>
         </AnimatePresence>
       </div>
@@ -153,6 +185,19 @@ export default function SectionRenderer({ section, onComplete, isUnlocked }: Sec
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {completedCards.length === section.learningCards.length && 
+      section.order < totalSections && 
+        <Card>
+          <CardHeader className="text-sm text-gray-500">You've completed this section. Let's move to the next one.</CardHeader>
+          <CardContent  className="flex justify-center items-center">
+            <Button onClick={handleSectionComplete} className="gradient-orange-blue text-white hover-shadow-gradient">
+              Continue to Next Section
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </CardContent>
+        </Card>  
+      }
     </div>
   )
 }
