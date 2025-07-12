@@ -100,7 +100,7 @@ export default function LoginPage() {
                   type="email"
                   required
                   value={formData.email}
-                  disabled={isLoading}
+                  disabled={isLoading || isLoading}
                   onChange={handleInputChange}
                   className="focus:ring-orange-500 focus:border-orange-500"
                 />
@@ -116,7 +116,7 @@ export default function LoginPage() {
                     required
                     value={formData.password}
                     onChange={handleInputChange}
-                    disabled={isLoading}
+                    disabled={isLoading || isLoading}
                     className="focus:ring-orange-500 focus:border-orange-500 pr-10"
                   />
                   <button
@@ -139,7 +139,7 @@ export default function LoginPage() {
                 </Link>
               </div>
 
-              <Button type="submit" className="w-full gradient-orange-blue text-white hover-shadow-gradient group" disabled={isLoading}>
+              <Button type="submit" className="w-full gradient-orange-blue text-white hover-shadow-gradient group" disabled={isLoading || isLoading}>
                 {isLoading && <Spinner />}
                 Sign In
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -149,14 +149,13 @@ export default function LoginPage() {
             <div className="flex flex-col sm:flex-row gap-3 mt-4">
               <Button
                 onClick={async () => {
-                  setIsLoading(true);
+
                   setLoading(true);
                   try {
                     await signIn("google", { callbackUrl: "/learn/cervical-cancer" });
                     // You won't usually hit here because signIn will redirect
                   } catch (err) {
                     console.error("Sign in failed", err);
-                    setIsLoading(false);
                     setLoading(false);
                   }
                 }}
