@@ -39,7 +39,7 @@ export default function Header() {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/login">
+            <Link href="/learn">
               <Button variant="ghost" className="text-gray-700 dark:text-gray-300">
                 Login
               </Button>
@@ -78,7 +78,7 @@ export default function Header() {
                 Contact
               </Link>
               <div className="flex flex-col space-y-2 pt-4">
-                <Link href="/login">
+                <Link href="/learn">
                   <Button variant="ghost" className="w-full justify-start">
                     Login
                   </Button>

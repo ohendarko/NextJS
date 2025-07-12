@@ -22,6 +22,9 @@ import * as Icons from "lucide-react"
 import { LucideProps } from "lucide-react"
 import { ComponentType } from "react"
 import Skeleton from "@mui/material/Skeleton"
+import { toast } from "@/hooks/use-toast"
+import { signOut } from "next-auth/react"
+import { useRouter } from "next/navigation"
 
 
 type ModuleSummary = {
@@ -144,6 +147,7 @@ type ModuleProgress = {
 }
 
 export default function CervicalCancerLearnPage() {
+  const router = useRouter()
   const [modules, setModules] = useState<ModuleSummary[]>([]);
   const [moduleProgress, setModuleProgress] = useState<ModuleProgress | null>(null)
 
@@ -197,14 +201,32 @@ export default function CervicalCancerLearnPage() {
   }
 
   const gotToModuleClick = (name: string, order: number) => {
-  if (moduleProgress && moduleProgress[order]?.unlocked) {
-    window.location.href = `/learn/cervical-cancer/${name}`
+    if (moduleProgress && moduleProgress[order]?.unlocked) {
+      window.location.href = `/learn/cervical-cancer/${name}`
+    }
   }
-}
+
+  const handleLogout = async () => {
+    await signOut({
+      redirect: false, // prevent automatic redirect so you can control it
+    });
+
+    // localStorage.removeItem(`pharmabridge_cart_${userId}`);
+
+    toast({
+      title: "Logged out",
+      description: "You have been signed out.",
+    });
+
+    // setIsLoggedIn(false); // update your local state if you track login status
+
+    router.push("/learn"); // redirect after sign out
+  };
 
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-0 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+      <Button variant="outline" onClick={handleLogout} className="">Log Out</Button>
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-8">

@@ -5,6 +5,8 @@ import "../globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "@/components/header"
 import { ThemeToggle } from "@/components/theme-toggle"
+import SessionWrapper from "@/providers/SessionWrapper"
+
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -19,10 +21,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <Header />
-          <ThemeToggle />
-          {children}
-        </ThemeProvider>
+    <SessionWrapper>
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <Header />
+        <ThemeToggle />
+        {children}
+      </ThemeProvider>
+    </SessionWrapper>
   )
 }

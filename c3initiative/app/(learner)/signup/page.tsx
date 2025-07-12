@@ -11,10 +11,13 @@ import Link from "next/link"
 import { ArrowRight, BookOpen, Eye, EyeOff } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { toast } from "@/hooks/use-toast"
+import Spinner from "@/components/Spinner"
 
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -166,6 +169,7 @@ export default function SignUpPage() {
                     value={formData.firstName}
                     onChange={handleInputChange}
                     className="focus:ring-orange-500 focus:border-orange-500"
+                    disabled={isLoading}
                   />
                 </div>
                 <div className="space-y-2">
@@ -177,6 +181,7 @@ export default function SignUpPage() {
                     required
                     value={formData.lastName}
                     onChange={handleInputChange}
+                    disabled={isLoading}
                     className="focus:ring-orange-500 focus:border-orange-500"
                   />
                 </div>
@@ -191,12 +196,21 @@ export default function SignUpPage() {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
+                  disabled={isLoading}
                   className="focus:ring-orange-500 focus:border-orange-500"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password<span className="text-red-700">*</span></Label>
+                <Label htmlFor="password">
+                  Password<span className="text-red-700"></span>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Password must be at least 8 characters. <br/>
+                    Must contain at least one letter. <br/>
+                    Must contain at least one digit. <br/>
+                    Must contain at least one special character. [ ! @ # $ % ^ & * ( ) _ - ]
+                  </p>
+                  </Label>
                 <div className="relative">
                   <Input
                     id="password"
@@ -205,11 +219,13 @@ export default function SignUpPage() {
                     required
                     value={formData.password}
                     onChange={handleInputChange}
+                    disabled={isLoading}
                     className="focus:ring-orange-500 focus:border-orange-500 pr-10"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
+                    disabled={isLoading}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2"
                   >
                     {showPassword ? (
@@ -227,15 +243,17 @@ export default function SignUpPage() {
                   <Input
                     id="confirmPassword"
                     name="confirmPassword"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     required
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
+                    disabled={isLoading}
                     className="focus:ring-orange-500 focus:border-orange-500"
                   />
                   <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
+                      disabled={isLoading}
                       className="absolute right-3 top-1/2 transform -translate-y-1/2"
                     >
                       {showPassword ? (
@@ -247,7 +265,8 @@ export default function SignUpPage() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full gradient-orange-blue text-white hover-shadow-gradient group">
+              <Button type="submit" className="w-full gradient-orange-blue text-white hover-shadow-gradient group " disabled={isLoading}>
+                {isLoading && <Spinner />}
                 Create Account
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -259,13 +278,23 @@ export default function SignUpPage() {
 
             <div className="flex flex-col sm:flex-row gap-3 mt-4">
               <Button
-                onClick={() => {
-                  signIn("google", { callbackUrl: "/learn/cervical-cancer" });
-                 
+                onClick={async () => {
+                  setIsLoading(true);
+                  setLoading(true);
+                  try {
+                    await signIn("google", { callbackUrl: "/learn/cervical-cancer" });
+                    // You won't usually hit here because signIn will redirect
+                  } catch (err) {
+                    console.error("Sign in failed", err);
+                    setIsLoading(false);
+                    setLoading(false);
+                  }
                 }}
                 variant="outline"
                 className="flex-1 flex items-center justify-center gap-2"
+                disabled={loading || isLoading}
               >
+                {loading && <Spinner />}
                 <span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
                   <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -278,12 +307,12 @@ export default function SignUpPage() {
                 Continue with Google
               </Button>
               
-              </div>
+            </div>
 
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600 dark:text-gray-300">
                 Already have an account?{" "}
-                <Link href="/login" className="text-orange-500 hover:text-orange-600 font-medium">
+                <Link href="/learn" className="text-orange-500 hover:text-orange-600 font-medium">
                   Sign in here
                 </Link>
               </p>

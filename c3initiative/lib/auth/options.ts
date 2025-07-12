@@ -73,16 +73,41 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
+    async signIn({ user, account }) {
+      if (!user?.email) return false;
+
+      const existingUser = await prisma.user.findUnique({
+        where: { email: user.email },
+      });
+
+      if (!existingUser) {
+        await prisma.user.create({
+          data: {
+            email: user.email,
+            name: user.name ?? "",
+            firstName: user.name?.split(" ")[0] ?? "",
+            lastName: user.name?.split(" ")[1] ?? "",
+          },
+        });
+      }
+
+      return true;
+    },
+
     async jwt({ token, account }) {
       if (account) {
         token.accessToken = account.access_token;
         token.refreshToken = account.refresh_token;
         token.expiresAt = account.expires_at;
         token.id = account.providerAccountId;
-        token.email = account.provider === "google" ? (account.input as { email?: string })?.email ?? token.email : token.email;
+        token.email =
+          account.provider === "google"
+            ? (account.input as { email?: string })?.email ?? token.email
+            : token.email;
       }
       return token;
     },
+
     async session({ session, token }) {
       session.user.id = token.id as string;
       session.user.email = token.email as string;
