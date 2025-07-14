@@ -29,9 +29,9 @@ export default function Header() {
             <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors">
               About
             </Link>
-            <Link href="/learn/cervical-cancer" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors">
+            {/* <Link href="/learn/cervical-cancer" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors">
               Modules
-            </Link>
+            </Link> */}
             <Link href="/contact" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors">
               Contact
             </Link>
@@ -65,12 +65,12 @@ export default function Header() {
               <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors">
                 About
               </Link>
-              <Link
+              {/* <Link
                 href="/learn/cervical-cancer"
                 className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors"
               >
                 Modules
-              </Link>
+              </Link> */}
               <Link
                 href="/contact"
                 className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors"
