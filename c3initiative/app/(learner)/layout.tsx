@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import Header from "@/components/header"
 import { ThemeToggle } from "@/components/theme-toggle"
 import SessionWrapper from "@/providers/SessionWrapper"
+import { LearnerProvider } from "@/context/LearnerContext"
 
 
 const inter = Inter({ subsets: ["latin"] })
@@ -22,11 +23,13 @@ export default function RootLayout({
 }) {
   return (
     <SessionWrapper>
-      <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-        <Header />
-        <ThemeToggle />
-        {children}
-      </ThemeProvider>
+      <LearnerProvider>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <Header />
+          <ThemeToggle />
+          {children}
+        </ThemeProvider>
+      </LearnerProvider>
     </SessionWrapper>
   )
 }

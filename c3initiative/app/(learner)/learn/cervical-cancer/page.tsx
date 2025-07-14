@@ -23,9 +23,10 @@ import { LucideProps } from "lucide-react"
 import { ComponentType } from "react"
 import Skeleton from "@mui/material/Skeleton"
 import { toast } from "@/hooks/use-toast"
-import { signOut } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Spinner from "@/components/Spinner"
+import { useLearner } from "@/context/LearnerContext"
 
 
 type ModuleSummary = {
@@ -149,13 +150,25 @@ type ModuleProgress = {
 
 export default function CervicalCancerLearnPage() {
   const router = useRouter()
+  const {data: session, status} = useSession()
   const [modules, setModules] = useState<ModuleSummary[]>([]);
   const [moduleProgress, setModuleProgress] = useState<ModuleProgress | null>(null)
+  const { userProfile, loading } = useLearner()
 
   const [isLoading, setIsLoading] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [localloading, setLoading] = useState(false)
 
   useEffect(() => {
+    if (status === "loading") {
+      setLoading(true)
+    }
+    
+    if (status !== "authenticated") {
+      router.push("/learn")
+      return
+    }
+
+    
     const fetchModuleSummary = async () => {
       try {
         setIsLoading(true)
@@ -234,7 +247,7 @@ export default function CervicalCancerLearnPage() {
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-0 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
-      <Button variant="outline" onClick={handleLogout} className="" disabled={loading} > {loading && <Spinner />} Log Out</Button>
+      <Button variant="outline" onClick={handleLogout} className="" disabled={localloading} > {localloading && <Spinner />} Log Out</Button>
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-8">

@@ -24,6 +24,8 @@ import Link from "next/link"
 // import InteractiveProgressBar from "@/components/interactive-progress-bar"
 import Skeleton from "@mui/material/Skeleton"
 import SectionRenderer from "@/components/SectionRenderer"
+import { useProtectedModuleRoute } from "@/hooks/useProtectedModuleRoute"
+import { useLearner } from "@/context/LearnerContext"
 // import PostTestModal from "@/components/post-test-modal"
 
 type LearningCard = {
@@ -64,56 +66,56 @@ type Module = {
   postTest: PostTest[]
 }
 
-const modules = [
-  {
-    id: 1,
-    title: "Introduction to Cervical Cancer",
-    shortTitle: "Introduction",
-    completed: false,
-    unlocked: true,
-    icon: BookOpen,
-  },
-  {
-    id: 2,
-    title: "HPV and Cervical Cancer Connection",
-    shortTitle: "HPV Connection",
-    completed: false,
-    unlocked: false,
-    icon: Microscope,
-  },
-  {
-    id: 3,
-    title: "Screening and Early Detection",
-    shortTitle: "Screening",
-    completed: false,
-    unlocked: false,
-    icon: Search,
-  },
-  {
-    id: 4,
-    title: "Prevention Strategies",
-    shortTitle: "Prevention",
-    completed: false,
-    unlocked: false,
-    icon: Shield,
-  },
-  {
-    id: 5,
-    title: "Treatment and Management",
-    shortTitle: "Treatment",
-    completed: false,
-    unlocked: false,
-    icon: Stethoscope,
-  },
-  {
-    id: 6,
-    title: "Community Health and Advocacy",
-    shortTitle: "Community Health",
-    completed: false,
-    unlocked: false,
-    icon: Users,
-  },
-]
+// const modules = [
+//   {
+//     id: 1,
+//     title: "Introduction to Cervical Cancer",
+//     shortTitle: "Introduction",
+//     completed: false,
+//     unlocked: true,
+//     icon: BookOpen,
+//   },
+//   {
+//     id: 2,
+//     title: "HPV and Cervical Cancer Connection",
+//     shortTitle: "HPV Connection",
+//     completed: false,
+//     unlocked: false,
+//     icon: Microscope,
+//   },
+//   {
+//     id: 3,
+//     title: "Screening and Early Detection",
+//     shortTitle: "Screening",
+//     completed: false,
+//     unlocked: false,
+//     icon: Search,
+//   },
+//   {
+//     id: 4,
+//     title: "Prevention Strategies",
+//     shortTitle: "Prevention",
+//     completed: false,
+//     unlocked: false,
+//     icon: Shield,
+//   },
+//   {
+//     id: 5,
+//     title: "Treatment and Management",
+//     shortTitle: "Treatment",
+//     completed: false,
+//     unlocked: false,
+//     icon: Stethoscope,
+//   },
+//   {
+//     id: 6,
+//     title: "Community Health and Advocacy",
+//     shortTitle: "Community Health",
+//     completed: false,
+//     unlocked: false,
+//     icon: Users,
+//   },
+// ]
 
 
 type SectionProgress = {
@@ -121,6 +123,9 @@ type SectionProgress = {
 }
 
 export default function ModulePage() {
+  const { loading } = useLearner()
+  useProtectedModuleRoute()
+
   const router = useRouter()
   const [activeSection, setActiveSection] = useState(1)
   const [sectionProgress, setSectionProgress] = useState<SectionProgress>({})
@@ -134,6 +139,8 @@ export default function ModulePage() {
 
   const  params = useParams()
   const { module } = params as  {module: string}
+
+
 
   useEffect(() => {
     const fetchModule = async () => {
@@ -219,6 +226,7 @@ export default function ModulePage() {
     }
   }, [completedSections, lesson, hasShownCompletionModal])
 
+  if (loading) return <Skeleton variant="rectangular" height={500} / >
 
   return (
     <div className="min-h-screen pt-24 pb-4 mb-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
