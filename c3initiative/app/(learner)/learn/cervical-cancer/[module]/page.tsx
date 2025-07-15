@@ -193,7 +193,7 @@ export default function ModulePage() {
     }
 
     const allCompleted = lesson?.sections.every(
-      (section) => section.order === sectionId || sectionProgress[section.order]?.completed
+      (section) => section.order === sectionId || sectionCompleted(section.name)
     )
 
     if (allCompleted) {
@@ -201,12 +201,33 @@ export default function ModulePage() {
     }
   }
 
-  const sectionCompleted = lesson
-    ? lesson.sections.some(section => userProfile?.completedSections?.includes(section.name))
-    : false
-  const isSectionCompleted = (sectionName: string): boolean => {
+  // const sectionCompleted = lesson
+  //   ? lesson.sections.some(section => userProfile?.completedSections?.includes(section.name))
+  //   : false
+
+  const sectionCompleted = (sectionName: string): boolean => {
     return userProfile?.completedSections?.includes(sectionName) ?? false
   }
+
+  const sectionUnlocked = (sectionName: string): boolean => {
+    if (!userProfile?.completedSections) return false
+
+    if (userProfile.completedSections.includes(sectionName)) return true
+
+    const match = sectionName.match(/^section-(\d+)-(\d+)$/)
+    if (!match) return false
+
+    const module = parseInt(match[1], 10)
+    const section = parseInt(match[2], 10)
+
+    // First section of any module is always unlocked
+    if (section === 1) return true
+
+    // Determine previous section in the same module
+    const previousSectionName = `section-${module}-${section - 1}`
+    return userProfile.completedSections.includes(previousSectionName)
+  }
+
 
   const handlePostTestPass = () => {
     setShowPostTest(false)
@@ -325,17 +346,17 @@ export default function ModulePage() {
                     {/* Path Node */}
                     <div
                       className={`relative z-10 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${
-                        sectionProgress[section.order]?.completed
+                        sectionCompleted(section.name)
                           ? "bg-green-500 text-white"
-                          : sectionProgress[section.order]?.unlocked
+                          : sectionUnlocked(section.name)
                             ? "gradient-orange-blue text-white"
                             : "bg-gray-300 text-gray-500"
                       }`}
                     >
-                      {(loading || isLoading) ? <Skeleton variant="circular" width={70} height={70} /> : sectionProgress[section.order]?.completed ? (
+                      {(loading || isLoading) ? <Skeleton variant="circular" width={70} height={70} /> : sectionCompleted(section.name) ? (
                         <CheckCircle className="w-4 h-4" />
-                      ) : sectionProgress[section.order]?.unlocked ? (
-                        section.id
+                      ) : sectionUnlocked(section.name) ? (
+                        section.order
                       ) : (
                         <Lock className="w-3 h-3" />
                       )}
@@ -344,15 +365,15 @@ export default function ModulePage() {
                     {/* Section Tab */}
                     <div
                       className={`ml-3 flex-1 cursor-pointer transition-all duration-300 ${
-                        sectionProgress[section.order]?.unlocked ? "hover:scale-105" : "opacity-50 cursor-not-allowed"
+                        sectionUnlocked(section.name) ? "hover:scale-105" : "opacity-50 cursor-not-allowed"
                       }`}
-                      onClick={() => {sectionProgress[section.order]?.unlocked && setActiveSection(section.order); console.log(completedSections)}}
+                      onClick={() => {sectionUnlocked(section.name) && setActiveSection(section.order); console.log(completedSections)}}
                     >
                       <Card
                         className={`${
                           activeSection === section.order
                             ? "ring-2 ring-orange-500 shadow-lg"
-                            : sectionProgress[section.order]?.unlocked
+                            : sectionUnlocked(section.name)
                               ? "hover-shadow-gradient"
                               : ""
                         }`}
@@ -360,7 +381,7 @@ export default function ModulePage() {
                         <CardContent className="p-3">
                           {(loading || isLoading) ? <Skeleton width={400} height={90} /> : <h5 className="font-medium text-sm mb-1">{section.title}</h5>}
                           {(loading || isLoading) ? <Skeleton width={600} /> : <p className="text-xs text-gray-600 dark:text-gray-400">{section.description}</p>}
-                          {sectionProgress[section.order]?.completed && (
+                          {sectionCompleted(section.name) && (
                             <Badge className="bg-green-100 text-green-800 text-xs mt-2">Complete</Badge>
                           )}
                         </CardContent>
@@ -380,7 +401,7 @@ export default function ModulePage() {
                 key={activeSection}
                 section={activeSectionData}
                 onComplete={(nextSection) => handleSectionComplete(activeSection, nextSection)}
-                isUnlocked={sectionProgress[activeSection]?.unlocked || false}
+                isUnlocked={sectionUnlocked(activeSectionData.name) || false}
               />
             )}
           </div>
