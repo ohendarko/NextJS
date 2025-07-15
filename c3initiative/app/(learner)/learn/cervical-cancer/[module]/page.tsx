@@ -26,6 +26,7 @@ import Skeleton from "@mui/material/Skeleton"
 import SectionRenderer from "@/components/SectionRenderer"
 import { useProtectedModuleRoute } from "@/hooks/useProtectedModuleRoute"
 import { useLearner } from "@/context/LearnerContext"
+import { useSession } from "next-auth/react"
 // import PostTestModal from "@/components/post-test-modal"
 
 type LearningCard = {
@@ -67,56 +68,6 @@ type Module = {
   postTest: PostTest[]
 }
 
-// const modules = [
-//   {
-//     id: 1,
-//     title: "Introduction to Cervical Cancer",
-//     shortTitle: "Introduction",
-//     completed: false,
-//     unlocked: true,
-//     icon: BookOpen,
-//   },
-//   {
-//     id: 2,
-//     title: "HPV and Cervical Cancer Connection",
-//     shortTitle: "HPV Connection",
-//     completed: false,
-//     unlocked: false,
-//     icon: Microscope,
-//   },
-//   {
-//     id: 3,
-//     title: "Screening and Early Detection",
-//     shortTitle: "Screening",
-//     completed: false,
-//     unlocked: false,
-//     icon: Search,
-//   },
-//   {
-//     id: 4,
-//     title: "Prevention Strategies",
-//     shortTitle: "Prevention",
-//     completed: false,
-//     unlocked: false,
-//     icon: Shield,
-//   },
-//   {
-//     id: 5,
-//     title: "Treatment and Management",
-//     shortTitle: "Treatment",
-//     completed: false,
-//     unlocked: false,
-//     icon: Stethoscope,
-//   },
-//   {
-//     id: 6,
-//     title: "Community Health and Advocacy",
-//     shortTitle: "Community Health",
-//     completed: false,
-//     unlocked: false,
-//     icon: Users,
-//   },
-// ]
 
 
 type SectionProgress = {
@@ -128,6 +79,9 @@ export default function ModulePage() {
   useProtectedModuleRoute()
 
   const router = useRouter()
+  const { data: session } = useSession()
+  const userEmail = session?.user?.email
+
   const [activeSection, setActiveSection] = useState(1)
   const [sectionProgress, setSectionProgress] = useState<SectionProgress>({})
   const [showPostTest, setShowPostTest] = useState(false)
@@ -180,24 +134,73 @@ export default function ModulePage() {
   // console.log('totalmodules',totalModules)
   // console.log(lesson)
   // console.log('sectionprogress', sectionProgress)
+
+  const saveProgressLocally = (sectionName: string, email: string) => {
+    const key = `c3-progress-${email}`
+
+    // Try to load existing progress
+    let progress: string[] = []
+
+    const existing = localStorage.getItem(key)
+    if (existing) {
+      try {
+        progress = JSON.parse(existing)
+      } catch (err) {
+        console.warn("Failed to parse local progress, resetting:", err)
+        progress = []
+      }
+    }
+
+    // Add section only if not already there
+    if (!progress.includes(sectionName)) {
+      progress.push(sectionName)
+      localStorage.setItem(key, JSON.stringify(progress))
+    }
+  }
+
+
   
   const handleSectionComplete = (sectionId: number, nextSection?: number) => {
+    if (!lesson || !userEmail) return
+
+    const currentSection = lesson.sections.find((s) => s.order === sectionId)
+    if (!currentSection) return
+
+    // Save progress locally
+    saveProgressLocally(currentSection.name, userEmail)
+
+    // Update local UI state
     setSectionProgress((prev) => ({
       ...prev,
       [sectionId]: { ...prev[sectionId], completed: true },
       [sectionId + 1]: { ...prev[sectionId + 1], unlocked: true },
     }))
 
-    if (nextSection && lesson && nextSection <= lesson.sections.length) {
+    // Move to next section
+    if (nextSection && nextSection <= lesson.sections.length) {
       setActiveSection(nextSection)
     }
 
-    const allCompleted = lesson?.sections.every(
+    // Check if all sections are completed
+    const allCompleted = lesson.sections.every(
       (section) => section.order === sectionId || sectionCompleted(section.name)
     )
 
     if (allCompleted) {
       setShowPostTest(true)
+
+      // 🔄 Fire-and-forget background sync to database
+      const sectionNames = lesson.sections.map((s) => s.name)
+      fetch("/api/user/update", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          completedSections: sectionNames,
+          addOn: true,
+        }),
+      }).catch((err) => {
+        console.error("Failed to sync completed sections:", err)
+      })
     }
   }
 
