@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -24,6 +24,14 @@ export default function LoginPage() {
   })
   const router = useRouter()
   const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if(status === 'authenticated') {
+      setIsLoading(true)
+      setLoading(true)
+      router.push('/learn/cervical-cancer')
+    }
+  })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

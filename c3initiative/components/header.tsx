@@ -2,11 +2,28 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Menu, X, BookOpen } from "lucide-react"
+import { useLearner } from "@/context/LearnerContext"
+import { useRouter } from "next/navigation"
+import { useSession } from "next-auth/react"
 
 export default function Header() {
+  const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedOut, setIsLoggedOut] = useState(true)
+  const {data: session, status} = useSession()
+
+  useEffect(() => {
+    if(status === 'authenticated') {
+      setIsLoggedIn(true)
+    } else {
+      setIsLoggedIn(false)
+    }
+  })
+
+  console.log(isLoggedIn)
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
@@ -29,9 +46,9 @@ export default function Header() {
             <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors">
               About
             </Link>
-            {/* <Link href="/learn/cervical-cancer" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors">
+            {isLoggedIn && <Link href="/learn/cervical-cancer" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors">
               Modules
-            </Link> */}
+            </Link>}
             <Link href="/contact" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors">
               Contact
             </Link>
@@ -39,11 +56,11 @@ export default function Header() {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/learn">
+            {!isLoggedIn && <Link href="/learn">
               <Button variant="ghost" className="text-gray-700 dark:text-gray-300">
                 Login
               </Button>
-            </Link>
+            </Link>}
             <Link href="/signup">
               <Button className="gradient-orange-blue text-white hover-shadow-gradient">Get Started</Button>
             </Link>
@@ -65,12 +82,12 @@ export default function Header() {
               <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors">
                 About
               </Link>
-              {/* <Link
+              {isLoggedIn && <Link
                 href="/learn/cervical-cancer"
                 className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors"
               >
                 Modules
-              </Link> */}
+              </Link>}
               <Link
                 href="/contact"
                 className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors"
@@ -78,11 +95,11 @@ export default function Header() {
                 Contact
               </Link>
               <div className="flex flex-col space-y-2 pt-4">
-                <Link href="/learn">
+                {!isLoggedIn && <Link href="/learn">
                   <Button variant="ghost" className="w-full justify-start">
                     Login
                   </Button>
-                </Link>
+                </Link>}
                 <Link href="/signup">
                   <Button className="w-full gradient-orange-blue text-white">Get Started</Button>
                 </Link>

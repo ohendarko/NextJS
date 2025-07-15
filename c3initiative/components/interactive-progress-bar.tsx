@@ -17,6 +17,8 @@ import {
   CheckCircle,
   Lock,
 } from "lucide-react"
+import { useLearner } from "@/context/LearnerContext"
+import Skeleton from "@mui/material/Skeleton"
 
 interface Module {
   id: string;
@@ -72,13 +74,25 @@ export default function InteractiveProgressBar({
   onModuleClick,
   showCertificate = true,
 }: InteractiveProgressBarProps) {
+  const { userProfile, loading } = useLearner()
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
-  const completedModules = modules.filter((m) => m.completed).length
+  const completedModules = userProfile?.completedModules?.length ?? 0
   const totalModules = modules.length
   const allModulesCompleted = completedModules === totalModules
+
+  const moduleUnlocked = (moduleName: string) => {
+    return (
+      userProfile?.currentModule === moduleName ||
+      userProfile?.completedModules?.includes(moduleName)
+    )
+  }
+
+  const moduleCompleted = (moduleName: string) => userProfile?.completedModules?.includes(moduleName) ?? false
+
+  
 
   // Add certificate as final step if enabled
   const progressItems = [
@@ -99,6 +113,7 @@ export default function InteractiveProgressBar({
             unlocked: allModulesCompleted,
             current: false,
             isCertificate: true,
+            order: totalModules + 1
           },
         ]
       : []),
@@ -160,16 +175,16 @@ export default function InteractiveProgressBar({
       <CardContent className="p-3">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h3 className="text-lg font-semibold">Learning Progress</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            {loading ? <Skeleton width={200}/> : <h3 className="text-lg font-semibold">Learning Progress</h3>}
+            {loading ? <Skeleton width={200} /> : <p className="text-sm text-gray-600 dark:text-gray-400">
               {completedModules} of {totalModules} modules completed
-            </p>
+            </p>}
           </div>
           <div className="flex items-center space-x-2">
-            <Badge variant="outline" className="text-xs">
+            {loading ? <Skeleton width={100}/> : <Badge variant="outline" className="text-xs">
               {Math.round((completedModules / totalModules) * 100)}% Complete
-            </Badge>
-            {allModulesCompleted && showCertificate && (
+            </Badge>}
+            {loading ? <Skeleton width={200} /> : allModulesCompleted && showCertificate && (
               <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 text-xs">
                 <Award className="w-3 h-3 mr-1" />
                 Certificate Ready!
@@ -210,11 +225,11 @@ export default function InteractiveProgressBar({
           >
             <div className="flex items-center space-x-0 min-w-max px-2 relative">
               {/* Background Roadmap Line */}
-              <div className="absolute top-8 left-12 right-12 h-1 bg-gray-200 dark:bg-gray-700 rounded-full z-0"></div>
+              <div className="absolute top-8 left-12 right-11 h-1 bg-gray-200 dark:bg-gray-700 rounded-full z-0"></div>
 
               {/* Dynamic Progress Line */}
               <div
-                className="absolute top-8 left-8 h-1 bg-gradient-to-r from-orange-500 via-blue-500 to-green-500 rounded-full z-0 transition-all duration-1000 ease-out"
+                className="absolute top-8 left-12 h-1 bg-gradient-to-r from-orange-500 via-blue-500 to-green-500 rounded-full z-0 transition-all duration-1000 ease-out"
                 style={{
                   width: `${Math.max(0, (completedModules / totalModules) * 100)}%`,
                   maxWidth: `calc(100% - 4rem)`,
@@ -223,7 +238,7 @@ export default function InteractiveProgressBar({
 
               {progressItems.map((item, index) => {
                 const IconComponent = item.icon
-                const isCurrentModule = userdata.currentModule === item.name
+                const isCurrentModule = userProfile?.currentModule === item.name
                 const isClickable = item.unlocked && !item.isCertificate && onModuleClick
 
                 return (
@@ -231,21 +246,21 @@ export default function InteractiveProgressBar({
                     {/* Progress Item */}
                     <div className="flex flex-col items-center space-y-2 px-4">
                       {/* Circle with Icon */}
-                      <div
+                      {loading ? <Skeleton variant="circular" width={70} height={70} /> : <div
                         className={`relative w-16 h-16 rounded-full flex items-center justify-center border-4 transition-all duration-300 ${
-                          item.completed
+                          moduleCompleted(item.name)
                             ? "bg-green-500 border-green-500 shadow-lg"
                             : isCurrentModule
                               ? "gradient-orange-blue border-transparent shadow-lg scale-110"
-                              : item.unlocked
+                              : moduleUnlocked(item.name)
                                 ? "gradient-orange-blue border-transparent"
                                 : "bg-gray-300 border-gray-300"
                         } ${isClickable ? "cursor-pointer hover:scale-105" : ""}`}
-                        onClick={() => isClickable && onModuleClick(Number(item.id))}
+                        onClick={() => isClickable && onModuleClick(Number(item.order))}
                       >
-                        {item.completed ? (
+                        {moduleCompleted(item.name) ? (
                           <CheckCircle className="w-8 h-8 text-white" />
-                        ) : item.unlocked ? (
+                        ) : moduleUnlocked(item.name) ? (
                           <IconComponent className="w-8 h-8 text-white" />
                         ) : (
                           <Lock className="w-8 h-8 text-gray-500" />
@@ -257,7 +272,7 @@ export default function InteractiveProgressBar({
                         )}
 
                         {/* Completion Badge */}
-                        {item.completed && (
+                        {moduleCompleted(item.name) && (
                           <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center">
                             <CheckCircle className="w-4 h-4 text-white" />
                           </div>
@@ -267,7 +282,7 @@ export default function InteractiveProgressBar({
                         {isCurrentModule && (
                           <div className="absolute inset-0 rounded-full border-4 border-orange-400 animate-ping opacity-30"></div>
                         )}
-                      </div>
+                      </div>}
 
                       {/* Module Info */}
                       <div className="text-center min-w-[120px]">
@@ -275,43 +290,43 @@ export default function InteractiveProgressBar({
                           className={`text-xs font-medium ${
                             isCurrentModule
                               ? "text-orange-600 dark:text-orange-400"
-                              : item.completed
+                              : moduleCompleted(item.name)
                                 ? "text-green-600 dark:text-green-400"
-                                : item.unlocked
+                                : moduleUnlocked(item.name)
                                   ? "text-gray-900 dark:text-gray-100"
                                   : "text-gray-500"
                           }`}
                         >
-                          {item.isCertificate ? "Certificate" : `Module ${index + 1}`}
+                          {loading ? <Skeleton width={100} /> : item.isCertificate ? "Certificate" : `Module ${index + 1}`}
                         </p>
                         <p
                           className={`text-xs ${
                             isCurrentModule
                               ? "text-orange-500 dark:text-orange-300"
-                              : item.completed
+                              : moduleCompleted(item.name)
                                 ? "text-green-500 dark:text-green-300"
-                                : item.unlocked
+                                : moduleUnlocked(item.name)
                                   ? "text-gray-700 dark:text-gray-300"
                                   : "text-gray-400"
                           }`}
                         >
-                          {item.shortTitle}
+                          {loading ? <Skeleton width={100} /> : item.shortTitle}
                         </p>
 
                         {/* Status Badge */}
                         {isCurrentModule && (
                           <Badge className="mt-1 bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300 text-xs">
-                            Current
+                            {loading ? <Skeleton width={100} /> : "Current"}
                           </Badge>
                         )}
-                        {item.completed && !isCurrentModule && (
+                        {moduleCompleted(item.name) && !isCurrentModule && (
                           <Badge className="mt-1 bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 text-xs">
-                            Complete
+                            {loading ? <Skeleton width={100} /> : "Complete"}
                           </Badge>
                         )}
-                        {!item.unlocked && (
+                        {!moduleUnlocked(item.name) && (
                           <Badge variant="secondary" className="mt-1 text-xs">
-                            Locked
+                            {loading ? <Skeleton width={100} /> : "Locked"}
                           </Badge>
                         )}
                       </div>
@@ -323,7 +338,7 @@ export default function InteractiveProgressBar({
                         {/* Progress Dot */}
                         <div
                           className={`w-2 h-2 rounded-full transition-all duration-500 ${
-                            item.completed
+                            moduleCompleted(item.name)
                               ? "bg-green-400 shadow-lg"
                               : isCurrentModule
                                 ? "bg-orange-400 animate-pulse shadow-md"
@@ -344,19 +359,19 @@ export default function InteractiveProgressBar({
           <div className="flex flex-wrap space-x-4 mb-2">
             <div className="flex items-center space-x-1">
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span>Completed</span>
+              {loading ? <Skeleton width={100} /> : <span>Completed</span>}
             </div>
             <div className="flex items-center space-x-1">
               <div className="w-3 h-3 gradient-orange-blue rounded-full !ml-0"></div>
-              <span>Current/Available</span>
+              {loading ? <Skeleton width={100} /> : <span>Current/Available</span>}
             </div>
             <div className="flex items-center space-x-1">
               <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
-              <span>Locked</span>
+              {loading ? <Skeleton width={100} /> : <span>Locked</span>}
             </div>
             <div className="flex items-center space-x-1">
               <div className="w-8 h-1 bg-gradient-to-r from-orange-500 to-green-500 rounded-full"></div>
-              <span>Learning Path</span>
+              {loading ? <Skeleton width={100} /> : <span>Learning Path</span>}
             </div>
           </div>
 

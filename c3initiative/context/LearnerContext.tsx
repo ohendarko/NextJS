@@ -6,16 +6,32 @@ import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 
 interface UserProfile {
+  id: string
   email: string
+  firstName: string
+  lastName: string
   name: string
-  currentModule: string // e.g. "module-1", "module-2"
-  // ...other fields like completedModules, etc.
+  password?: string
+  currentModule: string
+  completedModules: string[]
+  completedSections: string[]
+  module1Completed: boolean
+  module2Completed: boolean
+  module3Completed: boolean
+  module4Completed: boolean
+  module5Completed: boolean
+  module6Completed: boolean
+  moduleProgress: string[]
+  certificate?: boolean
 }
+
 
 interface LearnerContextType {
   userProfile: UserProfile | null
   loading: boolean
   canAccessModule: (moduleName: string) => boolean
+  isLoggedIn: boolean
+  isLoggedOut: boolean
 }
 
 const LearnerContext = createContext<LearnerContextType | undefined>(undefined)
@@ -24,6 +40,9 @@ export const LearnerProvider = ({ children }: { children: React.ReactNode }) => 
   const { data: session, status } = useSession()
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
   const [loading, setLoading] = useState(true)
+
+  const isLoggedIn = !loading && !!userProfile
+  const isLoggedOut = !loading && !userProfile
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -48,7 +67,8 @@ export const LearnerProvider = ({ children }: { children: React.ReactNode }) => 
   }
 
   return (
-    <LearnerContext.Provider value={{ userProfile, loading, canAccessModule }}>
+    <LearnerContext.Provider value={{
+      userProfile, loading, canAccessModule, isLoggedIn, isLoggedOut }}>
       {children}
     </LearnerContext.Provider>
   )

@@ -162,7 +162,7 @@ export default function CervicalCancerLearnPage() {
     if (status === "loading") {
       setLoading(true)
     }
-    
+
     if (status !== "authenticated") {
       router.push("/learn")
       return
@@ -196,8 +196,15 @@ export default function CervicalCancerLearnPage() {
     fetchModuleSummary()
   }, [])
 
+  const moduleUnlocked = (moduleName: string) => {
+    return (
+      userProfile?.currentModule === moduleName ||
+      userProfile?.completedModules?.includes(moduleName)
+    )
+  }
 
-
+  const moduleCompleted = (moduleName: string) => userProfile?.completedModules?.includes(moduleName) ?? false
+ 
 
   const completedModules = moduleProgress ? Object.values(moduleProgress).filter((p) => p.completed).length : 0
   const allModulesCompleted = completedModules === modules.length
@@ -213,6 +220,7 @@ export default function CervicalCancerLearnPage() {
     if (moduleProgress && moduleProgress[moduleId]?.unlocked) {
       window.location.href = `/learn/cervical-cancer/module-${moduleId}`
     }
+    console.log(moduleId)
   }
 
   const gotToModuleClick = (name: string, order: number) => {
@@ -251,30 +259,32 @@ export default function CervicalCancerLearnPage() {
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-8">
-          {isLoading ? <Skeleton height={200}/> : <div><h1 className="text-3xl font-bold mb-2">
-            Cervical Cancer{" "}
-            <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">
-              Learning Modules
-            </span>
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300">
-            Master cervical cancer prevention, detection, and treatment through our comprehensive learning modules.
-          </p></div> }
+          <div>
+            {loading ? <Skeleton width={400} height={50} /> : <h1 className="text-3xl font-bold mb-2">
+              Cervical Cancer{" "}
+              <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">
+                Learning Modules
+              </span>
+            </h1>}
+            {loading ? <Skeleton width={600} /> : <p className="text-gray-600 dark:text-gray-300">
+              Master cervical cancer prevention, detection, and treatment through our comprehensive learning modules.
+            </p>}
+          </div> 
         </div>
 
         {/* Interactive Progress Bar */}
         <div className="mb-8">
           
-          { isLoading ? <Skeleton height={400} /> : <InteractiveProgressBar
+          <InteractiveProgressBar
             modules={modules && modules}
-            currentModule={1}
+            currentModule={parseInt(userProfile?.currentModule.slice(-1) || "1")}
             onModuleClick={handleModuleClick}
             showCertificate={true}
-          />}
+          />
         </div>
 
         {/* Certificate Section */}
-        {isLoading ? <Skeleton /> : allModulesCompleted && (
+        {allModulesCompleted && (
           <Card className="mb-8 hover-shadow-gradient border-2 border-green-500">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -283,16 +293,16 @@ export default function CervicalCancerLearnPage() {
                     <Award className="w-10 h-10 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-green-600">🎉 Congratulations!</h3>
-                    <p className="text-gray-600 dark:text-gray-300">
+                    {loading ? <Skeleton width={150} /> : <h3 className="text-xl font-bold text-green-600">🎉 Congratulations!</h3>}
+                  {loading ? <Skeleton width={600} /> : <p className="text-gray-600 dark:text-gray-300">
                       You've completed all modules. Your certificate is ready to download.
-                    </p>
+                    </p>}
                   </div>
                 </div>
-                <Button className="gradient-orange-blue text-white hover-shadow-gradient">
+                {loading ? <Skeleton width={200} height={30}/> : <Button className="gradient-orange-blue text-white hover-shadow-gradient">
                   <Award className="w-4 h-4 mr-2" />
                   Download Certificate
-                </Button>
+                </Button>}
               </div>
             </CardContent>
           </Card>
@@ -313,16 +323,16 @@ export default function CervicalCancerLearnPage() {
                     {/* Path Node */}
                     <div
                       className={`relative z-10 w-16 h-16 rounded-full flex items-center justify-center border-4 mr-6 hidden md:flex ${
-                        moduleProgress && moduleProgress[module.order]?.completed
+                        moduleCompleted(module.name)
                           ? "bg-green-500 border-green-500"
-                          : moduleProgress && moduleProgress[module.order]?.unlocked
+                          : moduleUnlocked(module.name)
                             ? "gradient-orange-blue border-transparent"
                             : "bg-gray-300 border-gray-300"
                       }`}
                     >
-                      {moduleProgress && moduleProgress[module.order]?.completed ? (
+                      {loading ? <Skeleton variant="circular" width={100} height={100} /> : moduleProgress && moduleProgress[module.order]?.completed ? (
                         <CheckCircle className="w-8 h-8 text-white" />
-                      ) : moduleProgress && moduleProgress[module.order]?.unlocked ? (
+                      ) : moduleUnlocked(module.name) ? (
                         <IconComponent className="w-8 h-8 text-white" />
                       ) : (
                         <Lock className="w-8 h-8 text-gray-500" />
@@ -333,7 +343,7 @@ export default function CervicalCancerLearnPage() {
                     <div className="flex-1">
                       <Card
                         className={`transition-all duration-300 ${
-                          moduleProgress && moduleProgress[module.order]?.unlocked
+                          moduleUnlocked(module.name)
                             ? "hover-shadow-gradient cursor-pointer hover:scale-[1.02]"
                             : "opacity-50"
                         }`}
@@ -344,34 +354,34 @@ export default function CervicalCancerLearnPage() {
                               {/* Mobile Path Node */}
                               <div
                                 className={`w-12 h-12 rounded-full flex items-center justify-center border-2 md:hidden ${
-                                  moduleProgress && moduleProgress[module.order]?.completed
+                                  moduleCompleted(module.name)
                                     ? "bg-green-500 border-green-500"
-                                    : moduleProgress && moduleProgress[module.order]?.unlocked
+                                  : moduleUnlocked(module.name)
                                       ? "gradient-orange-blue border-transparent"
                                       : "bg-gray-300 border-gray-300"
                                 }`}
                               >
-                                {moduleProgress && moduleProgress[module.order]?.completed ? (
+                                {loading ? <Skeleton variant="circular" height={100} width={100} /> : moduleProgress && moduleProgress[module.order]?.completed ? (
                                   <CheckCircle className="w-6 h-6 text-white" />
-                                ) : moduleProgress && moduleProgress[module.order]?.unlocked ? (
+                                ) : moduleUnlocked(module.name) ? (
                                   <IconComponent className="w-6 h-6 text-white" />
                                 ) : (
                                   <Lock className="w-6 h-6 text-gray-500" />
                                 )}
                               </div>
                               <div>
-                                <CardTitle className="text-xl">
+                                {loading ? <Skeleton width={300} /> : <CardTitle className="text-xl">
                                   Module {module.order}: {module.title}
-                                </CardTitle>
+                                </CardTitle>}
                               </div>
                             </div>
 
                             <div className="mt-4">
-                                <p className="text-gray-600 dark:text-gray-400 mt-1">{module.description}</p>
-                              </div>
+                              {loading ? <Skeleton width={700} /> : <p className="text-gray-600 dark:text-gray-400 mt-1">{module.description}</p>}
+                            </div>
 
                             <div className="text-right space-y-2">
-                              {moduleProgress && moduleProgress[module.order]?.completed && (
+                              {loading ? <Skeleton width={100} /> : moduleCompleted(module.name) && (
                                 <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
                                   Completed
                                 </Badge>
@@ -387,10 +397,10 @@ export default function CervicalCancerLearnPage() {
                               <span>🎯 Interactive Learning</span>
                             </div> */}
 
-                            {moduleProgress && moduleProgress[module.order]?.unlocked ? (
+                            {loading ? <Skeleton width={100} /> : moduleUnlocked(module.name) ? (
                               <Link href={`/learn/cervical-cancer/${module.name}`}>
                                 <Button className="gradient-orange-blue text-white hover-shadow-gradient group">
-                                  {moduleProgress[module.order]?.completed ? "Review Module" : "Start Learning"}
+                                  {moduleCompleted(module.name) ? "Review Module" : "Start Learning"}
                                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                 </Button>
                               </Link>
@@ -415,36 +425,36 @@ export default function CervicalCancerLearnPage() {
         {/* Learning Tips */}
         <Card className="mt-12 hover-shadow-gradient">
           <CardHeader>
-            <CardTitle>Learning Tips</CardTitle>
+            {loading ? <Skeleton width={150} /> : <CardTitle>Learning Tips</CardTitle>}
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="w-12 h-12 gradient-orange-blue rounded-full flex items-center justify-center mx-auto mb-3">
+              <div className="text-center flex flex-col items-center">
+                {loading ? <Skeleton variant="circular" width={70} height={70} /> : <div className="w-12 h-12 gradient-orange-blue rounded-full flex items-center justify-center mx-auto mb-3">
                   <BookOpen className="w-6 h-6 text-white" />
-                </div>
-                <h4 className="font-semibold mb-2">Take Your Time</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                </div>}
+                {loading ? <Skeleton width={150} /> : <h4 className="font-semibold mb-2">Take Your Time</h4>}
+                {loading ? <Skeleton width={700} /> : <p className="text-sm text-gray-600 dark:text-gray-400">
                   Each module is designed to be comprehensive. Don't rush through the content.
-                </p>
+                </p>}
               </div>
-              <div className="text-center">
-                <div className="w-12 h-12 gradient-blue-pink rounded-full flex items-center justify-center mx-auto mb-3">
+              <div className="text-center flex flex-col items-center">
+                {loading ? <Skeleton variant="circular" width={70} height={70} /> : <div className="w-12 h-12 gradient-blue-pink rounded-full flex items-center justify-center mx-auto mb-3">
                   <CheckCircle className="w-6 h-6 text-white" />
-                </div>
-                <h4 className="font-semibold mb-2">Complete All Sections</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                </div>}
+                {loading ? <Skeleton width={200} /> : <h4 className="font-semibold mb-2">Complete All Sections</h4>}
+                {loading ? <Skeleton width={700} /> : <p className="text-sm text-gray-600 dark:text-gray-400">
                   Make sure to complete all sections within a module to unlock the next one.
-                </p>
+                </p>}
               </div>
-              <div className="text-center">
-                <div className="w-12 h-12 gradient-orange-pink rounded-full flex items-center justify-center mx-auto mb-3">
+              <div className="text-center flex flex-col items-center">
+                {loading ? <Skeleton variant="circular" width={70} height={70} /> : <div className="w-12 h-12 gradient-orange-pink rounded-full flex items-center justify-center mx-auto mb-3">
                   <Award className="w-6 h-6 text-white" />
-                </div>
-                <h4 className="font-semibold mb-2">Earn Your Certificate</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                </div>}
+                {loading ? <Skeleton width={200} /> : <h4 className="font-semibold mb-2">Earn Your Certificate</h4>}
+                {loading ? <Skeleton width={700} /> : <p className="text-sm text-gray-600 dark:text-gray-400">
                   Complete all 6 modules to earn your cervical cancer education certificate.
-                </p>
+                </p>}
               </div>
             </div>
           </CardContent>

@@ -226,19 +226,19 @@ export default function ModulePage() {
     }
   }, [completedSections, lesson, hasShownCompletionModal])
 
-  if (loading) return <Skeleton variant="rectangular" height={500} / >
+
 
   return (
     <div className="min-h-screen pt-24 pb-4 mb-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
-      {isLoading ? <Skeleton variant="rectangular" height={500} /> : <div className="container mx-auto max-w-7xl px-3">
+      <div className="container mx-auto max-w-7xl px-3">
         {/* Back Navigation */}
         <div className="mb-6">
-          <Link href="/learn/cervical-cancer">
+          {(loading || isLoading) ? <Skeleton width={200} height={50} /> : <Link href="/learn/cervical-cancer">
             <Button variant="outline" className="hover-shadow-gradient bg-transparent">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Modules
             </Button>
-          </Link>
+          </Link>}
         </div>
 
         {/* Module Progress Bar */}
@@ -256,13 +256,13 @@ export default function ModulePage() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-3xl">Module {lesson?.order}: {lesson?.title} </CardTitle>
-                <p className="text-gray-600 dark:text-gray-400 mt-2">
+                {(loading || isLoading) ? <Skeleton width={200} height={50} /> : <CardTitle className="text-3xl">Module {lesson?.order}: {lesson?.title} </CardTitle>}
+                {(loading || isLoading) ? <Skeleton width={700} /> : <p className="text-gray-600 dark:text-gray-400 mt-2">
                   {lesson?.description}
-                </p>
+                </p>}
               </div>
               <div className="text-right space-y-2">
-                {allSectionsCompleted && (
+                {(loading || isLoading) ? <Skeleton width={200} /> : allSectionsCompleted && (
                   <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
                     Module Complete
                   </Badge>
@@ -274,17 +274,17 @@ export default function ModulePage() {
           <CardContent>
             {/* Introductory Video */}
             <div className="mb-6">
-              <h4 className="font-semibold mb-3">Module Introduction</h4>
+              {(loading || isLoading) ? <Skeleton width={200} /> : <h4 className="font-semibold mb-3">Module Introduction</h4>}
               <div className="relative bg-gray-900 rounded-lg overflow-hidden aspect-video">
-                <video className="w-full h-full object-cover" poster="/placeholder.svg?height=300&width=500" controls>
+                {(loading || isLoading) ? <Skeleton width={700} height={500} /> : <video className="w-full h-full object-cover" poster="/placeholder.svg?height=300&width=500" controls>
                   <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
-                </video>
+                </video>}
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                  <Button size="lg" className="gradient-orange-blue text-white">
+                  {(loading || isLoading) ? <Skeleton width={200} height={60} /> : <Button size="lg" className="gradient-orange-blue text-white">
                     <Play className="w-6 h-6 mr-2" />
                     Watch Introduction
-                  </Button>
+                  </Button>}
                 </div>
               </div>
             </div>
@@ -292,12 +292,12 @@ export default function ModulePage() {
             {/* Section Progress */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-2">
-                <h4 className="font-semibold">Section Progress</h4>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
+                {(loading || isLoading) ? <Skeleton width={200} /> : <h4 className="font-semibold">Section Progress</h4>}
+                {(loading || isLoading) ? <Skeleton width={150} /> : <span className="text-sm text-gray-600 dark:text-gray-400">
                   {completedSections} / {lesson?.sections.length} Complete
-                </span>
+                </span>}
               </div>
-              <Progress value={lesson && (completedSections / lesson.sections.length) * 100} className="h-2 [&>div]:bg-orange-400 text-black" />
+              {(loading || isLoading) ? <Skeleton width={800} height={5} /> : <Progress value={lesson && (completedSections / lesson.sections.length) * 100} className="h-2 [&>div]:bg-orange-400 text-black" />}
             </div>
           </CardContent>
         </Card>
@@ -306,7 +306,7 @@ export default function ModulePage() {
           {/* Section Navigation */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-3">
-              <h4 className="font-semibold">Sections</h4>
+              {(loading || isLoading) ? <Skeleton width={100} /> : <h4 className="font-semibold">Sections</h4>}
 
               {/* Section Pathline */}
               <div className="relative">
@@ -324,7 +324,7 @@ export default function ModulePage() {
                             : "bg-gray-300 text-gray-500"
                       }`}
                     >
-                      {sectionProgress[section.order]?.completed ? (
+                      {(loading || isLoading) ? <Skeleton width={70} height={70} /> : sectionProgress[section.order]?.completed ? (
                         <CheckCircle className="w-4 h-4" />
                       ) : sectionProgress[section.order]?.unlocked ? (
                         section.id
@@ -350,8 +350,8 @@ export default function ModulePage() {
                         }`}
                       >
                         <CardContent className="p-3">
-                          <h5 className="font-medium text-sm mb-1">{section.title}</h5>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">{section.description}</p>
+                          {(loading || isLoading) ? <Skeleton width={200} /> : <h5 className="font-medium text-sm mb-1">{section.title}</h5>}
+                          {(loading || isLoading) ? <Skeleton width={600} /> : <p className="text-xs text-gray-600 dark:text-gray-400">{section.description}</p>}
                           {sectionProgress[section.order]?.completed && (
                             <Badge className="bg-green-100 text-green-800 text-xs mt-2">Complete</Badge>
                           )}
@@ -366,7 +366,7 @@ export default function ModulePage() {
 
           {/* Section Content */}
           <div className="lg:col-span-3 mb-10">
-            {activeSectionData && (
+            {(loading || isLoading) ? <Skeleton width={800} height={600} /> : activeSectionData && (
               <SectionRenderer
                 totalSections={lesson.sections.length}
                 key={activeSection}
@@ -444,7 +444,7 @@ export default function ModulePage() {
           moduleTitle="Introduction to Cervical Cancer"
           moduleId={1}
         /> */}
-      </div>}
+      </div>
     </div>
   )
 }
