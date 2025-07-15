@@ -249,7 +249,7 @@ export default function InteractiveProgressBar({
                       {loading ? <Skeleton variant="circular" width={70} height={70} /> : <div
                         className={`relative w-16 h-16 rounded-full flex items-center justify-center border-4 transition-all duration-300 ${
                           moduleCompleted(item.name)
-                            ? "bg-green-500 border-green-500 shadow-lg"
+                            ? "bg-green-700 border-green-700 shadow-lg"
                             : isCurrentModule
                               ? "gradient-orange-blue border-transparent shadow-lg scale-110"
                               : moduleUnlocked(item.name)
@@ -259,7 +259,7 @@ export default function InteractiveProgressBar({
                         onClick={() => isClickable && onModuleClick(Number(item.order))}
                       >
                         {moduleCompleted(item.name) ? (
-                          <CheckCircle className="w-8 h-8 text-white" />
+                          <IconComponent className="w-8 h-8 text-white" />
                         ) : moduleUnlocked(item.name) ? (
                           <IconComponent className="w-8 h-8 text-white" />
                         ) : (

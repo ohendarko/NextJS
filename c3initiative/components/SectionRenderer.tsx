@@ -9,10 +9,12 @@ import { Progress } from "@/components/ui/progress"
 import { AnimatePresence, motion } from "framer-motion"
 import { CheckCircle, ArrowRight, Globe } from "lucide-react"
 import LearningCard from "@/components/learning-card"
+import { useLearner } from "@/context/LearnerContext"
 
 interface SectionRendererProps {
   section: {
     id: string
+    name: string
     title: string
     description: string
     order: number
@@ -38,6 +40,7 @@ interface SectionRendererProps {
   }
 
 export default function SectionRenderer({ section, onComplete, isUnlocked, totalSections }: SectionRendererProps) {
+  const { userProfile, loading } = useLearner()
   const [currentCardOrder, setCurrentCardOrder] = useState(section.learningCards[0]?.order || 1)
   const [animationDirection, setAnimationDirection] = useState<"next" | "prev">("next")
   const [completedCards, setCompletedCards] = useState<number[]>([])
@@ -74,9 +77,14 @@ export default function SectionRenderer({ section, onComplete, isUnlocked, total
   };
 
 
-
   const currentCard = section.learningCards.find(card => card.order === currentCardOrder)
   if (!currentCard) return null;
+
+  const sectionCompleted = userProfile?.completedSections?.includes(section.name) ?? false
+  const isSectionCompleted = (sectionName: string): boolean => {
+    return userProfile?.completedSections?.includes(sectionName) ?? false
+  }
+
 
 
 

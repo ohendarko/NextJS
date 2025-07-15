@@ -285,11 +285,11 @@ export default function CervicalCancerLearnPage() {
 
         {/* Certificate Section */}
         {allModulesCompleted && (
-          <Card className="mb-8 hover-shadow-gradient border-2 border-green-500">
+          <Card className="mb-8 hover-shadow-gradient border-2 border-green-700">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center">
+                  <div className="w-16 h-16 bg-green-700 rounded-full flex items-center justify-center">
                     <Award className="w-10 h-10 text-white" />
                   </div>
                   <div>
@@ -324,7 +324,7 @@ export default function CervicalCancerLearnPage() {
                     <div
                       className={`relative z-10 w-16 h-16 rounded-full flex items-center justify-center border-4 mr-6 hidden md:flex ${
                         moduleCompleted(module.name)
-                          ? "bg-green-500 border-green-500"
+                          ? "bg-green-700 border-green-700"
                           : moduleUnlocked(module.name)
                             ? "gradient-orange-blue border-transparent"
                             : "bg-gray-300 border-gray-300"
@@ -355,7 +355,7 @@ export default function CervicalCancerLearnPage() {
                               <div
                                 className={`w-12 h-12 rounded-full flex items-center justify-center border-2 md:hidden ${
                                   moduleCompleted(module.name)
-                                    ? "bg-green-500 border-green-500"
+                                    ? "bg-green-700 border-green-700"
                                   : moduleUnlocked(module.name)
                                       ? "gradient-orange-blue border-transparent"
                                       : "bg-gray-300 border-gray-300"

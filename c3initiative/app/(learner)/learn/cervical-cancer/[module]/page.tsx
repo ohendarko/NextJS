@@ -38,6 +38,7 @@ type LearningCard = {
 
 type Section = {
   id: string
+  name: string
   title: string
   description: string
   order: number
@@ -123,7 +124,7 @@ type SectionProgress = {
 }
 
 export default function ModulePage() {
-  const { loading } = useLearner()
+  const { userProfile, loading } = useLearner()
   useProtectedModuleRoute()
 
   const router = useRouter()
@@ -200,6 +201,13 @@ export default function ModulePage() {
     }
   }
 
+  const sectionCompleted = lesson
+    ? lesson.sections.some(section => userProfile?.completedSections?.includes(section.name))
+    : false
+  const isSectionCompleted = (sectionName: string): boolean => {
+    return userProfile?.completedSections?.includes(sectionName) ?? false
+  }
+
   const handlePostTestPass = () => {
     setShowPostTest(false)
     // Navigate to next module
@@ -256,13 +264,13 @@ export default function ModulePage() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                {(loading || isLoading) ? <Skeleton width={200} height={50} /> : <CardTitle className="text-3xl">Module {lesson?.order}: {lesson?.title} </CardTitle>}
+                {(loading || isLoading) ? <Skeleton width={500} height={100} /> : <CardTitle className="text-3xl">Module {lesson?.order}: {lesson?.title} </CardTitle>}
                 {(loading || isLoading) ? <Skeleton width={700} /> : <p className="text-gray-600 dark:text-gray-400 mt-2">
                   {lesson?.description}
                 </p>}
               </div>
               <div className="text-right space-y-2">
-                {(loading || isLoading) ? <Skeleton width={200} /> : allSectionsCompleted && (
+                {allSectionsCompleted && (
                   <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
                     Module Complete
                   </Badge>
@@ -324,7 +332,7 @@ export default function ModulePage() {
                             : "bg-gray-300 text-gray-500"
                       }`}
                     >
-                      {(loading || isLoading) ? <Skeleton width={70} height={70} /> : sectionProgress[section.order]?.completed ? (
+                      {(loading || isLoading) ? <Skeleton variant="circular" width={70} height={70} /> : sectionProgress[section.order]?.completed ? (
                         <CheckCircle className="w-4 h-4" />
                       ) : sectionProgress[section.order]?.unlocked ? (
                         section.id
@@ -350,7 +358,7 @@ export default function ModulePage() {
                         }`}
                       >
                         <CardContent className="p-3">
-                          {(loading || isLoading) ? <Skeleton width={200} /> : <h5 className="font-medium text-sm mb-1">{section.title}</h5>}
+                          {(loading || isLoading) ? <Skeleton width={400} height={90} /> : <h5 className="font-medium text-sm mb-1">{section.title}</h5>}
                           {(loading || isLoading) ? <Skeleton width={600} /> : <p className="text-xs text-gray-600 dark:text-gray-400">{section.description}</p>}
                           {sectionProgress[section.order]?.completed && (
                             <Badge className="bg-green-100 text-green-800 text-xs mt-2">Complete</Badge>
