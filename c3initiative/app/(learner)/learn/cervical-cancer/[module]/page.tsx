@@ -385,16 +385,25 @@ export default function ModulePage() {
             <div className="mb-6">
               {(loading || isLoading) ? <Skeleton width={200} /> : <h4 className="font-semibold mb-3">Module Introduction</h4>}
               <div className="relative bg-gray-900 rounded-lg overflow-hidden aspect-video">
-                {(loading || isLoading) ? <Skeleton width={700} height={500} /> : <video className="w-full h-full object-cover" poster="/placeholder.svg?height=300&width=500" controls>
-                  <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>}
-                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                {(loading || isLoading || !lesson?.introVideo) ? (
+                  <Skeleton width={700} height={500} />
+                ) : (
+                    <iframe
+                      src={lesson.introVideo}
+                      width="100%"
+                      height="480"
+                      allow="autoplay"
+                      allowFullScreen
+                      className="rounded-lg w-full aspect-video"
+                    />
+                )}
+
+                {/* <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
                   {(loading || isLoading) ? <Skeleton width={200} height={60} /> : <Button size="lg" className="gradient-orange-blue text-white">
                     <Play className="w-6 h-6 mr-2" />
                     Watch Introduction
                   </Button>}
-                </div>
+                </div> */}
               </div>
             </div>
 
