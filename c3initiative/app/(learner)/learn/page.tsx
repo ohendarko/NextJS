@@ -59,7 +59,7 @@ export default function LoginPage() {
       }
       toast({
         title: 'Login successful',
-        description: 'Welcome back to PharmaBridge Consulting',
+        description: 'Welcome back to C3 Inititative',
         variant: 'success',
         duration: 2000,
       });
