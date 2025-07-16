@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { CheckCircle, ArrowRight, Globe } from "lucide-react"
 import LearningCard from "@/components/learning-card"
 import { useLearner } from "@/context/LearnerContext"
+import { useSession } from "next-auth/react"
 
 interface SectionRendererProps {
   section: {
@@ -40,6 +41,8 @@ interface SectionRendererProps {
   }
 
 export default function SectionRenderer({ section, onComplete, isUnlocked, totalSections }: SectionRendererProps) {
+  const { data: session } = useSession()
+  const userEmail = session?.user?.email
   const { userProfile, loading } = useLearner()
   const [currentCardOrder, setCurrentCardOrder] = useState(section.learningCards[0]?.order || 1)
   const [animationDirection, setAnimationDirection] = useState<"next" | "prev">("next")
@@ -80,9 +83,24 @@ export default function SectionRenderer({ section, onComplete, isUnlocked, total
   const currentCard = section.learningCards.find(card => card.order === currentCardOrder)
   if (!currentCard) return null;
 
-  const sectionCompleted = userProfile?.completedSections?.includes(section.name) ?? false
-  const isSectionCompleted = (sectionName: string): boolean => {
-    return userProfile?.completedSections?.includes(sectionName) ?? false
+  // const sectionCompleted = userProfile?.completedSections?.includes(section.name) ?? false
+  const getLocalCompletedSections = (email: string): string[] => {
+    if (!email) return []
+    try {
+      const raw = localStorage.getItem(`c3-progress-${email}`)
+      return raw ? JSON.parse(raw) : []
+    } catch {
+      return []
+    }
+  }
+
+  const sectionCompleted = (sectionName: string): boolean => {
+    const email = session?.user?.email
+    if (!email) return false
+    const localCompleted = getLocalCompletedSections(email)
+    const remoteCompleted = userProfile?.completedSections || []
+
+    return [...remoteCompleted, ...localCompleted].includes(sectionName)
   }
 
 
@@ -132,7 +150,7 @@ export default function SectionRenderer({ section, onComplete, isUnlocked, total
         </CardHeader>
         <CardContent>
           <Progress
-            value={(completedCards.length / section.learningCards.length) * 100}
+            value={sectionCompleted(section.name) ? 100 : (completedCards.length / section.learningCards.length) * 100}
             className="h-2 [&>div]:bg-orange-400 [&>div]:rounded"
           />
         </CardContent>
@@ -162,7 +180,7 @@ export default function SectionRenderer({ section, onComplete, isUnlocked, total
             key={currentCard.order}
             card={currentCard}
             isActive
-            isCompleted={completedCards.includes(currentCardOrder)}
+            isCompleted={completedCards.includes(currentCardOrder) || sectionCompleted(section.name)}
             onComplete={handleCardComplete}
             canExpand
           />
@@ -194,7 +212,7 @@ export default function SectionRenderer({ section, onComplete, isUnlocked, total
         </DialogContent>
       </Dialog>
 
-      {completedCards.length === section.learningCards.length && 
+      {sectionCompleted(section.name) && 
       section.order < totalSections && 
         <Card>
           <CardHeader className="text-sm text-gray-500">You've completed this section. Let's move to the next one.</CardHeader>

@@ -156,6 +156,8 @@ export default function ModulePage() {
       progress.push(sectionName)
       localStorage.setItem(key, JSON.stringify(progress))
     }
+
+    console.log(progress)
   }
 
 
@@ -196,6 +198,8 @@ export default function ModulePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           completedSections: sectionNames,
+          completedModules: [`module-${lesson.order}`],
+          currentModule: `module-${lesson.order + 1}`,
           addOn: true,
         }),
       }).catch((err) => {
@@ -208,14 +212,36 @@ export default function ModulePage() {
   //   ? lesson.sections.some(section => userProfile?.completedSections?.includes(section.name))
   //   : false
 
-  const sectionCompleted = (sectionName: string): boolean => {
-    return userProfile?.completedSections?.includes(sectionName) ?? false
+  const getLocalCompletedSections = (email: string): string[] => {
+    if (!email) return []
+    try {
+      const raw = localStorage.getItem(`c3-progress-${email}`)
+      return raw ? JSON.parse(raw) : []
+    } catch {
+      return []
+    }
   }
 
-  const sectionUnlocked = (sectionName: string): boolean => {
-    if (!userProfile?.completedSections) return false
 
-    if (userProfile.completedSections.includes(sectionName)) return true
+  const sectionCompleted = (sectionName: string): boolean => {
+    const email = session?.user?.email
+    if (!email) return false
+    const localCompleted = getLocalCompletedSections(email)
+    const remoteCompleted = userProfile?.completedSections || []
+
+    return [...remoteCompleted, ...localCompleted].includes(sectionName)
+  }
+
+
+  const sectionUnlocked = (sectionName: string): boolean => {
+    const email = session?.user?.email
+    if(!email) return false
+    const completedSections = [
+      ...(userProfile?.completedSections || []),
+      ...getLocalCompletedSections(email),
+    ]
+
+    if (completedSections.includes(sectionName)) return true
 
     const match = sectionName.match(/^section-(\d+)-(\d+)$/)
     if (!match) return false
@@ -226,10 +252,10 @@ export default function ModulePage() {
     // First section of any module is always unlocked
     if (section === 1) return true
 
-    // Determine previous section in the same module
-    const previousSectionName = `section-${module}-${section - 1}`
-    return userProfile.completedSections.includes(previousSectionName)
+    const previousSection = `section-${module}-${section - 1}`
+    return completedSections.includes(previousSection)
   }
+
 
 
   const handlePostTestPass = () => {
@@ -246,7 +272,24 @@ export default function ModulePage() {
   }
 
   const activeSectionData = lesson && lesson.sections.find(s => s.order === activeSection)
-  const completedSections = Object.values(sectionProgress).filter((p) => p.completed).length
+  
+  
+
+  const completedInModule = (moduleNumber: number): number => {
+    const email = session?.user?.email
+    if(!email) return 0
+    const local = getLocalCompletedSections(email)
+    const remote = userProfile?.completedSections || []
+
+    const allCompleted = [...new Set([...remote, ...local])]
+
+    return allCompleted.filter((sectionName) => {
+      const match = sectionName.match(/^section-(\d+)-\d+$/)
+      return match && parseInt(match[1], 10) === moduleNumber
+    }).length
+  }
+
+  const completedSections = lesson ? completedInModule(lesson.order) : 0
   const allSectionsCompleted = completedSections === lesson?.sections.length
 
   useEffect(() => {

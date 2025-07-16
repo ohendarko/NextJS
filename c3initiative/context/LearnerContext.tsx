@@ -63,7 +63,7 @@ export const LearnerProvider = ({ children }: { children: React.ReactNode }) => 
 
   const canAccessModule = (moduleName: string) => {
     if (!userProfile) return false
-    return moduleName === userProfile.currentModule || moduleName === "module-1"
+    return moduleName === userProfile.currentModule || moduleName === "module-1" || userProfile.completedModules.includes(moduleName)
   }
 
   return (
