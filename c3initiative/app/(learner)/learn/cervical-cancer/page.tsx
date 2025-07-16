@@ -27,6 +27,7 @@ import { signOut, useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Spinner from "@/components/Spinner"
 import { useLearner } from "@/context/LearnerContext"
+import { clearUserCache } from "@/lib/clearCache"
 
 
 type ModuleSummary = {
@@ -154,29 +155,38 @@ export default function CervicalCancerLearnPage() {
   const [modules, setModules] = useState<ModuleSummary[]>([]);
   const [moduleProgress, setModuleProgress] = useState<ModuleProgress | null>(null)
   const { userProfile, loading } = useLearner()
+  const userEmail = session?.user?.email
 
   const [isLoading, setIsLoading] = useState(false)
   const [localloading, setLoading] = useState(false)
 
   useEffect(() => {
-    if (status === "loading") {
-      setLoading(true)
-    }
-
-    if (status !== "authenticated") {
-      router.push("/learn")
-      return
-    }
-
-    
     const fetchModuleSummary = async () => {
-      try {
-        setIsLoading(true)
-        const res = await fetch('/api/module-summary')
-        const data = await res.json()
-        const moduleSummaries: ModuleSummary[] = data.summaries
-        setModules(moduleSummaries)
+      if (!userEmail || status !== "authenticated") return
 
+      setLoading(true)
+      setIsLoading(true)
+
+      try {
+        const localKey = `c3-moduleSummary-${userEmail}`
+        const cached = localStorage.getItem(localKey)
+
+        let moduleSummaries: ModuleSummary[]
+
+        if (cached) {
+          moduleSummaries = JSON.parse(cached)
+          setModules(moduleSummaries)
+        } else {
+          const res = await fetch('/api/module-summary')
+          const data = await res.json()
+          moduleSummaries = data.summaries
+          setModules(moduleSummaries)
+
+          // ✅ Save to localStorage
+          localStorage.setItem(localKey, JSON.stringify(moduleSummaries))
+        }
+
+        // ✅ Build progress from summaries
         const progress: ModuleProgress = moduleSummaries.reduce((acc, mod) => {
           acc[mod.order] = {
             completed: Boolean(userdata[`module${mod.order}Completed` as keyof typeof userdata]) ?? false,
@@ -187,14 +197,18 @@ export default function CervicalCancerLearnPage() {
 
         setModuleProgress(progress)
       } catch (error) {
-        console.error(error)
+        console.error("Failed to fetch module summaries:", error)
       } finally {
+        setLoading(false)
         setIsLoading(false)
       }
     }
 
-    fetchModuleSummary()
-  }, [])
+    if (status !== "loading") {
+      fetchModuleSummary()
+    }
+  }, [status, userEmail])
+
 
   const moduleUnlocked = (moduleName: string) => {
     return (
@@ -220,7 +234,7 @@ export default function CervicalCancerLearnPage() {
     if (moduleProgress && moduleProgress[moduleId]?.unlocked) {
       window.location.href = `/learn/cervical-cancer/module-${moduleId}`
     }
-    console.log(moduleId)
+    // console.log(moduleId)
   }
 
   const gotToModuleClick = (name: string, order: number) => {
@@ -230,6 +244,8 @@ export default function CervicalCancerLearnPage() {
   }
 
   const handleLogout = async () => {
+    if (!session?.user?.email) return
+    clearUserCache(session.user.email)
 
     try {
       setLoading(true)

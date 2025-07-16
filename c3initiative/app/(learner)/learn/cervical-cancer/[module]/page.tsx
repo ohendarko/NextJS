@@ -91,26 +91,60 @@ export default function ModulePage() {
   const [hasShownCompletionModal, setHasShownCompletionModal] = useState(false)
   const [totalModules, setTotalModules] = useState(0)
 
-
   const  params = useParams()
   const { module } = params as  {module: string}
 
 
-
   useEffect(() => {
     const fetchModule = async () => {
+      if (!module || !userEmail) return
+
+      setIsLoading(true)
+
       try {
-        setIsLoading(true)
-        const  data =  await fetch("/api/module-summary")
-        const datares = await data.json()
-        setTotalModules(datares.summaryCount)
+        const lessonKey = `c3-lesson-${userEmail}-${module}`
+        const summaryKey = `c3-summaryCount-${userEmail}`
+
+        // ✅ Load total module count if available
+        const cachedSummaryCount = localStorage.getItem(summaryKey)
+        if (cachedSummaryCount) {
+          setTotalModules(parseInt(cachedSummaryCount, 10))
+        } else {
+          const summaryRes = await fetch("/api/module-summary")
+          const summaryData = await summaryRes.json()
+          setTotalModules(summaryData.summaryCount)
+          localStorage.setItem(summaryKey, summaryData.summaryCount.toString())
+        }
+
+        // ✅ Load lesson from localStorage if available
+        const cachedLesson = localStorage.getItem(lessonKey)
+        if (cachedLesson) {
+          const parsedLesson = JSON.parse(cachedLesson)
+          setLesson(parsedLesson)
+
+          const newProgress: SectionProgress = {}
+          parsedLesson.sections.forEach((section: Section) => {
+            newProgress[section.order] = {
+              completed: false,
+              unlocked: section.order === 1,
+            }
+          })
+          setSectionProgress(newProgress)
+
+          setIsLoading(false)
+          return
+        }
+
+        // ✅ Fetch lesson if not cached
         const res = await fetch(`/api/modules/${module}`)
-        if (!res.ok) throw new Error("Failed to fetch")
-        const json = await res.json()
-        setLesson(json)
+        if (!res.ok) throw new Error("Failed to fetch module")
+
+        const lessonData = await res.json()
+        setLesson(lessonData)
+        localStorage.setItem(lessonKey, JSON.stringify(lessonData))
 
         const newProgress: SectionProgress = {}
-        json.sections.forEach((section: Section) => {
+        lessonData.sections.forEach((section: Section) => {
           newProgress[section.order] = {
             completed: false,
             unlocked: section.order === 1,
@@ -125,10 +159,10 @@ export default function ModulePage() {
       }
     }
 
-    if (module) {
-      fetchModule()
-    }
-  }, [module])
+    fetchModule()
+  }, [module, userEmail])
+
+
 
 
   // console.log('totalmodules',totalModules)
@@ -157,7 +191,7 @@ export default function ModulePage() {
       localStorage.setItem(key, JSON.stringify(progress))
     }
 
-    console.log(progress)
+    // console.log(progress)
   }
 
 
@@ -413,7 +447,10 @@ export default function ModulePage() {
                       className={`ml-3 flex-1 cursor-pointer transition-all duration-300 ${
                         sectionUnlocked(section.name) ? "hover:scale-105" : "opacity-50 cursor-not-allowed"
                       }`}
-                      onClick={() => {sectionUnlocked(section.name) && setActiveSection(section.order); console.log(completedSections)}}
+                      onClick={() => {sectionUnlocked(section.name) && setActiveSection(section.order);
+                        //  console.log(completedSections)
+                        
+                      }}
                     >
                       <Card
                         className={`${
