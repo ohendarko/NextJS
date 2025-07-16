@@ -21,6 +21,7 @@ model User {
   lastName               String
   name              String
   password         String?
+  admin            Boolean @default(false)
   moduleProgress    ModuleProgress[]
   currentModule   String?          @default("module-1") // e.g. "module-1"
   module1Completed  Boolean          @default(false)
