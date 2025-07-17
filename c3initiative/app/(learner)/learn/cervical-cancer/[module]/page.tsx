@@ -391,7 +391,7 @@ export default function ModulePage() {
                     <iframe
                       src={lesson.introVideo}
                       width="100%"
-                      height="480"
+                      height="100%"
                       allow="autoplay"
                       allowFullScreen
                       className="rounded-lg w-full aspect-video"
