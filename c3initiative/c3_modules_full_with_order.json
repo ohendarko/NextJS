@@ -93,19 +93,91 @@
         "quizzes": []
       }
     ],
-    "postTest": [
-      {
-        "name": "posttest-1",
-        "question": "What virus is the main cause of cervical cancer?",
-        "options": [
-          "HIV",
-          "HBV",
-          "HPV",
-          "EBV"
-        ],
-        "correct": "HPV"
-      }
-    ]
+    "preTest" : {
+      "name": "pretest-1",
+      "questions": [
+        {
+          "order": 1,
+          "question": "Why is cervical cancer considered a major global health issue?",
+          "options": [
+            "A. It is a disease with a long history of research.",
+            "B. It cannot be screened or prevented with vaccines.",
+            "C. It only affects women in developed countries.",
+            "D. It kills thousands of women annually."
+          ],
+          "correctAnswer": "D. It kills thousands of women annually",
+          "explanation":
+            "Every year, around 266,000 women die from cervical cancer worldwide; however, most of these deaths can be prevented through proper cervical cancer prevention and treatment programs."
+        },
+        {
+          "order": 2,
+          "question": "Why do most cervical cancer deaths occur in low- and middle-income countries?",
+          "options": [
+            "A. These countries have better screening programs.",
+            "B. There is less exposure to the HPV virus.",
+            "C. There is limited access to HPV vaccines and screening.",
+            "D. Women in these countries are more health conscious."
+          ],
+          "correctAnswer": "C. There is limited access to HPV vaccines and screening",
+          "explanation":
+            "Around 94% of cervical cancer deaths happened in low- and middle-income countries, showing a major gap in access to care. These differences are mainly due to inequality in access to HPV vaccines, cervical cancer screening and proper treatment."
+        },
+        {
+          "order": 3,
+          "question": "What are the estimated cervical cancer statistics in Ghana?",
+          "options": [
+            "A. 10 per 100,000 women are diagnosed, 5 per 100,000 die.",
+            "B. 18.3 per 100,000 women are diagnosed, 10 per 100,000 die.",
+            "C. 29.3 per 100,000 women are diagnosed, 27.6 per 100,000 die.",
+            "D. 50 per 100,000 women are diagnosed, 45 per 100,000 die."
+          ],
+          "correctAnswer": "C. 29.3 per 100,000 women are diagnosed, 27.6 per 100,000 die.",
+          "explanation":
+            "In Ghana, 29.3 out of every 100,000 women are diagnosed with cervical cancer and 27.6 out of every 100,000 women die from it every year."
+        }
+      ]
+    },
+    "postTest": {
+      "name": "posttest-1",
+      "questions": [
+        {
+          "order": 1,
+          "question": "Why is cervical cancer considered a major global health issue?",
+          "options": [
+            "A. It is a disease with a long history of research.",
+            "B. It cannot be screened or prevented with vaccines.",
+            "C. It only affects women in developed countries.",
+            "D. It kills thousands of women annually."
+          ],
+          "correctAnswer": "D. It kills thousands of women annually",
+          "explanation": "Every year, around 266,000 women die from cervical cancer worldwide; however, most of these deaths can be prevented through proper cervical cancer prevention and treatment programs."
+        },
+        {
+          "order": 2,
+          "question": "Why do most cervical cancer deaths occur in low- and middle-income countries?",
+          "options": [
+            "A. These countries have better screening programs.",
+            "B. There is less exposure to the HPV virus.",
+            "C. There is limited access to HPV vaccines and screening.",
+            "D. Women in these countries are more health conscious."
+          ],
+          "correctAnswer": "C. There is limited access to HPV vaccines and screening",
+          "explanation": "Around 94% of cervical cancer deaths happened in low- and middle-income countries, showing a major gap in access to care. These differences are mainly due to inequality in access to HPV vaccines, cervical cancer screening and proper treatment."
+        },
+        {
+          "order": 3,
+          "question": "What are the estimated cervical cancer statistics in Ghana?",
+          "options": [
+            "A. 10 per 100,000 women are diagnosed, 5 per 100,000 die.",
+            "B. 18.3 per 100,000 women are diagnosed, 10 per 100,000 die.",
+            "C. 29.3 per 100,000 women are diagnosed, 27.6 per 100,000 die.",
+            "D. 50 per 100,000 women are diagnosed, 45 per 100,000 die."
+          ],
+          "correctAnswer": "C. 29.3 per 100,000 women are diagnosed, 27.6 per 100,000 die.",
+          "explanation": "In Ghana, 29.3 out of every 100,000 women are diagnosed with cervical cancer and 27.6 out of every 100,000 women die from it every year."
+        }
+      ]
+    }  
   },
   {
     "module": "module-2",
@@ -279,19 +351,18 @@
         "quizzes": []
       }
     ],
-    "postTest": [
-      {
-        "name": "posttest-2",
-        "question": "What is the main cause of cervical cancer?",
-        "options": [
-          "Chlamydia",
-          "HPV",
-          "Herpes",
-          "HIV"
-        ],
-        "correct": "HPV"
-      }
-    ]
+    "preTest": {
+      "name": "pretest-2",
+      "questions": [
+
+      ]
+    },
+    "postTest": {
+      "name": "posttest-2",
+      "questions": [
+
+      ]
+    }
   },
   {
     "module": "module-3",
@@ -443,19 +514,14 @@
         "quizzes": []
       }
     ],
-    "postTest": [
-      {
-        "name": "posttest-3",
-        "question": "Which test uses acetic acid to visualize abnormal areas?",
-        "options": [
-          "HPV DNA Test",
-          "Pap Smear",
-          "VIA",
-          "Colposcopy"
-        ],
-        "correct": "VIA"
-      }
-    ]
+    "preTest": {
+      "name": "pretest-3",
+      "questions": []
+    },
+    "postTest": {
+      "name": "posttest-3",
+      "questions": []
+    }
   },
   {
     "module": "module-4",
@@ -556,19 +622,14 @@
         "quizzes": []
       }
     ],
-    "postTest": [
-      {
-        "name": "posttest-4",
-        "question": "What is the best time to get the HPV vaccine?",
-        "options": [
-          "After first sexual activity",
-          "During pregnancy",
-          "Before sexual activity",
-          "After 30"
-        ],
-        "correct": "Before sexual activity"
-      }
-    ]
+    "preTest": {
+      "name": "pretest-4",
+      "questions": []
+    },
+    "postTest": {
+      "name": "posttest-4",
+      "questions": []
+    }
   },
   {
     "module": "module-5",
@@ -685,19 +746,14 @@
         "quizzes": []
       }
     ],
-    "postTest": [
-      {
-        "name": "posttest-5",
-        "question": "Which method is used to freeze abnormal cervical cells?",
-        "options": [
-          "LEEP",
-          "Thermal Ablation",
-          "Cryotherapy",
-          "Surgery"
-        ],
-        "correct": "Cryotherapy"
-      }
-    ]
+    "preTest": {
+      "name": "pretest-5",
+      "questions": []
+    },
+    "postTest": {
+      "name": "posttest-5",
+      "questions": []
+    }
   },
   {
     "module": "module-6",
@@ -812,18 +868,13 @@
         "quizzes": []
       }
     ],
-    "postTest": [
-      {
-        "name": "posttest-6",
-        "question": "Which approach helps train individuals to educate their peers?",
-        "options": [
-          "Mass Campaigns",
-          "Peer Education",
-          "Policy Advocacy",
-          "Flyer Distribution"
-        ],
-        "correct": "Peer Education"
-      }
-    ]
+    "preTest": {
+      "name": "pretest-6",
+      "questions": []
+    },
+    "postTest": {
+      "name": "posttest-6",
+      "questions": []
+    }
   }
 ]

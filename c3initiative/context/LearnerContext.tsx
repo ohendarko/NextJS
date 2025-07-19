@@ -13,14 +13,10 @@ interface UserProfile {
   name: string
   password?: string
   currentModule: string
+  preTestCompleted: string[]
+  poatTestCompleted: string[]
   completedModules: string[]
   completedSections: string[]
-  module1Completed: boolean
-  module2Completed: boolean
-  module3Completed: boolean
-  module4Completed: boolean
-  module5Completed: boolean
-  module6Completed: boolean
   moduleProgress: string[]
   certificate?: boolean
 }

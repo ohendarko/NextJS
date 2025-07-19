@@ -27,6 +27,8 @@ import SectionRenderer from "@/components/SectionRenderer"
 import { useProtectedModuleRoute } from "@/hooks/useProtectedModuleRoute"
 import { useLearner } from "@/context/LearnerContext"
 import { useSession } from "next-auth/react"
+import FullScreenQuizDialog from "@/components/FullScreenQuizDialog"
+import { lutimesSync } from "fs"
 // import PostTestModal from "@/components/post-test-modal"
 
 type LearningCard = {
@@ -47,11 +49,23 @@ type Section = {
   quizzes: any[] // define if needed
 }
 
-type PostTest = {
-  id: string
+
+type Questions = {
+  order: number
   question: string
   options: string[]
-  correct: string
+  correctAnswer: string
+  explanation: string
+}
+
+type PostTest = {
+  name: string
+  questions: Questions[]
+}
+
+type PreTest = {
+  name: string
+  questions: Questions[]
 }
 
 type Module = {
@@ -65,7 +79,8 @@ type Module = {
   completed: boolean
   unlocked: boolean
   sections: Section[]
-  postTest: PostTest[]
+  preTest: PreTest
+  postTest: PostTest
 }
 
 
@@ -90,6 +105,10 @@ export default function ModulePage() {
   const [showCompletionModal, setShowCompletionModal] = useState(false)
   const [hasShownCompletionModal, setHasShownCompletionModal] = useState(false)
   const [totalModules, setTotalModules] = useState(0)
+  const pretestQuestions = lesson?.preTest.questions || []
+  const pretestKey = `pretest-${lesson?.order}`
+  const pretestCompleted = userProfile?.preTestCompleted?.includes(pretestKey) ?? false
+  const [showQuiz, setShowQuiz] = useState(!pretestCompleted)
 
   const  params = useParams()
   const { module } = params as  {module: string}
@@ -168,6 +187,33 @@ export default function ModulePage() {
   // console.log('totalmodules',totalModules)
   // console.log(lesson)
   // console.log('sectionprogress', sectionProgress)
+
+  const handleQuizComplete = async () => {
+    try {
+      const updated = [`pretest${lesson?.order}`]
+
+      const res = await fetch("/api/user/update", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: userProfile?.email,
+          preTestCompleted: updated,
+          addOn: true,
+        }),
+      })
+
+      if (!res.ok) {
+        throw new Error("Failed to update user profile")
+      }
+
+      setShowQuiz(false)
+    } catch (error) {
+      console.error("Error updating pretest status:", error)
+    }
+  }
+
 
   const saveProgressLocally = (sectionName: string, email: string) => {
     const key = `c3-progress-${email}`
@@ -339,6 +385,7 @@ export default function ModulePage() {
 
   return (
     <div className="min-h-screen pt-24 pb-4 mb-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+
       <div className="container mx-auto max-w-7xl px-3">
         {/* Back Navigation */}
         <div className="mb-6">
@@ -349,6 +396,16 @@ export default function ModulePage() {
             </Button>
           </Link>}
         </div>
+
+        {!pretestCompleted && (
+          <FullScreenQuizDialog
+            isOpen={showQuiz}
+            onClose={() => setShowQuiz(false)}
+            questions={pretestQuestions}
+            onComplete={handleQuizComplete}
+          />
+        )}
+
 
         {/* Module Progress Bar */}
         {/* <div className="mb-8">

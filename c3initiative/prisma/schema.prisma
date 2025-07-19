@@ -24,12 +24,8 @@ model User {
   admin            Boolean @default(false)
   moduleProgress    ModuleProgress[]
   currentModule   String?          @default("module-1") // e.g. "module-1"
-  module1Completed  Boolean          @default(false)
-  module2Completed  Boolean          @default(false)
-  module3Completed  Boolean          @default(false)
-  module4Completed  Boolean          @default(false)
-  module5Completed  Boolean          @default(false)
-  module6Completed  Boolean          @default(false)
+  preTestCompleted  String[]         @default([])
+  postTestCompleted  String[]         @default([])
   completedSections String[]         @default([])
   completedModules  String[]         @default([])
   certificate       Certificate?
@@ -63,6 +59,7 @@ model Module {
   order          Int
   introVideo     String
   sections       Json // raw array of section objects
+  preTest       Json // raw array of quiz objects
   postTest       Json // raw array of quiz objects
   Section        Section[]
   Quiz           Quiz[]
