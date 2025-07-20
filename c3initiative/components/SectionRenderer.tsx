@@ -48,6 +48,7 @@ export default function SectionRenderer({ section, onComplete, isUnlocked, total
   const [animationDirection, setAnimationDirection] = useState<"next" | "prev">("next")
   const [completedCards, setCompletedCards] = useState<number[]>([])
   const [showCompletionModal, setShowCompletionModal] = useState(false)
+  const [postTestCompleted, setPostTestCompleted] = useState(true)
 
   useEffect(() => {
     const allCompleted = completedCards.length === section.learningCards.length

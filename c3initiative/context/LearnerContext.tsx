@@ -14,7 +14,7 @@ interface UserProfile {
   password?: string
   currentModule: string
   preTestCompleted: string[]
-  poatTestCompleted: string[]
+  postTestCompleted: string[]
   completedModules: string[]
   completedSections: string[]
   moduleProgress: string[]

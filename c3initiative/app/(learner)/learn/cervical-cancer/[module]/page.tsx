@@ -106,9 +106,16 @@ export default function ModulePage() {
   const [hasShownCompletionModal, setHasShownCompletionModal] = useState(false)
   const [totalModules, setTotalModules] = useState(0)
   const pretestQuestions = lesson?.preTest.questions || []
+  const postTestQuestions = lesson?.postTest.questions || []
   const pretestKey = `pretest-${lesson?.order}`
+  const posttestKey = `posttest-${lesson?.order}`
   const pretestCompleted = userProfile?.preTestCompleted?.includes(pretestKey) ?? false
+  const postTestCompleted = userProfile?.postTestCompleted?.includes(posttestKey) ?? false
   const [showQuiz, setShowQuiz] = useState(!pretestCompleted)
+  const [showPostQuiz, setShowPostQuiz] = useState(!postTestCompleted)
+
+
+
 
   const  params = useParams()
   const { module } = params as  {module: string}
@@ -188,9 +195,11 @@ export default function ModulePage() {
   // console.log(lesson)
   // console.log('sectionprogress', sectionProgress)
 
-  const handleQuizComplete = async () => {
+  const handleQuizComplete = async (mode: string) => {
     try {
-      const updated = [`pretest${lesson?.order}`]
+      const fieldToUpdate =
+        mode === "pretest" ? "preTestCompleted" : "postTestCompleted"
+      const updated = mode === "pretest" ? [`pretest-${lesson?.order}`] : [`posttest-${lesson?.order}`]
 
       const res = await fetch("/api/user/update", {
         method: "POST",
@@ -199,7 +208,7 @@ export default function ModulePage() {
         },
         body: JSON.stringify({
           email: userProfile?.email,
-          preTestCompleted: updated,
+          [fieldToUpdate]: updated,
           addOn: true,
         }),
       })
@@ -208,7 +217,7 @@ export default function ModulePage() {
         throw new Error("Failed to update user profile")
       }
 
-      setShowQuiz(false)
+      mode === "pretest" ? setShowQuiz(false) : setShowPostQuiz(false)
     } catch (error) {
       console.error("Error updating pretest status:", error)
     }
@@ -397,14 +406,25 @@ export default function ModulePage() {
           </Link>}
         </div>
 
-        {!pretestCompleted && (
+        {!pretestCompleted ? (
           <FullScreenQuizDialog
             isOpen={showQuiz}
             onClose={() => setShowQuiz(false)}
             questions={pretestQuestions}
-            onComplete={handleQuizComplete}
+            mode = {"pretest"}
+            onComplete={() => handleQuizComplete("pretest")}
           />
-        )}
+        ) : pretestCompleted && (allSectionsCompleted && !postTestCompleted) && (
+          <FullScreenQuizDialog
+            isOpen={showPostQuiz}
+            onClose={() => setShowPostQuiz(false)}
+            questions={postTestQuestions}
+            mode={"posttest"}
+            onComplete={() => handleQuizComplete("posttest")}
+          />
+        ) }
+
+        
 
 
         {/* Module Progress Bar */}
@@ -557,9 +577,7 @@ export default function ModulePage() {
         </div>
 
         {/* Module Completion */}
-        {allSectionsCompleted
-        // && !showPostTest 
-        && (
+        {(allSectionsCompleted && postTestCompleted) && (
           
           <Dialog open={showCompletionModal} onOpenChange={setShowCompletionModal}>
             <DialogContent className="max-w-md">
