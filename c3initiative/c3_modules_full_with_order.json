@@ -18,23 +18,44 @@
           {
             "name": "section-1-1-card-1",
             "title": "Global Impact of Cervical Cancer",
-            "content": "Every year, around 266,000 women die from cervical cancer worldwide. This staggering number represents not just statistics, but real lives lost to a largely preventable disease.\n\nMost of these deaths can be prevented through proper cervical cancer prevention and treatment programs. This highlights the critical importance of education, screening, and accessible healthcare.",
+            "content": "Every year, around 266,000 women die from cervical cancer worldwide. This staggering number represents not just statistics, but real lives lost to a largely preventable disease.",
             "infographic": "/images/placeholder.svg",
             "order": 1
           },
           {
             "name": "section-1-1-card-2",
-            "title": "HPV Connection",
-            "content": "Almost all cervical cancer is caused by a long-lasting infection with certain harmful types of the human papillomavirus (HPV). Understanding this connection is key to prevention strategies.\n\nThe disease usually develops slowly over 10–20 years. This gives enough time to detect and treat it early, making regular screening incredibly valuable for prevention.",
+            "title": "Global Impact of Cervical Cancer",
+            "content": "Most of these deaths can be prevented through proper cervical cancer prevention and treatment programs. This highlights the critical importance of education, screening, and accessible healthcare.",
             "infographic": "/images/placeholder.svg",
             "order": 2
           },
           {
             "name": "section-1-1-card-3",
-            "title": "Early Detection Methods",
-            "content": "There are low-cost tests that can find pre-cancer early. These screening methods are accessible and effective tools for preventing cervical cancer development.\n\nHPV vaccines are now available. If given to girls before they become sexually active, a large portion of cervical cancer can be prevented. This represents a major breakthrough in prevention.",
+            "title": "HPV Connection",
+            "content": "Almost all cervical cancer is caused by a long-lasting infection with certain harmful types of the human papillomavirus (HPV). \nUnderstanding this connection is key to prevention strategies.",
             "infographic": "/images/placeholder.svg",
             "order": 3
+          },
+          {
+            "name": "section-1-1-card-4",
+            "title": "HPV Connection",
+            "content": "The disease usually develops slowly over 10–20 years. This gives enough time to detect and treat it early, making regular screening incredibly valuable for prevention.",
+            "infographic": "/images/placeholder.svg",
+            "order": 5
+          },
+          {
+            "name": "section-1-1-card-6",
+            "title": "Early Detection Methods",
+            "content": "There are low-cost tests that can find pre-cancer early. These screening methods are accessible and effective tools for preventing cervical cancer development.",
+            "infographic": "/images/placeholder.svg",
+            "order": 6
+          },
+          {
+            "name": "section-1-1-card-7",
+            "title": "Early Detection Methods",
+            "content": "HPV vaccines are now available. If given to girls before they become sexually active, a large portion of cervical cancer can be prevented. This represents a major breakthrough in prevention.",
+            "infographic": "/images/placeholder.svg",
+            "order": 7
           }
         ],
         "quizzes": []
@@ -267,16 +288,23 @@
           {
             "name": "section-2-4card-1",
             "title": "Human Papilloma Virus",
-            "content": "Almost all cancers of the cervix are caused by a virus called the human papillomavirus, also known as HPV.\nThere are more than 100 different types of HPV, but not all types of HPV cause cervical cancer.\nHPV spreads from person to person through skin-to-skin contact of the genitals during sexual activity.\n",
+            "content": "Almost all cancers of the cervix are caused by a virus called the human papillomavirus, also known as HPV.\nThere are more than 100 different types of HPV, but not all types of HPV cause cervical cancer.\nHPV spreads from person to person through skin-to-skin contact of the genitals during sexual activity.",
             "infographic": "/images/placeholder.svg",
             "order": 1
           },
           {
             "name": "section-2-4card-2",
             "title": "Human Papilloma Virus",
-            "content": "It’s very common and can affect both women and men.\nAnyone who has ever been sexually active could have HPV.\nIn most cases, the body clears the virus on its own within one to two years.\nHowever, in rare cases where the virus doesn’t go away, certain types of HPV can cause abnormal cell changes that may develop into cervical cancer over time.",
+            "content": "It’s very common and can affect both women and men.\nAnyone who has ever been sexually active could have HPV.\nIn most cases, the body clears the virus on its own within one to two years.",
             "infographic": "/images/placeholder.svg",
             "order": 2
+          },
+          {
+            "name": "section-2-4card-3",
+            "title": "Human Papilloma Virus",
+            "content": "However, in rare cases where the virus doesn’t go away, certain types of HPV can cause abnormal cell changes that may develop into cervical cancer over time.",
+            "infographic": "/images/placeholder.svg",
+            "order": 3
           }
         ],
         "quizzes": []
@@ -290,7 +318,7 @@
           {
             "name": "section-2-5card-1",
             "title": "Human Papilloma Virus",
-            "content": "Cervical cancer usually develops gradually, often over 10–20 years, as abnormal cells in the cervix progress to precancerous conditions like CIN (cervical intraepithelial neoplasia) and eventually to cancer.\nIn some cases, especially with weakened immune systems, this process can be faster, taking 5–10 years.",
+            "content": "Cervical cancer usually develops gradually, often over 10–20 years, as abnormal cells in the cervix progress to precancerous conditions like CIN (cervical intraepithelial neoplasia) and eventually to cancer.",
             "infographic": "/images/placeholder.svg",
             "order": 1
           },
@@ -313,16 +341,30 @@
           {
             "name": "section-2-6card-1",
             "title": "Invasion Routes",
-            "content": "There are four, usually sequential, routes through which invasive cancer progresses.\n\nHow cervical cancer spreads:\n\na) Within the cervix: It can start small and gradually grow to cover the whole cervix, which may become as large as 8 cm. The cancer might form an open sore, grow outward, or spread inward.\n\nb) To nearby organs: It can directly spread in all directions. It can spread downwards to the vagina, upwards into the uterus, sideways into the tissues supporting the uterus in the pelvis and the ureters, backwards to the rectum, and forwards to the bladder.\n\n",
+            "content": "There are four, usually sequential, routes through which invasive cancer progresses.\n\nHow cervical cancer spreads:\n\na) Within the cervix: It can start small and gradually grow to cover the whole cervix, which may become as large as 8 cm. The cancer might form an open sore, grow outward, or spread inward.",
             "infographic": "/images/placeholder.svg",
             "order": 1
           },
           {
             "name": "section-2-6card-2",
-            "title": "Cancer Spread",
-            "content": "c) Through the lymph system: Even if the cancer is still in the cervix, it can spread to nearby lymph nodes in about 15% of cases. As the cancer grows, it may spread to more distant nodes, even as far as the collarbone. If cancer spreads to the lower vagina, the groin nodes may also be affected.\n\nd) To distant parts of the body: Cancer cells can travel through the blood or lymph and reach places like the liver, bones, lungs, or brain.\n\nImportant note:\nInvasive cervical cancer can often be cured with proper treatment if caught early. But without treatment, it usually spreads and becomes life-threatening.",
+            "title": "Invasion Routes",
+            "content": "b) To nearby organs: It can directly spread in all directions. It can spread downwards to the vagina, upwards into the uterus, sideways into the tissues supporting the uterus in the pelvis and the ureters, backwards to the rectum, and forwards to the bladder.",
             "infographic": "/images/placeholder.svg",
             "order": 2
+          },
+          {
+            "name": "section-2-6card-3",
+            "title": "Cancer Spread",
+            "content": "c) Through the lymph system: Even if the cancer is still in the cervix, it can spread to nearby lymph nodes in about 15% of cases. \nAs the cancer grows, it may spread to more distant nodes, even as far as the collarbone. \nIf cancer spreads to the lower vagina, the groin nodes may also be affected.",
+            "infographic": "/images/placeholder.svg",
+            "order": 3
+          },
+          {
+            "name": "section-2-6card-4",
+            "title": "Cancer Spread",
+            "content": "d) To distant parts of the body: Cancer cells can travel through the blood or lymph and reach places like the liver, bones, lungs, or brain.\n\nImportant note:\nInvasive cervical cancer can often be cured with proper treatment if caught early. But without treatment, it usually spreads and becomes life-threatening.",
+            "infographic": "/images/placeholder.svg",
+            "order": 4
           }
         ],
         "quizzes": []
@@ -336,7 +378,7 @@
           {
             "name": "section-2-7card-1",
             "title": "HIV",
-            "content": "Cervical cancer is one of the defining illnesses linked to AIDS in women with HIV. Women with HIV (and others with weak immune systems) are more likely to get infected with HPV. The weaker the immune system, the higher the risk.\n\n",
+            "content": "Cervical cancer is one of the defining illnesses linked to AIDS in women with HIV. \nWomen with HIV (and others with weak immune systems) are more likely to get infected with HPV. \nThe weaker the immune system, the higher the risk.",
             "infographic": "/images/placeholder.svg",
             "order": 1
           },
@@ -383,20 +425,20 @@
           {
             "name": "section-3-1card-1",
             "title": "VIA",
-            "content": "• Human papillomavirus (HPV) infection\n• Weakened immune system – immunocompromised persons (eg. those living with HIV)\n",
+            "content": "• Human papillomavirus (HPV) infection\n• Weakened immune system – immunocompromised persons (eg. those living with HIV)",
             "infographic": "/images/placeholder.svg",
             "order": 1
           },
           {
             "name": "section-3-1card-2",
             "title": "Risk Factors; continued",
-            "content": "• Other sexually transmitted infections (STI) – other STIs (eg. herpes, chlamydia, gonorrhoea, syphilis) increase the risk of HPV, which can lead to cervical cancer.\n• Multiple sexual partners – multiple sexual partners increase one’s chance of getting HPV.\n",
+            "content": "• Other sexually transmitted infections (STI) – other STIs (eg. herpes, chlamydia, gonorrhoea, syphilis) increase the risk of HPV, which can lead to cervical cancer.\n• Multiple sexual partners – multiple sexual partners increase one’s chance of getting HPV.",
             "infographic": "/images/placeholder.svg",
             "order": 2
           },
           {
             "name": "section-3-1card-3",
-            "title": "Risk Factors",
+            "title": "Risk Factors; continued",
             "content": "• Early onset of sexual activity\n• Tobacco smoking\n• Use of oral contraceptives for over five years",
             "infographic": "/images/placeholder.svg",
             "order": 3
@@ -412,24 +454,38 @@
         "learningCards": [
           {
             "name": "section-3-2card-1",
-            "title": "Sign and Symptoms",
-            "content": "I) Early disease symptoms\nEarly on, cervical cancer usually doesn’t have symptoms, making it hard to detect. Symptoms usually begin after the cancer has spread.",
+            "title": "Early disease symptoms",
+            "content": "Early on, cervical cancer usually doesn’t have symptoms, making it hard to detect. \nSymptoms usually begin after the cancer has spread.",
             "infographic": "/images/placeholder.svg",
             "order": 1
           },
           {
             "name": "section-3-2card-2",
             "title": "Early Stage",
-            "content": "When symptoms of early-stage cervical cancer do occur, they may include:\n• Bleeding after sex\n• Bleeding after menopause\n• Bleeding between periods that are heavier or longer than normal\n• Foul-smelling vaginal discharge\n• Pain during sex\n\n",
+            "content": "When symptoms of early-stage cervical cancer do occur, they may include:\n• Bleeding after sex\n• Bleeding after menopause",
             "infographic": "/images/placeholder.svg",
             "order": 2
           },
           {
             "name": "section-3-2card-3",
-            "title": "Advanced Signs and Symptoms",
-            "content": "Advanced disease symptoms\nSymptoms of advanced cervical cancer may include the symptoms of early-stage cervical cancer and:\n• Difficulty or painful bowel movements or bleeding from the rectum during excretion\n• Difficult or painful urination or blood in urine\n• Swelling of the legs\n• Dull backache\n• Pain in abdomen\n• Feeling tired",
+            "title": "Early Stage",
+            "content": "• Bleeding between periods that are heavier or longer than normal\n• Foul-smelling vaginal discharge\n• Pain during sex",
             "infographic": "/images/placeholder.svg",
             "order": 3
+          },
+          {
+            "name": "section-3-2card-4",
+            "title": "Advanced Signs and Symptoms",
+            "content": "Advanced disease symptoms\nSymptoms of advanced cervical cancer may include the symptoms of early-stage cervical cancer and:\n• Difficulty or painful bowel movements or bleeding from the rectum during excretion",
+            "infographic": "/images/placeholder.svg",
+            "order": 4
+          },
+          {
+            "name": "section-3-2card-5",
+            "title": "Advanced Signs and Symptoms",
+            "content": "• Difficult or painful urination or blood in urine\n• Swelling of the legs\n• Dull backache\n• Pain in abdomen\n• Feeling tired",
+            "infographic": "/images/placeholder.svg",
+            "order": 5
           }
         ],
         "quizzes": []
@@ -443,72 +499,142 @@
           {
             "name": "section-3-3card-1",
             "title": "What is screening?",
-            "content": "Screening refers to the application of a test or procedure to identify unrecognized disease in people who have no symptoms or are not suspected of having a particular condition. Benefits of cervical cancer screening\nCervical cancer prevention programmes aim to screen the largest possible proportion of women and ensure appropriate management for all those who have a positive or abnormal test result.",
+            "content": "Screening refers to the application of a test or procedure to identify unrecognized disease in people who have no symptoms or are not suspected of having a particular condition. ",
             "infographic": "/images/placeholder.svg",
             "order": 1
           },
           {
             "name": "section-3-3card-2",
-            "title": "Frequency",
-            "content": "\nSome benefits of cervical cancer screening include:\n• Early detection of pre-cancer – screening helps to detect and treat cases of pre-cancer before they progress to cancer.\n• Early detection of cancer – screening helps to detect cervical cancer in women at an early stage when the cancer can still be successfully treated.\n• Reduced incidence of cervical cancer – by treating pre-cancerous conditions, screening helps prevent cervical cancer from developing.",
+            "title": "What is screening?",
+            "content": "Cervical cancer prevention programmes aim to screen the largest possible proportion of women and ensure appropriate management for all those who have a positive or abnormal test result.",
             "infographic": "/images/placeholder.svg",
             "order": 2
           },
           {
-            "name": "section-3-3card-3",
-            "title": "Screening methods for cervical pre-cancer",
-            "content": "\nUntil a few years ago, the only method of screening for cervical cancer was the Papanicolaou (“Pap”) smear or cytology. Newer methods have now been developed for cervical cancer screening and these are molecular HPV screening tests and visual inspection with acetic acid.",
+            "name": "section-3-3card-3a",
+            "title": "Benefits",
+            "content": "Some benefits of cervical cancer screening include:\n1. Early detection of pre-cancer – screening helps to detect and treat cases of pre-cancer before they progress to cancer.",
             "infographic": "/images/placeholder.svg",
             "order": 3
           },
           {
-            "name": "section-3-3card-4",
-            "title": "HPV Testing",
-            "content": "HPV tests check for the DNA of high-risk HPV types in vaginal or cervical samples.\n• HPV testing helps find women at risk early, so they can be treated before cancer develops.\n• In many places, HPV tests are done in a lab, but newer, low-cost tests that give same-day results at the clinic are being introduced.\n• It's important to use approved and reliable HPV tests to make sure the results are accurate.\n",
+            "name": "section-3-3card-3b",
+            "title": "Benefits; continued",
+            "content": "2. Early detection of cancer – screening helps to detect cervical cancer in women at an early stage when the cancer can still be successfully treated.",
             "infographic": "/images/placeholder.svg",
             "order": 4
           },
           {
-            "name": "section-3-3card-5",
-            "title": "Screening methods for cervical pre-cancer",
-            "content": "Who should be tested?\n• HPV testing is recommended for women aged 30 and above.\n• This is because younger women often clear HPV naturally, and testing them may lead to unnecessary worry and treatment.\n• In women over 30, a positive HPV test is more serious. It means the virus might stay in the body and could lead to cervical cancer if not treated.",
+            "name": "section-3-3card-3c",
+            "title": "Benefits; continued",
+            "content": "3. Reduced incidence of cervical cancer – by treating pre-cancerous conditions, screening helps prevent cervical cancer from developing.",
             "infographic": "/images/placeholder.svg",
             "order": 5
           },
           {
-            "name": "section-3-3card-6",
-            "title": "How to screen",
-            "content": "•HPV testing doesn’t always need a pelvic exam.\n• A healthcare provider can collect the sample using a small brush inserted into the vagina.\n• This can be done with or without using a speculum to see the cervix.\n• Women can also collect the sample themselves using a provided brush and container after being shown how.\n• Self-collection is cheaper for health services and more convenient for many women.\n\n",
+            "name": "section-3-3card-4",
+            "title": "Screening methods for cervical pre-cancer",
+            "content": "\nUntil a few years ago, the only method of screening for cervical cancer was the Papanicolaou (“Pap”) smear or cytology. \nNewer methods have now been developed for cervical cancer screening and these are molecular HPV screening tests and visual inspection with acetic acid.",
             "infographic": "/images/placeholder.svg",
             "order": 6
           },
           {
-            "name": "section-3-3card-7a",
-            "title": "Visual screening methods",
-            "content": "\nWho should be tested?\n• VIA is best for women under 50 because the part of the cervix where cell changes usually happen is easier to see before menopause.\n• After menopause, this area moves deeper inside the body, making it harder to spot problems just by looking.\nHow to screen\n• VIA requires the use of a speculum, light source, and a trained health-care provider.\n• The provider examines the cervix and applies the acetic acid using a cotton swab.\n• After one minute, any white areas that stay (and don’t fade) could mean pre-cancer or cancer.\n• If these white areas have clear edges and are in the right spot on the cervix, the test is considered positive.",
+            "name": "section-3-3card-5a",
+            "title": "HPV Testing",
+            "content": "HPV tests check for the DNA of high-risk HPV types in vaginal or cervical samples.\n• HPV testing helps find women at risk early, so they can be treated before cancer develops.",
             "infographic": "/images/placeholder.svg",
             "order": 7
           },
           {
-            "name": "section-3-3card-7b",
-            "title": "Visual screening methods",
-            "content": "Visual Inspection with Acetic Acid (VIA) is a method used to check for early changes in the cervix.\n• A health worker applies a solution (3–5% acetic acid) to the cervix and looks at it directly using a speculum.\n• This method needs trained health workers and regular quality checks to make sure it's done correctly.",
+            "name": "section-3-3card-5b",
+            "title": "HPV Testing",
+            "content": "\n• In many places, HPV tests are done in a lab, but newer, low-cost tests that give same-day results at the clinic are being introduced.\n• It's important to use approved and reliable HPV tests to make sure the results are accurate.",
             "infographic": "/images/placeholder.svg",
             "order": 8
           },
           {
-            "name": "section-3-3card-8",
-            "title": "Cytology-based screening methods",
-            "content": "The cytology-based screening is a method that involves collecting cells from the transformation zone of the cervix.\n• The cells are spread directly onto a glass slide and fixed with a special solution or placed in a transport medium and then sent to the laboratory.\n• In the laboratory, these cells are examined by experts under a microscope.\n• If abnormal cells are found, they are classified using a system called The Bethesda System.\n• ",
+            "name": "section-3-3card-6",
+            "title": "Who should be tested?",
+            "content": "HPV testing is recommended for women aged 30 and above.\n• This is because younger women often clear HPV naturally, and testing them may lead to unnecessary worry and treatment.\n• In women over 30, a positive HPV test is more serious. It means the virus might stay in the body and could lead to cervical cancer if not treated.",
             "infographic": "/images/placeholder.svg",
             "order": 9
           },
           {
-            "name": "section-3-3card-9",
-            "title": "Cytology-based screening methods",
-            "content": "A cytology-based screening programme can use one of the two available methods:\n  o The conventional Pap smear (or Pap test)\n  o Liquid-based cytology (LBC)\nHow to screen\n• Collection of a cytology sample requires a speculum and adequate lighting to visualize the entire surface of the cervix.\n• The provider takes specimens from the face of the cervix and the endocervix using a spatula or brush and transfers the specimen to a slide (Pap smear) or a preservative solution (LBC).\n• The sample must be appropriately labelled and transported to the laboratory, where skilled personnel are needed to process and interpret it.",
+            "name": "section-3-3card-7a",
+            "title": "How to screen",
+            "content": "• HPV testing doesn’t always need a pelvic exam.\n• A healthcare provider can collect the sample using a small brush inserted into the vagina.",
             "infographic": "/images/placeholder.svg",
             "order": 10
+          },
+          {
+            "name": "section-3-3card-7b",
+            "title": "How to screen",
+            "content": "• This can be done with or without using a speculum to see the cervix.\n• Women can also collect the sample themselves using a provided brush and container after being shown how.\n• Self-collection is cheaper for health services and more convenient for many women.",
+            "infographic": "/images/placeholder.svg",
+            "order": 11
+          },
+          {
+            "name": "section-3-3card-8a",
+            "title": "Visual screening methods",
+            "content": "• VIA is best for women under 50 because the part of the cervix where cell changes usually happen is easier to see before menopause.\n• After menopause, this area moves deeper inside the body, making it harder to spot problems just by looking.",
+            "infographic": "/images/placeholder.svg",
+            "order": 12
+          },
+          {
+            "name": "section-3-3card-8b",
+            "title": "How to screen",
+            "content": "VIA requires the use of a speculum, light source, and a trained health-care provider.\n• The provider examines the cervix and applies the acetic acid using a cotton swab.",
+            "infographic": "/images/placeholder.svg",
+            "order": 13
+          },
+          {
+            "name": "section-3-3card-8c",
+            "title": "Visual screening methods",
+            "content": "After one minute, any white areas that stay (and don’t fade) could mean pre-cancer or cancer.\nIf these white areas have clear edges and are in the right spot on the cervix, the test is considered positive.",
+            "infographic": "/images/placeholder.svg",
+            "order": 14
+          },
+          {
+            "name": "section-3-3card-8d",
+            "title": "Visual screening methods",
+            "content": "Visual Inspection with Acetic Acid (VIA) is a method used to check for early changes in the cervix.\n• A health worker applies a solution (3–5% acetic acid) to the cervix and looks at it directly using a speculum.\n• This method needs trained health workers and regular quality checks to make sure it's done correctly.",
+            "infographic": "/images/placeholder.svg",
+            "order": 15
+          },
+          {
+            "name": "section-3-3card-9a",
+            "title": "Cytology-based screening methods",
+            "content": "The cytology-based screening is a method that involves collecting cells from the transformation zone of the cervix.\n• The cells are spread directly onto a glass slide and fixed with a special solution or placed in a transport medium and then sent to the laboratory.",
+            "infographic": "/images/placeholder.svg",
+            "order": 16
+          },
+          {
+            "name": "section-3-3card-9b",
+            "title": "Cytology-based screening methods",
+            "content": "In the laboratory, these cells are examined by experts under a microscope.\n• If abnormal cells are found, they are classified using a system called The Bethesda System.\n• ",
+            "infographic": "/images/placeholder.svg",
+            "order": 17
+          },
+          {
+            "name": "section-3-3card-9c",
+            "title": "Cytology-based screening methods",
+            "content": "A cytology-based screening programme can use one of the two available methods:\n•The conventional Pap smear (or Pap test)\n•Liquid-based cytology (LBC)",
+            "infographic": "/images/placeholder.svg",
+            "order": 18
+          },
+          {
+            "name": "section-3-3card-9d",
+            "title": "How to screen",
+            "content": "• Collection of a cytology sample requires a speculum and adequate lighting to visualize the entire surface of the cervix.\n• The provider takes specimens from the face of the cervix and the endocervix using a spatula or brush and transfers the specimen to a slide (Pap smear) or a preservative solution (LBC)",
+            "infographic": "/images/placeholder.svg",
+            "order": 19
+          },
+          {
+            "name": "section-3-3card-9e",
+            "title": "How to screen",
+            "content": "• The sample must be appropriately labelled and transported to the laboratory, where skilled personnel are needed to process and interpret it.",
+            "infographic": "/images/placeholder.svg",
+            "order": 20
           }
         ],
         "quizzes": []
@@ -548,8 +674,8 @@
           },
           {
             "name": "section-4-1card-2",
-            "title": "Recommendations",
-            "content": "Key WHO recommendations on HPV vaccines include:\n\n1. Eligible individuals for vaccination\n• Target group - girls aged 9–14 years\n• Other groups include:\n  ◦ Girls aged 15 years and older\n  ◦ Immunocompromised individuals, including those living with HIV\n\n",
+            "title": "Key WHO recommendations on HPV vaccines",
+            "content": "Eligible individuals for vaccination\n• Target group - girls aged 9–14 years\n • Other groups include:\n • Girls aged 15 years and older\n • Immunocompromised individuals, including those living with HIV",
             "infographic": "/images/placeholder.svg",
             "order": 2
           },
