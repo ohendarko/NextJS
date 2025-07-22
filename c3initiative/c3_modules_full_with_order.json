@@ -682,14 +682,14 @@
           {
             "name": "section-4-1card-3",
             "title": "Appropriate dosing schedule and target population",
-            "content": "• For girls under 15 years at the first dose:\n  ◦ A one or two-dose schedule is required.\n  ◦ The interval between the two doses should be 6 months.\n  ◦ The maximum interval between the doses should not be more than 12–15 months.\n  ◦ If the second dose is given less than 5 months after the first dose, then a third dose is required and should be given at least six months after the first dose.\n\n• For girls aged 15–20 years:\n  ◦ A one- or two-dose schedule is needed.",
+            "content": "• For girls under 15 years at the first dose:\n  •A one or two-dose schedule is required.\n • The interval between the two doses should be 6 months.\n  • The maximum interval between the doses should not be more than 12–15 months.\n  • If the second dose is given less than 5 months after the first dose, then a third dose is required and should be given at least six months after the first dose.\n\n• For girls aged 15–20 years:\n  • A one- or two-dose schedule is needed.",
             "infographic": "/images/placeholder.svg",
             "order": 3
           },
           {
             "name": "section-4-1card-3b",
             "title": "Appropriate dosing schedule and target population",
-            "content": "• For women older than 21 years:\n  ◦ Two doses with a 6-month interval required.\n\n• For immunocompromised and/or HIV-infected individuals:\n  ◦ A minimum of 2 doses and when feasible, 3 doses are necessary.\n  ◦ The interval between the first and second dose should be 1–2 months.\n  ◦ The third dose should be given 6 months after the first dose to be fully protected.",
+            "content": "• For women older than 21 years:\n  • Two doses with a 6-month interval required.\n\n• For immunocompromised and/or HIV-infected individuals:\n  • A minimum of 2 doses and when feasible, 3 doses are necessary.\n  • The interval between the first and second dose should be 1–2 months.\n  • The third dose should be given 6 months after the first dose to be fully protected.",
             "infographic": "/images/placeholder.svg",
             "order": 4
           }
@@ -733,16 +733,23 @@
           {
             "name": "section-4-2card-5",
             "title": "Contraindications to HPV vaccines",
-            "content": "i. HPV vaccines should not be given to persons who have experienced severe allergic reactions after a previous dose of the vaccine or after exposure to one of its components (e.g. yeast).\n• Such severe allergic reactions include: itching, rash, urticaria or blisters.\nii. Girls with severe febrile illness should not be vaccinated.\niii. HPV vaccines are not currently recommended for use in women who are pregnant.\n• No intervention is necessary in the event that an HPV vaccine is given to a pregnant woman.\n• The remaining vaccine dose(s) should be postponed until after the pregnancy to be completed.",
+            "content": "i. HPV vaccines should not be given to persons who have experienced severe allergic reactions after a previous dose of the vaccine or after exposure to one of its components (e.g. yeast).\n• Such severe allergic reactions include: itching, rash, urticaria or blisters.\n\nii. Girls with severe febrile illness should not be vaccinated.",
             "infographic": "/images/placeholder.svg",
             "order": 5
           },
           {
-            "name": "section-4-2card-5",
+            "name": "section-4-2card-5b",
+            "title": "Contraindications to HPV vaccines",
+            "content": "iii. HPV vaccines are not currently recommended for use in women who are pregnant.\n• No intervention is necessary in the event that an HPV vaccine is given to a pregnant woman.\n• The remaining vaccine dose(s) should be postponed until after the pregnancy to be completed.",
+            "infographic": "/images/placeholder.svg",
+            "order": 6
+          },
+          {
+            "name": "section-4-2card-5c",
             "title": "Important note on HPV vaccines",
             "content": "• HPV vaccines are preventive and not curative.\n• The vaccines do not treat existing HPV infections or HPV-related diseases.\n• HPV vaccines can be administered at the same time as other non-live vaccines.",
             "infographic": "/images/placeholder.svg",
-            "order": 6
+            "order": 7
           }
         ],
         "quizzes": []
@@ -776,7 +783,7 @@
           {
             "name": "section-5-1card-1",
             "title": "Role of diagnostic tests",
-            "content": "• A diagnostic or confirmatory test is a medical test performed to aid in the diagnosis or detection of a disease.\n• Not all women with positive results on cervical screening tests actually have pre-cancer. As such, a subsequent diagnostic test is sometimes used for definitive diagnosis or confirmation of pre-cancer or cancer.\n\n",
+            "content": "• A diagnostic or confirmatory test is a medical test performed to aid in the diagnosis or detection of a disease.\n• Not all women with positive results on cervical screening tests actually have pre-cancer. As such, a subsequent diagnostic test is sometimes used for definitive diagnosis or confirmation of pre-cancer or cancer.",
             "infographic": "/images/placeholder.svg",
             "order": 1
           },
@@ -790,23 +797,42 @@
           {
             "name": "section-5-1card-3a",
             "title": "Diagnostic tools: Colposcopy",
-            "content": "This is a procedure used to closely examine the cervix, vagina, and vulva using a magnification tool and strong light.\n• It enables healthcare providers to observe surface tissue patterns and blood vessels in detail to detect abnormalities.\n• It is performed using a colposcope but specially designed video or digital cameras are being used of late.\n  ◦ Colposcopy is used on patients with positive screening results to:\n    i. Confirm the presence and severity of pre-cancer or cancer.\n    ii. Guide biopsies of any areas that appear abnormal.\n    iii. Determine whether cryotherapy or loop electrosurgical excision procedure (LEEP) is the most appropriate treatment method.",
+            "content": "This is a procedure used to closely examine the cervix, vagina, and vulva using a magnification tool and strong light.\n• It enables healthcare providers to observe surface tissue patterns and blood vessels in detail to detect abnormalities.",
             "infographic": "/images/placeholder.svg",
             "order": 3
           },
           {
             "name": "section-5-1card-3b",
+            "title": "• It is performed using a colposcope but specially designed video or digital cameras are being used of late.\n• Colposcopy is used on patients with positive screening results to:\n    i. Confirm the presence and severity of pre-cancer or cancer.",
+            "infographic": "/images/placeholder.svg",
+            "order": 3
+          },
+          {
+            "name": "section-5-1card-3c",
+            "title": "ii. Guide biopsies of any areas that appear abnormal.\n\niii. Determine whether cryotherapy or loop electrosurgical excision procedure (LEEP) is the most appropriate treatment method.",
+            "infographic": "/images/placeholder.svg",
+            "order": 3
+          },
+          {
+            "name": "section-5-1card-3d",
             "title": "Diagnostic tools: Biopsy",
-            "content": "A biopsy is the removal of small samples of abnormal tissue from the cervix for examination under a microscope.\n• It helps to determine the degree of abnormality of the cell changes or to rule out cancer.\n• It is traditionally performed using special biopsy forceps.\n\n",
+            "content": "A biopsy is the removal of small samples of abnormal tissue from the cervix for examination under a microscope.\n• It helps to determine the degree of abnormality of the cell changes or to rule out cancer.\n• It is traditionally performed using special biopsy forceps.",
             "infographic": "/images/placeholder.svg",
             "order": 4
           },
           {
-            "name": "section-5-1card-3c",
+            "name": "section-5-1card-3e",
             "title": "Diagnostic tools: Endocervical curettage (ECC)",
-            "content": "ECC is a simple procedure used to collect cells from the endocervical canal.\n• It is usually conducted using a special thin instrument or spatula.\n  ◦ It is used in the following circumstances:\n    i. Colposcopy shows nothing, but a screening test suggests a hidden pre-cancer or cancer.\n    ii. When a Pap smear shows glandular cell abnormalities, which may come from deep inside the canal.\n    iii. If screening and/or colposcopy were not adequate and cancer is suspected.",
+            "content": "ECC is a simple procedure used to collect cells from the endocervical canal.\n • It is usually conducted using a special thin instrument or spatula.\n  • It is used in the following circumstances:",
             "infographic": "/images/placeholder.svg",
             "order": 5
+          },
+          {
+            "name": "section-5-1card-3f",
+            "title": "Diagnostic tools: Endocervical curettage (ECC)",
+            "content": "i. Colposcopy shows nothing, but a screening test suggests a hidden pre-cancer or cancer.\nii. When a Pap smear shows glandular cell abnormalities, which may come from deep inside the canal.\niii. If screening and/or colposcopy were not adequate and cancer is suspected.",
+            "infographic": "/images/placeholder.svg",
+            "order": 6
           }
         ],
         "quizzes": []
@@ -820,23 +846,30 @@
           {
             "name": "section-5-2card-1",
             "title": "Systems",
-            "content": "Cervical cancer staging is done using one of the existing international staging systems.\n\n• Importance of cervical cancer staging\n  ◦ It is used to determine the extent of the cervical cancer invasion and the presence or absence of distant metastases.\n  ◦ It helps specialists choose the most suitable treatment for the patient.\n\nSeveral systems exist, but the FIGO staging system is the most widely used.",
+            "content": "Cervical cancer staging is done using one of the existing international staging systems.\n\n• Importance of cervical cancer staging\n • It is used to determine the extent of the cervical cancer invasion and the presence or absence of distant metastases.\n • It helps specialists choose the most suitable treatment for the patient.",
             "infographic": "/images/placeholder.svg",
             "order": 1
           },
           {
             "name": "section-5-2card-2",
             "title": "What is FIGO?",
-            "content": "◦ FIGO stands for International Federation of Gynaecology and Obstetrics\n  ◦ This staging system classifies cancer based on tumour size, spread within the pelvis and spread to distant organs.",
+            "content": "Several systems exist, but the FIGO staging system is the most widely used. \nFIGO stands for International Federation of Gynaecology and Obstetrics\n  • This staging system classifies cancer based on tumour size, spread within the pelvis and spread to distant organs.",
             "infographic": "/images/placeholder.svg",
             "order": 2
           },
           {
             "name": "section-5-2card-3",
             "title": "Staging breakdown",
-            "content": "The FIGO system describes four stages of cervical cancer\n  ◦ These include:\n    ▪ Stage I: The disease is confined to the cervix.\n    ▪ Stage II: Cancer has spread beyond the cervix but not to the pelvic wall or lower part of the vagina.\n    ▪ Stage III: Cancer has spread to the pelvic wall and/or lower part of the vagina.\n    ▪ Stage IV: Cancer has spread to surrounding organs or distant tissue, such as the lungs and distant lymph nodes.",
+            "content": "The FIGO system describes four stages of cervical cancer\nThese include:\n • Stage I: The disease is confined to the cervix.\n • Stage II: Cancer has spread beyond the cervix but not to the pelvic wall or lower part of the vagina.",
             "infographic": "/images/placeholder.svg",
             "order": 3
+          },
+          {
+            "name": "section-5-2card-4",
+            "title": "Staging breakdown",
+            "content": "• Stage III: Cancer has spread to the pelvic wall and/or lower part of the vagina.\n• Stage IV: Cancer has spread to surrounding organs or distant tissue, such as the lungs and distant lymph nodes.",
+            "infographic": "/images/placeholder.svg",
+            "order": 4
           }
         ],
         "quizzes": []
@@ -850,23 +883,16 @@
           {
             "name": "section-5-3card-1",
             "title": "Prognosis",
-            "content": "• The single most important predictor of long-term survival is the clinical stage of the disease when the disease is first diagnosed.\n• The following additional factors also influence the chances a woman will survive for more than five years after treatment:\n  o Access to treatment\n  o Presence of cancer in the lymph nodes\n  o Having other chronic or acute health problems\n  o Overall health and nutritional status, including the presence of anaemia\n  o Weakened immune system (e.g. HIV status).",
+            "content": "• The single most important predictor of long-term survival is the clinical stage of the disease when the disease is first diagnosed.\n• The following additional factors also influence the chances a woman will survive for more than five years after treatment:",
             "infographic": "/images/placeholder.svg",
             "order": 1
           },
           {
-            "name": "section-5-3card-2",
-            "title": "What is FIGO?",
-            "content": "◦ FIGO stands for International Federation of Gynaecology and Obstetrics\n  ◦ This staging system classifies cancer based on tumour size, spread within the pelvis and spread to distant organs.",
+            "name": "section-5-3card-1b",
+            "title": "Prognosis",
+            "content": "• Access to treatment\n• Presence of cancer in the lymph nodes\n• Having other chronic or acute health problems\n• Overall health and nutritional status, including the presence of anaemia\n• Weakened immune system (e.g. HIV status).",
             "infographic": "/images/placeholder.svg",
             "order": 2
-          },
-          {
-            "name": "section-5-3card-3",
-            "title": "Staging breakdown",
-            "content": "The FIGO system describes four stages of cervical cancer\n  ◦ These include:\n    ▪ Stage I: The disease is confined to the cervix.\n    ▪ Stage II: Cancer has spread beyond the cervix but not to the pelvic wall or lower part of the vagina.\n    ▪ Stage III: Cancer has spread to the pelvic wall and/or lower part of the vagina.\n    ▪ Stage IV: Cancer has spread to surrounding organs or distant tissue, such as the lungs and distant lymph nodes.",
-            "infographic": "/images/placeholder.svg",
-            "order": 3
           }
         ],
         "quizzes": []
@@ -900,65 +926,72 @@
           {
             "name": "section-6-1card-1",
             "title": "Choosing a Treatment Plan",
-            "content": "Choosing a treatment plan depends on:\n  ◦ Stage of the cancer\n  ◦ General health of the woman\n  ◦ Availability of facilities and specialists\n• Cervical cancer treatment options include surgery, radiotherapy and chemotherapy.\n• These may be used alone or in combination.",
+            "content": "Choosing a treatment plan depends on:\n  • Stage of the cancer\n  • General health of the woman\n  • Availability of facilities and specialists",
             "infographic": "/images/placeholder.svg",
             "order": 1
           },
           {
-            "name": "section-6-1card-2a",
-            "title": "Surgery",
-            "content": "The most common treatment for early-stage cancer is surgery.\nIt consists of the removal of varying amounts of tissues from the area involved with cancer and its surroundings.\n\n",
+            "name": "section-6-1card-1b",
+            "title": "Choosing a Treatment Plan",
+            "content": "Cervical cancer treatment options include surgery, radiotherapy and chemotherapy.\n• These may be used alone or in combination.",
             "infographic": "/images/placeholder.svg",
             "order": 2
+          },
+          {
+            "name": "section-6-1card-2a",
+            "title": "Surgery",
+            "content": "The most common treatment for early-stage cancer is surgery.\nIt consists of the removal of varying amounts of tissues from the area involved with cancer and its surroundings.",
+            "infographic": "/images/placeholder.svg",
+            "order": 3
           },
           {
             "name": "section-6-1card-2b",
             "title": "Surgery",
             "content": "i. Simple hysterectomy\n• Removes the uterus and cervix\n• Suitable for very early stages\n\nii. Radical hysterectomy\n• Removes the uterus, cervix, part of the vagina, and nearby tissues\n\niii. Trachelectomy\n• Removes the cervix and upper vagina but preserves the uterus\n• Fertility-sparing option for some early-stage patients\n\n",
             "infographic": "/images/placeholder.svg",
-            "order": 3
+            "order": 4
           },
           {
             "name": "section-6-1card-2c",
             "title": "Surgery",
-            "content": "Side effects of surgery:\n  ◦ Pain or discomfort in the abdomen or pelvic area\n  ◦ An infection where the surgery was done\n  ◦ Bleeding during or after surgery\n  ◦ Possible injury to nearby organs like the bladder or bowel\n  ◦ Blood clots in the legs if the patient stays in bed too long after surgery\n\n",
+            "content": "Side effects of surgery:\n  • Pain or discomfort in the abdomen or pelvic area\n  • An infection where the surgery was done\n  • Bleeding during or after surgery\n  • Possible injury to nearby organs like the bladder or bowel\n  • Blood clots in the legs if the patient stays in bed too long after surgery",
             "infographic": "/images/placeholder.svg",
-            "order": 4
+            "order": 5
           },
           {
             "name": "section-6-1card-3a",
             "title": "Radiation therapy",
             "content": "Radiation therapy uses high-energy rays to kill cancer cells or stop them from growing.\n• It can treat early cervical cancer but is often used after surgery if there’s a risk the cancer has spread.\n• It is also commonly used with chemotherapy to treat larger or more advanced cancers.\n• Whether you need radiation depends on your test results and stage of cancer.",
             "infographic": "/images/placeholder.svg",
-            "order": 5
+            "order": 6
           },
           {
             "name": "section-6-1card-3b",
             "title": "Radiation therapy",
-            "content": "Types of radiation therapy:\ni. External beam radiation therapy (EBRT)\n• It is a non-invasive procedure\n• The radiation is delivered from a machine (called a linear accelerator) outside the body\n\nii. Brachytherapy (internal radiation)\n• Radioactive material is placed directly inside or very close to the tumour\n• It allows a high dose of radiation to reach the cancer while limiting exposure to nearby healthy tissues\n\n",
+            "content": "Types of radiation therapy:\ni. External beam radiation therapy (EBRT): It is a non-invasive procedure\n• The radiation is delivered from a machine (called a linear accelerator) outside the body\n\nii. Brachytherapy (internal radiation): \n• Radioactive material is placed directly inside or very close to the tumour\n• It allows a high dose of radiation to reach the cancer while limiting exposure to nearby healthy tissues\n\n",
             "infographic": "/images/placeholder.svg",
-            "order": 6
+            "order": 7
           },
           {
             "name": "section-6-1card-3c",
             "title": "Radiation therapy",
-            "content": "Side effects of radiation therapy:\nRadiation for cervical cancer mainly affects the lower belly area, including the bladder, rectum, and nearby bones.\nSome common side effects may include:\n  ◦ Changes in urination or bowel habits\n  ◦ Discomfort during sex\n  ◦ Tiredness\n  ◦ Vaginal dryness, narrowing, or scarring\n  ◦ Early menopause\n  ◦ Infertility",
+            "content": "Side effects of radiation therapy:\nRadiation for cervical cancer mainly affects the lower belly area, including the bladder, rectum, and nearby bones.\nSome common side effects may include:\n  • Changes in urination or bowel habits\n  • Discomfort during sex\n  • Tiredness\n  • Vaginal dryness, narrowing, or scarring\n  • Early menopause\n  • Infertility",
             "infographic": "/images/placeholder.svg",
-            "order": 7
+            "order": 8
           },
           {
             "name": "section-6-1card-4a",
             "title": "Chemotherapy",
             "content": "Chemotherapy is the use of drugs to kill cancer cells. It is usually given intravenously (injected into a vein). The drugs travel through the bloodstream to reach all parts of the body, which helps treat cancer that may have spread. Cisplatin is the most commonly used drug. It is often combined with radiation (chemoradiation).",
             "infographic": "/images/placeholder.svg",
-            "order": 8
+            "order": 9
           },
           {
             "name": "section-6-1card-4b",
             "title": "Chemotherapy: Side effects",
-            "content": "Some common side effects include:\n  ◦ Nausea or vomiting\n  ◦ Loss of appetite\n  ◦ Mouth sores\n  ◦ Fatigue\n  ◦ Hair loss\n  ◦ Easy bruising or bleeding\n  ◦ Higher chance of infections\n  ◦ Constipation",
+            "content": "Some common side effects include:\n  • Nausea or vomiting\n  • Loss of appetite\n  • Mouth sores\n  • Fatigue\n  • Hair loss\n  • Easy bruising or bleeding\n  • Higher chance of infections\n  • Constipation",
             "infographic": "/images/placeholder.svg",
-            "order": 9
+            "order": 10
           }
         ],
         "quizzes": []
@@ -979,7 +1012,7 @@
           {
             "name": "section-6-2card-4b",
             "title": "Palliative care",
-            "content": "What it does:\n  ◦ Eases pain and discomfort\n  ◦ Manages other physical symptoms\n  ◦ Supports emotional, mental, and spiritual well-being\n  ◦ Helps families cope with the stress of illness\nPalliative care is necessary even though cervical cancer is a preventable and curable disease.",
+            "content": "What it does:\n  • Eases pain and discomfort\n  • Manages other physical symptoms\n  • Supports emotional, mental, and spiritual well-being\n  • Helps families cope with the stress of illness\nPalliative care is necessary even though cervical cancer is a preventable and curable disease.",
             "infographic": "/images/placeholder.svg",
             "order": 2
           },

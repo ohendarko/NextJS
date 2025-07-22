@@ -114,7 +114,7 @@ export default function LearningCard({ card, isActive, isCompleted, onComplete, 
 
           {/* Content */}
           <div className="prose dark:prose-invert max-w-none mb-6">
-            <div className="text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">{card.content}</div>
+            <div className="text-gray-700 text-sm dark:text-gray-300 leading-relaxed whitespace-pre-line">{card.content}</div>
           </div>
 
           {/* Action Button */}
