@@ -5,7 +5,7 @@ import { ArrowRight, BookOpen } from "lucide-react"
 export default function CTA() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 via-blue-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700">
-      <div className="container mx-auto max-w-4xl text-center">
+      <div className="container mx-auto !px-1 max-w-4xl text-center">
         <div className="space-y-8">
           <div className="w-20 h-20 gradient-triple rounded-full flex items-center justify-center mx-auto">
             <BookOpen className="w-10 h-10 text-white" />

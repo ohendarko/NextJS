@@ -43,12 +43,12 @@ const features = [
 export default function Features() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800/50">
-      <div className="container mx-auto max-w-7xl">
+      <div className="container !px-1 mx-auto max-w-7xl">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold">
             Why Choose{" "}
             <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">
-              CerviSmart?
+              C3 Initiative?
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">

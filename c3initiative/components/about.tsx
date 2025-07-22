@@ -11,7 +11,7 @@ const stats = [
 export default function About() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto max-w-7xl">
+      <div className="container !px-1 mx-auto max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <div className="space-y-4">

@@ -15,7 +15,7 @@ export default function Hero() {
 
   return (
     <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 dark:from-gray-900 dark:via-gray-800/50 dark:to-gray-700/30">
-      <div className="container mx-auto max-w-7xl">
+      <div className="container !px-1 mx-auto max-w-7xl">
         <div className="flex gap-12 items-center">
           <div className="space-y-8">
             <div className="space-y-4">
