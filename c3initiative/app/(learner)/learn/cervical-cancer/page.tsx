@@ -300,14 +300,14 @@ export default function CervicalCancerLearnPage() {
         </div>
 
         {/* Certificate Section */}
-        {allModulesCompleted && (
+        {(allModulesCompleted && !loading) ? (
           <Card className="mb-8 hover-shadow-gradient border-2 border-green-700">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-green-700 rounded-full flex items-center justify-center">
+                  {loading ? <Skeleton variant="circular" width={70} height={70} className="bg-gray-400" />: <div className="w-16 h-16 bg-green-700 rounded-full flex items-center justify-center">
                     <Award className="w-10 h-10 text-white" />
-                  </div>
+                  </div>}
                   <div>
                     {loading ? <Skeleton width={150} /> : <h3 className="text-xl font-bold text-green-600">🎉 Congratulations!</h3>}
                   {loading ? <Skeleton width={600} /> : <p className="text-gray-600 dark:text-gray-300">
@@ -322,7 +322,7 @@ export default function CervicalCancerLearnPage() {
               </div>
             </CardContent>
           </Card>
-        )}
+        ) : (<div></div>) }
 
         {/* Learning Path */}
         <div className="relative">
