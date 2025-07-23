@@ -71,7 +71,7 @@ export default function Hero() {
 
                   {/* Content */}
                   <div className="relative z-10">
-                    <div className="w-12 h-12 mx-auto mb-2 gradient-orange-blue rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 mx-auto mb-2 bg-gradient-to-br from-blue-500 to-pink-300 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <value.icon className="w-6 h-6 text-white" />
                     </div>
                     <span className={`flex justify-center text-sm bg-white/10 p-1 pb-5 backdrop-blur-sm font-medium ${value.color}`}>{value.label}</span>
