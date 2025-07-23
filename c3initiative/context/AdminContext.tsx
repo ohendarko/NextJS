@@ -1,6 +1,10 @@
 'use client'
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User, Module, AdminStats } from '@/types/admin';
+import { useRouter } from 'next/navigation';
+import { signIn, useSession } from "next-auth/react"
+import { toast } from '@/hooks/use-toast';
+import { newModule } from '@/lib/types';
 
 interface AdminContextType {
   isAuthenticated: boolean;
@@ -12,7 +16,7 @@ interface AdminContextType {
   addUser: (user: Omit<User, 'id'>) => void;
   updateUser: (id: string, user: Partial<User>) => void;
   deleteUser: (id: string) => void;
-  addModule: (module: Omit<Module, 'id'>) => void;
+  addModule: (module: newModule) => void;
   updateModule: (id: string, module: Partial<Module>) => void;
   deleteModule: (id: string) => void;
 }
@@ -102,9 +106,14 @@ const mockModules: Module[] = [
 ];
 
 export function AdminProvider({ children }: { children: ReactNode }) {
+  const router = useRouter()
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [users, setUsers] = useState<User[]>(mockUsers);
   const [modules, setModules] = useState<Module[]>(mockModules);
+  const [isLoading, setIsLoading] = useState(false)
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+  const [checkedAuth, setCheckedAuth] = useState(false);
+  const { data: session, status } = useSession()
 
   const stats: AdminStats = {
     totalUsers: users.length,
@@ -114,18 +123,87 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   };
 
   const login = async (email: string, password: string): Promise<boolean> => {
-    // Simple mock authentication
-    if (email === 'admin@example.com' && password === 'admin123') {
+    
+    const verifyAdmin = async () => {
+      // if (status === 'loading') return;
+
+      if (status === 'unauthenticated') {
+        router.replace('/not-found');
+        return;
+      }
+
+      try {
+        const check = await fetch(`/api/user/check?email=${email}`);
+        const user = await check.json();
+
+        if (user?.admin) {
+          setIsAdmin(true);
+          setCheckedAuth(true);
+
+        } else {
+          toast({
+            title: 'Login failed. Invalid username / password!',
+            description: "Please check your credentials and try again.",
+            variant: 'destructive',
+          });
+          router.replace('/learn');
+        }
+      } catch (err) {
+        console.error(err);
+        router.replace('/learn');
+      } finally {
+        setCheckedAuth(true);
+      }
+    };
+
+    verifyAdmin();
+    
+
+    const res = await signIn("credentials", {
+      redirect: false,
+      email: email,
+      password: password,
+    });
+
+    if (res?.error) {
+      toast({
+        title: 'Login failed. Invalid username / password!',
+        description: "Please check your credentials and try again.",
+        variant: 'destructive',
+      });
+      setIsLoading(false);
+      console.log(res.error)
+      // alert('Check your credentials and try again')
+    } else {
+      if (status === 'unauthenticated') {
+        setIsLoading(false);
+        router.push("/learn");
+      }
       setIsAuthenticated(true);
       localStorage.setItem('adminAuth', 'true');
-      return true;
+      toast({
+        title: 'Login successful',
+        description: 'Welcome to C3 Dashboard',
+        variant: 'success',
+        duration: 2000,
+      });
+      setIsLoading(true);
+      router.push('/instructor/manage')
     }
+    // Simple mock authentication
+    // if (email === 'admin@example.com' && password === 'admin123') {
+    //   setIsAuthenticated(true);
+    //   localStorage.setItem('adminAuth', 'true');
+    //   // router.push('/instructor/manage')
+    //   return true;
+    // }
     return false;
   };
 
   const logout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem('adminAuth');
+    router.push('/instructor')
   };
 
   const addUser = (user: Omit<User, 'id'>) => {
@@ -141,10 +219,28 @@ export function AdminProvider({ children }: { children: ReactNode }) {
     setUsers(prev => prev.filter(user => user.id !== id));
   };
 
-  const addModule = (module: Omit<Module, 'id'>) => {
-    const newModule = { ...module, id: Date.now().toString() };
-    setModules(prev => [...prev, newModule]);
-  };
+const addModule = async (module: newModule) => {
+  try {
+    const res = await fetch("/api/module", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(module),
+    });
+
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.message || "Failed to create module");
+    }
+
+    const savedModule = await res.json();
+    setModules(prev => [...prev, savedModule]);
+  } catch (error) {
+    console.error("Error adding module:", error);
+  }
+};
+
 
   const updateModule = (id: string, updatedModule: Partial<Module>) => {
     setModules(prev => prev.map(module => module.id === id ? { ...module, ...updatedModule } : module));
@@ -158,6 +254,8 @@ export function AdminProvider({ children }: { children: ReactNode }) {
     const authStatus = localStorage.getItem('adminAuth');
     if (authStatus === 'true') {
       setIsAuthenticated(true);
+    } else {
+      router.push('/instructor')
     }
   }, []);
 

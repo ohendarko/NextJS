@@ -18,6 +18,7 @@ interface UserProfile {
   completedModules: string[]
   completedSections: string[]
   moduleProgress: string[]
+  admin?: boolean
   certificate?: boolean
 }
 

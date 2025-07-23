@@ -14,6 +14,7 @@ export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isLoggedOut, setIsLoggedOut] = useState(true)
   const {data: session, status} = useSession()
+  const { userProfile } = useLearner()
 
   useEffect(() => {
     if(status === 'authenticated') {
@@ -48,6 +49,9 @@ export default function Header() {
             </Link>
             {isLoggedIn && <Link href="/learn/cervical-cancer" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors">
               Modules
+            </Link>}
+            {(isLoggedIn && userProfile?.admin ) && <Link href="/instructor" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors">
+              Instructor
             </Link>}
             <Link href="/contact" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors">
               Contact
@@ -87,6 +91,9 @@ export default function Header() {
                 className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors"
               >
                 Modules
+              </Link>}
+              {(isLoggedIn && userProfile?.admin) && <Link href="/instructor" className="text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors">
+                Instructor
               </Link>}
               <Link
                 href="/contact"

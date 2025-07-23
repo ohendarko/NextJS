@@ -17,8 +17,6 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return <AdminLogin />;
-  } else {
-    router.push('/instructor/manage')
   }
 
   // const handleViewUsers = () => {

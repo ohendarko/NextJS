@@ -5,8 +5,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Label } from '@/components/ui/label';
 import { useAdmin } from '@/context/AdminContext';
 import { Shield, Lock, User } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export function AdminLogin() {
+  const router = useRouter()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -100,6 +102,15 @@ export function AdminLogin() {
 
               <div className="text-sm text-gray-500 text-center mt-4">
                 Demo credentials: admin@example.com / admin123
+              </div>
+              <div className='flex justify-center'>
+                <Button
+                  variant="outline"
+                  onClick={() => router.push('/learn/cervical-cancer')}
+                  className='flex text-gray-600'
+                >
+                  Back to Learning
+                </Button>
               </div>
             </form>
           </CardContent>
