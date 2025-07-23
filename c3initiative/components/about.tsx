@@ -59,7 +59,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
+          {/* <div className="grid grid-cols-2 gap-6">
             {stats.map((stat, index) => (
               <Card key={index} className="text-center hover-shadow-gradient group cursor-pointer">
                 <CardContent className="p-6 space-y-4">
@@ -73,7 +73,7 @@ export default function About() {
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
