@@ -16,7 +16,7 @@ interface CreateModuleDialogProps {
 }
 
 export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogProps) {
-  const { addModule } = useAdmin();
+  const { addModule, modules } = useAdmin();
   const [loading, setLoading] = useState(false);
   
   const [moduleData, setModuleData] = useState<newModule>({
@@ -44,8 +44,11 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
   const [postTests, setPostTests] = useState<PostTest[]>([]);
 
   const addSection = () => {
+    // console.log('add section clicked')
+    // console.log(moduleData)
+    // console.log(moduleData.sections)
     const newSection: Section = {
-      name: `section-${moduleData.sections.length + 1}`,
+      name: `section-${modules.length + 1}-${moduleData.sections.length + 1}`,
       title: '',
       description: '',
       order: moduleData.sections.length + 1,
@@ -67,7 +70,10 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
 
 
   const removeSection = (index: number) => {
-    setSections(prev => prev.filter((_, i) => i !== index));
+    setModuleData(prev => ({
+      ...prev,
+      sections: prev.sections.filter((_, i) => i !== index)
+    }));
   };
 
   const addLearningCard = (sectionIndex: number) => {
@@ -84,16 +90,30 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
     setModuleData(prev => ({ ...prev, sections: updatedSections }));
   };
 
-  const updateLearningCard = (sectionIndex: number, cardIndex: number, field: string, value: string) => {
-    setSections(prev => prev.map((section, i) => 
-      i === sectionIndex ? {
-        ...section,
-        learningCards: section.learningCards.map((card, j) => 
-          j === cardIndex ? { ...card, [field]: value } : card
-        )
-      } : section
-    ));
+  const updateLearningCard = (
+    sectionIndex: number,
+    cardIndex: number,
+    field: 'title' | 'content',
+    value: string
+  ) => {
+    setModuleData((prev) => {
+      const updatedSections = [...prev.sections];
+      const updatedCards = [...updatedSections[sectionIndex].learningCards];
+
+      updatedCards[cardIndex] = {
+        ...updatedCards[cardIndex],
+        [field]: value
+      };
+
+      updatedSections[sectionIndex] = {
+        ...updatedSections[sectionIndex],
+        learningCards: updatedCards
+      };
+
+      return { ...prev, sections: updatedSections };
+    });
   };
+
 
   const removeLearningCard = (sectionIndex: number, cardIndex: number) => {
     setSections(prev => prev.map((section, i) => 
@@ -122,24 +142,89 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
     }));
   };
 
+  const addPreTest = () => {
+    const newQuestion: Question = {
+      order: moduleData.preTest.questions.length + 1,
+      question: '',
+      options: ['', '', '', ''],
+      correctAnswer: '',
+      explanation: ''
+    };
 
-  const updatePostTest = (
-    testIndex: number,
+    setModuleData(prev => ({
+      ...prev,
+      preTest: {
+        ...prev.preTest,
+        questions: [...prev.preTest.questions, newQuestion]
+      }
+    }));
+  };
+
+  const updatePreTest = (
     field: keyof Question,
     value: string | string[],
     questionIndex: number
   ) => {
-    setPostTests((prev) => {
-      const updated = [...prev];
-      (updated[testIndex].questions[questionIndex][field] as any) = value;
-      return updated;
+    setModuleData((prev) => {
+      const updatedQuestions = [...prev.preTest.questions];
+      updatedQuestions[questionIndex] = {
+        ...updatedQuestions[questionIndex],
+        [field]: value,
+      };
+
+      return {
+        ...prev,
+        preTest: {
+          ...prev.preTest,
+          questions: updatedQuestions,
+        },
+      };
     });
   };
 
 
-  const removePostTest = (index: number) => {
-    setPostTests(prev => prev.filter((_, i) => i !== index));
+  const updatePostTest = (
+    field: keyof Question,
+    value: string | string[],
+    questionIndex: number
+  ) => {
+    setModuleData((prev) => {
+      const updatedQuestions = [...prev.postTest.questions];
+      updatedQuestions[questionIndex] = {
+        ...updatedQuestions[questionIndex],
+        [field]: value,
+      };
+
+      return {
+        ...prev,
+        postTest: {
+          ...prev.postTest,
+          questions: updatedQuestions,
+        },
+      };
+    });
   };
+
+  const removePreTest = (index: number) => {
+    setModuleData(prev => ({
+      ...prev,
+      preTest: {
+        ...prev.preTest,
+        questions: prev.preTest.questions.filter((_, i) => i !== index)
+      }
+    }));
+  };
+
+  const removePostTest = (index: number) => {
+    setModuleData(prev => ({
+      ...prev,
+      postTest: {
+        ...prev.postTest,
+        questions: prev.postTest.questions.filter((_, i) => i !== index)
+      }
+    }));
+  };
+
 
   const handleSave = async () => {
     if (!moduleData.title || !moduleData.description) {
@@ -149,28 +234,28 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
 
     setLoading(true);
     try {
-      await addModule(moduleData);
+      addModule(moduleData);
       toast.success('Module created successfully!');
-      onOpenChange(false);
       setModuleData({
-    module: '',
-    completed: false,
-    unlocked: false,
-    icon: 'BookOpen',
-    title: '',
-    description: '',
-    order: 1,
-    introVideo: '',
-    sections: [],
-    preTest: {
-      name: '',
-      questions: []
-    },
-    postTest: {
-      name: '',
-      questions: []
-    }
-  });
+        module: '',
+        completed: false,
+        unlocked: false,
+        icon: 'BookOpen',
+        title: '',
+        description: '',
+        order: 1,
+        introVideo: '',
+        sections: [],
+        preTest: {
+          name: '',
+          questions: []
+        },
+        postTest: {
+          name: '',
+          questions: []
+        }
+        // onOpenChange(false);
+      });
     } catch (error) {
       toast.error('Failed to create module');
     } finally {
@@ -264,7 +349,7 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
               </Button>
             </div>
 
-            {sections.map((section, sectionIndex) => (
+            {moduleData.sections.map((section, sectionIndex) => (
               <div key={sectionIndex} className="border rounded-lg p-4 mb-4">
                 <div className="flex items-center justify-between mb-3">
                   <h4 className="font-medium">Section {sectionIndex + 1}</h4>
@@ -320,7 +405,7 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
                     </Button>
                   </div>
 
-                  {section.learningCards.map((card, cardIndex) => (
+                  {moduleData.sections[sectionIndex]?.learningCards.map((card, cardIndex) => (
                     <div key={cardIndex} className="border-l-2 border-blue-200 pl-4 mb-3">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-sm font-medium">Card {cardIndex + 1}</span>
@@ -354,6 +439,77 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
             ))}
           </div>
 
+          {/* Pre Tests */}
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold">Pre Tests / Questionnaire </h3>
+              <Button onClick={addPreTest} size="sm" variant="outline">
+                <Plus className="h-4 w-4 mr-2" />
+                Add Question
+              </Button>
+            </div>
+
+            {moduleData.preTest.questions.map((test, testIndex) => (
+              <div key={testIndex} className="border rounded-lg p-4 mb-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="font-medium">Question {testIndex + 1}</h4>
+                  <Button
+                    onClick={() => removePreTest(testIndex)}
+                    size="sm"
+                    variant="destructive"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
+
+                <div className="mb-4">
+                  <Label>Question</Label>
+                  <Input
+                    value={test.question || ""}
+                    onChange={(e) => updatePreTest('question', e.target.value, testIndex)}
+                    placeholder="Enter question"
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <Label>Answer Options</Label>
+                  {test.options.map((option, optionIndex) => (
+                    <Input
+                      key={optionIndex}
+                      value={option}
+                      onChange={(e) => {
+                        const newOptions = [...test.options];
+                        newOptions[optionIndex] = e.target.value;
+                        updatePreTest('options', newOptions, testIndex);
+                      }}
+                      placeholder={`Option ${optionIndex + 1}`}
+                      className="mb-2"
+                    />
+                  ))}
+                </div>
+
+                <div>
+                  <Label>Correct Answer</Label>
+                  <Input
+                    value={test.correctAnswer}
+                    onChange={(e) => updatePreTest('correctAnswer', e.target.value, testIndex)}
+                    placeholder="Enter correct answer"
+                    className='mb-2'
+                  />
+                </div>
+
+                <div>
+                  <Label>Explanation</Label>
+                  <Input
+                    value={test.explanation}
+                    onChange={(e) => updatePreTest('explanation', e.target.value, testIndex)}
+                    placeholder="Enter explanation"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
           {/* Post Tests */}
           <div>
             <div className="flex items-center justify-between mb-4">
@@ -364,7 +520,7 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
               </Button>
             </div>
 
-            {postTests.map((test, testIndex) => (
+            {moduleData.postTest.questions.map((test, testIndex) => (
               <div key={testIndex} className="border rounded-lg p-4 mb-4">
                 <div className="flex items-center justify-between mb-3">
                   <h4 className="font-medium">Question {testIndex + 1}</h4>
@@ -380,22 +536,22 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
                 <div className="mb-4">
                   <Label>Question</Label>
                   <Input
-                    value={test.questions[0]?.question || ""}
-                    onChange={(e) => updatePostTest(testIndex, 'question', e.target.value, 0)}
+                    value={test.question || ""}
+                    onChange={(e) => updatePostTest('question', e.target.value, testIndex)}
                     placeholder="Enter question"
                   />
                 </div>
 
                 <div className="mb-4">
                   <Label>Answer Options</Label>
-                  {test.questions[0]?.options.map((option, optionIndex) => (
+                  {test.options.map((option, optionIndex) => (
                     <Input
                       key={optionIndex}
                       value={option}
                       onChange={(e) => {
-                        const newOptions = [...test.questions[0] ?.options];
+                        const newOptions = [...test.options];
                         newOptions[optionIndex] = e.target.value;
-                        updatePostTest(testIndex, 'options', newOptions, 0);
+                        updatePostTest('options', newOptions, testIndex);
                       }}
                       placeholder={`Option ${optionIndex + 1}`}
                       className="mb-2"
@@ -406,9 +562,19 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
                 <div>
                   <Label>Correct Answer</Label>
                   <Input
-                    value={test.questions[0]?.correctAnswer}
-                    onChange={(e) => updatePostTest(testIndex, 'correctAnswer', e.target.value, 0)}
+                    value={test.correctAnswer}
+                    onChange={(e) => updatePostTest('correctAnswer', e.target.value, testIndex)}
                     placeholder="Enter correct answer"
+                    className='mb-2'
+                  />
+                </div>
+
+                <div>
+                  <Label>Explanation</Label>
+                  <Input
+                    value={test.explanation}
+                    onChange={(e) => updatePostTest('explanation', e.target.value, testIndex)}
+                    placeholder="Enter explanation"
                   />
                 </div>
               </div>

@@ -24,41 +24,41 @@ interface AdminContextType {
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
 
 // Mock data
-const mockUsers: User[] = [
-  {
-    id: '1',
-    name: 'Sarah Johnson',
-    email: 'sarah@example.com',
-    joinDate: '2024-01-15',
-    progress: 75,
-    modulesCompleted: 3,
-    totalModules: 4,
-    lastActive: '2024-01-20',
-    status: 'active'
-  },
-  {
-    id: '2',
-    name: 'Michael Chen',
-    email: 'michael@example.com',
-    joinDate: '2024-01-10',
-    progress: 45,
-    modulesCompleted: 2,
-    totalModules: 4,
-    lastActive: '2024-01-19',
-    status: 'active'
-  },
-  {
-    id: '3',
-    name: 'Emily Davis',
-    email: 'emily@example.com',
-    joinDate: '2024-01-05',
-    progress: 90,
-    modulesCompleted: 4,
-    totalModules: 4,
-    lastActive: '2024-01-18',
-    status: 'inactive'
-  }
-];
+// const mockUsers: User[] = [
+//   {
+//     id: '1',
+//     name: 'Sarah Johnson',
+//     email: 'sarah@example.com',
+//     joinDate: '2024-01-15',
+//     progress: 75,
+//     modulesCompleted: 3,
+//     totalModules: 4,
+//     lastActive: '2024-01-20',
+//     status: 'active'
+//   },
+//   {
+//     id: '2',
+//     name: 'Michael Chen',
+//     email: 'michael@example.com',
+//     joinDate: '2024-01-10',
+//     progress: 45,
+//     modulesCompleted: 2,
+//     totalModules: 4,
+//     lastActive: '2024-01-19',
+//     status: 'active'
+//   },
+//   {
+//     id: '3',
+//     name: 'Emily Davis',
+//     email: 'emily@example.com',
+//     joinDate: '2024-01-05',
+//     progress: 90,
+//     modulesCompleted: 4,
+//     totalModules: 4,
+//     lastActive: '2024-01-18',
+//     status: 'inactive'
+//   }
+// ];
 
 const mockModules: Module[] = [
   {
@@ -108,8 +108,8 @@ const mockModules: Module[] = [
 export function AdminProvider({ children }: { children: ReactNode }) {
   const router = useRouter()
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [users, setUsers] = useState<User[]>(mockUsers);
-  const [modules, setModules] = useState<Module[]>(mockModules);
+  const [users, setUsers] = useState<User[]>([]);
+  const [modules, setModules] = useState<Module[]>([]);
   const [isLoading, setIsLoading] = useState(false)
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [checkedAuth, setCheckedAuth] = useState(false);
@@ -221,7 +221,7 @@ export function AdminProvider({ children }: { children: ReactNode }) {
 
 const addModule = async (module: newModule) => {
   try {
-    const res = await fetch("/api/module", {
+    const res = await fetch("/api/admin/modules", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -258,6 +258,32 @@ const addModule = async (module: newModule) => {
       router.push('/instructor')
     }
   }, []);
+
+  useEffect(() => {
+    const fetchUsers = async() => {
+      try {
+        const res = await fetch('/api/admin/users')
+        const users = await res.json()
+        setUsers(users)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchUsers();
+
+    const fetchModules = async() => {
+      try {
+        const res = await fetch('/api/admin/modules')
+        const modules = await res.json()
+        setModules(modules)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    fetchModules();
+
+  },[])
 
   return (
     <AdminContext.Provider value={{
