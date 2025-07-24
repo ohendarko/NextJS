@@ -23,6 +23,7 @@ interface AdminDashboardProps {
 export function AdminDashboard({ onViewUsers, onViewModules }: AdminDashboardProps) {
   const { stats, logout } = useAdmin();
   const [showCreateModule, setShowCreateModule] = useState(false);
+  const [showEditModule, setShowEditModule] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -144,7 +145,11 @@ export function AdminDashboard({ onViewUsers, onViewModules }: AdminDashboardPro
                   <p className="text-2xl font-bold text-gray-900">{stats.totalModules}</p>
                   <p className="text-sm text-gray-600">Active Modules</p>
                 </div>
-                <Button variant="outline" className="flex items-center gap-2">
+                <Button
+                  onClick={() => setShowEditModule(true)}
+                  variant="outline" 
+                  className="flex items-center gap-2"
+                >
                   <Settings className="h-4 w-4" />
                   Manage
                 </Button>
