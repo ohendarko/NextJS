@@ -95,7 +95,7 @@ export function AdminDashboard({ onViewUsers, onViewModules }: AdminDashboardPro
               <TrendingUp className="h-4 w-4" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{Math.round(stats.avgProgress)}%</div>
+              <div className="text-2xl font-bold">{Math.round(stats.avgProgress) || 0}%</div>
               <p className="text-xs text-orange-100">
                 Across all users
               </p>

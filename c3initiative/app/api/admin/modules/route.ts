@@ -22,7 +22,6 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     const session = await getServerSession(authOptions);
-
     if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -39,42 +38,17 @@ export async function POST(req: Request) {
         introVideo: body.introVideo,
         unlocked: body.unlocked,
         completed: body.completed,
-        sections: {
-          create: body.sections.map((section: any) => ({
-            title: section.title,
-            order: section.order,
-            learningCards: {
-              create: section.learningCards.map((card: any) => ({
-                title: card.title,
-                content: card.content,
-              })),
-            },
-          })),
-        },
-        postTest: {
-          create: body.postTest ? body.postTest.questions.map((q: any) => ({
-            question: q.question,
-            options: q.options,
-            correct: q.correct,
-          })) : [],
-        },
-        preTest: {
-          create: body.preTest ? body.preTest.questions.map((q: any) => ({
-            question: q.question,
-            options: q.options,
-            correct: q.correct,
-          })) : [],
-        },
-      },
-      include: {
-        Section: true,
+        sections: body.sections,        // ✅ no map, just raw array
+        preTest: body.preTest,          // ✅ raw object
+        postTest: body.postTest,        // ✅ raw object
       },
     });
 
     return NextResponse.json(newModule);
   } catch (error: any) {
-    console.error(error);
+    console.error("❌ POST failed:", error);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 }
+
 

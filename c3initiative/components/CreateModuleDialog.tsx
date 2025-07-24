@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { useAdmin } from '@/context/AdminContext';
 // import { Module, Section, LearningCard, PostTest } from '@/types/admin';
 import { Plus, Trash2, Save } from 'lucide-react';
-import { toast } from 'sonner';
+import { toast } from '@/hooks/use-toast';
 import { Module, Section, PreTest, PostTest, LearningCard, Question, newModule } from '@/lib/types';
 
 interface CreateModuleDialogProps {
@@ -16,8 +16,11 @@ interface CreateModuleDialogProps {
 }
 
 export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogProps) {
-  const { addModule, modules } = useAdmin();
+  const { addModule, modules, stats } = useAdmin();
   const [loading, setLoading] = useState(false);
+  const [totalModules, setTotalModules] = useState(stats.totalModules)
+
+
   
   const [moduleData, setModuleData] = useState<newModule>({
     module: '',
@@ -30,11 +33,11 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
     introVideo: '',
     sections: [],
     preTest: {
-      name: '',
+      name: `pretest-${totalModules + 1}`,
       questions: []
     },
     postTest: {
-      name: '',
+      name: `posttest-${totalModules + 1}`,
       questions: []
     }
   });
@@ -43,12 +46,41 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
   const [sections, setSections] = useState<Section[]>([]);
   const [postTests, setPostTests] = useState<PostTest[]>([]);
 
+  useEffect(() => {
+    if (stats?.totalModules !== undefined) {
+      setTotalModules(stats.totalModules);
+
+      setModuleData({
+        module: '',
+        completed: false,
+        unlocked: false,
+        icon: 'BookOpen',
+        title: '',
+        description: '',
+        order: 1,
+        introVideo: '',
+        sections: [],
+        preTest: {
+          name: `pretest-${stats.totalModules + 1}`,
+          questions: []
+        },
+        postTest: {
+          name: `posttest-${stats.totalModules + 1}`,
+          questions: []
+        }
+      });
+    }
+  }, [stats.totalModules]);
+
+
   const addSection = () => {
     // console.log('add section clicked')
-    // console.log(moduleData)
+    console.log(moduleData)
+    console.log('total modules: ', totalModules)
+    
     // console.log(moduleData.sections)
     const newSection: Section = {
-      name: `section-${modules.length + 1}-${moduleData.sections.length + 1}`,
+      name: `section-${totalModules + 1}-${moduleData.sections.length + 1}`,
       title: '',
       description: '',
       order: moduleData.sections.length + 1,
@@ -78,7 +110,7 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
 
   const addLearningCard = (sectionIndex: number) => {
     const newCard: LearningCard = {
-      name: `section-${sectionIndex + 1}-card-${moduleData.sections[sectionIndex].learningCards.length + 1}`,
+      name: `section-${stats.totalModules + 1}-${sectionIndex + 1}-card-${moduleData.sections[sectionIndex].learningCards.length + 1}`,
       title: '',
       content: '',
       infographic: '/images/placeholder.svg',
@@ -116,13 +148,25 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
 
 
   const removeLearningCard = (sectionIndex: number, cardIndex: number) => {
-    setSections(prev => prev.map((section, i) => 
-      i === sectionIndex ? {
-        ...section,
-        learningCards: section.learningCards.filter((_, j) => j !== cardIndex)
-      } : section
-    ));
+    setModuleData(prev => {
+      const updatedSections = [...prev.sections];
+      const updatedLearningCards = updatedSections[sectionIndex].learningCards.filter(
+        (_, i) => i !== cardIndex
+      );
+
+      updatedSections[sectionIndex] = {
+        ...updatedSections[sectionIndex],
+        learningCards: updatedLearningCards,
+      };
+
+      return {
+        ...prev,
+        sections: updatedSections,
+      };
+    });
   };
+
+
 
   const addPostTest = () => {
     const newQuestion: Question = {
@@ -225,18 +269,95 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
     }));
   };
 
+  function transformModuleForPrisma(moduleData: any) {
+    return {
+      module: moduleData.module,
+      order: moduleData.order,
+      title: moduleData.title,
+      description: moduleData.description,
+      icon: moduleData.icon,
+      introVideo: moduleData.introVideo,
+      completed: moduleData.completed,
+      unlocked: moduleData.unlocked,
+      preTest: {
+        create: {
+          name: moduleData.preTest.name,
+          questions: {
+            create: moduleData.preTest.questions.map((q: any) => ({
+              order: q.order,
+              question: q.question,
+              options: q.options,
+              correctAnswer: q.correctAnswer,
+              explanation: q.explanation,
+            })),
+          },
+        },
+      },
+      postTest: {
+        create: {
+          name: moduleData.postTest.name,
+          questions: {
+            create: moduleData.postTest.questions.map((q: any) => ({
+              order: q.order,
+              question: q.question,
+              options: q.options,
+              correctAnswer: q.correctAnswer,
+              explanation: q.explanation,
+            })),
+          },
+        },
+      },
+      sections: {
+        create: moduleData.sections.map((section: any) => ({
+          name: section.name,
+          title: section.title,
+          description: section.description,
+          order: section.order,
+          learningCards: {
+            create: section.learningCards.map((card: any) => ({
+              name: card.name,
+              title: card.title,
+              content: card.content,
+              infographic: card.infographic,
+              order: card.order,
+            })),
+          },
+          quizzes: {
+            create: section.quizzes.map((quiz: any) => ({
+              order: quiz.order,
+              question: quiz.question,
+              options: quiz.options,
+              correctAnswer: quiz.correctAnswer,
+              explanation: quiz.explanation,
+            })),
+          },
+        })),
+      },
+    };
+  }
+
 
   const handleSave = async () => {
+    console.log(moduleData)
     if (!moduleData.title || !moduleData.description) {
-      toast.error('Please fill in all required fields');
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields",
+        variant: 'destructive'
+      });
       return;
     }
 
     setLoading(true);
     try {
+      const formatted = transformModuleForPrisma(moduleData);
       const success = await addModule(moduleData);
       if (success && success.status === 'successful') {
-        toast.success('Module created successfully!');
+        toast({
+          title: "Complete",
+          description: "Module Created Successfully",
+          variant: 'success'
+        });
         setModuleData({
           module: '',
           completed: false,
@@ -259,7 +380,11 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
         });
       }
     } catch (error) {
-      toast.error('Failed to create module');
+      toast({
+        title: "Error",
+        description: "Failed to create module.",
+        variant: 'destructive'
+      });
     } finally {
       setLoading(false);
     }

@@ -60,50 +60,50 @@ const AdminContext = createContext<AdminContextType | undefined>(undefined);
 //   }
 // ];
 
-const mockModules: Module[] = [
-  {
-    id: '1',
-    module: 'module-1',
-    completed: false,
-    unlocked: true,
-    icon: 'Users',
-    title: 'Why Focus on Cervical Cancer',
-    description: 'Learn the global, regional, and local impact of cervical cancer and why it matters.',
-    order: 1,
-    introVideo: 'https://cdn.example.com/module-1-intro.mp4',
-    sections: [
-      {
-        id: 'section-1-1',
-        title: 'Reasons to Focus on Cervical Cancer',
-        description: 'Why cervical cancer is a global health priority.',
-        order: 1,
-        learningCards: [
-          {
-            id: 'card-1',
-            title: 'Global Statistics',
-            content: 'Every year, around 266,000 women die from cervical cancer worldwide. Most of these deaths can be prevented.',
-            infographic: '/images/placeholder.svg'
-          },
-          {
-            id: 'card-2',
-            title: 'HPV and Disease Timeline',
-            content: 'Almost all cervical cancer is caused by long-lasting infection with HPV. The disease usually develops over 10–20 years.',
-            infographic: '/images/placeholder.svg'
-          }
-        ],
-        quizzes: []
-      }
-    ],
-    postTest: [
-      {
-        id: 'posttest-1',
-        question: 'What virus is the main cause of cervical cancer?',
-        options: ['HIV', 'HBV', 'HPV', 'EBV'],
-        correct: 'HPV'
-      }
-    ]
-  }
-];
+// const mockModules: Module[] = [
+//   {
+//     id: '1',
+//     module: 'module-1',
+//     completed: false,
+//     unlocked: true,
+//     icon: 'Users',
+//     title: 'Why Focus on Cervical Cancer',
+//     description: 'Learn the global, regional, and local impact of cervical cancer and why it matters.',
+//     order: 1,
+//     introVideo: 'https://cdn.example.com/module-1-intro.mp4',
+//     sections: [
+//       {
+//         id: 'section-1-1',
+//         title: 'Reasons to Focus on Cervical Cancer',
+//         description: 'Why cervical cancer is a global health priority.',
+//         order: 1,
+//         learningCards: [
+//           {
+//             id: 'card-1',
+//             title: 'Global Statistics',
+//             content: 'Every year, around 266,000 women die from cervical cancer worldwide. Most of these deaths can be prevented.',
+//             infographic: '/images/placeholder.svg'
+//           },
+//           {
+//             id: 'card-2',
+//             title: 'HPV and Disease Timeline',
+//             content: 'Almost all cervical cancer is caused by long-lasting infection with HPV. The disease usually develops over 10–20 years.',
+//             infographic: '/images/placeholder.svg'
+//           }
+//         ],
+//         quizzes: []
+//       }
+//     ],
+//     postTest: [
+//       {
+//         id: 'posttest-1',
+//         question: 'What virus is the main cause of cervical cancer?',
+//         options: ['HIV', 'HBV', 'HPV', 'EBV'],
+//         correct: 'HPV'
+//       }
+//     ]
+//   }
+// ];
 
 export function AdminProvider({ children }: { children: ReactNode }) {
   const router = useRouter()
@@ -118,8 +118,8 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   const stats: AdminStats = {
     totalUsers: users.length,
     activeUsers: users.filter(u => u.status === 'active').length,
-    totalModules: modules.length,
-    avgProgress: users.reduce((acc, user) => acc + user.progress, 0) / users.length
+    totalModules: modules.length > 0 ? modules.length : 0,
+    avgProgress: users.reduce((acc, user) => acc + user.progress || 0 , 0) / users.length
   };
 
   const login = async (email: string, password: string): Promise<boolean> => {
