@@ -3,19 +3,19 @@ import { prisma } from "@/lib/prisma"; // adjust path as needed
 import { authOptions } from "@/lib/auth/options";
 import { getServerSession } from "next-auth";
 
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await getServerSession(authOptions);
 
   // if (!session || !session.user || session.user.role !== "admin") {
   //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   // }
 
-  const moduleId = params.id;
+  const { id } = await params;
   const body = await req.json();
 
   try {
     const updatedModule = await prisma.module.update({
-      where: { id: moduleId },
+      where: { id: id },
       data: {
         ...body,
         updatedAt: new Date(),
