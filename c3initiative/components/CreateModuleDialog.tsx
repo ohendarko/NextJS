@@ -125,7 +125,7 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
   const updateLearningCard = (
     sectionIndex: number,
     cardIndex: number,
-    field: 'title' | 'content',
+    field: 'title' | 'content' | 'infographic',
     value: string
   ) => {
     setModuleData((prev) => {
@@ -549,6 +549,12 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
                           value={card.title}
                           onChange={(e) => updateLearningCard(sectionIndex, cardIndex, 'title', e.target.value)}
                           placeholder="Card title"
+                          className="text-sm"
+                        />
+                        <Input
+                          value={card.infographic}
+                          onChange={(e) => updateLearningCard(sectionIndex, cardIndex, 'infographic', e.target.value)}
+                          placeholder="Card Infographic"
                           className="text-sm"
                         />
                         <Textarea
