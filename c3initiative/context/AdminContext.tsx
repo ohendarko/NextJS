@@ -1,6 +1,7 @@
 'use client'
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { User, Module, AdminStats } from '@/types/admin';
+import { User, AdminStats } from '@/types/admin';
+import { Module } from '@/lib/types';
 import { useRouter } from 'next/navigation';
 import { signIn, useSession } from "next-auth/react"
 import { toast } from '@/hooks/use-toast';
@@ -17,7 +18,10 @@ interface AdminContextType {
   updateUser: (id: string, user: Partial<User>) => void;
   deleteUser: (id: string) => void;
   addModule: (module: newModule) => Promise<{ savedModule?: any, status: string } | undefined>;
-  updateModule: (id: string, module: Partial<Module>) => void;
+  updateModule: (
+    id: string,
+    module: Partial<Module>
+  ) => Promise<{ updatedModule?: Module; status: string } | undefined>;
   deleteModule: (id: string) => void;
 }
 
@@ -246,9 +250,36 @@ export function AdminProvider({ children }: { children: ReactNode }) {
 };
 
 
-  const updateModule = (id: string, updatedModule: Partial<Module>) => {
-    setModules(prev => prev.map(module => module.id === id ? { ...module, ...updatedModule } : module));
+  const updateModule = async (
+    id: string,
+    updatedData: Partial<Module>
+  ): Promise<{ updatedModule?: Module; status: string } | undefined> => {
+    try {
+      const res = await fetch(`/api/admin/modules/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      });
+
+      if (!res.ok) throw new Error("Failed to update module");
+
+      const updatedModule: Module = await res.json();
+
+      // Update local state
+      setModules((prev) =>
+        prev.map((module) => (module.id === id ? updatedModule : module))
+      );
+
+      return { updatedModule, status: "success" };
+    } catch (error) {
+      console.error("Error updating module:", error);
+      return { status: "error" };
+    }
   };
+
+
 
   const deleteModule = (id: string) => {
     setModules(prev => prev.filter(module => module.id !== id));

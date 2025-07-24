@@ -14,6 +14,7 @@ import {
   BarChart3
 } from 'lucide-react';
 import { CreateModuleDialog } from './CreateModuleDialog';
+import EditModuleDialog from './EditModuleDialog';
 
 interface AdminDashboardProps {
   onViewUsers: () => void;
@@ -21,7 +22,7 @@ interface AdminDashboardProps {
 }
 
 export function AdminDashboard({ onViewUsers, onViewModules }: AdminDashboardProps) {
-  const { stats, logout } = useAdmin();
+  const { stats, logout, modules } = useAdmin();
   const [showCreateModule, setShowCreateModule] = useState(false);
   const [showEditModule, setShowEditModule] = useState(false);
 
@@ -129,7 +130,7 @@ export function AdminDashboard({ onViewUsers, onViewModules }: AdminDashboardPro
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={onViewModules}>
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setShowEditModule(true)}>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <BookOpen className="h-5 w-5 text-purple-600" />
@@ -184,6 +185,12 @@ export function AdminDashboard({ onViewUsers, onViewModules }: AdminDashboardPro
       <CreateModuleDialog 
         open={showCreateModule} 
         onOpenChange={setShowCreateModule} 
+      />
+
+      <EditModuleDialog
+        open={showEditModule}
+        onOpenChange={setShowEditModule}
+        modules={modules}
       />
     </div>
   );
