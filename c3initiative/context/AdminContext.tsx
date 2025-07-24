@@ -16,7 +16,7 @@ interface AdminContextType {
   addUser: (user: Omit<User, 'id'>) => void;
   updateUser: (id: string, user: Partial<User>) => void;
   deleteUser: (id: string) => void;
-  addModule: (module: newModule) => void;
+  addModule: (module: newModule) => Promise<{ savedModule?: any, status: string } | undefined>;
   updateModule: (id: string, module: Partial<Module>) => void;
   deleteModule: (id: string) => void;
 }
@@ -219,7 +219,7 @@ export function AdminProvider({ children }: { children: ReactNode }) {
     setUsers(prev => prev.filter(user => user.id !== id));
   };
 
-const addModule = async (module: newModule) => {
+  const addModule = async (module: newModule): Promise<{ savedModule?: any, status: string } | undefined> => {
   try {
     const res = await fetch("/api/admin/modules", {
       method: "POST",
@@ -231,13 +231,17 @@ const addModule = async (module: newModule) => {
 
     if (!res.ok) {
       const error = await res.json();
-      throw new Error(error.message || "Failed to create module");
+      throw new Error(error.message || "Failed to create module")
     }
 
     const savedModule = await res.json();
     setModules(prev => [...prev, savedModule]);
+
+    return {savedModule, status: 'successful'};
+
   } catch (error) {
     console.error("Error adding module:", error);
+    return { status: 'error' };
   }
 };
 

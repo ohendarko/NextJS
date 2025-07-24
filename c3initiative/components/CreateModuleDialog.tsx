@@ -234,28 +234,30 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
 
     setLoading(true);
     try {
-      addModule(moduleData);
-      toast.success('Module created successfully!');
-      setModuleData({
-        module: '',
-        completed: false,
-        unlocked: false,
-        icon: 'BookOpen',
-        title: '',
-        description: '',
-        order: 1,
-        introVideo: '',
-        sections: [],
-        preTest: {
-          name: '',
-          questions: []
-        },
-        postTest: {
-          name: '',
-          questions: []
-        }
-        // onOpenChange(false);
-      });
+      const success = await addModule(moduleData);
+      if (success && success.status === 'successful') {
+        toast.success('Module created successfully!');
+        setModuleData({
+          module: '',
+          completed: false,
+          unlocked: false,
+          icon: 'BookOpen',
+          title: '',
+          description: '',
+          order: 1,
+          introVideo: '',
+          sections: [],
+          preTest: {
+            name: '',
+            questions: []
+          },
+          postTest: {
+            name: '',
+            questions: []
+          }
+          // onOpenChange(false);
+        });
+      }
     } catch (error) {
       toast.error('Failed to create module');
     } finally {
