@@ -67,7 +67,8 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
         postTest: {
           name: `posttest-${stats.totalModules + 1}`,
           questions: []
-        }
+        },
+        updatedAt: new Date()
       });
     }
   }, [stats.totalModules]);

@@ -51,6 +51,7 @@ export interface Module {
   sections: Section[];
   preTest: Test;
   postTest: Test;
+  updatedAt?: Date;
 }
 
 export interface newModule {
@@ -65,4 +66,5 @@ export interface newModule {
   sections: Section[];
   preTest: Test;
   postTest: Test;
+  updatedAt?: Date;
 }
