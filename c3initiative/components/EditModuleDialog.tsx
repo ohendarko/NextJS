@@ -199,6 +199,8 @@ export default function EditModuleDialog({
           <DialogDescription>
             <div className='flex justify-between'>
               <span>Click a module to begin editing.</span>
+
+              {selectedModule && 
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button variant="destructive">
@@ -220,7 +222,7 @@ export default function EditModuleDialog({
                     <AlertDialogAction className='bg-red-400 text-white' onClick={handleDelete}>Delete</AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
-              </AlertDialog>
+              </AlertDialog>}
 
             </div>
             
