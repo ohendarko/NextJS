@@ -16,6 +16,7 @@ import { useState } from 'react'
 import { Module } from '@/lib/types'
 import { useAdmin } from '@/context/AdminContext'
 import { Label } from './ui/label'
+import { toast } from '@/hooks/use-toast'
 
 
 export default function EditModuleDialog({
@@ -29,6 +30,7 @@ export default function EditModuleDialog({
 }) {
   const [selectedModule, setSelectedModule] = useState<Module | null>(null)
   const [editedModule, setEditedModule] = useState<Module | null>(null)
+  const [submitting, setSubmitting] = useState(false)
   const { updateModule} = useAdmin()
 
   const handleSelect = (mod: Module) => {
@@ -43,11 +45,24 @@ export default function EditModuleDialog({
   }
 
   const handleSubmit = async () => {
+
     if (!editedModule) return
-    await updateModule(editedModule.id, editedModule) // handle PUT logic in backend
-    onOpenChange(false)
-    setSelectedModule(null)
-    setEditedModule(null)
+    try {
+      setSubmitting(true)
+      await updateModule(editedModule.id, editedModule) // handle PUT logic in backend
+      // onOpenChange(false)
+      toast({
+        title: "Complete",
+        description: "Module Edited Successfully",
+        variant: 'success'
+      });
+      setSelectedModule(null)
+      setEditedModule(null)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const handleCancel = () => {
@@ -57,7 +72,7 @@ export default function EditModuleDialog({
 
   return (
     <Dialog open={open} onOpenChange={(open) => { onOpenChange(open); handleCancel(); }}>
-      <DialogContent className="max-w-4xl">
+      <DialogContent className="max-w-4xl max-h-screen  overflow-y-scroll">
         <DialogHeader>
           <DialogTitle>Edit Module</DialogTitle>
           <DialogDescription>
@@ -171,8 +186,8 @@ export default function EditModuleDialog({
             <Button onClick={handleCancel} variant="ghost">
               Cancel
             </Button>
-            <Button onClick={handleSubmit}>
-              Save Changes
+            <Button disabled={submitting} onClick={handleSubmit}>
+              {submitting ? "Saving" : "Save Changes"}
             </Button>
           </DialogFooter>
         )}

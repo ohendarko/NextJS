@@ -23,7 +23,7 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
 
   
   const [moduleData, setModuleData] = useState<newModule>({
-    module: '',
+    module: `module-${totalModules + 1}`,
     completed: false,
     unlocked: false,
     icon: 'BookOpen',
@@ -51,7 +51,7 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
       setTotalModules(stats.totalModules);
 
       setModuleData({
-        module: '',
+        module: `module-${stats.totalModules + 1}`,
         completed: false,
         unlocked: false,
         icon: 'BookOpen',
@@ -412,6 +412,7 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
                 value={moduleData.module}
                 onChange={(e) => setModuleData(prev => ({ ...prev, module: e.target.value }))}
                 placeholder="module-1"
+                disabled
               />
             </div>
             <div>

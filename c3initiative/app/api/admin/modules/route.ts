@@ -41,6 +41,7 @@ export async function POST(req: Request) {
         sections: body.sections,        // ✅ no map, just raw array
         preTest: body.preTest,          // ✅ raw object
         postTest: body.postTest,        // ✅ raw object
+        updatedAt: new Date(),
       },
     });
 

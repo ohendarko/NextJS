@@ -44,7 +44,7 @@ model ModuleSummary {
   unlocked    Boolean @default(false)
   icon        String?
   introVideo  String?
-  upDatedAt   DateTime? @updatedAt
+  upDatedAt   DateTime? @default(now())
 
   @@map("moduleSummary")
 }
@@ -62,6 +62,7 @@ model Module {
   sections       Json // raw array of section objects
   preTest       Json // raw array of quiz objects
   postTest       Json // raw array of quiz objects
+  updatedAt   DateTime? @default(now())
   Section        Section[]
   Quiz           Quiz[]
   ModuleProgress ModuleProgress[]

@@ -12,12 +12,13 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
 
   const { id } = await params;
   const body = await req.json();
+  const { id: _, ...dataWithoutId } = body;
 
   try {
     const updatedModule = await prisma.module.update({
       where: { id: id },
       data: {
-        ...body,
+        ...dataWithoutId,
         updatedAt: new Date(),
       },
     });
