@@ -13,10 +13,11 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
-import { Module } from '@/lib/types'
+import { LearningCard, Module } from '@/lib/types'
 import { useAdmin } from '@/context/AdminContext'
 import { Label } from './ui/label'
 import { toast } from '@/hooks/use-toast'
+import QuestionForm from './QuestionForm'
 
 
 export default function EditModuleDialog({
@@ -70,6 +71,109 @@ export default function EditModuleDialog({
     setEditedModule(null)
   }
 
+  const handleSectionChange = (index: number, field: string, value: any) => {
+    if (!editedModule) return;
+    const updated = [...editedModule.sections];
+    updated[index] = { ...updated[index], [field]: value };
+    handleChange("sections", updated);
+  };
+
+  const addSection = () => {
+    if (!editedModule) return;
+    const newSection = { title: "", description: "", learningCards: [] };
+    handleChange("sections", [...editedModule.sections, newSection]);
+  };
+
+  const removeSection = (index: number) => {
+    if (!editedModule) return;
+    const updated = editedModule.sections.filter((_, i) => i !== index);
+    handleChange("sections", updated);
+  };
+
+  const handleLearningCardChange = (
+    sectionIndex: number,
+    cardIndex: number,
+    field: "title" | "content" | "infographic",
+    value: string
+  ) => {
+    if (!editedModule) return;
+    const updatedSections = [...editedModule.sections];
+    updatedSections[sectionIndex].learningCards[cardIndex][field] = value;
+    handleChange("sections", updatedSections);
+  };
+
+  const addLearningCard = (sectionIndex: number) => {
+    if (!editedModule) return;
+    const updatedSections = [...editedModule.sections];
+    const newCard: LearningCard = {
+      name: "",
+      title: "",
+      content: "",
+      infographic: "",
+      order: (updatedSections[sectionIndex].learningCards?.length || 0) + 1,
+    };
+    updatedSections[sectionIndex].learningCards = [
+      ...(updatedSections[sectionIndex].learningCards || []),
+      newCard,
+    ];
+    handleChange("sections", updatedSections);
+  };
+
+
+  const removeLearningCard = (sectionIndex: number, cardIndex: number) => {
+    if (!editedModule) return;
+    const updatedSections = [...editedModule.sections];
+    updatedSections[sectionIndex].learningCards = updatedSections[sectionIndex].learningCards.filter(
+      (_, i) => i !== cardIndex
+    );
+    handleChange("sections", updatedSections);
+  };
+
+
+  const handleTestChange = (
+    type: "preTest" | "postTest",
+    index: number,
+    field: string,
+    value: any
+  ) => {
+    if (!editedModule) return;
+    const updatedQuestions = [...editedModule[type].questions];
+    updatedQuestions[index] = { ...updatedQuestions[index], [field]: value };
+    handleChange(type, { ...editedModule[type], questions: updatedQuestions });
+  };
+
+  const addTestQuestion = (type: "preTest" | "postTest") => {
+    if (!editedModule) return;
+
+    const newQ = {
+      question: "",
+      options: ["", "", "", ""], // default 4 empty options
+      correctAnswer: "",
+      explanation: "",
+    };
+
+    const prev = editedModule[type] || { title: "", questions: [] };
+
+    handleChange(type, {
+      ...prev,
+      questions: [...prev.questions, newQ],
+    });
+  };
+
+  const removeTestQuestion = (type: "preTest" | "postTest", index: number) => {
+    if (!editedModule) return;
+
+    const prev = editedModule[type] || { title: "", questions: [] };
+    const updatedQuestions = prev.questions.filter((_, i) => i !== index);
+
+    handleChange(type, {
+      ...prev,
+      questions: updatedQuestions,
+    });
+  };
+
+
+
   return (
     <Dialog open={open} onOpenChange={(open) => { onOpenChange(open); handleCancel(); }}>
       <DialogContent className="max-w-4xl max-h-screen  overflow-y-scroll">
@@ -110,26 +214,26 @@ export default function EditModuleDialog({
                   disabled
                   placeholder="module-1"
                 />
-                <Label htmlFor={editedModule.title}>Title</Label>
+                <Label htmlFor="title">Title</Label>
                 <Input
                   value={editedModule.title}
                   onChange={(e) => handleChange('title', e.target.value)}
                   placeholder="Title"
                 />
 
-                  <Label htmlFor={editedModule.description}>Description</Label>
+                  <Label htmlFor="description">Description</Label>
                 <Textarea
                   value={editedModule.description}
                   onChange={(e) => handleChange('description', e.target.value)}
                   placeholder="Description"
                 />
-                <Label htmlFor={editedModule.icon}>Icon</Label>
+                <Label htmlFor="icon">Icon</Label>
                 <Input
                   value={editedModule.icon}
                   onChange={(e) => handleChange('icon', e.target.value)}
                   placeholder="Icon (e.g., BookOpen)"
                 />
-                <Label>Order</Label>
+                <Label htmlFor='label'>Order</Label>
                 <Input
                   type="number"
                   value={editedModule.order}
@@ -150,34 +254,129 @@ export default function EditModuleDialog({
             </TabsContent>
 
             {/* Sections */}
-            <TabsContent value="sections">
-              <Textarea
-                value={JSON.stringify(editedModule.sections, null, 2)}
-                onChange={(e) => handleChange('sections', JSON.parse(e.target.value))}
-                rows={8}
-                className="font-mono text-xs"
-              />
-            </TabsContent>
+              <TabsContent value="sections">
+                <div className="space-y-4">
+                  {editedModule.sections.map((section, sectionIndex) => (
+                    <div key={sectionIndex} className="border p-4 rounded-lg space-y-2 bg-gray-100">
+                      {/* Section Title */}
+                      <Label htmlFor='section-title'>Section Title</Label>
+                      <Input
+                        value={section.title}
+                        onChange={(e) =>
+                          handleSectionChange(sectionIndex, "title", e.target.value)
+                        }
+                        placeholder="Section Title"
+                      />
+
+                      {/* Section Description */}
+                      <Label htmlFor='section-description'>Description</Label>
+                      <Textarea
+                        value={section.description || ""}
+                        onChange={(e) =>
+                          handleSectionChange(sectionIndex, "description", e.target.value)
+                        }
+                        placeholder="Section Description"
+                      />
+
+                      {/* Learning Cards Editor */}
+                      <div className="space-y-2 pl-2 border-l border-gray-300">
+                        <h4 className="font-medium text-sm">Learning Cards</h4>
+                        {section.learningCards?.map((card, cardIndex) => (
+                          <div key={cardIndex} className="p-2 bg-white rounded border space-y-1">
+                            <Label htmlFor='card-title'>Card Title</Label>
+                            <Input
+                              value={card.title}
+                              onChange={(e) =>
+                                handleLearningCardChange(sectionIndex, cardIndex, "title", e.target.value)
+                              }
+                              placeholder="Card Title"
+                            />
+
+                            <Label htmlFor='card-infographic'>Card infographic</Label>
+                            <Input
+                              value={card.infographic}
+                              onChange={(e) =>
+                                handleLearningCardChange(sectionIndex, cardIndex, "infographic", e.target.value)
+                              }
+                              placeholder="Card infographic"
+                            />
+
+                            <Label htmlFor='card-content'>Content</Label>
+                            <Textarea
+                              value={card.content}
+                              onChange={(e) =>
+                                handleLearningCardChange(sectionIndex, cardIndex, "content", e.target.value)
+                              }
+                              placeholder="Card Content"
+                              rows={3}
+                            />
+                            <Button
+                              variant="destructive"
+                              size="sm"
+                              onClick={() => removeLearningCard(sectionIndex, cardIndex)}
+                            >
+                              Remove Card
+                            </Button>
+                          </div>
+                        ))}
+
+                        <Button
+                          size="sm"
+                          onClick={() => addLearningCard(sectionIndex)}
+                        >
+                          Add Learning Card
+                        </Button>
+                      </div>
+
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={() => removeSection(sectionIndex)}
+                      >
+                        Remove Section
+                      </Button>
+                    </div>
+                  ))}
+
+                  <Button onClick={addSection}>Add Section</Button>
+                </div>
+              </TabsContent>
+
+
 
             {/* Pre/Post Tests */}
-            <TabsContent value="tests">
-              <div className="grid gap-4">
-                <Textarea
-                  value={JSON.stringify(editedModule.preTest, null, 2)}
-                  onChange={(e) => handleChange('preTest', JSON.parse(e.target.value))}
-                  placeholder="Pre-Test JSON"
-                  rows={5}
-                  className="font-mono text-xs"
-                />
-                <Textarea
-                  value={JSON.stringify(editedModule.postTest, null, 2)}
-                  onChange={(e) => handleChange('postTest', JSON.parse(e.target.value))}
-                  placeholder="Post-Test JSON"
-                  rows={5}
-                  className="font-mono text-xs"
-                />
-              </div>
-            </TabsContent>
+              <TabsContent value="tests">
+                <div className="space-y-8">
+                  {/* Pre-Test Section */}
+                  <div>
+                    <h3 className="font-semibold text-sm">Pre-Test Questions</h3>
+                    <QuestionForm
+                      type="preTest"
+                      questions={editedModule.preTest?.questions || []}
+                      onChange={handleTestChange}
+                      onRemove={removeTestQuestion}
+                    />
+                    <Button size="sm" onClick={() => addTestQuestion("preTest")} className="mt-2">
+                      Add Pre-Test Question
+                    </Button>
+                  </div>
+
+                  {/* Post-Test Section */}
+                  <div>
+                    <h3 className="font-semibold text-sm">Post-Test Questions</h3>
+                    <QuestionForm
+                      type="postTest"
+                      questions={editedModule.postTest?.questions || []}
+                      onChange={handleTestChange}
+                      onRemove={removeTestQuestion}
+                    />
+                    <Button size="sm" onClick={() => addTestQuestion("postTest")} className="mt-2">
+                      Add Post-Test Question
+                    </Button>
+                  </div>
+                </div>
+              </TabsContent>
+
           </Tabs>
         )}
 
