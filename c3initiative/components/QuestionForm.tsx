@@ -24,6 +24,7 @@ const QuestionForm = ({ type, questions, onChange, onRemove }: any) => {
     <div className="space-y-4">
       {questions.map((q: any, questionIndex: number) => (
         <div key={questionIndex} className="border p-4 rounded-md bg-muted space-y-2">
+          <p className="text-sm font-medium">Question</p>
           <Input
             value={q.question}
             onChange={(e) => onChange(type, questionIndex, "question", e.target.value)}
@@ -31,7 +32,7 @@ const QuestionForm = ({ type, questions, onChange, onRemove }: any) => {
           />
 
           <div className="space-y-2">
-            <p className="text-sm font-medium">Options:</p>
+            <p className="text-sm font-medium mt-5">Options:</p>
             {q.options.map((option: string, optionIndex: number) => (
               <div key={optionIndex} className="flex gap-2">
                 <Input
@@ -52,14 +53,14 @@ const QuestionForm = ({ type, questions, onChange, onRemove }: any) => {
               Add Option
             </Button>
           </div>
-          <p className="text-sm font-medium">Correct Answer</p>
+          <p className="text-sm font-medium !mt-5">Correct Answer</p>
           <Input
             value={q.correctAnswer}
             onChange={(e) => onChange(type, questionIndex, "correctAnswer", e.target.value)}
             placeholder="Correct Answer"
           />
 
-          <p className="text-sm font-medium">Explanation</p>
+          <p className="text-sm font-medium !mt-5">Explanation</p>
           <Textarea
             value={q.explanation || ""}
             onChange={(e) => onChange(type, questionIndex, "explanation", e.target.value)}

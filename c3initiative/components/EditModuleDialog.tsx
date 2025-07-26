@@ -9,6 +9,18 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
+
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
@@ -18,6 +30,7 @@ import { useAdmin } from '@/context/AdminContext'
 import { Label } from './ui/label'
 import { toast } from '@/hooks/use-toast'
 import QuestionForm from './QuestionForm'
+import { Trash2 } from 'lucide-react'
 
 
 export default function EditModuleDialog({
@@ -32,7 +45,7 @@ export default function EditModuleDialog({
   const [selectedModule, setSelectedModule] = useState<Module | null>(null)
   const [editedModule, setEditedModule] = useState<Module | null>(null)
   const [submitting, setSubmitting] = useState(false)
-  const { updateModule} = useAdmin()
+  const { updateModule, deleteModule } = useAdmin()
 
   const handleSelect = (mod: Module) => {
     setSelectedModule(mod)
@@ -54,7 +67,7 @@ export default function EditModuleDialog({
       // onOpenChange(false)
       toast({
         title: "Complete",
-        description: "Module Edited Successfully",
+        description: "Module Edited Successfully. Kindly Refresh",
         variant: 'success'
       });
       setSelectedModule(null)
@@ -172,6 +185,10 @@ export default function EditModuleDialog({
     });
   };
 
+  const handleDelete = () => {
+    console.log('deleted')
+  }
+
 
 
   return (
@@ -180,7 +197,33 @@ export default function EditModuleDialog({
         <DialogHeader>
           <DialogTitle>Edit Module</DialogTitle>
           <DialogDescription>
-            Click a module to begin editing.
+            <div className='flex justify-between'>
+              <span>Click a module to begin editing.</span>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="destructive">
+                    <span className="flex gap-2 justify-center items-center">
+                      <Trash2 /> Delete Module
+                    </span>
+                  </Button>
+                </AlertDialogTrigger>
+
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will permanently delete the module and all of its content.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel className='bg-green-600 text-white'>Cancel</AlertDialogCancel>
+                    <AlertDialogAction className='bg-red-400 text-white' onClick={handleDelete}>Delete</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+
+            </div>
+            
           </DialogDescription>
         </DialogHeader>
 

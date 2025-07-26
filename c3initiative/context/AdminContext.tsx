@@ -281,9 +281,24 @@ export function AdminProvider({ children }: { children: ReactNode }) {
 
 
 
-  const deleteModule = (id: string) => {
-    setModules(prev => prev.filter(module => module.id !== id));
+  const deleteModule = async (id: string) => {
+    try {
+      const res = await fetch(`/api/admin/modules`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to delete module");
+      }
+
+      setModules(prev => prev.filter(module => module.id !== id));
+    } catch (error) {
+      console.error("Delete error:", error);
+    }
   };
+
 
   useEffect(() => {
     const authStatus = localStorage.getItem('adminAuth');

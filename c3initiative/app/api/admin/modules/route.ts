@@ -52,4 +52,22 @@ export async function POST(req: Request) {
   }
 }
 
+export async function DELETE(req: Request) {
+  try {
+    const body = await req.json();
+    const { id } = body;
 
+    if (!id) {
+      return NextResponse.json({ error: "Module ID is required" }, { status: 400 });
+    }
+
+    await prisma.module.delete({
+      where: { id },
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Delete module error:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+}
