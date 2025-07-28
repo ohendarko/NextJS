@@ -292,7 +292,8 @@ export default function SignUpPage() {
                 }}
                 variant="outline"
                 className="flex-1 flex items-center justify-center gap-2"
-                disabled={loading || isLoading}
+                // disabled={loading || isLoading}
+                disabled
               >
                 {loading && <Spinner />}
                 <span>
