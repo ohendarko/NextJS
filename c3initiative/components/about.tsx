@@ -1,5 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle, Target, Heart, Lightbulb } from "lucide-react"
+import ScrollSlideUp from "./ScrollSlideUp"
+import ScrollFadeIn from "./ScrollFadeIn"
 
 const stats = [
   { number: "570K+", label: "Lives Lost Annually", icon: Heart },
@@ -11,51 +13,59 @@ const stats = [
 export default function About() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="container !px-1 mx-auto max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="container !px-1 mx-auto max-w-4xl">
+        <div className="grid gap-16 items-center">
           <div className="space-y-8">
-            <div className="space-y-4">
-              <h2 className="text-3xl sm:text-4xl font-bold">
-                C3 Initiative: Making Cervical Cancer{" "}
-                <span className="bg-gradient-to-r from-orange-500 via-blue-600 to-pink-600 bg-clip-text text-transparent">
-                  Prevention Accessible
-                </span>
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                The C3 Initiative addresses the critical gap in cervical cancer education. Despite being one of the most
-                preventable cancers, cervical cancer remains a leading cause of cancer-related deaths among women
-                worldwide. Our mission is to bridge this knowledge gap with comprehensive, accessible education.
-              </p>
-            </div>
+            <ScrollFadeIn>
+              <div className="space-y-4">
+                <h2 className="text-3xl sm:text-4xl font-bold">
+                  C3 Initiative: Making Cervical Cancer{" "}
+                  <span className="bg-gradient-to-r from-orange-500 via-blue-600 to-pink-600 bg-clip-text text-transparent">
+                    Prevention Accessible
+                  </span>
+                </h2>
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                  The C3 Initiative addresses the critical gap in cervical cancer education. Despite being one of the most
+                  preventable cancers, cervical cancer remains a leading cause of cancer-related deaths among women
+                  worldwide. Our mission is to bridge this knowledge gap with comprehensive, accessible education.
+                </p>
+              </div>
+            </ScrollFadeIn>
 
             <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
-                <div>
-                  <h4 className="font-semibold">Evidence-Based Content</h4>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    All our modules are based on the latest medical research and guidelines from WHO and CDC.
-                  </p>
+              <ScrollSlideUp>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold">Evidence-Based Content</h4>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      All our modules are based on the latest medical research and guidelines from WHO and CDC.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
-                <div>
-                  <h4 className="font-semibold">Interactive Learning</h4>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Engage with multimedia content, quizzes, and case studies for better retention.
-                  </p>
+              </ScrollSlideUp>
+              <ScrollSlideUp>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold">Interactive Learning</h4>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      Engage with multimedia content, quizzes, and case studies for better retention.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
-                <div>
-                  <h4 className="font-semibold">Cultural Sensitivity</h4>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Content adapted to address cultural barriers and promote inclusive health education.
-                  </p>
+              </ScrollSlideUp>
+              <ScrollSlideUp>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold">Cultural Sensitivity</h4>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      Content adapted to address cultural barriers and promote inclusive health education.
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </ScrollSlideUp>
             </div>
           </div>
 

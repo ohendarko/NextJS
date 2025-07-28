@@ -1,13 +1,14 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Brain, Users, Award, Smartphone, Clock, Shield } from "lucide-react"
+import ScrollSlideUp from "./ScrollSlideUp"
 
 const features = [
-  {
-    icon: Brain,
-    title: "AI-Powered Learning",
-    description: "Personalized learning paths adapted to your knowledge level and learning style.",
-    gradient: "gradient-orange-blue",
-  },
+  // {
+  //   icon: Brain,
+  //   title: "AI-Powered Learning",
+  //   description: "Personalized learning paths adapted to your knowledge level and learning style.",
+  //   gradient: "gradient-orange-blue",
+  // },
   {
     icon: Users,
     title: "Expert-Curated Content",
@@ -43,7 +44,7 @@ const features = [
 export default function Features() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 via-blue-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700">
-      <div className="container !px-1 mx-auto max-w-7xl">
+      <div className="container !px-1 mx-auto max-w-4xl">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold">
             Why Choose{" "}
@@ -59,17 +60,19 @@ export default function Features() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <Card key={index} className="border-0 shadow-lg hover-shadow-gradient group cursor-pointer">
-              <CardContent className="p-8 text-center space-y-4">
-                <div
-                  className={`w-16 h-16 ${feature.gradient} rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <feature.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold">{feature.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{feature.description}</p>
-              </CardContent>
-            </Card>
+            <ScrollSlideUp key={index}>
+              <Card key={index} className="border-0 shadow-lg hover-shadow-gradient group cursor-pointer">
+                <CardContent className="p-8 text-center space-y-4">
+                  <div
+                    className={`w-16 h-16 ${feature.gradient} rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300`}
+                  >
+                    <feature.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold">{feature.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{feature.description}</p>
+                </CardContent>
+              </Card>
+            </ScrollSlideUp>
           ))}
         </div>
       </div>
