@@ -12,7 +12,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    <section className="py-20 px-4 sm:px-6 lg:px-8" id="about">
       <div className="container !px-1 mx-auto max-w-4xl">
         <div className="grid gap-16 items-center">
           <div className="space-y-8">
@@ -35,7 +35,7 @@ export default function About() {
             <div className="space-y-4">
               <ScrollSlideUp>
                 <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
+                  <CheckCircle className="w-6 h-6 text-gray-500 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Evidence-Based Content</h4>
                     <p className="text-gray-600 dark:text-gray-300">
@@ -46,7 +46,7 @@ export default function About() {
               </ScrollSlideUp>
               <ScrollSlideUp>
                 <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
+                  <CheckCircle className="w-6 h-6 text-orange-500 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Interactive Learning</h4>
                     <p className="text-gray-600 dark:text-gray-300">
@@ -57,7 +57,7 @@ export default function About() {
               </ScrollSlideUp>
               <ScrollSlideUp>
                 <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-green-500 mt-1 flex-shrink-0" />
+                  <CheckCircle className="w-6 h-6 text-blue-500 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Cultural Sensitivity</h4>
                     <p className="text-gray-600 dark:text-gray-300">
