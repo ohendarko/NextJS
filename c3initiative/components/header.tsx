@@ -81,9 +81,9 @@ export default function Header() {
                 Instructor
               </Link>
             )}
-            <Link href="/contact" className={`${textClass} hover:text-orange-500 transition-colors`}>
+            {/* <Link href="/contact" className={`${textClass} hover:text-orange-500 transition-colors`}>
               Contact
-            </Link>
+            </Link> */}
           </nav>
 
           {/* Desktop Auth Buttons */}
@@ -132,12 +132,12 @@ export default function Header() {
                   Instructor
                 </Link>
               )}
-              <Link
+              {/* <Link
                 href="/contact"
                 className={`${textClass} hover:text-orange-500 transition-colors`}
               >
                 Contact
-              </Link>
+              </Link> */}
               <div className="flex flex-col space-y-2 pt-4">
                 {!isLoggedIn && (
                   <Link href="/learn">
