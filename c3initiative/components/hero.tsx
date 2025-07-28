@@ -62,7 +62,7 @@ export default function Hero() {
 
               <div className="relative z-10 p-4">
                 <SlideInFromTop>
-                    <div className=" flex flex-col text-5xl text-white sm:text-5xl lg:text-7xl font-bold leading-tight mt-2">
+                    <div className=" flex flex-col text-4xl text-white sm:text-5xl lg:text-7xl font-bold leading-tight mt-2">
                       <div>
                         <span className="bg-white bg-clip-text text-transparent text-9xl">
                           C

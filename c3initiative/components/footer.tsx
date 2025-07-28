@@ -3,6 +3,7 @@
 
 import React from "react"
 import { SlideInFromBottom } from "./animations"
+import Image from "next/image"
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -15,6 +16,12 @@ const Footer = () => {
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold mb-2">C3 Initiative</h2>
             <p>Building a future where every woman is empowered with life-saving information.</p>
+          </div>
+
+          <div className="grid grid-cols-3 items-center place-items-center bg-white mb-5">
+            <Image src="/images/lignan.png" alt="lignan-university" width={100} height={100} />
+            <Image src="/images/knust-logo.png" alt="knust" width={55} height={55} />
+            <Image src="/images/re2.png" alt="re2" width={200} height={200} />
           </div>
 
           {/* Grid Links */}
