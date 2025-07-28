@@ -23,8 +23,9 @@ model User {
   password         String?
   admin            Boolean @default(false)
   moduleProgress    ModuleProgress[]
-  currentModule   String?          @default("module-1") // e.g. "module-1"
-  questionnaires Questionnaire[]
+  currentModule    String?          @default("module-1")
+  hasCompletedQuestionnaire   Boolean @default(false)
+  questionnaire     Questionnaire?
   preTestCompleted  String[]         @default([])
   postTestCompleted  String[]         @default([])
   completedSections String[]         @default([])
@@ -139,9 +140,11 @@ model Certificate {
 
 model Questionnaire {
   id                      String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId                  String   // Optional: link to the user who submitted
+  userId                  String    @unique @db.ObjectId
   user                    User     @relation(fields: [userId], references: [id])
+  userEmail               String
   age                     String
+  gender                  String
   relationshipStatus      String
   relationshipOther       String?
   religion                String

@@ -5,7 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 
-interface UserProfile {
+export interface UserProfile {
   id: string
   email: string
   firstName: string
@@ -19,6 +19,7 @@ interface UserProfile {
   completedSections: string[]
   moduleProgress: string[]
   admin?: boolean
+  hasCompletedQuestionnaire?: boolean
   certificate?: boolean
 }
 
@@ -60,6 +61,7 @@ export const LearnerProvider = ({ children }: { children: React.ReactNode }) => 
 
   const canAccessModule = (moduleName: string) => {
     if (!userProfile) return false
+    if (!userProfile.hasCompletedQuestionnaire) return false
     return moduleName === userProfile.currentModule || moduleName === "module-1" || userProfile.completedModules.includes(moduleName)
   }
 

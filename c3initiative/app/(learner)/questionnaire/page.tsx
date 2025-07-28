@@ -10,11 +10,52 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { ArrowRight, ArrowLeft, FileText } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { toast } from "@/hooks/use-toast"
+import { useSession } from "next-auth/react"
+
+const programsOfStudy = [
+  {
+    id: "medical-imaging",
+    title: "Medical Imaging"
+  },
+  {
+    id: "medical-laboratory",
+    title: "Medical Laboratory Sciences"
+  },
+  {
+    id: "physiotherapy",
+    title: "Physiotherapy and Sports Sciences"
+  },
+  {
+    id: "nursing",
+    title: "Nursing"
+  },
+  {
+    id: "midwifery",
+    title: "Midwifery"
+  },
+  {
+    id: "pharmacy",
+    title: "Pharmacy"
+  },
+  {
+    id: "human-biology",
+    title: "Human Biology"
+  },
+  {
+    id: "other",
+    title: "Other (Please Specify)"
+  }
+
+]
 
 export default function QuestionnairePage() {
+  const { data: session, status } = useSession()
   const [currentStep, setCurrentStep] = useState(1)
+  const [isSending, setIsSending] = useState(false)
   const [formData, setFormData] = useState({
     age: "",
+    gender: "",
     relationshipStatus: "",
     relationshipOther: "",
     religion: "",
@@ -43,6 +84,7 @@ export default function QuestionnairePage() {
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1)
     }
+    console.log('formdata:',formData)
   }
 
   const handlePrevious = () => {
@@ -51,13 +93,107 @@ export default function QuestionnairePage() {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Here you would typically save the questionnaire data
-    // For now, we'll redirect to the dashboard
-    // router.push("/dashboard")
-    console.log('submitted')
+  const handleSubmit = async () => {
+
+    if(status === 'unauthenticated') {
+      toast({
+        title: "Session Not Found",
+        description: `You may be logged out. Access this page after you log in.`,
+        variant: "destructive",
+      });
+      return
+    }
+    // Check that all required fields are filled
+    const requiredFields = [
+      "age",
+      "relationshipStatus",
+      "religion",
+      "programOfStudy",
+      "yearOfStudy",
+      "sexuallyActive",
+      "familyHistoryCancer",
+      "cervicalCancerEducation",
+      "papSmearTest",
+      "hpvVaccine",
+    ]
+
+    const missingFields = requiredFields.filter((field) => {
+      return !formData[field as keyof typeof formData]?.toString().trim()
+    })
+
+    if (missingFields.length > 0) {
+      const formattedFields = missingFields
+        .map((field) => field.replace(/([A-Z])/g, " $1")) // camelCase → spaced
+        .map((field) => field.charAt(0).toUpperCase() + field.slice(1)) // Capitalize
+        .join(", ");
+
+      toast({
+        title: "Incomplete Form",
+        description: `Please complete the following fields: ${formattedFields}`,
+        variant: "destructive",
+      });
+
+      console.warn("Missing fields:", missingFields);
+      return;
+    }
+
+    try {
+      setIsSending(true)
+      const response = await fetch("/api/questionnaire", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to submit questionnaire")
+      }
+
+      const data = await response.json()
+
+      //update field on user model
+      try {
+        const update = await fetch("/api/user/update", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            hasCompletedQuestionnaire: true
+          }),
+        })
+
+        if (!update.ok) {
+          throw new Error("Failed to update user")
+        }
+      } catch (error) {
+        console.error(error)
+      }
+      toast({
+        title: "Submission Completed",
+        description: "Your response has been recorded.",
+        
+      });
+      console.log("Submission success:", data)
+
+      // ✅ Redirect to learning page
+      router.push("/learn/cervical-cancer")
+      router.refresh()
+    } catch (error) {
+      console.error("Submission error:", error)
+      toast({
+        title: "Submission Failed",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
+
+    } finally {
+      setIsSending(false)
+    }
   }
+
 
   const renderStep1 = () => (
     <div className="space-y-6">
@@ -71,6 +207,27 @@ export default function QuestionnairePage() {
           className="focus:ring-orange-500 focus:border-orange-500"
         />
       </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="gender">Gender</Label>
+        <RadioGroup
+          value={formData.gender}
+          onValueChange={(value) => handleInputChange("gender", value)}
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="male" id="male"
+
+            />
+            <Label htmlFor="male">Male</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="female" id="female" />
+            <Label htmlFor="female">Female</Label>
+          </div>
+
+        </RadioGroup>
+      </div>
+      
 
       <div className="space-y-3">
         <Label>2. Relationship Status</Label>
@@ -151,31 +308,26 @@ export default function QuestionnairePage() {
     <div className="space-y-6">
       <div className="space-y-3">
         <Label>4. Program of Study</Label>
-        <RadioGroup
-          value={formData.programOfStudy}
-          onValueChange={(value) => handleInputChange("programOfStudy", value)}
-        >
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="medical-imaging" id="medical-imaging" />
-            <Label htmlFor="medical-imaging">Medical Imaging</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="medical-laboratory" id="medical-laboratory" />
-            <Label htmlFor="medical-laboratory">Medical Laboratory Sciences</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="physiotherapy" id="physiotherapy" />
-            <Label htmlFor="physiotherapy">Physiotherapy and Sports Science</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="nursing" id="nursing" />
-            <Label htmlFor="nursing">Nursing</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="midwifery" id="midwifery" />
-            <Label htmlFor="midwifery">Midwifery</Label>
-          </div>
-        </RadioGroup>
+        
+          <RadioGroup
+            value={formData.programOfStudy}
+            onValueChange={(value) => handleInputChange("programOfStudy", value)}
+          >
+          {programsOfStudy.map((program) => (
+            <div className="flex items-center space-x-2" key={program.id}>
+              <RadioGroupItem value={program.id} id={program.id} />
+              <Label htmlFor={program.id}>{program.title}</Label>
+            </div>
+          ))}
+          </RadioGroup>
+        {formData.programOfStudy === "other" && (
+          <Input
+            placeholder="Please specify"
+            value={formData.programOfStudy}
+            onChange={(e) => handleInputChange("programOfStudy", e.target.value)}
+            className="mt-2"
+          />
+        )}
       </div>
 
       <div className="space-y-3">
@@ -196,6 +348,18 @@ export default function QuestionnairePage() {
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="4th-year" id="4th-year" />
             <Label htmlFor="4th-year">4th Year</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="5th-year" id="4th-year" />
+            <Label htmlFor="5th-year">5th Year</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="6th-year" id="6th-year" />
+            <Label htmlFor="6th-year">6th Year</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="postgraduate" id="postgraduate" />
+            <Label htmlFor="postgraduate">Post Graduate</Label>
           </div>
         </RadioGroup>
       </div>
@@ -353,8 +517,7 @@ export default function QuestionnairePage() {
           <CardHeader>
             <CardTitle>Questionnaire for Data Collection</CardTitle>
             <CardDescription>
-              This information helps us understand your background and tailor the learning content to your needs. All
-              responses are confidential and used solely for educational purposes.
+              All responses are confidential and used solely for educational purposes.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -375,15 +538,18 @@ export default function QuestionnairePage() {
                   {currentStep < totalSteps ? (
                     <Button
                       type="button"
-                      onClick={handleNext}
+                      onClick={() => handleNext()}
                       className="gradient-orange-blue text-white hover-shadow-gradient group"
                     >
                       Next
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   ) : (
-                    <Button type="submit" className="gradient-orange-blue text-white hover-shadow-gradient group">
-                      Complete Assessment
+                    <Button type="button"
+                        disabled={isSending}
+                        onClick={handleSubmit} 
+                        className="gradient-orange-blue text-white hover-shadow-gradient group">
+                      {isSending ? "Submitting" : "Complete Assessment"}
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   )}

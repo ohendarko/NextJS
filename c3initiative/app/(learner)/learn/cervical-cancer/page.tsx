@@ -28,6 +28,7 @@ import { useRouter } from "next/navigation"
 import Spinner from "@/components/Spinner"
 import { useLearner } from "@/context/LearnerContext"
 import { clearUserCache } from "@/lib/clearCache"
+import QuestionnaireAlert from "@/components/QuestionnaireAlert"
 
 
 type ModuleSummary = {
@@ -271,6 +272,8 @@ export default function CervicalCancerLearnPage() {
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-0 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+      <QuestionnaireAlert shouldShow={userProfile?.hasCompletedQuestionnaire === false} />
+      
       <Button variant="outline" onClick={handleLogout} className="" disabled={localloading} > {localloading && <Spinner />} Log Out</Button>
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
