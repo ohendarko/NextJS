@@ -24,6 +24,7 @@ model User {
   admin            Boolean @default(false)
   moduleProgress    ModuleProgress[]
   currentModule   String?          @default("module-1") // e.g. "module-1"
+  questionnaires Questionnaire[]
   preTestCompleted  String[]         @default([])
   postTestCompleted  String[]         @default([])
   completedSections String[]         @default([])
@@ -134,4 +135,26 @@ model Certificate {
   userId   String   @unique @db.ObjectId
   issuedAt DateTime @default(now())
   user     User     @relation(fields: [userId], references: [id])
+}
+
+model Questionnaire {
+  id                      String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId                  String   // Optional: link to the user who submitted
+  user                    User     @relation(fields: [userId], references: [id])
+  age                     String
+  relationshipStatus      String
+  relationshipOther       String?
+  religion                String
+  religionOther           String?
+  programOfStudy          String
+  yearOfStudy             String
+  sexuallyActive          String
+  familyHistoryCancer     String
+  cancerType              String?
+  cervicalCancerEducation String
+  papSmearTest            String
+  hpvVaccine              String
+
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
 }

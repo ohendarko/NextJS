@@ -55,7 +55,8 @@ export default function QuestionnairePage() {
     e.preventDefault()
     // Here you would typically save the questionnaire data
     // For now, we'll redirect to the dashboard
-    router.push("/dashboard")
+    // router.push("/dashboard")
+    console.log('submitted')
   }
 
   const renderStep1 = () => (
@@ -78,7 +79,9 @@ export default function QuestionnairePage() {
           onValueChange={(value) => handleInputChange("relationshipStatus", value)}
         >
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="dating-living-together" id="dating-living-together" />
+            <RadioGroupItem value="dating-living-together" id="dating-living-together"
+            
+            />
             <Label htmlFor="dating-living-together">Dating with a steady partner and living together</Label>
           </div>
           <div className="flex items-center space-x-2">
