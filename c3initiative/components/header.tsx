@@ -62,7 +62,7 @@ export default function Header() {
             <Link href="/" className={`${textClass} hover:text-orange-500 transition-colors`}>
               Home
             </Link>
-            <Link href="/about" className={`${textClass} hover:text-orange-500 transition-colors`}>
+            <Link href="/#features" className={`${textClass} hover:text-orange-500 transition-colors`}>
               About
             </Link>
             {isLoggedIn && (
@@ -113,7 +113,7 @@ export default function Header() {
               <Link href="/" className={`${textClass} hover:text-orange-500 transition-colors`}>
                 Home
               </Link>
-              <Link href="/about" className={`${textClass} hover:text-orange-500 transition-colors`}>
+              <Link href="/#features" className={`${textClass} hover:text-orange-500 transition-colors`}>
                 About
               </Link>
               {isLoggedIn && (
