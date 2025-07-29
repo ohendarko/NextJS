@@ -26,12 +26,18 @@ export default function LoginPage() {
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    if(status === 'authenticated') {
-      setIsLoading(true)
-      setLoading(true)
-      router.push('/learn/cervical-cancer')
+    if (status === "authenticated") {
+      // Only redirect if not coming from logout
+      const isLoggingOut = localStorage.getItem("isLoggingOut");
+      if (!isLoggingOut) {
+        setIsLoading(true);
+        setLoading(true);
+        router.push('/learn/cervical-cancer');
+      } else {
+        localStorage.removeItem("isLoggingOut");
+      }
     }
-  })
+  }, [status]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,6 +69,7 @@ export default function LoginPage() {
         variant: 'success',
         duration: 2000,
       });
+      localStorage.setItem("isLoggingOut", "false")
       setIsLoading(true);
       router.push("/learn/cervical-cancer");
     }

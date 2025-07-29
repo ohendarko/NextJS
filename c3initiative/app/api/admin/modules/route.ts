@@ -45,7 +45,22 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json(newModule);
+    const newModuleSummary = await prisma.moduleSummary.create({
+      data: {
+        title: body.title,
+        name: body.module,
+        shortTitle: body.title.split(" ")[0],
+        description: body.description,
+        icon: body.icon,
+        order: body.order,
+        introVideo: body.introVideo,
+        unlocked: true,
+        completed: false,
+        upDatedAt: new Date(),
+      },
+    });
+
+    return NextResponse.json({newModule, newModuleSummary});
   } catch (error: any) {
     console.error("❌ POST failed:", error);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });

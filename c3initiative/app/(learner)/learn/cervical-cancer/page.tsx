@@ -245,6 +245,7 @@ export default function CervicalCancerLearnPage() {
   const handleLogout = async () => {
     if (!session?.user?.email) return
     clearUserCache(session.user.email)
+    localStorage.setItem("isLoggingOut", "true");
 
     try {
       setLoading(true)

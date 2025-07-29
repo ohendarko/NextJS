@@ -12,7 +12,7 @@ export default function CertificatePage() {
 
   if (!userProfile) return null
 
-  // const certificateUnlocked = userProfile.completedModules.length === modules.length
+  const certificateUnlocked = userProfile.completedModules.length === modules.length
 
   const handleDownload = async () => {
     if (!certRef.current) return
@@ -31,17 +31,17 @@ export default function CertificatePage() {
     year: 'numeric',
   })
 
-  // if (!certificateUnlocked) {
-  //   return (
-  //     <div className="flex items-center justify-center h-screen">
-  //       <p className="text-lg font-semibold text-gray-700">Complete all modules to unlock your certificate.</p>
-  //     </div>
-  //   )
-  // }
+  if (!certificateUnlocked) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-lg font-semibold text-gray-700">Complete all modules to obtain your certificate.</p>
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 mt-20">
-      <div ref={certRef} className="relative p-5 w-[2000] h-[1414]">
+      <div ref={certRef} className="relative m-5 w-[2000] h-[1414]">
         <img
           src="/images/sample-cert.png"
           alt="Certificate"
