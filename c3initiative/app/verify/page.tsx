@@ -50,6 +50,7 @@ export default function VerifyPage() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
+          disabled={loading}
         />
         
         <Button type="submit" className="w-full" disabled={loading}>
