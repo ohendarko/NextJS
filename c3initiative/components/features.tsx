@@ -62,10 +62,9 @@ export default function Features() {
                 />
               </div>
             </SlideInFromLeft>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto p-3 text-left">
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto p-4 text-left">
               Cervical cancer remains a leading cause of cancer-related deaths among women in Ghana, partly due to the lack of knowledge and awareness. Our mission is to bridge the knowledge gap with comprehensive and accessible education. The C3 eLearning platform combines cutting-edge technology, with medical expertise to deliver evidence-based information on cervical cancer risk factors, signs and symptoms, HPV vaccination, screening, diagnosis, treatment and palliative.
             </p>
-
           </div>
         </div>
 

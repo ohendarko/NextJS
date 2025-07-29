@@ -61,3 +61,19 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 }
+
+export async function GET() {
+
+  try {
+    const data = await prisma.module.findMany();
+
+    if (!data) {
+      return NextResponse.json({ error: "Modules not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error("Error fetching module:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+}

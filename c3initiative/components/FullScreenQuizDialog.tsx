@@ -5,6 +5,7 @@ import { Dialog } from "@headlessui/react"
 import { X } from "lucide-react"
 import { Button } from "./ui/button"
 import { useLearner } from "@/context/LearnerContext"
+import { useRouter } from "next/navigation"
 
 type Question = {
   question: string
@@ -28,6 +29,7 @@ export default function FullScreenQuizDialog({
   onComplete,
   mode
 }: Props) {
+  const router = useRouter()
   const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -59,7 +61,16 @@ export default function FullScreenQuizDialog({
       <div className="fixed inset-0 overflow-y-auto">
         <div className="flex min-h-full items-start justify-center p-4">
           <div className="relative w-full max-w-4xl rounded-xl bg-white p-6 shadow-xl">
-            <h2 className="text-2xl font-bold mb-4">Module {mode === "pretest" ? "Pretest" : "Post Test"} </h2>
+            <div className="flex justify-between">
+              <h2 className="text-2xl font-bold mb-4">Module {mode === "pretest" ? "Pretest" : "Post Test"} </h2>
+              <Button
+              variant="outline"
+                onClick={() => router.push('/learn/cervical-cancer')}
+              >
+                Back to Modules
+              </Button>
+            </div>
+            
             {mode === "pretest" && !isSubmitted && (
               <p className="text-xs text-gray-500 mb-6">
                 You must complete the pretest before you start the module!
@@ -124,9 +135,11 @@ export default function FullScreenQuizDialog({
                   of {questions.length}
                 </p>
 
-                <Button variant="outline" disabled={isLoading} onClick={() => window.location.reload()}>
-                  Retake Test
-                </Button>
+                {mode === "posttest" && 
+                  <Button variant="outline" disabled={isLoading} onClick={() => window.location.reload()}>
+                    Retake Test
+                  </Button>
+                }
 
                 <Button 
                   className="gradient-orange-blue text-white"

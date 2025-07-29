@@ -136,6 +136,8 @@ model Certificate {
   userId   String   @unique @db.ObjectId
   issuedAt DateTime @default(now())
   user     User     @relation(fields: [userId], references: [id])
+  ownerName    String
+  ownerEmail   String @unique
 }
 
 model Questionnaire {

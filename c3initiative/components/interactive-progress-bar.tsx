@@ -256,7 +256,10 @@ export default function InteractiveProgressBar({
                                 ? "gradient-orange-blue border-transparent"
                                 : "bg-gray-300 border-gray-300"
                         } ${isClickable ? "cursor-pointer hover:scale-105" : ""}`}
-                        onClick={() => isClickable && onModuleClick(Number(item.order))}
+                        onClick={() => {
+                          // console.log(item)
+                          isClickable && onModuleClick(Number(item.order)) 
+                        }}
                       >
                         {moduleCompleted(item.name) ? (
                           <IconComponent className="w-8 h-8 text-white" />

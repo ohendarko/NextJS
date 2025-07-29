@@ -232,10 +232,8 @@ export default function CervicalCancerLearnPage() {
   }))
 
   const handleModuleClick = (moduleId: number) => {
-    if (moduleProgress && moduleProgress[moduleId]?.unlocked) {
-      window.location.href = `/learn/cervical-cancer/module-${moduleId}`
-    }
-    // console.log(moduleId)
+    router.push(`/learn/cervical-cancer/module-${moduleId}`)
+    // console.log('module clicked: ',moduleId)
   }
 
   const gotToModuleClick = (name: string, order: number) => {

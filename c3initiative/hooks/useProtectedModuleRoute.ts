@@ -13,12 +13,15 @@ export const useProtectedModuleRoute = () => {
   useEffect(() => {
     if (loading) return
 
+    if (pathname.includes("/certificate")) return
+
     if (!loading && !userProfile) {
       router.push("/learn")
+      return
     } else {
       const moduleMatch = pathname.match(/module-(\d+)/)
       const moduleName = moduleMatch ? `module-${moduleMatch[1]}` : null
-      console.log(moduleName, moduleMatch)
+      // console.log(moduleName, moduleMatch)
 
       if (moduleName && !canAccessModule(moduleName)) {
         router.push("/learn/cervical-cancer/locked")

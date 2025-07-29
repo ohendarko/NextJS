@@ -25,7 +25,6 @@ export default function RootLayout({
     <SessionWrapper>
       <LearnerProvider>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <Header />
           <ThemeToggle />
           {children}
         </ThemeProvider>

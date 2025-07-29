@@ -4,6 +4,7 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import { Module } from '@/lib/types';
 
 export interface UserProfile {
   id: string
@@ -27,6 +28,7 @@ export interface UserProfile {
 interface LearnerContextType {
   userProfile: UserProfile | null
   loading: boolean
+  modules: Module[];
   canAccessModule: (moduleName: string) => boolean
   isLoggedIn: boolean
   isLoggedOut: boolean
@@ -35,14 +37,24 @@ interface LearnerContextType {
 const LearnerContext = createContext<LearnerContextType | undefined>(undefined)
 
 export const LearnerProvider = ({ children }: { children: React.ReactNode }) => {
+
+  const router = useRouter()
   const { data: session, status } = useSession()
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
   const [loading, setLoading] = useState(true)
+  const [modules, setModules] = useState<Module[]>([]);
 
   const isLoggedIn = !loading && !!userProfile
   const isLoggedOut = !loading && !userProfile
 
   useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push('/learn')
+      return
+    }
+
+    if (status !== "authenticated") return
+
     const fetchUserProfile = async () => {
       if (status === "authenticated" && session?.user?.email) {
         try {
@@ -57,6 +69,19 @@ export const LearnerProvider = ({ children }: { children: React.ReactNode }) => 
     }
 
     fetchUserProfile()
+
+    const fetchModules = async () => {
+      try {
+        const res = await fetch('/api/modules')
+        const modules = await res.json()
+        setModules(modules)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    fetchModules();
+
   }, [session, status])
 
   const canAccessModule = (moduleName: string) => {
@@ -67,7 +92,7 @@ export const LearnerProvider = ({ children }: { children: React.ReactNode }) => 
 
   return (
     <LearnerContext.Provider value={{
-      userProfile, loading, canAccessModule, isLoggedIn, isLoggedOut }}>
+      userProfile, loading, modules, canAccessModule, isLoggedIn, isLoggedOut }}>
       {children}
     </LearnerContext.Provider>
   )
