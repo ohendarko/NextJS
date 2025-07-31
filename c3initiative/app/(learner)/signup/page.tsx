@@ -111,7 +111,7 @@ export default function SignUpPage() {
           return;
         }
 
-        toast({ title: "Account Created", description: "Your account has been successfully created!" });
+        toast({ title: "Account Created", description: "Your account has been successfully created!", variant: "success" });
         setIsLoading(false);
         router.push('/questionnaire');
       } catch (err) {

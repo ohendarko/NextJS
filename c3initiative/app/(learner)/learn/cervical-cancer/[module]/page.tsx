@@ -218,6 +218,27 @@ export default function ModulePage() {
       }
 
       mode === "pretest" ? setShowQuiz(false) : setShowPostQuiz(false)
+
+      if (mode === "posttest") {
+        try {
+          if (!lesson) return
+          const sectionNames = lesson.sections.map((s) => s.name)
+          fetch("/api/user/update", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              completedSections: sectionNames,
+              completedModules: [`module-${lesson.order}`],
+              currentModule: `module-${lesson.order + 1}`,
+              addOn: true,
+            }),
+          }).catch((err) => {
+            console.error("Failed to sync completed sections:", err)
+          })
+        } catch (error) {
+          console.error(error)
+        }
+      }
     } catch (error) {
       console.error("Error updating pretest status:", error)
     }
@@ -279,23 +300,10 @@ export default function ModulePage() {
 
     if (allCompleted) {
       setShowPostTest(true)
-
-      // 🔄 Fire-and-forget background sync to database
-      const sectionNames = lesson.sections.map((s) => s.name)
-      fetch("/api/user/update", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          completedSections: sectionNames,
-          completedModules: [`module-${lesson.order}`],
-          currentModule: `module-${lesson.order + 1}`,
-          addOn: true,
-        }),
-      }).catch((err) => {
-        console.error("Failed to sync completed sections:", err)
-      })
     }
   }
+
+
 
   // const sectionCompleted = lesson
   //   ? lesson.sections.some(section => userProfile?.completedSections?.includes(section.name))
@@ -390,6 +398,12 @@ export default function ModulePage() {
     }
   }, [completedSections, lesson, hasShownCompletionModal])
 
+    useEffect(() => {
+      const allCompleted = completedSections === lesson?.sections.length
+      if (allCompleted && showPostTest === false) {
+        setShowPostTest(true)
+      }  
+    }, [allSectionsCompleted, completedSections])
 
 
   return (

@@ -23,17 +23,17 @@ export default function QuestionnaireDialog({ shouldShow }: { shouldShow: boolea
           <AlertDialog.Title className="text-lg font-semibold">
             Questionnaire Not Completed
           </AlertDialog.Title>
-          <AlertDialog.Description className="text-sm text-muted-foreground">
+          <AlertDialog.Description className=" flex flex-col text-sm text-muted-foreground">
             You need to complete the onboarding questionnaire before continuing.
             <span className="text-xs">You may need to refresh if you believe this to be an error.</span>
           </AlertDialog.Description>
           <div className="flex justify-end gap-3 pt-4">
             <AlertDialog.Action
-              onClick={() => router.refresh()} className="px-4 py-2 text-sm border rounded-md">
+              onClick={() => window.location.reload()} className="px-4 py-2 text-sm border rounded-md">
               Refresh
             </AlertDialog.Action>
             <AlertDialog.Action
-              className="px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              className="px-4 py-2 text-sm gradient-orange-blue text-white rounded-md hover:opacity-95"
               onClick={() => {
                 window.location.href = "/questionnaire"
               }}

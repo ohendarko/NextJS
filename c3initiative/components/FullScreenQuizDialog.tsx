@@ -6,6 +6,8 @@ import { X } from "lucide-react"
 import { Button } from "./ui/button"
 import { useLearner } from "@/context/LearnerContext"
 import { useRouter } from "next/navigation"
+import SlideInFromRight from "./SlideInFromRight"
+import SlideInQuestion from "./SlideInQuestion"
 
 type Question = {
   question: string
@@ -27,21 +29,22 @@ export default function FullScreenQuizDialog({
   onClose,
   questions,
   onComplete,
-  mode
+  mode,
 }: Props) {
   const router = useRouter()
-  const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
+  const [selectedAnswers, setSelectedAnswers] = useState<string[]>([])
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const { loading } = useLearner()
 
-  const handleOptionSelect = (qIndex: number, option: string) => {
-    // if (isSubmitted && mode !== "posttest") return
+  const currentQuestion = questions[currentQuestionIndex]
+
+  const handleOptionSelect = (option: string) => {
     const updated = [...selectedAnswers]
-    updated[qIndex] = option
+    updated[currentQuestionIndex] = option
     setSelectedAnswers(updated)
   }
-
 
   const handleSubmit = () => {
     setIsSubmitted(true)
@@ -50,7 +53,6 @@ export default function FullScreenQuizDialog({
   const numCorrect = questions.reduce((total, q, i) => {
     return total + (selectedAnswers[i] === q.correctAnswer ? 1 : 0)
   }, 0)
-
 
   const isCorrect = (qIndex: number) =>
     selectedAnswers[qIndex] === questions[qIndex].correctAnswer
@@ -61,98 +63,123 @@ export default function FullScreenQuizDialog({
       <div className="fixed inset-0 overflow-y-auto">
         <div className="flex min-h-full items-start justify-center p-4">
           <div className="relative w-full max-w-4xl rounded-xl bg-white p-6 shadow-xl">
-            <div className="flex justify-between">
-              <h2 className="text-2xl font-bold mb-4">Module {mode === "pretest" ? "Pretest" : "Post Test"} </h2>
-              <Button
-              variant="outline"
-                onClick={() => router.push('/learn/cervical-cancer')}
-              >
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold">
+                Module {mode === "pretest" ? "Pretest" : "Post Test"}
+              </h2>
+              <Button variant="outline" onClick={() => router.push('/learn/cervical-cancer')}>
                 Back to Modules
               </Button>
             </div>
-            
-            {mode === "pretest" && !isSubmitted && (
+
+            {!isSubmitted && mode === "pretest" && (
               <p className="text-xs text-gray-500 mb-6">
                 You must complete the pretest before you start the module!
               </p>
             )}
-            <form className="space-y-10">
-              {questions.map((q, index) => (
-                <div key={index} className="space-y-2">
-                  <p className="font-semibold">
-                    {index + 1}. {q.question}
-                  </p>
-                  <div className="space-y-1">
-                    {q.options.map((option, oIndex) => (
+
+            {/* Question */}
+            <SlideInQuestion keyId={currentQuestion?.question}>
+              <div className="space-y-4">
+                <p className="font-semibold text-lg">
+                  {currentQuestionIndex + 1}. {currentQuestion?.question}
+                </p>
+                <div className="space-y-2">
+                    {currentQuestion?.options.map((option, oIndex) => (
                       <label
                         key={oIndex}
-                        className={`flex items-center p-2 border rounded-md cursor-pointer ${selectedAnswers[index] === option
+                        className={`flex items-center p-2 border rounded-md cursor-pointer ${
+                          selectedAnswers[currentQuestionIndex] === option
                             ? "border-blue-600"
                             : "border-gray-300"
-                          }`}
+                        }`}
                       >
                         <input
                           type="radio"
-                          name={`question-${index}`}
+                          name={`question-${currentQuestionIndex}`}
                           value={option}
                           disabled={isSubmitted && mode !== "posttest"}
-                          checked={selectedAnswers[index] === option}
-                          onChange={() => handleOptionSelect(index, option)}
+                          checked={selectedAnswers[currentQuestionIndex] === option}
+                          onChange={() => handleOptionSelect(option)}
                           className="mr-2"
                         />
                         {option}
                       </label>
                     ))}
-                  </div>
-
-                  {isSubmitted && (
-                    <div
-                      className={`mt-2 p-3 rounded-md text-sm ${isCorrect(index)
-                          ? "bg-green-100 text-green-800 border-l-4 border-green-500"
-                          : "bg-red-50 text-red-700 border-l-4 border-red-500"
-                        }`}
-                    >
-                      {mode === "posttest" && q.explanation}
-                    </div>
-                  )}
+                  
                 </div>
-              ))}
-            </form>
 
-            {!isSubmitted && selectedAnswers.length === questions.length && (
-              <button
-                onClick={handleSubmit}
-                disabled={questions.length === 0}
-                className="mt-6 gradient-orange-blue text-white px-6 py-2 rounded-md"
+                {isSubmitted && (
+                  <div
+                    className={`mt-2 p-3 rounded-md text-sm ${
+                      isCorrect(currentQuestionIndex)
+                        ? "bg-green-100 text-green-800 border-l-4 border-green-500"
+                        : "bg-red-50 text-red-700 border-l-4 border-red-500"
+                    }`}
+                  >
+                    {mode === "posttest" && currentQuestion.explanation}
+                  </div>
+                )}
+              </div>
+            </SlideInQuestion>
+
+            {/* Navigation */}
+            <div className="flex justify-between mt-6">
+              <Button
+                variant="outline"
+                onClick={() => setCurrentQuestionIndex((i) => i - 1)}
+                disabled={currentQuestionIndex === 0}
               >
-                Submit Test
-              </button>
-            )}
+                Previous
+              </Button>
+              {currentQuestionIndex < questions.length - 1 ? (
+                <Button
+                  variant="outline"
+                  onClick={() => setCurrentQuestionIndex((i) => i + 1)}
+                  disabled={!selectedAnswers[currentQuestionIndex]}
+                >
+                  Next
+                </Button>
+              ) : (
+                !isSubmitted &&
+                selectedAnswers.length === questions.length && (
+                  <Button
+                    onClick={handleSubmit}
+                    className="gradient-orange-blue text-white"
+                  >
+                    Submit Test
+                  </Button>
+                )
+              )}
+            </div>
 
+            {/* Final Score */}
             {isSubmitted && (
-              <div className=" flex flex-col gap-4 mt-6 text-center text-lg font-medium">
-                <p>You scored {questions.filter((q, i) => isCorrect(i)).length} out
-                  of {questions.length}
+              <div className="flex flex-col gap-4 mt-8 text-center text-lg font-medium">
+                <p>
+                  You scored {numCorrect} out of {questions.length}
                 </p>
 
-                {mode === "posttest" && 
-                  <Button variant="outline" disabled={isLoading} onClick={() => window.location.reload()}>
+                {mode === "posttest" && (
+                  <Button
+                    variant="outline"
+                    disabled={isLoading}
+                    onClick={() => window.location.reload()}
+                  >
                     Retake Test
                   </Button>
-                }
+                )}
 
-                <Button 
+                <Button
                   className="gradient-orange-blue text-white"
                   onClick={() => {
                     setIsLoading(true)
                     onComplete(numCorrect, mode)
-                    
                   }}
                   disabled={isLoading}
                 >
                   {mode === "pretest" ? "Continue to Module" : "Finish Module"}
                 </Button>
-                
               </div>
             )}
           </div>
