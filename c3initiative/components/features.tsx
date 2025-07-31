@@ -1,47 +1,7 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Brain, Users, Award, Smartphone, Clock, Shield } from "lucide-react"
-import ScrollSlideUp from "./ScrollSlideUp"
+
 import SlideInFromLeft from "./SlideInFromLeft"
 import Image from 'next/image'
 
-const features = [
-  // {
-  //   icon: Brain,
-  //   title: "AI-Powered Learning",
-  //   description: "Personalized learning paths adapted to your knowledge level and learning style.",
-  //   gradient: "gradient-orange-blue",
-  // },
-  {
-    icon: Users,
-    title: "Expert-Curated Content",
-    description: "Content developed by leading oncologists and healthcare professionals.",
-    gradient: "gradient-blue-pink",
-  },
-  {
-    icon: Award,
-    title: "Certification Ready",
-    description: "Earn certificates upon completion of modules to showcase your knowledge.",
-    gradient: "gradient-orange-pink",
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile Optimized",
-    description: "Learn anywhere, anytime with our fully responsive mobile platform.",
-    gradient: "gradient-triple",
-  },
-  {
-    icon: Clock,
-    title: "Self-Paced Learning",
-    description: "Progress at your own speed with flexible scheduling and bookmarking.",
-    gradient: "gradient-orange-blue",
-  },
-  {
-    icon: Shield,
-    title: "Privacy Protected",
-    description: "Your health information and learning data are completely secure and private.",
-    gradient: "gradient-blue-pink",
-  },
-]
 
 export default function Features() {
   return (
@@ -67,24 +27,6 @@ export default function Features() {
             </p>
           </div>
         </div>
-
-        {/* <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <ScrollSlideUp key={index}>
-              <Card key={index} className="border-0 shadow-lg hover-shadow-gradient group cursor-pointer">
-                <CardContent className="p-8 text-center space-y-4">
-                  <div
-                    className={`w-16 h-16 ${feature.gradient} rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <feature.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-semibold">{feature.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{feature.description}</p>
-                </CardContent>
-              </Card>
-            </ScrollSlideUp>
-          ))}
-        </div> */}
       </div>
     </section>
   )

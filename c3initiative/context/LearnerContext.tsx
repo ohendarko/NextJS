@@ -47,42 +47,36 @@ export const LearnerProvider = ({ children }: { children: React.ReactNode }) => 
   const isLoggedIn = !loading && !!userProfile
   const isLoggedOut = !loading && !userProfile
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push('/learn')
-      return
-    }
+useEffect(() => {
+  if (status === "unauthenticated") {
+    router.replace('/learn')
+    return
+  }
 
-    if (status !== "authenticated") return
+  if (status !== "authenticated") return
 
-    const fetchUserProfile = async () => {
-      if (status === "authenticated" && session?.user?.email) {
-        try {
-          const res = await fetch(`/api/user/profile?email=${session.user.email}`)
-          const data = await res.json()
-          setUserProfile(data)
-        } catch (err) {
-          console.error("Error fetching user profile", err)
-        }
-      }
+  const fetchData = async () => {
+    try {
+      const [userRes, modulesRes] = await Promise.all([
+        fetch(`/api/user/profile?email=${session.user.email}`, { cache: "no-store" } ),
+        fetch('/api/modules'),
+      ])
+
+      const userData = await userRes.json()
+      const modulesData = await modulesRes.json()
+
+      setUserProfile(userData)
+      setModules(modulesData)
+    } catch (error) {
+      console.error("Error fetching data", error)
+    } finally {
       setLoading(false)
     }
+  }
 
-    fetchUserProfile()
+  fetchData()
+}, [session, status])
 
-    const fetchModules = async () => {
-      try {
-        const res = await fetch('/api/modules')
-        const modules = await res.json()
-        setModules(modules)
-      } catch (error) {
-        console.error(error)
-      }
-    }
-
-    fetchModules();
-
-  }, [session, status])
 
   const canAccessModule = (moduleName: string) => {
     if (!userProfile) return false

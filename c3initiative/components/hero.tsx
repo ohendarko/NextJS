@@ -1,24 +1,10 @@
 "use client"
-
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { ArrowRight, Play, Shield, Users, BookOpen, Brain, Eye, Zap, Heart, Crown } from "lucide-react"
-import ScrollSlideUp from "@/components/ScrollSlideUp"
-import ScrollFadeIn from "./ScrollFadeIn"
-import SlideInFromRight from "./SlideInFromRight"
 import SlideInFromTop from "./SlideInFromTop"
 import { SlideInFromBottom } from "./animations"
 import SlideInFromLeft from "./SlideInFromLeft"
 import { useEffect, useState } from "react"
 
 export default function Hero() {
-  const coreValues = [
-    { icon: Brain, label: "Knowledge", color: "text-white", background: "/images/auditorium.jpg" },
-    { icon: Eye, label: "Awareness", color: "text-white", background: "/images/bel.jpg" },
-    { icon: Zap, label: "Action", color: "text-white", background: "/images/picture3.jpg" },
-    { icon: Heart, label: "Attitude", color: "text-white", background: "/images/picture7.jpg" },
-    { icon: Crown, label: "Empowerment", color: "text-white", background: "/images/picture4.jpg" },
-  ]
 
   const images = [
     "/images/hero.jpg",
@@ -87,18 +73,6 @@ export default function Hero() {
                     In Ghana Through Education
                   </div>
                 </SlideInFromLeft>
-                {/* <h1 className="text-4xl text-white sm:text-5xl lg:text-6xl font-bold leading-tight mt-2">
-                  C3 Initiative:{" "}
-                  <span className="bg-white bg-clip-text text-transparent">
-                    Conquering Cervical Cancer
-                  </span>{" "}
-                  Through Education
-                </h1>
-                <p className="text-xl text-white dark:text-gray-300 leading-relaxed">
-                  Empowering Ghanaian healthcare students and professionals with the knowledge, awareness, and tools
-                  needed to take decisive action against cervical cancer. Together, we're transforming attitudes and
-                  building a future where every woman is empowered with life-saving information.
-                </p> */}
               </div>
               </SlideInFromBottom>
             </div>

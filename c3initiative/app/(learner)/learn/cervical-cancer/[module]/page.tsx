@@ -10,26 +10,17 @@ import { Progress } from "@/components/ui/progress"
 import {
   ArrowLeft,
   CheckCircle,
-  Users,
   ArrowRight,
-  BookOpen,
-  Microscope,
-  Search,
-  Shield,
-  Stethoscope,
   Lock,
-  Play,
 } from "lucide-react"
 import Link from "next/link"
-// import InteractiveProgressBar from "@/components/interactive-progress-bar"
 import Skeleton from "@mui/material/Skeleton"
 import SectionRenderer from "@/components/SectionRenderer"
 import { useProtectedModuleRoute } from "@/hooks/useProtectedModuleRoute"
 import { useLearner } from "@/context/LearnerContext"
 import { useSession } from "next-auth/react"
 import FullScreenQuizDialog from "@/components/FullScreenQuizDialog"
-import { lutimesSync } from "fs"
-// import PostTestModal from "@/components/post-test-modal"
+
 
 type LearningCard = {
   id: string
@@ -355,18 +346,18 @@ export default function ModulePage() {
 
 
 
-  const handlePostTestPass = () => {
-    setShowPostTest(false)
-    // Navigate to next module
-    router.push("/learn/cervical-cancer/module-2")
-  }
+  // const handlePostTestPass = () => {
+  //   setShowPostTest(false)
+  //   // Navigate to next module
+  //   router.push("/learn/cervical-cancer/module-2")
+  // }
 
-  const handleModuleClick = (moduleId: number) => {
-    if (moduleId !== 1) {
-      // Navigate to other modules when they're unlocked
-      router.push(`/learn/cervical-cancer/module-${moduleId}`)
-    }
-  }
+  // const handleModuleClick = (moduleId: number) => {
+  //   if (moduleId !== 1) {
+  //     // Navigate to other modules when they're unlocked
+  //     router.push(`/learn/cervical-cancer/module-${moduleId}`)
+  //   }
+  // }
 
   const activeSectionData = lesson && lesson.sections.find(s => s.order === activeSection)
   
