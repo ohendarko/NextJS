@@ -41,21 +41,21 @@
             "title": "HPV Connection",
             "content": "The disease usually develops slowly over 10–20 years. This gives enough time to detect and treat it early, making regular screening incredibly valuable for prevention.",
             "infographic": "/images/placeholder.svg",
+            "order": 4
+          },
+          {
+            "name": "section-1-1-card-5",
+            "title": "Early Detection Methods",
+            "content": "There are low-cost tests that can find pre-cancer early. These screening methods are accessible and effective tools for preventing cervical cancer development.",
+            "infographic": "/images/placeholder.svg",
             "order": 5
           },
           {
             "name": "section-1-1-card-6",
             "title": "Early Detection Methods",
-            "content": "There are low-cost tests that can find pre-cancer early. These screening methods are accessible and effective tools for preventing cervical cancer development.",
-            "infographic": "/images/placeholder.svg",
-            "order": 6
-          },
-          {
-            "name": "section-1-1-card-7",
-            "title": "Early Detection Methods",
             "content": "HPV vaccines are now available. If given to girls before they become sexually active, a large portion of cervical cancer can be prevented. This represents a major breakthrough in prevention.",
             "infographic": "/images/placeholder.svg",
-            "order": 7
+            "order": 6
           }
         ],
         "quizzes": []
