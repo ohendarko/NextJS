@@ -20,6 +20,7 @@ import { useProtectedModuleRoute } from "@/hooks/useProtectedModuleRoute"
 import { useLearner } from "@/context/LearnerContext"
 import { useSession } from "next-auth/react"
 import FullScreenQuizDialog from "@/components/FullScreenQuizDialog"
+import { UserProfile } from "@/context/LearnerContext"
 
 
 type LearningCard = {
@@ -81,7 +82,7 @@ type SectionProgress = {
 }
 
 export default function ModulePage() {
-  const { userProfile, loading } = useLearner()
+  const { userProfile, setUserProfile, loading } = useLearner()
   useProtectedModuleRoute()
 
   const router = useRouter()
@@ -104,6 +105,7 @@ export default function ModulePage() {
   const postTestCompleted = userProfile?.postTestCompleted?.includes(posttestKey) ?? false
   const [showQuiz, setShowQuiz] = useState(!pretestCompleted)
   const [showPostQuiz, setShowPostQuiz] = useState(!postTestCompleted)
+
 
 
 
@@ -186,54 +188,52 @@ export default function ModulePage() {
   // console.log(lesson)
   // console.log('sectionprogress', sectionProgress)
 
-  const handleQuizComplete = async (mode: string) => {
-    try {
-      const fieldToUpdate =
-        mode === "pretest" ? "preTestCompleted" : "postTestCompleted"
-      const updated = mode === "pretest" ? [`pretest-${lesson?.order}`] : [`posttest-${lesson?.order}`]
+const handleQuizComplete = async (mode: "pretest" | "posttest") => {
+  if(!lesson) return
+  try {
+    const isPretest = mode === "pretest"
+    const fieldToUpdate = isPretest ? "preTestCompleted" : "postTestCompleted"
+    const updateValue = [`${mode}-${lesson?.order}`]
 
-      const res = await fetch("/api/user/update", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: userProfile?.email,
-          [fieldToUpdate]: updated,
-          addOn: true,
-        }),
-      })
+    const res = await fetch("/api/user/update", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: userProfile?.email,
+        [fieldToUpdate]: updateValue,
+        addOn: true,
+        currentModule: `module-${lesson?.order + 1}`
+      }),
+    })
 
-      if (!res.ok) {
-        throw new Error("Failed to update user profile")
-      }
+    if (!res.ok) throw new Error("Failed to update quiz status")
 
-      mode === "pretest" ? setShowQuiz(false) : setShowPostQuiz(false)
-
-      if (mode === "posttest") {
-        try {
-          if (!lesson) return
-          const sectionNames = lesson.sections.map((s) => s.name)
-          fetch("/api/user/update", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              completedSections: sectionNames,
-              completedModules: [`module-${lesson.order}`],
-              currentModule: `module-${lesson.order + 1}`,
-              addOn: true,
-            }),
-          }).catch((err) => {
-            console.error("Failed to sync completed sections:", err)
-          })
-        } catch (error) {
-          console.error(error)
-        }
-      }
-    } catch (error) {
-      console.error("Error updating pretest status:", error)
+    if (isPretest) {
+      setShowQuiz(false)
+      setUserProfile((prev) =>
+        prev
+          ? {
+              ...prev,
+              preTestCompleted: [...prev.preTestCompleted, ...updateValue],
+            }
+          : prev
+      )
+    } else {
+      setShowPostQuiz(false)
+      setUserProfile((prev) =>
+        prev
+          ? {
+              ...prev,
+              postTestCompleted: [...prev.postTestCompleted, ...updateValue],
+            }
+          : prev
+      )
     }
+  } catch (err) {
+    console.error("Error updating user profile:", err)
   }
+}
+
 
 
   const saveProgressLocally = (sectionName: string, email: string) => {
@@ -392,7 +392,7 @@ export default function ModulePage() {
     useEffect(() => {
       const allCompleted = completedSections === lesson?.sections.length
       if (allCompleted && showPostTest === false) {
-        setShowPostTest(true)
+        setShowPostQuiz(true)
       }  
     }, [allSectionsCompleted, completedSections])
 

@@ -1,10 +1,9 @@
-// context/LearnerContext.tsx
 "use client"
 
 import { createContext, useContext, useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import { Module } from '@/lib/types';
+import { Module } from '@/lib/types'
 
 export interface UserProfile {
   id: string
@@ -24,11 +23,11 @@ export interface UserProfile {
   certificate?: boolean
 }
 
-
 interface LearnerContextType {
   userProfile: UserProfile | null
+  setUserProfile: React.Dispatch<React.SetStateAction<UserProfile | null>>
   loading: boolean
-  modules: Module[];
+  modules: Module[]
   canAccessModule: (moduleName: string) => boolean
   isLoggedIn: boolean
   isLoggedOut: boolean
@@ -37,56 +36,77 @@ interface LearnerContextType {
 const LearnerContext = createContext<LearnerContextType | undefined>(undefined)
 
 export const LearnerProvider = ({ children }: { children: React.ReactNode }) => {
-
   const router = useRouter()
   const { data: session, status } = useSession()
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
+  const [modules, setModules] = useState<Module[]>([])
   const [loading, setLoading] = useState(true)
-  const [modules, setModules] = useState<Module[]>([]);
 
   const isLoggedIn = !loading && !!userProfile
   const isLoggedOut = !loading && !userProfile
 
-useEffect(() => {
-  if (status === "unauthenticated") {
-    router.replace('/learn')
-    return
-  }
+  useEffect(() => {
+    let mounted = true
 
-  if (status !== "authenticated") return
+    const loadData = async () => {
+      if (status === "unauthenticated") {
+        router.push('/learn')
+        return
+      }
 
-  const fetchData = async () => {
-    try {
-      const [userRes, modulesRes] = await Promise.all([
-        fetch(`/api/user/profile?email=${session.user.email}`, { cache: "no-store" } ),
-        fetch('/api/modules'),
-      ])
+      if (status !== "authenticated" || !session?.user?.email) return
 
-      const userData = await userRes.json()
-      const modulesData = await modulesRes.json()
+      try {
+        const [profileResult, modulesResult] = await Promise.allSettled([
+          fetch(`/api/user/profile?email=${session.user.email}`),
+          fetch('/api/modules'),
+        ])
 
-      setUserProfile(userData)
-      setModules(modulesData)
-    } catch (error) {
-      console.error("Error fetching data", error)
-    } finally {
-      setLoading(false)
+        if (mounted) {
+          if (profileResult.status === "fulfilled") {
+            const profileData = await profileResult.value.json()
+            setUserProfile(profileData)
+          }
+
+          if (modulesResult.status === "fulfilled") {
+            const modulesData = await modulesResult.value.json()
+            setModules(modulesData)
+          }
+        }
+      } catch (err) {
+        console.error("Error loading learner data", err)
+      } finally {
+        if (mounted) setLoading(false)
+      }
     }
-  }
 
-  fetchData()
-}, [session, status])
+    loadData()
 
+    return () => {
+      mounted = false
+    }
+  }, [session, status, router])
 
   const canAccessModule = (moduleName: string) => {
     if (!userProfile) return false
     if (!userProfile.hasCompletedQuestionnaire) return false
-    return moduleName === userProfile.currentModule || moduleName === "module-1" || userProfile.completedModules.includes(moduleName)
+    return (
+      moduleName === userProfile.currentModule ||
+      moduleName === "module-1" ||
+      userProfile.completedModules.includes(moduleName)
+    )
   }
 
   return (
     <LearnerContext.Provider value={{
-      userProfile, loading, modules, canAccessModule, isLoggedIn, isLoggedOut }}>
+      userProfile,
+      setUserProfile,
+      loading,
+      modules,
+      canAccessModule,
+      isLoggedIn,
+      isLoggedOut,
+    }}>
       {children}
     </LearnerContext.Provider>
   )

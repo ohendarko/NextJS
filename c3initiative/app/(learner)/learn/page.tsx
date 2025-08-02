@@ -73,8 +73,6 @@ export default function LoginPage() {
       setIsLoading(true);
       router.push("/learn/cervical-cancer");
     }
-
-    
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

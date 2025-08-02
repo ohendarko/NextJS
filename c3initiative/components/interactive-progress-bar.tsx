@@ -83,12 +83,22 @@ export default function InteractiveProgressBar({
   const totalModules = modules.length
   const allModulesCompleted = completedModules === totalModules
 
-  const moduleUnlocked = (moduleName: string) => {
-    return (
-      userProfile?.currentModule === moduleName ||
-      userProfile?.completedModules?.includes(moduleName)
-    )
-  }
+const moduleUnlocked = (moduleName: string) => {
+  if (!userProfile) return false;
+
+  const getModuleNumber = (name: string) => parseInt(name.split("-")[1]);
+  const targetNumber = getModuleNumber(moduleName);
+
+  // Always unlock current module
+  if (userProfile.currentModule === moduleName) return true;
+
+  // module-1 is always unlocked
+  if (targetNumber === 1) return true;
+
+  const previousModule = `module-${targetNumber - 1}`;
+  return userProfile.completedModules.includes(previousModule);
+};
+
 
   const moduleCompleted = (moduleName: string) => userProfile?.completedModules?.includes(moduleName) ?? false
 

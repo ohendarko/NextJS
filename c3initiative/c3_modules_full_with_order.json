@@ -534,7 +534,90 @@
     "postTest": {
       "name": "posttest-2",
       "questions": [
-
+        {
+          "order": 1,
+          "question": "Which of the following best describes cancer?",
+          "options": [
+            "A. Process where the body repairs damaged cells.",
+            "B. Normal cell growth that replaces worn-out cells.",
+            "C. Uncontrolled growth of cells and tissues.",
+            "D. Condition where cells change in appearance."
+          ],
+          "correctAnswer": "C. Uncontrolled growth of cells and tissues.",
+          "explanation": "Cancer is a term used for the malignant, autonomous and uncontrolled growth of cells and tissues."
+        },
+        {
+          "order": 2,
+          "question": "How is cervical pre-cancer different from cervical cancer?",
+          "options": [
+            "A. Pre-cancer affects only the uterus, not the cervix.",
+            "B. Cervical cancer is less serious than per-cancer.",
+            "C. Pre-cancer cells do not spread and may return to normal",
+            "D. Pre-cancer cannot be detected through screening."
+          ],
+          "correctAnswer": "C. Pre-cancer cells do not spread and may return to normal",
+          "explanation": "Cervical pre-cancer happens when the cells in the transformation zone of the cervix start to grow in an abnormal way; however, it does not have the ability to spread to other organs. Cervical cancer can invade other organs."
+        },
+        {
+          "order": 3,
+          "question": "How long does cervical cancer typically take to develop?",
+          "options": [
+            "A. 1-2 years",
+            "B. 10-20 years",
+            "C. 1 month",
+            "D. 50 years"
+          ],
+          "correctAnswer": "B. 10-20 years",
+          "explanation": "Cervical cancer usually develops gradually, often over 10-20 years, as abnormal cells in the cervix progress to precancerous conditions like CIN (cervical intraepithelial neoplasia) and eventually to cancer"
+        },
+        {
+          "order": 4,
+          "question": "Which of the following best explains the link between HPV and cervical cancer?",
+          "options": [
+            "A. All types of HPV can directly lead to the development of cervical cancer.",
+            "B. HPV causes immediate onset of cervical cancer in all individuals that are infected.",
+            "C. Only certain types of HPV that persist in the body can cause abnormal cell changes.",
+            "D. Cervical cancer is caused by skin-to-skin contact unrelated to the type of HPV infection."
+          ],
+          "correctAnswer": "C. Only certain types of HPV that persist in the body can cause abnormal cell changes.",
+          "explanation": "Only specific types of HPV, and only in rare cases when the virus is not cleared by the body, can lead to cervical cancer through abnormal cell changes."
+        },
+        {
+          "order": 5,
+          "question": "Which group of individuals are most at risk of HPV infection?",
+          "options": [
+            "A. Only women who have had multiple sexual partners",
+            "B. Only men who engage in unprotected multiple sex",
+            "C. Sexually active individuals, regardless of gender.",
+            "D. Individuals with weakened immune systems only"
+          ],
+          "correctAnswer": "C. Sexually active individuals, regardless of gender.",
+          "explanation": "The passage states that HPV is very common and can affect both women and men. Anyone who has ever been sexually active could have HPV."
+        },
+        {
+          "order": 6,
+          "question": "What are the sequential ways by which cervical cancer can spread to other parts of the body?",
+          "options": [
+            "A. Cervix → nearby organs → lymph system → distant parts of the body",
+            "B. Cervix → lymph system → nearby organs → distant parts of the body",
+            "C. Cervix → distant parts of the body → lymph system → nearby organs",
+            "D. Cervix → lower vagina → blood vessels → distant parts of the body"
+          ],
+          "correctAnswer": "A. Cervix → nearby organs → lymph system → distant parts of the body",
+          "explanation": "Cervical cancer spreads within the cervix to nearby organs through the lymph system to distant parts of the body."
+        },
+        {
+          "order": 7,
+          "question": "How does HIV increase the risk of cervical cancer development in women?",
+          "options": [
+            "A. HIV directly mutates cervical cells",
+            "B. HIV weakens the immune system",
+            "C. HIV increases estrogen levels",
+            "D. HIV causes cervical cancer independently of HPV infection."
+          ],
+          "correctAnswer": "B. HIV weakens the immune system",
+          "explanation": "HIV compromises the immune system, which reduces the body's ability to fight off HPV infection. Persistent HPV infection increases the risk of cervical pre-cancer and cancer."
+        }
       ]
     }
   },
@@ -887,7 +970,116 @@
     },
     "postTest": {
       "name": "posttest-3",
-      "questions": []
+      "questions": [
+        {
+          "order": 1,
+          "question": "Which combination of behaviours is most likely to increase a woman's risk of acquiring HPV?",
+          "options": [
+            "A. Tobacco smoking and eating unhealthy food regularly",
+            "B. Having multiple sexual partners and early sexual debut",
+            "C. Using antibiotics frequently and poor hygiene as a woman",
+            "D. High alcohol consumption and lack of regular exercise"
+          ],
+          "correctAnswer": "B. Having multiple sexual partners and early sexual debut",
+          "explanation": "Both multiple sexual partners and early onset of sexual activity increase the chance of exposure to HPV, which is the leading cause of cervical cancer."
+        },
+        {
+          "order": 2,
+          "question": "What role does tobacco smoking play in the development of cervical cancer?",
+          "options": [
+            "A. It reduces the efficacy and effectiveness of the HPV vaccine",
+            "B. It damages and causes chronic inflammation in the cervix",
+            "C. It weakens the immune system and damages cervical cells",
+            "D. It alters hormonal levels, increasing HPV replication"
+          ],
+          "correctAnswer": "C. It weakens the immune system and damages cervical cells",
+          "explanation": "Tobacco smoke contains carcinogens that can damage cervical cells and impair immune function, both of which may promote cervical cancer in HPV-positive individuals."
+        },
+        {
+          "order": 3,
+          "question": "Bleeding associated with early-stage cervical cancer typically present as ....",
+          "options": [
+            "A. Only heavy bleeding during regular monthly periods",
+            "B. Bleeding that is predictable and cyclical in nature",
+            "C. Bleeding after sex, between periods, or postmenopausal",
+            "D. Spotting during ovulation only"
+          ],
+          "correctAnswer": "C. Bleeding after sex, between periods, or postmenopausal",
+          "explanation": "Early-stage cervical cancer may cause irregular bleeding including postcoital bleeding, postmenopausal bleeding, and intermenstrual bleeding."
+        },
+        {
+          "order": 4,
+          "question": "What is the primary purpose of HPV testing in cervical cancer prevention?",
+          "options": [
+            "A. To confirm the presence of cancer cells",
+            "B. To identify women who are currently having HPV and HIV",
+            "C. To detect high-risk HPV types before cancer develops",
+            "D. To screen for all types of sexually transmitted infections"
+          ],
+          "correctAnswer": "C. To detect high-risk HPV types before cancer develops",
+          "explanation": "HPV testing helps identify high-risk HPV infections early, allowing for timely treatment before cervical cancer develops."
+        },
+        {
+          "order": 5,
+          "question": "What is the recommended age for HPV testing?",
+          "options": [
+            "A. 15 years",
+            "B. 20 years",
+            "C. 25 years",
+            "D. 30 years"
+          ],
+          "correctAnswer": "D. 30 years",
+          "explanation": "Younger women often clear HPV naturally, so testing them can lead to unnecessary worry and treatment. In contrast, persistent HPV in older women is more likely to cause cancer."
+        },
+        {
+          "order": 6,
+          "question": "What is the main purpose of Visual Inspection with Acetic Acid (VIA)?",
+          "options": [
+            "A. To treat cervical cancer immediately",
+            "B. To detect early changes in the cervix",
+            "C. To measure cervical pH levels",
+            "D. To test for HPV DNA presence in the cervix"
+          ],
+          "correctAnswer": "B. To detect early changes in the cervix",
+          "explanation": "VIA is used to visually detect early changes in cervical tissue that may signal precancerous lesions"
+        },
+        {
+          "order": 7,
+          "question": "What solution is used in the VIA procedure to highlight abnormal cervical areas?",
+          "options": [
+            "A. Saline",
+            "B. Iodine",
+            "C. Acetic acid",
+            "D. Hydrogen peroxide"
+          ],
+          "correctAnswer": "C. Acetic acid",
+          "explanation": "The cervix is swabbed with 3–5% acetic acid during VIA to help visualize abnormal tissue changes."
+        },
+        {
+          "order": 8,
+          "question": "Which group of women is VIA most effective for?",
+          "options": [
+            "A. Women under 30 years",
+            "B. Women under 50 years",
+            "C. Women above 60 years",
+            "D. Women who have never been sexually active"
+          ],
+          "correctAnswer": "B. Women under 50 years",
+          "explanation": "VIA is most effective in women under 50, as the area of the cervix where abnormal cell changes occur is more visible before menopause."
+        },
+        {
+          "order": 9,
+          "question": "What are the two main methods used in cytology-based cervical screening programmes?",
+          "options": [
+            "A. PCR and visual inspection cytology",
+            "B. VIA and HPV DNA testing cytology",
+            "C. Pap smear and liquid-based cytology",
+            "D. Endometrial biopsy and ultrasound"
+          ],
+          "correctAnswer": "C. Pap smear and liquid-based cytology",
+          "explanation": "The two main methods are the conventional Pap smear and liquid-based cytology (LBC)."
+        }
+      ]
     }
   },
   {
@@ -1051,7 +1243,56 @@
     },
     "postTest": {
       "name": "posttest-4",
-      "questions": []
+      "questions": [
+        {
+          "order": 1,
+          "question": "According to WHO, what is the ideal target group for primary HPV vaccination?",
+          "options": [
+            "A. Women over 30 years old",
+            "B. Girls aged 9 – 14 years",
+            "C. All boys under 10 years",
+            "D. Women during pregnancy"
+          ],
+          "correctAnswer": "B. Girls aged 9 – 14 years",
+          "explanation": "The primary target group for HPV vaccination is girls aged 9–14 years, ideally before the initiation of sexual activity."
+        },
+        {
+          "order": 2,
+          "question": "What is the minimum number of doses required for full HPV vaccination in girls under 15 years?",
+          "options": [
+            "A. One or two doses",
+            "B. Three doses only",
+            "C. Two doses with a 3-week interval",
+            "D. Four doses at any interval"
+          ],
+          "correctAnswer": "A. One or two doses",
+          "explanation": "For girls under 15, a one- or two-dose schedule is acceptable. If two doses are given, they should be 6 months apart."
+        },
+        {
+          "order": 3,
+          "question": "What is the appropriate HPV vaccination schedule for women older than 21 years?",
+          "options": [
+            "A. One dose only",
+            "B. Two doses with a 6-month interval",
+            "C. Three doses with 2-week intervals",
+            "D. No vaccination is recommended after 21"
+          ],
+          "correctAnswer": "B. Two doses with a 6-month interval",
+          "explanation": "Women older than 21 require two doses of the HPV vaccine, spaced 6 months apart."
+        },
+        {
+          "order": 4,
+          "question": "Which of the following is a valid contraindication to HPV vaccination?",
+          "options": [
+            "A. Mild cold symptoms, headaches and menstrual cramps",
+            "B. History of severe allergic reaction to a previous HPV dose",
+            "C. Having received another vaccine within the past month",
+            "D. Being under 15 years of age and sexually inactive girl"
+          ],
+          "correctAnswer": "B. History of severe allergic reaction to a previous HPV dose",
+          "explanation": "Severe allergic reactions to a previous HPV dose or any of its components (e.g. yeast) are a contraindication to vaccination."
+        }
+      ]
     }
   },
   {

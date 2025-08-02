@@ -2,11 +2,9 @@
 
 import React, { useState } from "react"
 import { Dialog } from "@headlessui/react"
-import { X } from "lucide-react"
 import { Button } from "./ui/button"
 import { useLearner } from "@/context/LearnerContext"
 import { useRouter } from "next/navigation"
-import SlideInFromRight from "./SlideInFromRight"
 import SlideInQuestion from "./SlideInQuestion"
 
 type Question = {
@@ -36,6 +34,8 @@ export default function FullScreenQuizDialog({
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [showExplanation, setShowExplanation] = useState(false)
+  const [hasCheckedAnswer, setHasCheckedAnswer] = useState(false)
   const { loading } = useLearner()
 
   const currentQuestion = questions[currentQuestionIndex]
@@ -44,6 +44,13 @@ export default function FullScreenQuizDialog({
     const updated = [...selectedAnswers]
     updated[currentQuestionIndex] = option
     setSelectedAnswers(updated)
+    setHasCheckedAnswer(false)
+    setShowExplanation(false)
+  }
+
+  const handleCheckAnswer = () => {
+    setHasCheckedAnswer(true)
+    setShowExplanation(true)
   }
 
   const handleSubmit = () => {
@@ -56,6 +63,18 @@ export default function FullScreenQuizDialog({
 
   const isCorrect = (qIndex: number) =>
     selectedAnswers[qIndex] === questions[qIndex].correctAnswer
+
+  const handleNext = () => {
+    setCurrentQuestionIndex((i) => i + 1)
+    setShowExplanation(false)
+    setHasCheckedAnswer(false)
+  }
+
+  const handlePrev = () => {
+    setCurrentQuestionIndex((i) => i - 1)
+    setShowExplanation(false)
+    setHasCheckedAnswer(false)
+  }
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="fixed inset-0 z-50">
@@ -85,31 +104,30 @@ export default function FullScreenQuizDialog({
                   {currentQuestionIndex + 1}. {currentQuestion?.question}
                 </p>
                 <div className="space-y-2">
-                    {currentQuestion?.options.map((option, oIndex) => (
-                      <label
-                        key={oIndex}
-                        className={`flex items-center p-2 border rounded-md cursor-pointer ${
-                          selectedAnswers[currentQuestionIndex] === option
-                            ? "border-blue-600"
-                            : "border-gray-300"
-                        }`}
-                      >
-                        <input
-                          type="radio"
-                          name={`question-${currentQuestionIndex}`}
-                          value={option}
-                          disabled={isSubmitted && mode !== "posttest"}
-                          checked={selectedAnswers[currentQuestionIndex] === option}
-                          onChange={() => handleOptionSelect(option)}
-                          className="mr-2"
-                        />
-                        {option}
-                      </label>
-                    ))}
-                  
+                  {currentQuestion?.options.map((option, oIndex) => (
+                    <label
+                      key={oIndex}
+                      className={`flex items-center p-2 border rounded-md cursor-pointer ${
+                        selectedAnswers[currentQuestionIndex] === option
+                          ? "border-blue-600"
+                          : "border-gray-300"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name={`question-${currentQuestionIndex}`}
+                        value={option}
+                        disabled={isSubmitted}
+                        checked={selectedAnswers[currentQuestionIndex] === option}
+                        onChange={() => handleOptionSelect(option)}
+                        className="mr-2"
+                      />
+                      {option}
+                    </label>
+                  ))}
                 </div>
 
-                {isSubmitted && (
+                {showExplanation && selectedAnswers[currentQuestionIndex] && (
                   <div
                     className={`mt-2 p-3 rounded-md text-sm ${
                       isCorrect(currentQuestionIndex)
@@ -117,7 +135,7 @@ export default function FullScreenQuizDialog({
                         : "bg-red-50 text-red-700 border-l-4 border-red-500"
                     }`}
                   >
-                    {mode === "posttest" && currentQuestion.explanation}
+                    {currentQuestion.explanation}
                   </div>
                 )}
               </div>
@@ -127,17 +145,21 @@ export default function FullScreenQuizDialog({
             <div className="flex justify-between mt-6">
               <Button
                 variant="outline"
-                onClick={() => setCurrentQuestionIndex((i) => i - 1)}
+                onClick={handlePrev}
                 disabled={currentQuestionIndex === 0}
               >
                 Previous
               </Button>
-              {currentQuestionIndex < questions.length - 1 ? (
+
+              {!hasCheckedAnswer ? (
                 <Button
-                  variant="outline"
-                  onClick={() => setCurrentQuestionIndex((i) => i + 1)}
+                  onClick={handleCheckAnswer}
                   disabled={!selectedAnswers[currentQuestionIndex]}
                 >
+                  Check Answer
+                </Button>
+              ) : currentQuestionIndex < questions.length - 1 ? (
+                <Button variant="outline" onClick={handleNext}>
                   Next
                 </Button>
               ) : (

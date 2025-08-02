@@ -73,76 +73,6 @@ const userdata = {
 
 
 
-
-// const modules = [
-//   {
-//     id: 1,
-//     title: "Introduction to Cervical Cancer",
-//     shortTitle: "Introduction",
-//     description: "Understanding the basics and importance of cervical cancer prevention",
-//     sections: 3,
-//     duration: "45 min",
-//     completed: false,
-//     unlocked: true,
-//     icon: BookOpen,
-//   },
-//   {
-//     id: 2,
-//     title: "HPV and Cervical Cancer Connection",
-//     shortTitle: "HPV Connection",
-//     description: "Learn about Human Papillomavirus and its role in cervical cancer",
-//     sections: 4,
-//     duration: "60 min",
-//     completed: false,
-//     unlocked: false,
-//     icon: Microscope,
-//   },
-//   {
-//     id: 3,
-//     title: "Screening and Early Detection",
-//     shortTitle: "Screening",
-//     description: "Pap smears, HPV testing, and screening guidelines",
-//     sections: 3,
-//     duration: "50 min",
-//     completed: false,
-//     unlocked: false,
-//     icon: Search,
-//   },
-//   {
-//     id: 4,
-//     title: "Prevention Strategies",
-//     shortTitle: "Prevention",
-//     description: "Vaccination, lifestyle factors, and preventive measures",
-//     sections: 2,
-//     duration: "40 min",
-//     completed: false,
-//     unlocked: false,
-//     icon: Shield,
-//   },
-//   {
-//     id: 5,
-//     title: "Treatment and Management",
-//     shortTitle: "Treatment",
-//     description: "Treatment options and patient care approaches",
-//     sections: 4,
-//     duration: "55 min",
-//     completed: false,
-//     unlocked: false,
-//     icon: Stethoscope,
-//   },
-//   {
-//     id: 6,
-//     title: "Community Health and Advocacy",
-//     shortTitle: "Community Health",
-//     description: "Public health approaches and patient communication",
-//     sections: 3,
-//     duration: "35 min",
-//     completed: false,
-//     unlocked: false,
-//     icon: Users,
-//   },
-// ]
-
 type ModuleProgress = {
   [id: number]: {
     completed: boolean
@@ -211,12 +141,22 @@ export default function CervicalCancerLearnPage() {
   }, [status, userEmail])
 
 
-  const moduleUnlocked = (moduleName: string) => {
-    return (
-      userProfile?.currentModule === moduleName ||
-      userProfile?.completedModules?.includes(moduleName)
-    )
-  }
+const moduleUnlocked = (moduleName: string) => {
+  if (!userProfile) return false;
+
+  const getModuleNumber = (name: string) => parseInt(name.split("-")[1]);
+  const targetNumber = getModuleNumber(moduleName);
+
+  // Always unlock current module
+  if (userProfile.currentModule === moduleName) return true;
+
+  // module-1 is always unlocked
+  if (targetNumber === 1) return true;
+
+  const previousModule = `module-${targetNumber - 1}`;
+  return userProfile.completedModules.includes(previousModule);
+};
+
 
   const moduleCompleted = (moduleName: string) => userProfile?.completedModules?.includes(moduleName) ?? false
  
@@ -256,6 +196,8 @@ export default function CervicalCancerLearnPage() {
         title: "Logged out",
         description: "You have been signed out.",
       });
+
+      window.location.reload()
   
       // setIsLoggedIn(false); // update your local state if you track login status
   
