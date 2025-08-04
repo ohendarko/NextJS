@@ -16,7 +16,7 @@ const CoreValues = () => {
         <div className='flex justify-center items-center'>
           <SlideInFromBottom>
             <div className='mt-5 flex justify-center items-center w-full'>
-              <p className='text-gray-700 text-lg p-3 dark:text-gray-300'>
+              <p className='text-gray-700 text-lg p-3 dark:text-gray-300 text-justify'>
                 The C3 initiative seeks to empower Ghanaians with knowledge and resources needed to take decisive action to prevent and control cervical cancer. Together, we are changing attitude and building a future where every woman in Ghana is empowered with life-saving information.
               </p>
             </div>

@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
-import { Menu, X, BookOpen } from "lucide-react"
+import { Menu, X, BookOpen, User } from "lucide-react"
 import { useLearner, UserProfile } from "@/context/LearnerContext"
 import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
@@ -112,9 +112,18 @@ export default function Header() {
                 </Button>
               </Link>
             )}
-            <Link href="/signup">
-              <Button className="gradient-orange-blue text-white hover-shadow-gradient">Get Started</Button>
-            </Link>
+            {!isLoggedIn && (
+              <Link href="/signup">
+                <Button className="gradient-orange-blue text-white hover-shadow-gradient">Get Started</Button>
+              </Link>
+            )}
+            {isLoggedIn && (
+              <div className={`${textClass} flex`}>
+                <User />
+                {userProfile?.name}
+              </div>
+            )}
+
           </div>
 
           {/* Mobile Menu Button */}

@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ChevronDown, ChevronRight, CheckCircle, ArrowRight, Lock, ArrowLeft } from "lucide-react"
+import { ChevronDown, ChevronRight, CheckCircle, ArrowRight, Lock, ArrowLeft, Settings } from "lucide-react"
 import Image from "next/image"
 
 interface LearningCardProps {
@@ -18,12 +18,15 @@ interface LearningCardProps {
   isActive: boolean
   isCompleted: boolean
   onComplete: (direction: "next" | "prev") => void
-
   canExpand: boolean
 }
 
+const fontSizes = ["text-xs", "text-sm", "text-base", "text-lg", "text-xl", "text-2xl", "text-3xl", "text-4xl" ] as const
+type FontSize = typeof fontSizes[number]
+
 export default function LearningCard({ card, isActive, isCompleted, onComplete, canExpand }: LearningCardProps) {
   const [isExpanded, setIsExpanded] = useState(isActive)
+  const [fontSizeIndex, setFontSizeIndex] = useState(2) // default to "text-base"
 
   const handleToggle = () => {
     if (canExpand) {
@@ -31,8 +34,12 @@ export default function LearningCard({ card, isActive, isCompleted, onComplete, 
     }
   }
 
-  const handleComplete = () => {
-    onComplete('next')
+  const increaseFontSize = () => {
+    setFontSizeIndex((prev) => Math.min(prev + 1, fontSizes.length - 1))
+  }
+
+  const decreaseFontSize = () => {
+    setFontSizeIndex((prev) => Math.max(prev - 1, 0))
   }
 
   // Auto-expand when card becomes active
@@ -80,18 +87,6 @@ export default function LearningCard({ card, isActive, isCompleted, onComplete, 
               )}
             </div>
           </div>
-          <div className="flex items-center space-x-2">
-            {isActive && !isCompleted && (
-              <Badge className="bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300">
-                Current
-              </Badge>
-            )}
-            {/* {canExpand && (
-              <div className="text-gray-400">
-                {isExpanded ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
-              </div>
-            )} */}
-          </div>
         </div>
       </CardHeader>
 
@@ -100,7 +95,7 @@ export default function LearningCard({ card, isActive, isCompleted, onComplete, 
           {/* Infographic */}
           {card.infographic && (
             <div className="mb-6">
-              <div className="relative w-full h-64 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden ">
+              <div className="relative w-full h-64 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
                 <Image
                   src={card.infographic || "/placeholder.svg"}
                   alt={`Infographic for ${card.title}`}
@@ -112,12 +107,23 @@ export default function LearningCard({ card, isActive, isCompleted, onComplete, 
             </div>
           )}
 
-          {/* Content */}
-          <div className="prose dark:prose-invert max-w-none mb-6">
-            <div className="text-gray-700 text-sm dark:text-gray-300 leading-relaxed whitespace-pre-line">{card.content}</div>
+          {/* Font Size Controls */}
+          <div className="flex justify-end items-center gap-2 mb-4">
+            <Settings />
+            <Button variant="outline" size="sm" onClick={decreaseFontSize} disabled={fontSizeIndex === 0}>
+              <span className="text-xs">A-</span>
+            </Button>
+            <Button variant="outline" size="sm" onClick={increaseFontSize} disabled={fontSizeIndex === fontSizes.length - 1}>
+              <span className="text-lg">A+</span>
+            </Button>
           </div>
 
-          {/* Action Button */}
+          {/* Content */}
+          <div className={`prose dark:prose-invert max-w-none mb-6 leading-relaxed whitespace-pre-line ${fontSizes[fontSizeIndex]}`}>
+            <div className="text-gray-700 dark:text-gray-300">{card.content}</div>
+          </div>
+
+          {/* Navigation Buttons */}
           {isActive && (
             <div className="flex justify-between">
               <Button
@@ -130,13 +136,7 @@ export default function LearningCard({ card, isActive, isCompleted, onComplete, 
               </Button>
 
               <Button
-                onClick={() => {
-                  if (!isCompleted) {
-                    onComplete("next") // Let parent handle it
-                  } else {
-                    onComplete("next")
-                  }
-                }}
+                onClick={() => onComplete("next")}
                 className="gradient-orange-blue text-white hover-shadow-gradient"
               >
                 Next
@@ -144,16 +144,6 @@ export default function LearningCard({ card, isActive, isCompleted, onComplete, 
               </Button>
             </div>
           )}
-
-
-          {/* {isCompleted && (
-            <div className="flex justify-end">
-              <div className="flex items-center text-green-600 dark:text-green-400 text-sm">
-                <CheckCircle className="w-4 h-4 mr-2" />
-                Completed
-              </div>
-            </div>
-          )} */}
         </CardContent>
       )}
     </Card>
