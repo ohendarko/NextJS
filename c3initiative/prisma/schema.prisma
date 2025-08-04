@@ -39,6 +39,7 @@ model ModuleSummary {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   order       Int
   name        String? @unique
+  module      String? @unique
   title       String
   shortTitle  String
   description String?

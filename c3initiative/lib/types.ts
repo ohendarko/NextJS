@@ -41,6 +41,7 @@ export interface PreTest {
 export interface Module {
   id: string;
   module: string;
+  name: string;
   completed: boolean;
   unlocked: boolean;
   icon: string;
@@ -68,3 +69,17 @@ export interface newModule {
   postTest: Test;
   updatedAt?: Date;
 }
+
+export interface ModuleSummary {
+  id: string;
+  order: number;
+  module: string; // e.g., "module-1"
+  description: string;
+  name: string;         
+  title: string;
+  shortTitle: string;
+  completed: boolean;
+  unlocked: boolean;
+  icon: string;         // name of the Lucide icon (e.g., "Users", "Shield")
+  introVideo: string;
+};

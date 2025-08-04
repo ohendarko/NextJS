@@ -63,6 +63,7 @@ type PreTest = {
 type Module = {
   id: string
   module: string
+  name?: string
   title: string
   description: string
   icon: string
@@ -447,7 +448,7 @@ const handleQuizComplete = async (mode: "pretest" | "posttest") => {
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                {(loading || isLoading) ? <Skeleton width={500} height={100} /> : <CardTitle className="text-3xl">Module {lesson?.order}: {lesson?.title} </CardTitle>}
+                {(loading || isLoading) ? <Skeleton width={500} height={100} /> : <CardTitle className="text-3xl">{lesson?.name}: {lesson?.title} </CardTitle>}
                 {(loading || isLoading) ? <Skeleton width={700} /> : <p className="text-gray-600 dark:text-gray-400 mt-2">
                   {lesson?.description}
                 </p>}

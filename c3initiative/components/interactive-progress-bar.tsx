@@ -24,7 +24,8 @@ interface Module {
   id: string;
   order: number;
   description: string;
-  name: string;         // e.g., "module-1"
+  name: string;
+  module: string;         // e.g., "module-1"
   title: string;
   shortTitle: string;
   completed: boolean;
@@ -61,6 +62,7 @@ interface InteractiveProgressBarProps {
 
 const moduleIcons = [
   BookOpen, // Module 1: Introduction
+  Microscope,
   Microscope, // Module 2: HPV Connection
   Search, // Module 3: Screening
   Shield, // Module 4: Prevention
@@ -83,21 +85,22 @@ export default function InteractiveProgressBar({
   const totalModules = modules.length
   const allModulesCompleted = completedModules === totalModules
 
-const moduleUnlocked = (moduleName: string) => {
-  if (!userProfile) return false;
+  const moduleUnlocked = (moduleName: string) => {
+    if(!moduleName) return
+    if (!userProfile) return false;
 
-  const getModuleNumber = (name: string) => parseInt(name.split("-")[1]);
-  const targetNumber = getModuleNumber(moduleName);
+    const getModuleNumber = (name: string) => parseInt(name.split("-")[1]);
+    const targetNumber = getModuleNumber(moduleName);
 
-  // Always unlock current module
-  if (userProfile.currentModule === moduleName) return true;
+    // Always unlock current module
+    if (userProfile.currentModule === moduleName) return true;
 
-  // module-1 is always unlocked
-  if (targetNumber === 1) return true;
+    // module-1 is always unlocked
+    if (targetNumber === 1) return true;
 
-  const previousModule = `module-${targetNumber - 1}`;
-  return userProfile.completedModules.includes(previousModule);
-};
+    const previousModule = `module-${targetNumber - 1}`;
+    return userProfile.completedModules.includes(previousModule);
+  };
 
 
   const moduleCompleted = (moduleName: string) => userProfile?.completedModules?.includes(moduleName) ?? false
@@ -115,6 +118,7 @@ const moduleUnlocked = (moduleName: string) => {
       ? [
           {
             name: 'certificate',
+            module: `module-${totalModules + 1}`,
             id: totalModules + 1,
             title: "Certificate",
             shortTitle: "Certificate",
@@ -248,7 +252,7 @@ const moduleUnlocked = (moduleName: string) => {
 
               {progressItems.map((item, index) => {
                 const IconComponent = item.icon
-                const isCurrentModule = userProfile?.currentModule === item.name
+                const isCurrentModule = userProfile?.currentModule === item.module
                 const isClickable = item.unlocked && !item.isCertificate && onModuleClick
 
                 return (
@@ -258,11 +262,11 @@ const moduleUnlocked = (moduleName: string) => {
                       {/* Circle with Icon */}
                       {loading ? <Skeleton variant="circular" width={70} height={70} /> : <div
                         className={`relative w-16 h-16 rounded-full flex items-center justify-center border-4 transition-all duration-300 ${
-                          moduleCompleted(item.name)
+                          moduleCompleted(item.module)
                             ? "bg-green-700 border-green-700 shadow-lg"
                             : isCurrentModule
                               ? "gradient-orange-blue border-transparent shadow-lg scale-110"
-                              : moduleUnlocked(item.name)
+                              : moduleUnlocked(item.module)
                                 ? "gradient-orange-blue border-transparent"
                                 : "bg-gray-300 border-gray-300"
                         } ${isClickable ? "cursor-pointer hover:scale-105" : ""}`}
@@ -271,9 +275,9 @@ const moduleUnlocked = (moduleName: string) => {
                           isClickable && onModuleClick(Number(item.order)) 
                         }}
                       >
-                        {moduleCompleted(item.name) ? (
+                        {moduleCompleted(item.module) ? (
                           <IconComponent className="w-8 h-8 text-white" />
-                        ) : moduleUnlocked(item.name) ? (
+                        ) : moduleUnlocked(item.module) ? (
                           <IconComponent className="w-8 h-8 text-white" />
                         ) : (
                           <Lock className="w-8 h-8 text-gray-500" />
@@ -285,7 +289,7 @@ const moduleUnlocked = (moduleName: string) => {
                         )}
 
                         {/* Completion Badge */}
-                        {moduleCompleted(item.name) && (
+                        {moduleCompleted(item.module) && (
                           <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center">
                             <CheckCircle className="w-4 h-4 text-white" />
                           </div>
@@ -303,22 +307,22 @@ const moduleUnlocked = (moduleName: string) => {
                           className={`text-xs font-medium ${
                             isCurrentModule
                               ? "text-orange-600 dark:text-orange-400"
-                              : moduleCompleted(item.name)
+                              : moduleCompleted(item.module)
                                 ? "text-green-600 dark:text-green-400"
-                                : moduleUnlocked(item.name)
+                                : moduleUnlocked(item.module)
                                   ? "text-gray-900 dark:text-gray-100"
                                   : "text-gray-500"
                           }`}
                         >
-                          {loading ? <Skeleton width={100} /> : item.isCertificate ? "Certificate" : `Module ${index + 1}`}
+                          {loading ? <Skeleton width={100} /> : item.isCertificate ? "Certificate" : `${item.name}`}
                         </p>
                         <p
                           className={`text-xs ${
                             isCurrentModule
                               ? "text-orange-500 dark:text-orange-300"
-                              : moduleCompleted(item.name)
+                              : moduleCompleted(item.module)
                                 ? "text-green-500 dark:text-green-300"
-                                : moduleUnlocked(item.name)
+                                : moduleUnlocked(item.module)
                                   ? "text-gray-700 dark:text-gray-300"
                                   : "text-gray-400"
                           }`}
@@ -332,12 +336,12 @@ const moduleUnlocked = (moduleName: string) => {
                             {loading ? <Skeleton width={100} /> : "Current"}
                           </Badge>
                         )}
-                        {moduleCompleted(item.name) && !isCurrentModule && (
+                        {moduleCompleted(item.module) && !isCurrentModule && (
                           <Badge className="mt-1 bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 text-xs">
                             {loading ? <Skeleton width={100} /> : "Complete"}
                           </Badge>
                         )}
-                        {!moduleUnlocked(item.name) && (
+                        {!moduleUnlocked(item.module) && (
                           <Badge variant="secondary" className="mt-1 text-xs">
                             {loading ? <Skeleton width={100} /> : "Locked"}
                           </Badge>
@@ -351,7 +355,7 @@ const moduleUnlocked = (moduleName: string) => {
                         {/* Progress Dot */}
                         <div
                           className={`w-2 h-2 rounded-full transition-all duration-500 ${
-                            moduleCompleted(item.name)
+                            moduleCompleted(item.module)
                               ? "bg-green-400 shadow-lg"
                               : isCurrentModule
                                 ? "bg-orange-400 animate-pulse shadow-md"

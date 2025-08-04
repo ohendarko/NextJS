@@ -1,7 +1,6 @@
 [
   {
     "module": "module-1",
-    "name": "Module 1",
     "completed": false,
     "unlocked": true,
     "icon": "Users",
@@ -252,7 +251,6 @@
   },
   {
     "module": "module-2",
-    "name": "Module 2. Part 1",
     "completed": false,
     "unlocked": false,
     "icon": "Users",
@@ -359,6 +357,89 @@
           }
         ],
         "quizzes": []
+      },
+      {
+        "name": "section-2-5",
+        "title": "The Development Timeline of Cervical Cancer",
+        "description": "Cervical Cancer and HPV",
+        "order": 5,
+        "learningCards": [
+          {
+            "name": "section-2-5card-1",
+            "title": "Human Papilloma Virus",
+            "content": "Cervical cancer usually develops gradually, often over 10–20 years, as abnormal cells in the cervix progress to precancerous conditions like CIN (cervical intraepithelial neoplasia) and eventually to cancer.",
+            "infographic": "/images/placeholder.svg",
+            "order": 1
+          },
+          {
+            "name": "section-2-5card-2",
+            "title": "Human Papilloma Virus",
+            "content": "In some cases, especially with weakened immune systems, this process can be faster, taking 5–10 years.",
+            "infographic": "/images/placeholder.svg",
+            "order": 2
+          }
+        ],
+        "quizzes": []
+      },
+      {
+        "name": "section-2-6",
+        "title": "Routes Taken By Invasive Cancer Through The Body As It Progresses",
+        "description": "Cervical Cancer and HPV",
+        "order": 6,
+        "learningCards": [
+          {
+            "name": "section-2-6card-1",
+            "title": "Invasion Routes",
+            "content": "There are four, usually sequential, routes through which invasive cancer progresses.\n\nHow cervical cancer spreads:\n\na) Within the cervix: It can start small and gradually grow to cover the whole cervix, which may become as large as 8 cm. The cancer might form an open sore, grow outward, or spread inward.",
+            "infographic": "/images/placeholder.svg",
+            "order": 1
+          },
+          {
+            "name": "section-2-6card-2",
+            "title": "Invasion Routes",
+            "content": "b) To nearby organs: It can directly spread in all directions. It can spread downwards to the vagina, upwards into the uterus, sideways into the tissues supporting the uterus in the pelvis and the ureters, backwards to the rectum, and forwards to the bladder.",
+            "infographic": "/images/placeholder.svg",
+            "order": 2
+          },
+          {
+            "name": "section-2-6card-3",
+            "title": "Cancer Spread",
+            "content": "c) Through the lymph system: Even if the cancer is still in the cervix, it can spread to nearby lymph nodes in about 15% of cases. \nAs the cancer grows, it may spread to more distant nodes, even as far as the collarbone. \nIf cancer spreads to the lower vagina, the groin nodes may also be affected.",
+            "infographic": "/images/placeholder.svg",
+            "order": 3
+          },
+          {
+            "name": "section-2-6card-4",
+            "title": "Cancer Spread",
+            "content": "d) To distant parts of the body: Cancer cells can travel through the blood or lymph and reach places like the liver, bones, lungs, or brain.\n\nImportant note:\nInvasive cervical cancer can often be cured with proper treatment if caught early. But without treatment, it usually spreads and becomes life-threatening.",
+            "infographic": "/images/placeholder.svg",
+            "order": 4
+          }
+        ],
+        "quizzes": []
+      },
+      {
+        "name": "section-2-7",
+        "title": "Cervical Cancer And Human Immunodeficiency Virus (HIV) Infection",
+        "description": "Cervical Cancer and HIV",
+        "order": 7,
+        "learningCards": [
+          {
+            "name": "section-2-7card-1",
+            "title": "HIV",
+            "content": "Cervical cancer is one of the defining illnesses linked to AIDS in women with HIV. \nWomen with HIV (and others with weak immune systems) are more likely to get infected with HPV. \nThe weaker the immune system, the higher the risk.",
+            "infographic": "/images/placeholder.svg",
+            "order": 1
+          },
+          {
+            "name": "section-2-7card-2",
+            "title": "Human Papilloma Virus",
+            "content": "Because of this, women with HIV:\n• Are more likely to develop cervical pre-cancer or cancer at a younger age.\n• Can develop cervical cancer up to 10 years earlier than women without HIV.\n• Often have more advanced cancer by the time it’s diagnosed, reducing their chances of surviving by 5 years.",
+            "infographic": "/images/placeholder.svg",
+            "order": 2
+          }
+        ],
+        "quizzes": []
       }
     ],
     "preTest": {
@@ -411,6 +492,42 @@
           ],
           "correctAnswer": "C. Only certain types of HPV that persist in the body can cause abnormal cell changes.",
           "explanation": "Only specific types of HPV, and only in rare cases when the virus is not cleared by the body, can lead to cervical cancer through abnormal cell changes."
+        },
+        {
+          "order": 5,
+          "question": "Which group of individuals are most at risk of HPV infection?",
+          "options": [
+            "A. Only women who have had multiple sexual partners",
+            "B. Only men who engage in unprotected multiple sex",
+            "C. Sexually active individuals, regardless of gender.",
+            "D. Individuals with weakened immune systems only"
+          ],
+          "correctAnswer": "C. Sexually active individuals, regardless of gender.",
+          "explanation": "The passage states that HPV is very common and can affect both women and men. Anyone who has ever been sexually active could have HPV."
+        },
+        {
+          "order": 6,
+          "question": "What are the sequential ways by which cervical cancer can spread to other parts of the body?",
+          "options": [
+            "A. Cervix → nearby organs → lymph system → distant parts of the body",
+            "B. Cervix → lymph system → nearby organs → distant parts of the body",
+            "C. Cervix → distant parts of the body → lymph system → nearby organs",
+            "D. Cervix → lower vagina → blood vessels → distant parts of the body"
+          ],
+          "correctAnswer": "A. Cervix → nearby organs → lymph system → distant parts of the body",
+          "explanation": "Cervical cancer spreads within the cervix to nearby organs through the lymph system to distant parts of the body."
+        },
+        {
+          "order": 7,
+          "question": "How does HIV increase the risk of cervical cancer development in women?",
+          "options": [
+            "A. HIV directly mutates cervical cells",
+            "B. HIV weakens the immune system",
+            "C. HIV increases estrogen levels",
+            "D. HIV causes cervical cancer independently of HPV infection."
+          ],
+          "correctAnswer": "B. HIV weakens the immune system",
+          "explanation": "HIV compromises the immune system, which reduces the body's ability to fight off HPV infection. Persistent HPV infection increases the risk of cervical pre-cancer and cancer."
         }
       ]
     },
@@ -464,197 +581,54 @@
           ],
           "correctAnswer": "C. Only certain types of HPV that persist in the body can cause abnormal cell changes.",
           "explanation": "Only specific types of HPV, and only in rare cases when the virus is not cleared by the body, can lead to cervical cancer through abnormal cell changes."
+        },
+        {
+          "order": 5,
+          "question": "Which group of individuals are most at risk of HPV infection?",
+          "options": [
+            "A. Only women who have had multiple sexual partners",
+            "B. Only men who engage in unprotected multiple sex",
+            "C. Sexually active individuals, regardless of gender.",
+            "D. Individuals with weakened immune systems only"
+          ],
+          "correctAnswer": "C. Sexually active individuals, regardless of gender.",
+          "explanation": "The passage states that HPV is very common and can affect both women and men. Anyone who has ever been sexually active could have HPV."
+        },
+        {
+          "order": 6,
+          "question": "What are the sequential ways by which cervical cancer can spread to other parts of the body?",
+          "options": [
+            "A. Cervix → nearby organs → lymph system → distant parts of the body",
+            "B. Cervix → lymph system → nearby organs → distant parts of the body",
+            "C. Cervix → distant parts of the body → lymph system → nearby organs",
+            "D. Cervix → lower vagina → blood vessels → distant parts of the body"
+          ],
+          "correctAnswer": "A. Cervix → nearby organs → lymph system → distant parts of the body",
+          "explanation": "Cervical cancer spreads within the cervix to nearby organs through the lymph system to distant parts of the body."
+        },
+        {
+          "order": 7,
+          "question": "How does HIV increase the risk of cervical cancer development in women?",
+          "options": [
+            "A. HIV directly mutates cervical cells",
+            "B. HIV weakens the immune system",
+            "C. HIV increases estrogen levels",
+            "D. HIV causes cervical cancer independently of HPV infection."
+          ],
+          "correctAnswer": "B. HIV weakens the immune system",
+          "explanation": "HIV compromises the immune system, which reduces the body's ability to fight off HPV infection. Persistent HPV infection increases the risk of cervical pre-cancer and cancer."
         }
       ]
     }
   },
   {
     "module": "module-3",
-    "name": "Module 2. Part 2",
-    "completed": false,
-    "unlocked": false,
-    "icon": "Users",
-    "title": "Cervical Cancer: An Overview: 2",
-    "description": "Continue to learn how HPV infection leads to cervical cancer and how it's transmitted.",
-    "order": 3,
-    "introVideo": "https://drive.google.com/file/d/1MOHVNW985kgEmbBiU1xSBEnYMSNllilZ/preview?usp=drivesdk",
-    "sections": [
-      {
-        "name": "section-2-5",
-        "title": "The Development Timeline of Cervical Cancer",
-        "description": "Cervical Cancer and HPV",
-        "order": 1,
-        "learningCards": [
-          {
-            "name": "section-2-5card-1",
-            "title": "Human Papilloma Virus",
-            "content": "Cervical cancer usually develops gradually, often over 10–20 years, as abnormal cells in the cervix progress to precancerous conditions like CIN (cervical intraepithelial neoplasia) and eventually to cancer.",
-            "infographic": "/images/placeholder.svg",
-            "order": 1
-          },
-          {
-            "name": "section-2-5card-2",
-            "title": "Human Papilloma Virus",
-            "content": "In some cases, especially with weakened immune systems, this process can be faster, taking 5–10 years.",
-            "infographic": "/images/placeholder.svg",
-            "order": 2
-          }
-        ],
-        "quizzes": []
-      },
-      {
-        "name": "section-2-6",
-        "title": "Routes Taken By Invasive Cancer Through The Body As It Progresses",
-        "description": "Cervical Cancer and HPV",
-        "order": 2,
-        "learningCards": [
-          {
-            "name": "section-2-6card-1",
-            "title": "Invasion Routes",
-            "content": "There are four, usually sequential, routes through which invasive cancer progresses.\n\nHow cervical cancer spreads:\n\na) Within the cervix: It can start small and gradually grow to cover the whole cervix, which may become as large as 8 cm. The cancer might form an open sore, grow outward, or spread inward.",
-            "infographic": "/images/placeholder.svg",
-            "order": 1
-          },
-          {
-            "name": "section-2-6card-2",
-            "title": "Invasion Routes",
-            "content": "b) To nearby organs: It can directly spread in all directions. It can spread downwards to the vagina, upwards into the uterus, sideways into the tissues supporting the uterus in the pelvis and the ureters, backwards to the rectum, and forwards to the bladder.",
-            "infographic": "/images/placeholder.svg",
-            "order": 2
-          },
-          {
-            "name": "section-2-6card-3",
-            "title": "Cancer Spread",
-            "content": "c) Through the lymph system: Even if the cancer is still in the cervix, it can spread to nearby lymph nodes in about 15% of cases. \nAs the cancer grows, it may spread to more distant nodes, even as far as the collarbone. \nIf cancer spreads to the lower vagina, the groin nodes may also be affected.",
-            "infographic": "/images/placeholder.svg",
-            "order": 3
-          },
-          {
-            "name": "section-2-6card-4",
-            "title": "Cancer Spread",
-            "content": "d) To distant parts of the body: Cancer cells can travel through the blood or lymph and reach places like the liver, bones, lungs, or brain.\n\nImportant note:\nInvasive cervical cancer can often be cured with proper treatment if caught early. But without treatment, it usually spreads and becomes life-threatening.",
-            "infographic": "/images/placeholder.svg",
-            "order": 4
-          }
-        ],
-        "quizzes": []
-      },
-      {
-        "name": "section-2-7",
-        "title": "Cervical Cancer And Human Immunodeficiency Virus (HIV) Infection",
-        "description": "Cervical Cancer and HIV",
-        "order": 3,
-        "learningCards": [
-          {
-            "name": "section-2-7card-1",
-            "title": "HIV",
-            "content": "Cervical cancer is one of the defining illnesses linked to AIDS in women with HIV. \nWomen with HIV (and others with weak immune systems) are more likely to get infected with HPV. \nThe weaker the immune system, the higher the risk.",
-            "infographic": "/images/placeholder.svg",
-            "order": 1
-          },
-          {
-            "name": "section-2-7card-2",
-            "title": "Human Papilloma Virus",
-            "content": "Because of this, women with HIV:\n• Are more likely to develop cervical pre-cancer or cancer at a younger age.\n• Can develop cervical cancer up to 10 years earlier than women without HIV.\n• Often have more advanced cancer by the time it’s diagnosed, reducing their chances of surviving by 5 years.",
-            "infographic": "/images/placeholder.svg",
-            "order": 2
-          }
-        ],
-        "quizzes": []
-      }
-    ],
-    "preTest": {
-      "name": "pretest-3",
-      "questions": [
-        {
-          "order": 1,
-          "question": "Which group of individuals are most at risk of HPV infection?",
-          "options": [
-            "A. Only women who have had multiple sexual partners",
-            "B. Only men who engage in unprotected multiple sex",
-            "C. Sexually active individuals, regardless of gender.",
-            "D. Individuals with weakened immune systems only"
-          ],
-          "correctAnswer": "C. Sexually active individuals, regardless of gender.",
-          "explanation": "The passage states that HPV is very common and can affect both women and men. Anyone who has ever been sexually active could have HPV."
-        },
-        {
-          "order": 2,
-          "question": "What are the sequential ways by which cervical cancer can spread to other parts of the body?",
-          "options": [
-            "A. Cervix → nearby organs → lymph system → distant parts of the body",
-            "B. Cervix → lymph system → nearby organs → distant parts of the body",
-            "C. Cervix → distant parts of the body → lymph system → nearby organs",
-            "D. Cervix → lower vagina → blood vessels → distant parts of the body"
-          ],
-          "correctAnswer": "A. Cervix → nearby organs → lymph system → distant parts of the body",
-          "explanation": "Cervical cancer spreads within the cervix to nearby organs through the lymph system to distant parts of the body."
-        },
-        {
-          "order": 3,
-          "question": "How does HIV increase the risk of cervical cancer development in women?",
-          "options": [
-            "A. HIV directly mutates cervical cells",
-            "B. HIV weakens the immune system",
-            "C. HIV increases estrogen levels",
-            "D. HIV causes cervical cancer independently of HPV infection."
-          ],
-          "correctAnswer": "B. HIV weakens the immune system",
-          "explanation": "HIV compromises the immune system, which reduces the body's ability to fight off HPV infection. Persistent HPV infection increases the risk of cervical pre-cancer and cancer."
-        }
-      ]
-    },
-    "postTest": {
-      "name": "posttest-3",
-      "questions": [
-        {
-          "order": 1,
-          "question": "Which group of individuals are most at risk of HPV infection?",
-          "options": [
-            "A. Only women who have had multiple sexual partners",
-            "B. Only men who engage in unprotected multiple sex",
-            "C. Sexually active individuals, regardless of gender.",
-            "D. Individuals with weakened immune systems only"
-          ],
-          "correctAnswer": "C. Sexually active individuals, regardless of gender.",
-          "explanation": "The passage states that HPV is very common and can affect both women and men. Anyone who has ever been sexually active could have HPV."
-        },
-        {
-          "order": 2,
-          "question": "What are the sequential ways by which cervical cancer can spread to other parts of the body?",
-          "options": [
-            "A. Cervix → nearby organs → lymph system → distant parts of the body",
-            "B. Cervix → lymph system → nearby organs → distant parts of the body",
-            "C. Cervix → distant parts of the body → lymph system → nearby organs",
-            "D. Cervix → lower vagina → blood vessels → distant parts of the body"
-          ],
-          "correctAnswer": "A. Cervix → nearby organs → lymph system → distant parts of the body",
-          "explanation": "Cervical cancer spreads within the cervix to nearby organs through the lymph system to distant parts of the body."
-        },
-        {
-          "order": 3,
-          "question": "How does HIV increase the risk of cervical cancer development in women?",
-          "options": [
-            "A. HIV directly mutates cervical cells",
-            "B. HIV weakens the immune system",
-            "C. HIV increases estrogen levels",
-            "D. HIV causes cervical cancer independently of HPV infection."
-          ],
-          "correctAnswer": "B. HIV weakens the immune system",
-          "explanation": "HIV compromises the immune system, which reduces the body's ability to fight off HPV infection. Persistent HPV infection increases the risk of cervical pre-cancer and cancer."
-        }
-      ]
-    }
-  },
-  {
-    "module": "module-4",
-    "name": "Module 3",
     "completed": false,
     "unlocked": false,
     "icon": "Users",
     "title": "Risk Factors, Signs, Symptoms And Screening Tests For Cervical Cancer",
     "description": "Understand the etiology of cervical cancer",
-    "order": 4,
+    "order": 3,
     "introVideo": "https://drive.google.com/file/d/1_IobZOZ1AMm2vmJZqi2Ds6QnhAXwllAD/preview?usp=drivesdk",
     "sections": [
       {
@@ -882,7 +856,7 @@
       }
     ],
     "preTest": {
-      "name": "pretest-4",
+      "name": "pretest-3",
       "questions": [
         {
           "order": 1,
@@ -995,7 +969,7 @@
       ]
     },
     "postTest": {
-      "name": "posttest-4",
+      "name": "posttest-3",
       "questions": [
         {
           "order": 1,
@@ -1109,14 +1083,13 @@
     }
   },
   {
-    "module": "module-5",
-    "name": "Module 4",
+    "module": "module-4",
     "completed": false,
     "unlocked": false,
     "icon": "Users",
     "title": "Prevention Strategies",
     "description": "Explore how vaccines, lifestyle, and safe practices help prevent cervical cancer.",
-    "order": 5,
+    "order": 4,
     "introVideo": "https://cdn.example.com/module-4-intro.mp4",
     "sections": [
       {
@@ -1216,7 +1189,7 @@
       }
     ],
     "preTest": {
-      "name": "pretest-5",
+      "name": "pretest-4",
       "questions": [
         {
           "order": 1,
@@ -1269,7 +1242,7 @@
       ]
     },
     "postTest": {
-      "name": "posttest-5",
+      "name": "posttest-4",
       "questions": [
         {
           "order": 1,
@@ -1323,14 +1296,13 @@
     }
   },
   {
-    "module": "module-6",
-    "name": "Module 5",
+    "module": "module-5",
     "completed": false,
     "unlocked": false,
     "icon": "Users",
     "title": "Diagnosis and Staging of Cervical Cancer",
     "description": "Understand the staging and diagnostic methods for cervical precancer.",
-    "order": 6,
+    "order": 5,
     "introVideo": "https://cdn.example.com/module-5-intro.mp4",
     "sections": [
       {
@@ -1458,23 +1430,22 @@
       }
     ],
     "preTest": {
-      "name": "pretest-6",
+      "name": "pretest-5",
       "questions": []
     },
     "postTest": {
-      "name": "posttest-6",
+      "name": "posttest-5",
       "questions": []
     }
   },
   {
-    "module": "module-7",
-    "name": "Module 6",
+    "module": "module-6",
     "completed": false,
     "unlocked": false,
     "icon": "Users",
     "title": "Treatment and Palliative Care",
     "description": "Learn how education, policy, and advocacy support cervical cancer prevention.",
-    "order": 7,
+    "order": 6,
     "introVideo": "https://drive.google.com/file/d/1QKz-1fcmgh3CtE77J2e0VvGVuMz0-P4J/preview?usp=drivesdk",
     "sections": [
       {
@@ -1588,11 +1559,11 @@
       }
     ],
     "preTest": {
-      "name": "pretest-7",
+      "name": "pretest-6",
       "questions": []
     },
     "postTest": {
-      "name": "posttest-7",
+      "name": "posttest-6",
       "questions": []
     }
   }
