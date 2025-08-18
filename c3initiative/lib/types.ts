@@ -61,6 +61,7 @@ export interface newModule {
   unlocked: boolean;
   icon: string;
   title: string;
+  name: string;
   description: string;
   order: number;
   introVideo: string;

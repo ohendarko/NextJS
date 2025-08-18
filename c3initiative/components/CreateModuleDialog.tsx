@@ -28,6 +28,7 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
     unlocked: false,
     icon: 'BookOpen',
     title: '',
+    name: '',
     description: '',
     order: 1,
     introVideo: '',
@@ -56,6 +57,7 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
         unlocked: false,
         icon: 'BookOpen',
         title: '',
+        name: '',
         description: '',
         order: 1,
         introVideo: '',
@@ -367,6 +369,7 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
           title: '',
           description: '',
           order: 1,
+          name: '',
           introVideo: '',
           sections: [],
           preTest: {
@@ -412,6 +415,16 @@ export function CreateModuleDialog({ open, onOpenChange }: CreateModuleDialogPro
                 value={moduleData.module}
                 onChange={(e) => setModuleData(prev => ({ ...prev, module: e.target.value }))}
                 placeholder="module-1"
+                disabled
+              />
+            </div>
+            <div>
+              <Label htmlFor="module">Module ID</Label>
+              <Input
+                id="name"
+                value={moduleData.name}
+                onChange={(e) => setModuleData(prev => ({ ...prev, module: e.target.value }))}
+                placeholder="Module X"
                 disabled
               />
             </div>
