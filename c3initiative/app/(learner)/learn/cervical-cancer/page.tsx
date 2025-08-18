@@ -41,7 +41,7 @@ const iconMap = {
 export default function CervicalCancerLearnPage() {
   const router = useRouter()
   const {data: session, status} = useSession()
-  const { userProfile, loading, moduleSummary, moduleProgress } = useLearner()
+  const { userProfile, setUserProfile, loading, moduleSummary, moduleProgress } = useLearner()
   const [localloading, setLoading] = useState(false)
   const userEmail = session?.user?.email
 
@@ -117,7 +117,38 @@ export default function CervicalCancerLearnPage() {
 
   };
   
-  console.log("moduleSummary", moduleSummary)
+  // console.log("moduleSummary", moduleSummary)
+
+  useEffect(() => {
+    if (!userProfile) return
+    if (!allModulesCompleted) return
+    if (userProfile.currentModule === "certificate") return // prevent infinite loop
+
+    const update = async () => {
+      try {
+        const res = await fetch("/api/user/update", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: userProfile.email,
+            currentModule: "certificate",
+          }),
+        })
+
+        if (!res.ok) throw new Error("Failed to update currentModule")
+
+        setUserProfile((prev) =>
+          prev ? { ...prev, currentModule: "certificate" } : prev
+        )
+      } catch (err) {
+        console.error("Error updating currentModule to certificate:", err)
+      }
+    }
+
+    update()
+  }, [userProfile, allModulesCompleted])
+
+
 
   if (!Array.isArray(moduleSummary)) {
   console.error("Invalid moduleSummary:", moduleSummary)
