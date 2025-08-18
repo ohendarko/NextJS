@@ -480,7 +480,7 @@
     "introVideo": "https://drive.google.com/file/d/1MOHVNW985kgEmbBiU1xSBEnYMSNllilZ/preview?usp=drivesdk",
     "sections": [
       {
-        "name": "section-2-5",
+        "name": "section-3-1",
         "title": "The Development Timeline of Cervical Cancer",
         "description": "Cervical Cancer and HPV",
         "order": 1,
@@ -503,7 +503,7 @@
         "quizzes": []
       },
       {
-        "name": "section-2-6",
+        "name": "section-3-2",
         "title": "Routes Taken By Invasive Cancer Through The Body As It Progresses",
         "description": "Cervical Cancer and HPV",
         "order": 2,
@@ -540,7 +540,7 @@
         "quizzes": []
       },
       {
-        "name": "section-2-7",
+        "name": "section-3-3",
         "title": "Cervical Cancer And Human Immunodeficiency Virus (HIV) Infection",
         "description": "Cervical Cancer and HIV",
         "order": 3,
@@ -658,7 +658,7 @@
     "introVideo": "https://drive.google.com/file/d/1_IobZOZ1AMm2vmJZqi2Ds6QnhAXwllAD/preview?usp=drivesdk",
     "sections": [
       {
-        "name": "section-3-1",
+        "name": "section-4-1",
         "title": "Risk Factors",
         "description": "Learn about risk factors",
         "order": 1,
@@ -688,7 +688,7 @@
         "quizzes": []
       },
       {
-        "name": "section-3-2",
+        "name": "section-4-2",
         "title": "Signs And Symptoms",
         "description": "Signs and Symptoms of Cervical Cancer",
         "order": 2,
@@ -732,7 +732,7 @@
         "quizzes": []
       },
       {
-        "name": "section-3-3",
+        "name": "section-4-3",
         "title": "Screening",
         "description": "Screening Tests",
         "order": 3,
@@ -852,7 +852,7 @@
           {
             "name": "section-3-3card-9b",
             "title": "Cytology-based screening methods",
-            "content": "In the laboratory, these cells are examined by experts under a microscope.\n• If abnormal cells are found, they are classified using a system called The Bethesda System.\n• ",
+            "content": "In the laboratory, these cells are examined by experts under a microscope.\n• If abnormal cells are found, they are classified using a system called The Bethesda System.\n",
             "infographic": "/images/placeholder.svg",
             "order": 17
           },
@@ -1117,10 +1117,10 @@
     "title": "Prevention Strategies",
     "description": "Explore how vaccines, lifestyle, and safe practices help prevent cervical cancer.",
     "order": 5,
-    "introVideo": "https://drive.google.com/file/d/1JBz22M3ozJoqJsYO68B6ESONwrqylUHz/preview?usp=drivesdk",
+    "introVideo": "https://drive.google.com/file/d/1gizxda5JDE2mmtuWcy5PK8P1qAo8LwLy/preview?usp=drive_link",
     "sections": [
       {
-        "name": "section-4-1",
+        "name": "section-5-1",
         "title": "HPV Vaccination",
         "description": "Why and when to get vaccinated.",
         "order": 1,
@@ -1157,7 +1157,7 @@
         "quizzes": []
       },
       {
-        "name": "section-4-2",
+        "name": "section-5-2",
         "title": "HPV Vaccines",
         "description": "HPV Vaccines and how they work",
         "order": 2,
@@ -1331,10 +1331,10 @@
     "title": "Diagnosis and Staging of Cervical Cancer",
     "description": "Understand the staging and diagnostic methods for cervical precancer.",
     "order": 6,
-    "introVideo": "https://cdn.example.com/module-5-intro.mp4",
+    "introVideo": "https://drive.google.com/file/d/1JBz22M3ozJoqJsYO68B6ESONwrqylUHz/preview?usp=drive_link",
     "sections": [
       {
-        "name": "section-5-1",
+        "name": "section-6-1",
         "title": "Diagnostic Tests",
         "description": "Diagnostic Tests",
         "order": 1,
@@ -1397,7 +1397,7 @@
         "quizzes": []
       },
       {
-        "name": "section-5-2",
+        "name": "section-6-2",
         "title": "Cervical Cancer Staging",
         "description": "Approaches depending on stage.",
         "order": 2,
@@ -1434,7 +1434,7 @@
         "quizzes": []
       },
       {
-        "name": "section-5-3",
+        "name": "section-6-3",
         "title": "Factors Influencing Cervical Cancer Prognosis",
         "description": "Approaches depending on stage.",
         "order": 2,
@@ -1478,7 +1478,7 @@
     "introVideo": "https://drive.google.com/file/d/1QKz-1fcmgh3CtE77J2e0VvGVuMz0-P4J/preview?usp=drivesdk",
     "sections": [
       {
-        "name": "section-6-1",
+        "name": "section-7-1",
         "title": "Treatment Options",
         "description": "The power of community education.",
         "order": 1,
@@ -1557,7 +1557,7 @@
         "quizzes": []
       },
       {
-        "name": "section-6-2",
+        "name": "section-7-2",
         "title": "Palliative care",
         "description": "Support through systems.",
         "order": 2,

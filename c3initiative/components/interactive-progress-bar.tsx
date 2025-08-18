@@ -35,28 +35,11 @@ interface Module {
   current?: boolean
 }
 
-const userdata = {
-  "id": "64b3d35a0e9150f1c1234567",
-  "email": "jane.doe@example.com",
-  "name": "Jane Doe",
-  "currentModule": "module-1",
-  "module1Completed": false,
-  "module2Completed": false,
-  "module3Completed": false,
-  "module4Completed": false,
-  "module5Completed": false,
-  "module6Completed": false,
-  "completedSections": [
-    "section-1-1",
-    "section-1-2",
-    "section-1-3"
-  ]
-}
 
 interface InteractiveProgressBarProps {
   modules: Module[]
   currentModule?: number
-  onModuleClick?: (moduleId: number) => void
+  onModuleClick?: (moduleId: string) => void
   showCertificate?: boolean
 }
 
@@ -83,7 +66,7 @@ export default function InteractiveProgressBar({
 
   const completedModules = userProfile?.completedModules?.length ?? 0
   const totalModules = modules.length
-  const allModulesCompleted = completedModules === totalModules
+  const allModulesCompleted = userProfile?.completedModules.length === totalModules
 
   const moduleUnlocked = (moduleName: string) => {
     if(!moduleName) return
@@ -118,7 +101,7 @@ export default function InteractiveProgressBar({
       ? [
           {
             name: 'certificate',
-            module: `module-${totalModules + 1}`,
+            module: `certificate`,
             id: totalModules + 1,
             title: "Certificate",
             shortTitle: "Certificate",
@@ -272,7 +255,7 @@ export default function InteractiveProgressBar({
                         } ${isClickable ? "cursor-pointer hover:scale-105" : ""}`}
                         onClick={() => {
                           // console.log(item)
-                          isClickable && onModuleClick(Number(item.order)) 
+                          isClickable && onModuleClick(item.module) 
                         }}
                       >
                         {moduleCompleted(item.module) ? (

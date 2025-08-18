@@ -189,51 +189,64 @@ export default function ModulePage() {
   // console.log(lesson)
   // console.log('sectionprogress', sectionProgress)
 
-const handleQuizComplete = async (mode: "pretest" | "posttest") => {
-  if(!lesson) return
-  try {
-    const isPretest = mode === "pretest"
-    const fieldToUpdate = isPretest ? "preTestCompleted" : "postTestCompleted"
-    const updateValue = [`${mode}-${lesson?.order}`]
+  const handleQuizComplete = async (mode: "pretest" | "posttest") => {
+    if (!lesson) return
+    try {
+      const isPretest = mode === "pretest"
+      const fieldToUpdate = isPretest ? "preTestCompleted" : "postTestCompleted"
 
-    const res = await fetch("/api/user/update", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+      const updateValue = [`${mode}-${lesson?.order}`]
+      const completedModule = `module-${lesson?.order}`
+
+      const body: any = {
         email: userProfile?.email,
         [fieldToUpdate]: updateValue,
         addOn: true,
-        currentModule: `module-${lesson?.order + 1}`
-      }),
-    })
+      }
 
-    if (!res.ok) throw new Error("Failed to update quiz status")
+      // Always set next module
+      body.currentModule = `module-${lesson?.order + 1}`
 
-    if (isPretest) {
-      setShowQuiz(false)
-      setUserProfile((prev) =>
-        prev
-          ? {
-              ...prev,
-              preTestCompleted: [...prev.preTestCompleted, ...updateValue],
-            }
-          : prev
-      )
-    } else {
-      setShowPostQuiz(false)
-      setUserProfile((prev) =>
-        prev
-          ? {
-              ...prev,
-              postTestCompleted: [...prev.postTestCompleted, ...updateValue],
-            }
-          : prev
-      )
+      // If it's a posttest, also add to completedModules
+      if (!isPretest) {
+        body.completedModules = [completedModule]
+      }
+
+      const res = await fetch("/api/user/update", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      })
+
+      if (!res.ok) throw new Error("Failed to update quiz status")
+
+      if (isPretest) {
+        setShowQuiz(false)
+        setUserProfile((prev) =>
+          prev
+            ? {
+                ...prev,
+                preTestCompleted: [...prev.preTestCompleted, ...updateValue],
+              }
+            : prev
+        )
+      } else {
+        setShowPostQuiz(false)
+        setUserProfile((prev) =>
+          prev
+            ? {
+                ...prev,
+                postTestCompleted: [...prev.postTestCompleted, ...updateValue],
+                completedModules: [...prev.completedModules, completedModule],
+              }
+            : prev
+        )
+      }
+    } catch (err) {
+      console.error("Error updating user profile:", err)
     }
-  } catch (err) {
-    console.error("Error updating user profile:", err)
   }
-}
+
 
 
 
@@ -593,7 +606,7 @@ const handleQuizComplete = async (mode: "pretest" | "posttest") => {
                     <CheckCircle className="w-8 h-8 text-white" />
                   </div>
                 </div>
-                <DialogTitle className="text-center text-2xl font-bold text-green-600">Module {lesson.order} Complete!</DialogTitle>
+                <DialogTitle className="text-center text-2xl font-bold text-green-600">{lesson.name} Complete!</DialogTitle>
                 <DialogDescription className="text-center text-gray-600 dark:text-gray-400 text wrap">
                   Congratulations! You've successfully completed the {lesson.title} module.
                 </DialogDescription>
@@ -605,7 +618,7 @@ const handleQuizComplete = async (mode: "pretest" | "posttest") => {
                     onClick={() => router.push(`/learn/cervical-cancer/module-${lesson.order + 1}`)}
                     className="gradient-orange-blue text-white hover-shadow-gradient"
                   >
-                    Continue to Module {lesson.order + 1}
+                    Continue to Next Module
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>}
                   <Button variant="outline" onClick={() => window.location.reload()}>
@@ -627,7 +640,7 @@ const handleQuizComplete = async (mode: "pretest" | "posttest") => {
                   onClick={() => router.push(`/learn/cervical-cancer/module-${lesson.order + 1}`)}
                   className="gradient-orange-blue text-white hover-shadow-gradient"
                 >
-                  Continue to Module {lesson.order + 1}
+                  Continue to Next Module
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>}
                 <Button variant="outline" onClick={() => window.location.reload()}>

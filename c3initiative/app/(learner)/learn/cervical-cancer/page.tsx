@@ -67,7 +67,7 @@ export default function CervicalCancerLearnPage() {
  
 
   const completedModules = moduleProgress ? Object.values(moduleProgress).filter((p) => p.completed).length : 0
-  const allModulesCompleted = completedModules === moduleSummary.length
+  const allModulesCompleted = userProfile?.completedModules.length === moduleSummary.length
 
   // Prepare modules for progress bar
   // const progressModules = moduleSummary.map((module) => ({
@@ -78,8 +78,8 @@ export default function CervicalCancerLearnPage() {
 
 
 
-  const handleModuleClick = (moduleId: number) => {
-    router.push(`/learn/cervical-cancer/module-${moduleId}`)
+  const handleModuleClick = (moduleId: string) => {
+    router.push(`/learn/cervical-cancer/${moduleId}`)
     // console.log('module clicked: ',moduleId)
   }
 
@@ -169,14 +169,18 @@ export default function CervicalCancerLearnPage() {
                   <div>
                     {loading ? <Skeleton width={150} /> : <h3 className="text-xl font-bold text-green-600">🎉 Congratulations!</h3>}
                   {loading ? <Skeleton width={600} /> : <p className="text-gray-600 dark:text-gray-300">
-                      You've completed all modules. Your certificate is ready to download.
+                      You've completed all modules. Your certificate is ready.
                     </p>}
                   </div>
                 </div>
-                {loading ? <Skeleton width={200} height={30}/> : <Button className="gradient-orange-blue text-white hover-shadow-gradient">
-                  <Award className="w-4 h-4 mr-2" />
-                  Download Certificate
-                </Button>}
+                {loading ? <Skeleton width={200} height={30}/> : 
+                <Link href="/learn/cervical-cancer/certificate">
+                  <Button className="gradient-orange-blue text-white hover-shadow-gradient">
+                    <Award className="w-4 h-4 mr-2" />
+                    Go to Certificate
+                  </Button>
+                </Link>
+                }
               </div>
             </CardContent>
           </Card>

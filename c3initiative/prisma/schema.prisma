@@ -55,6 +55,7 @@ model ModuleSummary {
 model Module {
   id             String           @id @default(auto()) @map("_id") @db.ObjectId
   module         String           @unique // e.g. "module-1"
+  name         String           @unique // e.g. "Module 1"
   completed      Boolean          @default (false)
   unlocked       Boolean          @default(false)
   icon           String

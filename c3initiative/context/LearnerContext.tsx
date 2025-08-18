@@ -130,12 +130,21 @@ export const LearnerProvider = ({ children }: { children: React.ReactNode }) => 
   const canAccessModule = (moduleName: string) => {
     if (!userProfile) return false
     if (!userProfile.hasCompletedQuestionnaire) return false
+
+    // Extract the numeric part (e.g., "module-3" -> 3)
+    const currentIndex = parseInt(moduleName.split("-")[1], 10)
+
+    // Name of the previous module
+    const prevModule = currentIndex > 1 ? `module-${currentIndex - 1}` : null
+
     return (
-      moduleName === userProfile.currentModule ||
       moduleName === "module-1" ||
-      userProfile.completedModules.includes(moduleName)
+      moduleName === userProfile.currentModule ||
+      userProfile.completedModules.includes(moduleName) ||
+      (prevModule !== null && userProfile.completedModules.includes(prevModule))
     )
   }
+
 
   return (
     <LearnerContext.Provider value={{
