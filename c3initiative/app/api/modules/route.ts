@@ -16,6 +16,7 @@ export async function POST(req: Request) {
     const newModule = await prisma.module.create({
       data: {
         module: body.module,
+        name: body.name,
         title: body.title,
         description: body.description,
         icon: body.icon,
