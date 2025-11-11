@@ -1459,11 +1459,109 @@
     ],
     "preTest": {
       "name": "pretest-6",
-      "questions": []
+      "questions": [
+        {
+          "order": 1,
+          "question": "Colposcopy is primarily used for",
+          "options": [
+            "A. Screening for cervical cancer in asymptomatic women",
+            "B. Confirming and evaluating abnormal cervical screening results",
+            "C. Treating cervical pre-cancerous lesions directly in all women",
+            "D. Detecting ovarian cancer in low-risk and high-risk women"
+          ],
+          "correctAnswer": "B. Confirming and evaluating abnormal cervical screening results",
+          "explanation": "Colposcopy is a diagnostic test, not a primary screening tool. It is performed to closely examine the cervix, vagina, and vulva when Pap smear or HPV test results are abnormal."
+        },
+        {
+          "order": 2,
+          "question": "A biopsy in cervical cancer diagnosis involves:",
+          "options": [
+            "A. Examining the cervix with a medical imaging instrument to detect changes",
+            "B. Freezing abnormal cells on the cervix as a method of prevention and treatment",
+            "C. Testing for the presence of human papillomavirus in cervical cells",
+            "D. Taking a small tissue sample from the cervix for histopathological analysis"
+          ],
+          "correctAnswer": "D. Taking a small tissue sample from the cervix for histopathological analysis",
+          "explanation": "A biopsy is the removal of small samples of abnormal tissue from the cervix for examination under a microscope. A cervical biopsy is done after abnormal screening results or colposcopy findings to confirm the presence of precancerous changes or cancer."
+        },
+        {
+          "order": 3,
+          "question": "Endocervical curettage is used to",
+          "options": [
+            "A. Collect tissue from the endocervical canal for microscopic evaluation",
+            "B. Visualize the cervix with magnification to detect abnormal changes",
+            "C. Remove visible precancerous lesions from the surface of the cervix",
+            "D. Test cervical cells for the presence of high-risk human papillomavirus"
+          ],
+          "correctAnswer": "A. Collect tissue from the endocervical canal for microscopic evaluation",
+          "explanation": "Endocervical curettage is a simple procedure used to collect cells from the endocervical canal. It is often performed during colposcopy when the transformation zone or lesion extends into the endocervical canal and cannot be fully visualized"
+        },
+        {
+          "order": 4,
+          "question": "Which of the following best describes Stage IV cervical cancer?",
+          "options": [
+            "A. Cancer is limited to the cervix and has not spread elsewhere.",
+            "B. Cancer has spread beyond the cervix into the upper vagina but not further.",
+            "C. Cancer has extended to the pelvic wall and may involve nearby organs.",
+            "D. Cancer has spread to other organs or distant tissues."
+          ],
+          "correctAnswer": "D. Cancer has spread to other organs or distant tissues.",
+          "explanation": "For Stage IV, the cancer has spread to surrounding organs or distant tissue, such as the lungs and distant lymph nodes."
+        }
+      ]
     },
     "postTest": {
       "name": "posttest-6",
-      "questions": []
+      "questions": [
+        {
+          "order": 1,
+          "question": "Colposcopy is primarily used for",
+          "options": [
+            "A. Screening for cervical cancer in asymptomatic women",
+            "B. Confirming and evaluating abnormal cervical screening results",
+            "C. Treating cervical pre-cancerous lesions directly in all women",
+            "D. Detecting ovarian cancer in low-risk and high-risk women"
+          ],
+          "correctAnswer": "B. Confirming and evaluating abnormal cervical screening results",
+          "explanation": "Colposcopy is a diagnostic test, not a primary screening tool. It is performed to closely examine the cervix, vagina, and vulva when Pap smear or HPV test results are abnormal."
+        },
+        {
+          "order": 2,
+          "question": "A biopsy in cervical cancer diagnosis involves:",
+          "options": [
+            "A. Examining the cervix with a medical imaging instrument to detect changes",
+            "B. Freezing abnormal cells on the cervix as a method of prevention and treatment",
+            "C. Testing for the presence of human papillomavirus in cervical cells",
+            "D. Taking a small tissue sample from the cervix for histopathological analysis"
+          ],
+          "correctAnswer": "D. Taking a small tissue sample from the cervix for histopathological analysis",
+          "explanation": "A biopsy is the removal of small samples of abnormal tissue from the cervix for examination under a microscope. A cervical biopsy is done after abnormal screening results or colposcopy findings to confirm the presence of precancerous changes or cancer."
+        },
+        {
+          "order": 3,
+          "question": "Endocervical curettage is used to",
+          "options": [
+            "A. Collect tissue from the endocervical canal for microscopic evaluation",
+            "B. Visualize the cervix with magnification to detect abnormal changes",
+            "C. Remove visible precancerous lesions from the surface of the cervix",
+            "D. Test cervical cells for the presence of high-risk human papillomavirus"
+          ],
+          "correctAnswer": "A. Collect tissue from the endocervical canal for microscopic evaluation",
+          "explanation": "Endocervical curettage is a simple procedure used to collect cells from the endocervical canal. It is often performed during colposcopy when the transformation zone or lesion extends into the endocervical canal and cannot be fully visualized"
+        },
+        {
+          "order": 4,
+          "question": "Which of the following best describes Stage IV cervical cancer?",
+          "options": [
+            "A. Cancer is limited to the cervix and has not spread elsewhere.",
+            "B. Cancer has spread beyond the cervix into the upper vagina but not further.",
+            "C. Cancer has extended to the pelvic wall and may involve nearby organs.",
+            "D. Cancer has spread to other organs or distant tissues."
+          ],
+          "correctAnswer": "D. Cancer has spread to other organs or distant tissues.",
+          "explanation": "For Stage IV, the cancer has spread to surrounding organs or distant tissue, such as the lungs and distant lymph nodes."
+        }
+      ]
     }
   },
   {
@@ -1589,11 +1687,133 @@
     ],
     "preTest": {
       "name": "pretest-7",
-      "questions": []
+      "questions": [
+        {
+          "order": 1,
+          "question": "Which factor is most important when choosing a treatment plan for cervical cancer?",
+          "options": [
+            "A. The woman’s general health and immune function",
+            "B. The stage of the cancer at the time of diagnosis",
+            "C. The availability of facilities and specialists",
+            "D. All of the above are considered important"
+          ],
+          "correctAnswer": "D. All of the above are considered important",
+          "explanation": "Choosing a treatment plan depends on: stage of the cancer, general health of the woman, availability of facilities and specialists."
+        },
+        {
+          "order": 2,
+          "question": "Which surgery is a fertility-sparing treatment for some early-stage cervical cancers?",
+          "options": [
+            "A. Simple hysterectomy",
+            "B. Radical hysterectomy",
+            "C. Trachelectomy",
+            "D. Prostatectomy"
+          ],
+          "correctAnswer": "C. Trachelectomy",
+          "explanation": "Trachelectomy removes the cervix and upper vagina but preserves the uterus, which is a fertility-sparing option for some early-stage patients."
+        },
+        {
+          "order": 3,
+          "question": "Which statement best describes external beam radiation therapy (EBRT)?",
+          "options": [
+            "A. It is a non-invasive treatment using a linear accelerator",
+            "B. It uses radioactive material placed inside the cervix",
+            "C. It requires removal of the uterus and nearby tissues",
+            "D. It is a drug treatment given through a patient’s vein"
+          ],
+          "correctAnswer": "A. It is a non-invasive treatment using a linear accelerator",
+          "explanation": "External beam radiation therapy (EBRT) is a non-invasive procedure. The radiation is delivered from a machine (called a linear accelerator) outside the body"
+        },
+        {
+          "order": 4,
+          "question": "Which of the following is a common side effect of chemotherapy?",
+          "options": [
+            "A. Changes in urination or bowel habits",
+            "B. Nausea, vomiting, and loss of appetite",
+            "C. Vaginal dryness, narrowing, or scarring",
+            "D. Pain or discomfort in the pelvic area"
+          ],
+          "correctAnswer": "B. Nausea, vomiting, and loss of appetite",
+          "explanation": "Chemotherapy is the use of drugs to kill cancer cells. Some common side effects include: nausea or vomiting, loss of appetite, mouth sores, fatigue, hair loss, easy bruising or bleeding, higher chance of infections and constipation"
+        },
+        {
+          "order": 5,
+          "question": "Which of the following best describes palliative care in cervical cancer?",
+          "options": [
+            "A. It is only for end-stage disease and terminal conditions",
+            "B. It manages pain and symptoms but not emotional support",
+            "C. It improves quality of life through physical and mental care",
+            "D. It replaces curative treatments like surgery or chemotherapy"
+          ],
+          "correctAnswer": "C. It improves quality of life through physical and mental care",
+          "explanation": "Palliative care aims to improve the quality of life of patients and their families facing problems associated with life-threatening illnesses and conditions. It is not only end-of-life care, but also includes interventions applied throughout the disease trajectory."
+        }
+      ]
     },
     "postTest": {
       "name": "posttest-7",
-      "questions": []
+      "questions": [
+        {
+          "order": 1,
+          "question": "Which factor is most important when choosing a treatment plan for cervical cancer?",
+          "options": [
+            "A. The woman’s general health and immune function",
+            "B. The stage of the cancer at the time of diagnosis",
+            "C. The availability of facilities and specialists",
+            "D. All of the above are considered important"
+          ],
+          "correctAnswer": "D. All of the above are considered important",
+          "explanation": "Choosing a treatment plan depends on: stage of the cancer, general health of the woman, availability of facilities and specialists."
+        },
+        {
+          "order": 2,
+          "question": "Which surgery is a fertility-sparing treatment for some early-stage cervical cancers?",
+          "options": [
+            "A. Simple hysterectomy",
+            "B. Radical hysterectomy",
+            "C. Trachelectomy",
+            "D. Prostatectomy"
+          ],
+          "correctAnswer": "C. Trachelectomy",
+          "explanation": "Trachelectomy removes the cervix and upper vagina but preserves the uterus, which is a fertility-sparing option for some early-stage patients."
+        },
+        {
+          "order": 3,
+          "question": "Which statement best describes external beam radiation therapy (EBRT)?",
+          "options": [
+            "A. It is a non-invasive treatment using a linear accelerator",
+            "B. It uses radioactive material placed inside the cervix",
+            "C. It requires removal of the uterus and nearby tissues",
+            "D. It is a drug treatment given through a patient’s vein"
+          ],
+          "correctAnswer": "A. It is a non-invasive treatment using a linear accelerator",
+          "explanation": "External beam radiation therapy (EBRT) is a non-invasive procedure. The radiation is delivered from a machine (called a linear accelerator) outside the body"
+        },
+        {
+          "order": 4,
+          "question": "Which of the following is a common side effect of chemotherapy?",
+          "options": [
+            "A. Changes in urination or bowel habits",
+            "B. Nausea, vomiting, and loss of appetite",
+            "C. Vaginal dryness, narrowing, or scarring",
+            "D. Pain or discomfort in the pelvic area"
+          ],
+          "correctAnswer": "B. Nausea, vomiting, and loss of appetite",
+          "explanation": "Chemotherapy is the use of drugs to kill cancer cells. Some common side effects include: nausea or vomiting, loss of appetite, mouth sores, fatigue, hair loss, easy bruising or bleeding, higher chance of infections and constipation"
+        },
+        {
+          "order": 5,
+          "question": "Which of the following best describes palliative care in cervical cancer?",
+          "options": [
+            "A. It is only for end-stage disease and terminal conditions",
+            "B. It manages pain and symptoms but not emotional support",
+            "C. It improves quality of life through physical and mental care",
+            "D. It replaces curative treatments like surgery or chemotherapy"
+          ],
+          "correctAnswer": "C. It improves quality of life through physical and mental care",
+          "explanation": "Palliative care aims to improve the quality of life of patients and their families facing problems associated with life-threatening illnesses and conditions. It is not only end-of-life care, but also includes interventions applied throughout the disease trajectory."
+        }
+      ]
     }
   }
 ]
