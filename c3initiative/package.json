@@ -63,7 +63,7 @@
     "jspdf": "^3.0.1",
     "lucide-react": "^0.462.0",
     "mongodb": "^5.9.2",
-    "next": "^15.3.2",
+    "next": "^16.0.7",
     "next-auth": "^4.24.11",
     "next-cloudinary": "^6.16.0",
     "next-themes": "^0.3.0",

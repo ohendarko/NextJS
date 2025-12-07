@@ -27,7 +27,7 @@ export default function CTA() {
   }, [])
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden m-0">
       {/* Slide Show Container */}
       <div className="absolute inset-0 z-0 flex transition-transform duration-1000 ease-in-out"
         style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
