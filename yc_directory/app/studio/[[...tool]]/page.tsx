@@ -9,6 +9,7 @@
 
 import { NextStudio } from 'next-sanity/studio'
 import config from '../../../sanity.config'
+// import 'easymde/dist/easymde.min.css'
 
 export const dynamic = 'force-static'
 
