@@ -5,8 +5,8 @@ import { getServerSession } from "next-auth";
 import { getUserProfile } from "@/lib/db";
 import DashboardNavbar from "@/components/dashboard/DashboardNavbar";
 import { UserProvider } from "@/context/UserContext";
-import { toast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
+// import { toast } from "@/hooks/use-toast";
+// import { useRouter } from "next/navigation";
 
 
 
